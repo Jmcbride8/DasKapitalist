@@ -1,0 +1,201 @@
+import React, { useState } from 'react';
+import { base44 } from '@/api/base44Client';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3 } from 'lucide-react';
+import TradesTable from '@/components/trades/TradesTable';
+import TradeForm from '@/components/trades/TradeForm';
+import ProfitChart from '@/components/trades/ProfitChart';
+
+export default function Trades() {
+    const [showForm, setShowForm] = useState(false);
+    const [editingTrade, setEditingTrade] = useState(null);
+    const queryClient = useQueryClient();
+
+    const { data: trades = [], isLoading } = useQuery({
+        queryKey: ['trades'],
+        queryFn: () => base44.entities.Trade.list('-open_date')
+    });
+
+    const createMutation = useMutation({
+        mutationFn: (data) => base44.entities.Trade.create(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['trades'] });
+            setShowForm(false);
+        }
+    });
+
+    const updateMutation = useMutation({
+        mutationFn: ({ id, data }) => base44.entities.Trade.update(id, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['trades'] });
+            setShowForm(false);
+            setEditingTrade(null);
+        }
+    });
+
+    const deleteMutation = useMutation({
+        mutationFn: (id) => base44.entities.Trade.delete(id),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['trades'] })
+    });
+
+    const handleSave = (data) => {
+        if (editingTrade) {
+            updateMutation.mutate({ id: editingTrade.id, data });
+        } else {
+            createMutation.mutate(data);
+        }
+    };
+
+    const handleEdit = (trade) => {
+        setEditingTrade(trade);
+        setShowForm(true);
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm('Delete this trade?')) {
+            deleteMutation.mutate(id);
+        }
+    };
+
+    const stats = {
+        totalProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
+        realizedProfit: trades.filter(t => t.status === 'Closed').reduce((sum, t) => sum + (t.profit || 0), 0),
+        unrealizedProfit: trades.filter(t => t.status === 'Open').reduce((sum, t) => sum + (t.profit || 0), 0),
+        openTrades: trades.filter(t => t.status === 'Open').length,
+        closedTrades: trades.filter(t => t.status === 'Closed').length
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+            <div className="max-w-[1800px] mx-auto p-6 lg:p-8">
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <div>
+                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Options Tracker</h1>
+                        <p className="text-slate-500 mt-1">Track and analyze your options trades</p>
+                    </div>
+                    <Button 
+                        onClick={() => { setEditingTrade(null); setShowForm(true); }}
+                        className="bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-200"
+                    >
+                        <Plus className="w-4 h-4 mr-2" />
+                        Add Trade
+                    </Button>
+                </div>
+
+                {/* Stats Cards */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
+                        <CardContent className="p-5">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm text-slate-500 font-medium">Total Profit</p>
+                                    <p className={`text-2xl font-bold mt-1 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                                        ${stats.totalProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                                    </p>
+                                </div>
+                                <div className={`p-3 rounded-xl ${stats.totalProfit >= 0 ? 'bg-emerald-100' : 'bg-red-100'}`}>
+                                    <DollarSign className={`w-5 h-5 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`} />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
+                        <CardContent className="p-5">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm text-slate-500 font-medium">Realized</p>
+                                    <p className={`text-2xl font-bold mt-1 ${stats.realizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                                        ${stats.realizedProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                                    </p>
+                                </div>
+                                <div className="p-3 rounded-xl bg-emerald-100">
+                                    <TrendingUp className="w-5 h-5 text-emerald-600" />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
+                        <CardContent className="p-5">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm text-slate-500 font-medium">Unrealized</p>
+                                    <p className={`text-2xl font-bold mt-1 ${stats.unrealizedProfit >= 0 ? 'text-slate-600' : 'text-red-600'}`}>
+                                        ${stats.unrealizedProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                                    </p>
+                                </div>
+                                <div className="p-3 rounded-xl bg-slate-100">
+                                    <TrendingDown className="w-5 h-5 text-slate-500" />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
+                        <CardContent className="p-5">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm text-slate-500 font-medium">Trades</p>
+                                    <p className="text-2xl font-bold mt-1 text-slate-900">
+                                        {stats.openTrades} <span className="text-sm font-normal text-slate-400">open</span> / {stats.closedTrades} <span className="text-sm font-normal text-slate-400">closed</span>
+                                    </p>
+                                </div>
+                                <div className="p-3 rounded-xl bg-blue-100">
+                                    <BarChart3 className="w-5 h-5 text-blue-600" />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Profit Chart */}
+                <Card className="border-0 shadow-sm bg-white/80 backdrop-blur mb-8">
+                    <CardHeader className="pb-2">
+                        <CardTitle className="text-lg font-semibold text-slate-900">Profit by Ticker</CardTitle>
+                        <p className="text-sm text-slate-500">Realized vs Unrealized profits</p>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="flex items-center gap-6 mb-4">
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded bg-emerald-500"></div>
+                                <span className="text-sm text-slate-600">Realized</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded bg-slate-300"></div>
+                                <span className="text-sm text-slate-600">Unrealized</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded bg-red-500"></div>
+                                <span className="text-sm text-slate-600">Loss</span>
+                            </div>
+                        </div>
+                        <ProfitChart trades={trades} />
+                    </CardContent>
+                </Card>
+
+                {/* Trades Table */}
+                <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
+                    <CardHeader className="pb-2">
+                        <CardTitle className="text-lg font-semibold text-slate-900">All Trades</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                        {isLoading ? (
+                            <div className="p-12 text-center text-slate-400">Loading trades...</div>
+                        ) : (
+                            <TradesTable trades={trades} onEdit={handleEdit} onDelete={handleDelete} />
+                        )}
+                    </CardContent>
+                </Card>
+
+                {/* Trade Form Dialog */}
+                <TradeForm 
+                    open={showForm} 
+                    onClose={() => { setShowForm(false); setEditingTrade(null); }}
+                    onSave={handleSave}
+                    trade={editingTrade}
+                />
+            </div>
+        </div>
+    );
+}
