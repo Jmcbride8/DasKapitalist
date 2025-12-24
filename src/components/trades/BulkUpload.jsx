@@ -31,34 +31,29 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
             const extractResult = await base44.integrations.Core.ExtractDataFromUploadedFile({
                 file_url,
                 json_schema: {
-                    type: "object",
-                    properties: {
-                        trades: {
-                            type: "array",
-                            items: {
-                                type: "object",
-                                properties: {
-                                    status: { type: "string" },
-                                    account: { type: "string" },
-                                    type: { type: "string" },
-                                    ticker: { type: "string" },
-                                    open_date: { type: "string" },
-                                    expiration: { type: "string" },
-                                    strike_price: { type: "number" },
-                                    open_premium: { type: "number" },
-                                    collateral_start: { type: "number" },
-                                    potential_yield: { type: "number" },
-                                    close_premium: { type: "number" },
-                                    close_date: { type: "string" },
-                                    income_week: { type: "string" },
-                                    close_type: { type: "string" },
-                                    collateral_gain: { type: "number" },
-                                    days_open: { type: "number" },
-                                    profit: { type: "number" },
-                                    realized_yield: { type: "number" },
-                                    normalized_weekly: { type: "number" }
-                                }
-                            }
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            status: { type: "string" },
+                            account: { type: "string" },
+                            type: { type: "string" },
+                            ticker: { type: "string" },
+                            open_date: { type: "string" },
+                            expiration: { type: "string" },
+                            strike_price: { type: "number" },
+                            open_premium: { type: "number" },
+                            collateral_start: { type: "number" },
+                            potential_yield: { type: "number" },
+                            close_premium: { type: "number" },
+                            close_date: { type: "string" },
+                            income_week: { type: "string" },
+                            close_type: { type: "string" },
+                            collateral_gain: { type: "number" },
+                            days_open: { type: "number" },
+                            profit: { type: "number" },
+                            realized_yield: { type: "number" },
+                            normalized_weekly: { type: "number" }
                         }
                     }
                 }
@@ -71,7 +66,7 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
             }
 
             // Convert percentage values from percentages to decimals
-            const trades = (extractResult.output?.trades || []).map(trade => ({
+            const trades = (Array.isArray(extractResult.output) ? extractResult.output : []).map(trade => ({
                 ...trade,
                 potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null,
                 realized_yield: trade.realized_yield ? trade.realized_yield / 100 : null,
