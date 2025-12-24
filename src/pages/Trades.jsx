@@ -7,10 +7,12 @@ import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3 } from 'lucide-re
 import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
 import ProfitChart from '@/components/trades/ProfitChart';
+import BulkUpload from '@/components/trades/BulkUpload';
 
 export default function Trades() {
     const [showForm, setShowForm] = useState(false);
     const [editingTrade, setEditingTrade] = useState(null);
+    const [showBulkUpload, setShowBulkUpload] = useState(false);
     const queryClient = useQueryClient();
 
     const { data: trades = [], isLoading } = useQuery({
@@ -76,13 +78,23 @@ export default function Trades() {
                         <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Options Tracker</h1>
                         <p className="text-slate-500 mt-1">Track and analyze your options trades</p>
                     </div>
-                    <Button 
-                        onClick={() => { setEditingTrade(null); setShowForm(true); }}
-                        className="bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-200"
-                    >
-                        <Plus className="w-4 h-4 mr-2" />
-                        Add Trade
-                    </Button>
+                    <div className="flex gap-3">
+                        <Button 
+                            onClick={() => setShowBulkUpload(true)}
+                            variant="outline"
+                            className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                        >
+                            <Plus className="w-4 h-4 mr-2" />
+                            Bulk Upload
+                        </Button>
+                        <Button 
+                            onClick={() => { setEditingTrade(null); setShowForm(true); }}
+                            className="bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-200"
+                        >
+                            <Plus className="w-4 h-4 mr-2" />
+                            Add Trade
+                        </Button>
+                    </div>
                 </div>
 
                 {/* Stats Cards */}
@@ -194,6 +206,13 @@ export default function Trades() {
                     onClose={() => { setShowForm(false); setEditingTrade(null); }}
                     onSave={handleSave}
                     trade={editingTrade}
+                />
+
+                {/* Bulk Upload Dialog */}
+                <BulkUpload
+                    open={showBulkUpload}
+                    onClose={() => setShowBulkUpload(false)}
+                    onSuccess={() => queryClient.invalidateQueries({ queryKey: ['trades'] })}
                 />
             </div>
         </div>
