@@ -52,28 +52,30 @@ export default function SummaryTable({ trades }) {
     });
 
     // Calculate summary for each status/week combination
-    // First, collect all weeks with their data
-    const allWeekData = [];
-    sortedStatuses.forEach(status => {
-        Object.entries(groupedByStatusAndWeek[status]).forEach(([week, weekTrades]) => {
-            const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
-            const totalProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
-            const avgYield = weekTrades.length > 0 
-                ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
-                : 0;
-            const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
+     // First, collect all weeks with their data
+     const allWeekData = [];
+     sortedStatuses.forEach(status => {
+         Object.entries(groupedByStatusAndWeek[status]).forEach(([week, weekTrades]) => {
+             const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
+             const totalProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
+             const avgYield = weekTrades.length > 0 
+                 ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
+                 : 0;
+             const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
+             const monthStr = week && week !== 'Unspecified' ? format(new Date(week), 'MMMM yyyy') : 'Unspecified';
 
-            allWeekData.push({
-                status,
-                week,
-                count: weekTrades.length,
-                totalCollateral,
-                totalProfit,
-                avgYield,
-                weeklyProfit
-            });
-        });
-    });
+             allWeekData.push({
+                 status,
+                 week,
+                 month: monthStr,
+                 count: weekTrades.length,
+                 totalCollateral,
+                 totalProfit,
+                 avgYield,
+                 weeklyProfit
+             });
+         });
+     });
 
     // Calculate cumulative based on pure chronological order (by income week across all statuses)
     const sortedChronologically = [...allWeekData].sort((a, b) => {
@@ -132,10 +134,11 @@ export default function SummaryTable({ trades }) {
         <div className="border rounded-xl overflow-hidden bg-white shadow-sm">
             <Table>
                 <TableHeader className="bg-slate-50 border-b border-slate-200">
-                    <TableRow>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2">Status</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2">Income Week</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-center">Trades</TableHead>
+                     <TableRow>
+                         <TableHead className="font-semibold text-slate-700 text-xs py-2">Status</TableHead>
+                         <TableHead className="font-semibold text-slate-700 text-xs py-2">Month</TableHead>
+                         <TableHead className="font-semibold text-slate-700 text-xs py-2">Income Week</TableHead>
+                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-center">Trades</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Collateral</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Profit</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Cumulative Profit</TableHead>
@@ -145,15 +148,18 @@ export default function SummaryTable({ trades }) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {weeklySummaries.map((summary, idx) => (
-                        <TableRow key={`${summary.status}-${summary.week}`} className="hover:bg-slate-50/50 transition-colors border-b border-slate-200">
-                            <TableCell className="text-slate-600 text-xs py-2">
-                                <Badge variant={summary.status === 'Closed' ? 'secondary' : 'default'} 
-                                       className={`text-xs ${summary.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
-                                    {summary.status}
-                                </Badge>
-                            </TableCell>
-                            <TableCell className="text-slate-600 text-xs py-2">{formatDate(summary.week)}</TableCell>
+                     {weeklySummaries.map((summary, idx) => {
+                         const showMonth = idx === 0 || weeklySummaries[idx - 1].month !== summary.month;
+                         return (
+                         <TableRow key={`${summary.status}-${summary.week}`} className="hover:bg-slate-50/50 transition-colors border-b border-slate-200">
+                             <TableCell className="text-slate-600 text-xs py-2">
+                                 <Badge variant={summary.status === 'Closed' ? 'secondary' : 'default'} 
+                                        className={`text-xs ${summary.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
+                                     {summary.status}
+                                 </Badge>
+                             </TableCell>
+                             <TableCell className="text-slate-600 text-xs py-2">{showMonth ? summary.month : ''}</TableCell>
+                             <TableCell className="text-slate-600 text-xs py-2">{formatDate(summary.week)}</TableCell>
                             <TableCell className="text-slate-600 text-xs py-2 text-center">{summary.count}</TableCell>
                             <TableCell className={`text-right font-mono text-xs py-2`}>{formatCurrency(summary.totalCollateral)}</TableCell>
                             <TableCell className={`text-right font-mono text-xs py-2 ${summary.totalProfit > 0 ? 'text-emerald-600' : summary.totalProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
@@ -169,11 +175,13 @@ export default function SummaryTable({ trades }) {
                                 {formatCurrency(summary.weeklyProfit)}
                             </TableCell>
                             <TableCell className="text-right font-mono text-xs py-2 text-slate-600">{formatPercent(summary.avgYield)}</TableCell>
-                        </TableRow>
-                    ))}
-                    <TableRow className="bg-yellow-50 border-t-2 border-slate-300 font-semibold">
-                        <TableCell className="text-slate-900 text-xs py-2">Grand Total</TableCell>
-                        <TableCell></TableCell>
+                            </TableRow>
+                            );
+                            })}
+                            <TableRow className="bg-yellow-50 border-t-2 border-slate-300 font-semibold">
+                            <TableCell className="text-slate-900 text-xs py-2">Grand Total</TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
                         <TableCell className="text-slate-900 text-xs py-2 text-center">{grandTotals.count}</TableCell>
                         <TableCell className="text-right font-mono text-xs py-2 text-slate-900">{formatCurrency(grandTotals.totalCollateral)}</TableCell>
                         <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.totalProfit > 0 ? 'text-emerald-700' : grandTotals.totalProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
