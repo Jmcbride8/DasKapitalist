@@ -136,6 +136,7 @@ export default function SummaryTable({ trades }) {
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Collateral</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Profit</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Cumulative Profit</TableHead>
+                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Cumulative Weekly Profit</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Weekly Profit</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Avg Yield</TableHead>
                     </TableRow>
