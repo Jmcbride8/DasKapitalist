@@ -78,26 +78,43 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     };
 
     const sortedTrades = [...trades].sort((a, b) => {
-        if (!sortField) return 0;
+        // Default sort: status (Open first), then expiration date
+        const aStatus = a.status || '';
+        const bStatus = b.status || '';
         
-        let aVal = a[sortField];
-        let bVal = b[sortField];
-        
-        if (sortField === 'profit') {
-            aVal = (a.open_premium || 0) + (a.close_premium || 0) + (a.collateral_gain || 0);
-            bVal = (b.open_premium || 0) + (b.close_premium || 0) + (b.collateral_gain || 0);
+        // Sort by status first: Open comes before Closed
+        if (aStatus !== bStatus) {
+            if (aStatus === 'Open') return -1;
+            if (bStatus === 'Open') return 1;
+            return aStatus.localeCompare(bStatus);
         }
         
-        if (aVal === null || aVal === undefined) return 1;
-        if (bVal === null || bVal === undefined) return -1;
-        
-        if (typeof aVal === 'string') {
-            return sortDirection === 'asc' 
-                ? aVal.localeCompare(bVal) 
-                : bVal.localeCompare(aVal);
+        // Then sort by expiration date
+        if (sortField && sortField !== 'status') {
+            let aVal = a[sortField];
+            let bVal = b[sortField];
+            
+            if (sortField === 'profit') {
+                aVal = (a.open_premium || 0) + (a.close_premium || 0) + (a.collateral_gain || 0);
+                bVal = (b.open_premium || 0) + (b.close_premium || 0) + (b.collateral_gain || 0);
+            }
+            
+            if (aVal === null || aVal === undefined) return 1;
+            if (bVal === null || bVal === undefined) return -1;
+            
+            if (typeof aVal === 'string') {
+                return sortDirection === 'asc' 
+                    ? aVal.localeCompare(bVal) 
+                    : bVal.localeCompare(aVal);
+            }
+            
+            return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
         }
         
-        return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+        // Default secondary sort by expiration date
+        const aExp = a.expiration ? new Date(a.expiration).getTime() : Infinity;
+        const bExp = b.expiration ? new Date(b.expiration).getTime() : Infinity;
+        return aExp - bExp;
     });
 
     const visibleTrades = sortedTrades.slice(0, visibleCount);
