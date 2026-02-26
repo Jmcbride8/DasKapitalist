@@ -84,7 +84,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         const updateTableHeight = () => {
             if (containerRef.current) {
                 const rect = containerRef.current.getBoundingClientRect();
-                const availableHeight = window.innerHeight - rect.top - 40;
+                const availableHeight = window.innerHeight - rect.top - 20;
                 setTableHeight(Math.max(300, availableHeight));
             }
         };
@@ -191,8 +191,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                 ref={bottomScrollRef}
                 onScroll={handleScroll}
                 style={{ 
-                    maxHeight: `${tableHeight}px`,
-                    overflowX: 'scroll',
+                    height: `${tableHeight}px`,
+                    overflowX: 'auto',
                     overflowY: 'auto',
                     width: '100%'
                 }}
