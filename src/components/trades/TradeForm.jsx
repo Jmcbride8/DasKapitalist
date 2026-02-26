@@ -17,10 +17,10 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
         open_date: "",
         expiration: "",
         strike_price: "",
-        open_premium: "",
+        open_price: "",
         collateral_start: "",
         potential_yield: "",
-        close_premium: "",
+        latest_value: "",
         close_date: "",
         income_week: "",
         close_type: "",
@@ -38,10 +38,10 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
                 open_date: trade.open_date || "",
                 expiration: trade.expiration || "",
                 strike_price: trade.strike_price || "",
-                open_premium: trade.open_premium || "",
+                open_price: trade.open_price || "",
                 collateral_start: trade.collateral_start || "",
                 potential_yield: trade.potential_yield ? (trade.potential_yield * 100).toFixed(1) : "",
-                close_premium: trade.close_premium || "",
+                latest_value: trade.latest_value || "",
                 close_date: trade.close_date || "",
                 income_week: trade.income_week || "",
                 close_type: trade.close_type || "",
@@ -57,10 +57,10 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
                 open_date: "",
                 expiration: "",
                 strike_price: "",
-                open_premium: "",
+                open_price: "",
                 collateral_start: "",
                 potential_yield: "",
-                close_premium: "",
+                latest_value: "",
                 close_date: "",
                 income_week: "",
                 close_type: "",
@@ -79,10 +79,10 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
         const data = {
             ...formData,
             strike_price: formData.strike_price ? parseFloat(formData.strike_price) : null,
-            open_premium: formData.open_premium ? parseFloat(formData.open_premium) : null,
+            open_price: formData.open_price ? parseFloat(formData.open_price) : null,
             collateral_start: formData.collateral_start ? parseFloat(formData.collateral_start) : null,
             potential_yield: formData.potential_yield ? parseFloat(formData.potential_yield) / 100 : null,
-            close_premium: formData.close_premium ? parseFloat(formData.close_premium) : null,
+            latest_value: formData.latest_value ? parseFloat(formData.latest_value) : null,
             collateral_gain: formData.collateral_gain ? parseFloat(formData.collateral_gain) : null,
             profit: formData.profit ? parseFloat(formData.profit) : null
         };
@@ -139,8 +139,8 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
                             <Input type="number" step="0.01" value={formData.strike_price} onChange={(e) => handleChange("strike_price", e.target.value)} />
                         </div>
                         <div className="space-y-2">
-                            <Label>Open Premium ($)</Label>
-                            <Input type="number" step="0.01" value={formData.open_premium} onChange={(e) => handleChange("open_premium", e.target.value)} />
+                            <Label>Open ($)</Label>
+                            <Input type="number" step="0.01" value={formData.open_price} onChange={(e) => handleChange("open_price", e.target.value)} />
                         </div>
                         <div className="space-y-2">
                             <Label>Collateral Start ($)</Label>
@@ -151,8 +151,8 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
                             <Input type="number" step="0.1" value={formData.potential_yield} onChange={(e) => handleChange("potential_yield", e.target.value)} />
                         </div>
                         <div className="space-y-2">
-                            <Label>Close Premium ($)</Label>
-                            <Input type="number" step="0.01" value={formData.close_premium} onChange={(e) => handleChange("close_premium", e.target.value)} />
+                            <Label>Latest value ($)</Label>
+                            <Input type="number" step="0.01" value={formData.latest_value} onChange={(e) => handleChange("latest_value", e.target.value)} />
                         </div>
                         <div className="space-y-2">
                             <Label>Close Date</Label>
