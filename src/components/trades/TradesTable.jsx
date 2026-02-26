@@ -104,7 +104,7 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
     const visibleTrades = sortedTrades.slice(0, visibleCount);
 
     const SortIcon = ({ field }) => {
-        if (sortField !== field) return <ArrowUpDown className="h-3 w-3 ml-1 inline" />;
+        if (sortField !== field) return null;
         return sortDirection === 'asc' 
             ? <ArrowUp className="h-3 w-3 ml-1 inline" /> 
             : <ArrowDown className="h-3 w-3 ml-1 inline" />;
