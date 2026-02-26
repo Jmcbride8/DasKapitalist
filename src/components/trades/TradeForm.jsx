@@ -12,7 +12,7 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
     const [formData, setFormData] = useState({
         status: "Open",
         account: "",
-        type: "Covered Call",
+        type: "Trade",
         ticker: "",
         open_date: "",
         expiration: "",
@@ -52,7 +52,7 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
             setFormData({
                 status: "Open",
                 account: "",
-                type: "Covered Call",
+                type: "Trade",
                 ticker: "",
                 open_date: "",
                 expiration: "",
