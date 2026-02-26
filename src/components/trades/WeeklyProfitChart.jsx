@@ -76,8 +76,11 @@ export default function WeeklyProfitChart({ trades }) {
     }
 
     const renderNetLabel = (props) => {
-        const { x, y, width, height, payload } = props;
-        const netValue = payload.positive + payload.negative;
+        const { x, y, width, height, index, payload } = props;
+        if (!chartData[index]) return null;
+        
+        const data = chartData[index];
+        const netValue = data.positive + data.negative;
         const labelY = netValue >= 0 ? y - 10 : y + height + 15;
         const textColor = netValue >= 0 ? '#10b981' : '#ef4444';
 
