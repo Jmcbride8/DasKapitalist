@@ -48,15 +48,17 @@ export default function ProfitChart({ trades }) {
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             const realized = payload.find(p => p.dataKey === 'realized')?.value || 0;
-            const unrealized = payload.find(p => p.dataKey === 'unrealized')?.value || 0;
-            const total = realized + unrealized;
+            const unrealizedGains = payload.find(p => p.dataKey === 'unrealizedGains')?.value || 0;
+            const unrealizedLosses = payload.find(p => p.dataKey === 'unrealizedLosses')?.value || 0;
+            const total = realized + unrealizedGains + unrealizedLosses;
             
             return (
                 <div className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg shadow-lg p-3">
                     <p className="font-semibold text-slate-900 mb-2">{label}</p>
                     <div className="space-y-1 text-sm">
-                        <p className="text-emerald-600">Realized: {formatCurrency(realized)}</p>
-                        <p className="text-slate-400">Unrealized: {formatCurrency(unrealized)}</p>
+                        <p className="text-slate-500">Realized: {formatCurrency(realized)}</p>
+                        <p className="text-emerald-600">Unrealized Gains: {formatCurrency(unrealizedGains)}</p>
+                        <p className="text-red-600">Unrealized Losses: {formatCurrency(unrealizedLosses)}</p>
                         <p className="font-semibold text-slate-900 pt-1 border-t">Total: {formatCurrency(total)}</p>
                     </div>
                 </div>
