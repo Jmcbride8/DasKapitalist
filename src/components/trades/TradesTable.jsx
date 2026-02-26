@@ -146,7 +146,11 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
             <div 
                 ref={topScrollRef}
                 className="overflow-x-auto border-b border-slate-200"
-                style={{ height: '16px', overflowY: 'hidden' }}
+                style={{ 
+                    height: '16px', 
+                    overflowY: 'hidden',
+                    overflowX: 'scroll'
+                }}
             >
                 <div style={{ height: '1px' }}></div>
             </div>
@@ -154,7 +158,10 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                 ref={bottomScrollRef}
                 onScroll={handleScroll}
                 className="overflow-x-auto overflow-y-auto"
-                style={{ maxHeight: `${tableHeight}px` }}
+                style={{ 
+                    maxHeight: `${tableHeight}px`,
+                    overflowX: 'scroll'
+                }}
             >
                 <div ref={tableRef}>
                 <Table>

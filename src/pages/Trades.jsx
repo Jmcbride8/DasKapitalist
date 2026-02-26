@@ -147,11 +147,7 @@ export default function Trades() {
                 </div>
 
                 {/* Trades Table */}
-                <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-lg font-semibold text-slate-900">All Trades</CardTitle>
-                    </CardHeader>
-                    <CardContent>
+                <div>
                         <TradeFilters filters={filters} onFilterChange={setFilters} trades={trades} />
                         
                         {/* Stats Cards */}
@@ -215,8 +211,7 @@ export default function Trades() {
                         ) : (
                             <TradesTable trades={filteredTrades} onEdit={handleEdit} onClose={handleClose} onDelete={handleDelete} />
                         )}
-                    </CardContent>
-                </Card>
+                </div>
 
                 {/* Trade Form Dialog */}
                 <TradeForm 
