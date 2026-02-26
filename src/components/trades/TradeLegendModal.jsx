@@ -7,7 +7,7 @@ export default function TradeLegendModal() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-2">
+                <Button variant="outline" className="gap-2">
                     <Info className="w-4 h-4" />
                     Trade Types
                 </Button>
@@ -21,8 +21,7 @@ export default function TradeLegendModal() {
                 </DialogHeader>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                     <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 rounded-lg bg-emerald-50/50 border border-emerald-100">
-                            <div className="text-2xl">📈</div>
+                        <div className="flex items-start gap-3 p-4 rounded-lg bg-emerald-50/50 border border-emerald-100">
                             <div className="flex-1">
                                 <p className="font-semibold text-emerald-900 text-sm mb-2">Buying Options</p>
                                 <p className="text-xs text-emerald-700 mb-3 italic">Pay Premium = Rights</p>
@@ -40,8 +39,7 @@ export default function TradeLegendModal() {
                         </div>
                     </div>
                     <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-50/50 border border-blue-100">
-                            <div className="text-2xl">📉</div>
+                        <div className="flex items-start gap-3 p-4 rounded-lg bg-blue-50/50 border border-blue-100">
                             <div className="flex-1">
                                 <p className="font-semibold text-blue-900 text-sm mb-2">Selling Options</p>
                                 <p className="text-xs text-blue-700 mb-3 italic">Receive Premium = Obligations</p>
