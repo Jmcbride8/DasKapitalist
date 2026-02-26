@@ -120,7 +120,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                     height: `${tableHeight}px`,
                     overflowX: 'scroll',
                     overflowY: 'auto',
-                    width: '100%'
+                    width: '100%',
+                    scrollbarGutter: 'stable'
                 }}
                 className="overflow-x-scroll"
             >
