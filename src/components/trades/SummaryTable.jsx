@@ -61,7 +61,7 @@ export default function SummaryTable({ trades }) {
             const avgYield = weekTrades.length > 0 
                 ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
                 : 0;
-            const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0)), 0);
+            const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
 
             allWeekData.push({
                 status,
