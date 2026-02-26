@@ -63,7 +63,7 @@ export default function DashboardKPIs({ trades }) {
                     <div className="flex items-start justify-between">
                         <div>
                             <p className="text-xs text-slate-500 font-medium mb-1">{kpi.label}</p>
-                            <p className={`text-2xl font-bold ${kpi.color}`}>{formatCurrency(kpi.value)}</p>
+                            <p className={`text-lg font-bold ${kpi.color}`}>{formatCurrency(kpi.value)}</p>
                         </div>
                         <TrendingUp className="h-5 w-5 text-emerald-500 mt-1" />
                     </div>
