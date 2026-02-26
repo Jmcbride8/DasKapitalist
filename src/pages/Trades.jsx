@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3 } from 'lucide-react';
 import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
-import ProfitChart from '@/components/trades/ProfitChart';
 import BulkUpload from '@/components/trades/BulkUpload';
 
 export default function Trades() {
@@ -160,31 +159,6 @@ export default function Trades() {
                         </CardContent>
                     </Card>
                 </div>
-
-                {/* Profit Chart */}
-                <Card className="border-0 shadow-sm bg-white/80 backdrop-blur mb-8">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-lg font-semibold text-slate-900">Profit by Ticker</CardTitle>
-                        <p className="text-sm text-slate-500">Realized vs Unrealized profits</p>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="flex items-center gap-6 mb-4">
-                            <div className="flex items-center gap-2">
-                                <div className="w-3 h-3 rounded bg-emerald-500"></div>
-                                <span className="text-sm text-slate-600">Realized</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-3 h-3 rounded bg-slate-300"></div>
-                                <span className="text-sm text-slate-600">Unrealized</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-3 h-3 rounded bg-red-500"></div>
-                                <span className="text-sm text-slate-600">Loss</span>
-                            </div>
-                        </div>
-                        <ProfitChart trades={trades} />
-                    </CardContent>
-                </Card>
 
                 {/* Trades Table */}
                 <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
