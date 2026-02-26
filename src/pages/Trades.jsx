@@ -126,25 +126,58 @@ export default function Trades() {
                 </div>
 
                 {/* Trade Type Legend */}
-                <Card className="border-emerald-200 bg-gradient-to-r from-emerald-50 to-green-50 mb-6">
-                    <CardContent className="p-4">
-                        <h3 className="text-sm font-semibold text-emerald-900 mb-3">Trade Type Reference</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                            <div>
-                                <p className="font-semibold text-emerald-800 mb-2">📈 Buying Options (Pay Premium = Rights)</p>
-                                <ul className="space-y-1 text-slate-700 ml-4">
-                                    <li><strong>Long Call</strong> - Right to buy at strike price</li>
-                                    <li><strong>Long Put</strong> - Right to sell at strike price</li>
-                                </ul>
+                <Card className="border-0 shadow-sm bg-white/90 backdrop-blur mb-6">
+                    <CardContent className="p-6">
+                        <h3 className="text-sm font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                            <div className="h-1 w-1 rounded-full bg-emerald-500"></div>
+                            Trade Type Reference
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-3">
+                                <div className="flex items-start gap-3 p-3 rounded-lg bg-emerald-50/50 border border-emerald-100">
+                                    <div className="text-2xl">📈</div>
+                                    <div className="flex-1">
+                                        <p className="font-semibold text-emerald-900 text-xs mb-2">Buying Options</p>
+                                        <p className="text-xs text-emerald-700 mb-2 italic">Pay Premium = Rights</p>
+                                        <div className="space-y-1.5 text-xs text-slate-700">
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-emerald-600">•</span>
+                                                <span><strong className="text-slate-900">Long Call</strong> — Right to buy at strike</span>
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-emerald-600">•</span>
+                                                <span><strong className="text-slate-900">Long Put</strong> — Right to sell at strike</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <p className="font-semibold text-emerald-800 mb-2">📉 Selling Options (Receive Premium = Obligations)</p>
-                                <ul className="space-y-1 text-slate-700 ml-4">
-                                    <li><strong>Covered Call</strong> - Obligation to sell (backed by stock)</li>
-                                    <li><strong>Cash Secured Put</strong> - Obligation to buy (backed by cash)</li>
-                                    <li><strong>Naked Call</strong> - Obligation to sell (no stock backing)</li>
-                                    <li><strong>Naked Put</strong> - Obligation to buy (no cash backing)</li>
-                                </ul>
+                            <div className="space-y-3">
+                                <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-50/50 border border-blue-100">
+                                    <div className="text-2xl">📉</div>
+                                    <div className="flex-1">
+                                        <p className="font-semibold text-blue-900 text-xs mb-2">Selling Options</p>
+                                        <p className="text-xs text-blue-700 mb-2 italic">Receive Premium = Obligations</p>
+                                        <div className="space-y-1.5 text-xs text-slate-700">
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-blue-600">•</span>
+                                                <span><strong className="text-slate-900">Covered Call</strong> — Sell obligation (with stock)</span>
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-blue-600">•</span>
+                                                <span><strong className="text-slate-900">Cash Secured Put</strong> — Buy obligation (with cash)</span>
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-blue-600">•</span>
+                                                <span><strong className="text-slate-900">Naked Call</strong> — Sell obligation (no stock)</span>
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-blue-600">•</span>
+                                                <span><strong className="text-slate-900">Naked Put</strong> — Buy obligation (no cash)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </CardContent>
