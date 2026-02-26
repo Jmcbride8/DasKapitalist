@@ -305,15 +305,60 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                     </SelectContent>
                                 </Select>
                             </TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="date" value={filters.openDateFrom} onChange={(e) => setFilters({...filters, openDateFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
+                                    <Input type="date" value={filters.openDateTo} onChange={(e) => setFilters({...filters, openDateTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="date" value={filters.expirationFrom} onChange={(e) => setFilters({...filters, expirationFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
+                                    <Input type="date" value={filters.expirationTo} onChange={(e) => setFilters({...filters, expirationTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="number" value={filters.strikePriceMin} onChange={(e) => setFilters({...filters, strikePriceMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
+                                    <Input type="number" value={filters.strikePriceMax} onChange={(e) => setFilters({...filters, strikePriceMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="number" value={filters.openPremiumMin} onChange={(e) => setFilters({...filters, openPremiumMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
+                                    <Input type="number" value={filters.openPremiumMax} onChange={(e) => setFilters({...filters, openPremiumMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="number" value={filters.collateralStartMin} onChange={(e) => setFilters({...filters, collateralStartMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
+                                    <Input type="number" value={filters.collateralStartMax} onChange={(e) => setFilters({...filters, collateralStartMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="number" step="0.01" value={filters.potentialYieldMin} onChange={(e) => setFilters({...filters, potentialYieldMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min %" />
+                                    <Input type="number" step="0.01" value={filters.potentialYieldMax} onChange={(e) => setFilters({...filters, potentialYieldMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max %" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="number" value={filters.closePremiumMin} onChange={(e) => setFilters({...filters, closePremiumMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
+                                    <Input type="number" value={filters.closePremiumMax} onChange={(e) => setFilters({...filters, closePremiumMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="date" value={filters.closeDateFrom} onChange={(e) => setFilters({...filters, closeDateFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
+                                    <Input type="date" value={filters.closeDateTo} onChange={(e) => setFilters({...filters, closeDateTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="date" value={filters.incomeWeekFrom} onChange={(e) => setFilters({...filters, incomeWeekFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
+                                    <Input type="date" value={filters.incomeWeekTo} onChange={(e) => setFilters({...filters, incomeWeekTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                </div>
+                            </TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.closeType} onValueChange={(value) => setFilters({...filters, closeType: value})}>
                                     <SelectTrigger className="h-7 text-xs border-slate-300">
@@ -327,8 +372,18 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                     </SelectContent>
                                 </Select>
                             </TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="number" value={filters.collateralGainMin} onChange={(e) => setFilters({...filters, collateralGainMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
+                                    <Input type="number" value={filters.collateralGainMax} onChange={(e) => setFilters({...filters, collateralGainMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
+                                </div>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <div className="flex gap-1">
+                                    <Input type="number" value={filters.profitMin} onChange={(e) => setFilters({...filters, profitMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
+                                    <Input type="number" value={filters.profitMax} onChange={(e) => setFilters({...filters, profitMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
+                                </div>
+                            </TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
