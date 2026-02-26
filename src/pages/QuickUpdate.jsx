@@ -53,7 +53,7 @@ export default function QuickUpdate() {
         setFormData({
             [trade.id]: {
                 status: trade.status,
-                current_value: trade.current_value || '',
+                close_premium: trade.close_premium || '',
                 close_date: trade.close_date || '',
                 income_week: trade.income_week || getNextFriday(),
                 close_type: trade.close_type || '',
@@ -138,13 +138,13 @@ export default function QuickUpdate() {
                                                 <Input
                                                     type="number"
                                                     step="0.01"
-                                                    value={data.current_value ?? ''}
-                                                    onChange={(e) => handleChange(trade.id, 'current_value', e.target.value)}
+                                                    value={data.close_premium ?? ''}
+                                                    onChange={(e) => handleChange(trade.id, 'close_premium', e.target.value)}
                                                     className="h-8 text-xs"
                                                     placeholder="0.00"
                                                 />
                                             ) : (
-                                                <span className="text-xs text-slate-600">{trade.current_value ? `$${trade.current_value.toFixed(2)}` : '-'}</span>
+                                                <span className="text-xs text-slate-600">{trade.close_premium ? `$${trade.close_premium.toFixed(2)}` : '-'}</span>
                                             )}
                                         </TableCell>
                                         <TableCell className="py-3 px-3">
