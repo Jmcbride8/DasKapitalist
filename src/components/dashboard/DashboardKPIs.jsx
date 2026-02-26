@@ -26,14 +26,9 @@ export default function DashboardKPIs({ trades }) {
         const totalProfit = trades.reduce((sum, trade) => sum + (trade.profit || 0), 0);
 
         // Unrealized (Gains/Losses) - sum of open trades
-        const unrealizedGainLoss = trades
-            .filter(trade => trade.status === 'Open')
-            .reduce((sum, trade) => {
-                const collateralGain = trade.collateral_gain || 0;
-                const openPremium = trade.open_premium || 0;
-                const closePremium = trade.close_premium || 0;
-                return sum + (collateralGain + (openPremium - closePremium));
-            }, 0);
+         const unrealizedGainLoss = trades
+             .filter(trade => trade.status === 'Open')
+             .reduce((sum, trade) => sum + (trade.profit || 0), 0);
 
         // Avg Weekly Profit
         const weeks = new Set();
