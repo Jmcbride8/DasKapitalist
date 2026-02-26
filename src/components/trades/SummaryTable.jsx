@@ -75,26 +75,21 @@ export default function SummaryTable({ trades }) {
         });
     });
 
-    // Sort by week (oldest to latest) to calculate cumulative running total
-    const sortedByDate = [...allWeekData].sort((a, b) => {
-        const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
-        const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
-        return dateA - dateB;
-    });
-    let cumulativeProfit = 0;
-    const weekDataWithCumulative = sortedByDate.map(item => {
-        cumulativeProfit += item.weeklyProfit;
-        return { ...item, cumulativeProfit };
-    });
-
-    // Now sort for display (Closed first, then Open, oldest weeks first within each status)
-    const weeklySummaries = [...weekDataWithCumulative].sort((a, b) => {
+    // Sort for display (Closed first, then Open, oldest weeks first within each status)
+    const sortedForDisplay = [...allWeekData].sort((a, b) => {
         if (a.status !== b.status) {
             return a.status === 'Closed' ? -1 : 1;
         }
         const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
         const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
         return dateA - dateB;
+    });
+
+    // Calculate cumulative based on chronological order (by income week)
+    let cumulativeProfit = 0;
+    const weeklySummaries = sortedForDisplay.map(item => {
+        cumulativeProfit += item.weeklyProfit;
+        return { ...item, cumulativeProfit };
     });
 
     // Calculate grand totals
