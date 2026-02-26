@@ -116,7 +116,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                 onScroll={handleScroll}
                 style={{ 
                     maxHeight: `${tableHeight}px`,
-                    overflowX: 'auto',
+                    overflowX: 'scroll',
                     overflowY: 'auto',
                     width: '100%'
                 }}
