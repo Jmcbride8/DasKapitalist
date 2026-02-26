@@ -75,6 +75,19 @@ export default function WeeklyProfitChart({ trades }) {
         );
     }
 
+    const renderNetLabel = (props) => {
+        const { x, y, width, height, payload } = props;
+        const netValue = payload.positive + payload.negative;
+        const labelY = netValue >= 0 ? y - 10 : y + height + 15;
+        const textColor = netValue >= 0 ? '#10b981' : '#ef4444';
+
+        return (
+            <text x={x + width / 2} y={labelY} textAnchor="middle" fill={textColor} fontSize={11} fontWeight={600}>
+                {formatCurrency(netValue)}
+            </text>
+        );
+    };
+
     return (
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -97,16 +110,8 @@ export default function WeeklyProfitChart({ trades }) {
                         axisLine={false}
                     />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="positive" stackId="a" fill="#10b981" radius={[4, 4, 0, 0]}>
-                        {chartData.map((entry, index) => (
-                            <Cell key={`cell-positive-${index}`} fill="#10b981" />
-                        ))}
-                    </Bar>
-                    <Bar dataKey="negative" stackId="a" fill="#ef4444" radius={[4, 4, 0, 0]}>
-                        {chartData.map((entry, index) => (
-                            <Cell key={`cell-negative-${index}`} fill="#ef4444" />
-                        ))}
-                    </Bar>
+                    <Bar dataKey="positive" stackId="a" fill="#10b981" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="negative" stackId="a" fill="#ef4444" radius={[4, 4, 0, 0]} label={renderNetLabel} />
                     <Line type="monotone" dataKey="cumulative" stroke="#000000" strokeWidth={2} dot={false} yAxisId="right" />
                     <YAxis yAxisId="right" orientation="right" tickFormatter={formatCurrency} tick={{ fontSize: 11, fill: '#64748b' }} tickLine={false} axisLine={false} />
                 </ComposedChart>
