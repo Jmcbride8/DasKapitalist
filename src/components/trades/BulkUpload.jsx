@@ -8,6 +8,7 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [result, setResult] = useState(null);
+    const [failedRows, setFailedRows] = useState([]);
 
     const handleFileSelect = (e) => {
         const selectedFile = e.target.files?.[0];
@@ -64,29 +65,63 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
 
             // Map alternate trade type names and convert percentage values
             const extractedCount = Array.isArray(extractResult.output) ? extractResult.output.length : 0;
-            const trades = (Array.isArray(extractResult.output) ? extractResult.output : []).map((trade, index) => {
+            const validTypes = ["Trade", "Covered Call", "Cash Secured Put", "Long Call", "Long Put", "Naked Put", "Naked Call"];
+            const validStatuses = ["Open", "Closed"];
+            
+            const validTrades = [];
+            const invalidTrades = [];
+            
+            (Array.isArray(extractResult.output) ? extractResult.output : []).forEach((trade, index) => {
+                const rowNum = index + 2; // +2 because Excel starts at 1 and has header row
+                const errors = [];
+                
+                // Validate required fields
+                if (!trade.ticker) errors.push("Missing Ticker");
+                if (!trade.type) errors.push("Missing Type");
+                if (!trade.open_date) errors.push("Missing Open Date");
+                
+                // Map and validate type
                 let mappedType = trade.type;
-                // Map "Bought Call" to "Long Call" and "Bought Put" to "Long Put"
                 if (trade.type === "Bought Call") mappedType = "Long Call";
                 if (trade.type === "Bought Put") mappedType = "Long Put";
+                if (trade.type === "Sold Put") mappedType = "Cash Secured Put";
+                if (trade.type === "Sold Call") mappedType = "Naked Call";
                 
-                return {
-                    ...trade,
-                    type: mappedType,
-                    potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null,
-                    _originalIndex: index + 1 // Track original row number
-                };
+                if (mappedType && !validTypes.includes(mappedType)) {
+                    errors.push(`Invalid Type: "${trade.type}"`);
+                }
+                
+                // Validate status
+                if (trade.status && !validStatuses.includes(trade.status)) {
+                    errors.push(`Invalid Status: "${trade.status}"`);
+                }
+                
+                if (errors.length > 0) {
+                    invalidTrades.push({
+                        rowNum,
+                        ...trade,
+                        errors: errors.join(", ")
+                    });
+                } else {
+                    validTrades.push({
+                        ...trade,
+                        type: mappedType,
+                        potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null
+                    });
+                }
             });
 
-            // Bulk insert trades
-            const insertResult = await base44.entities.Trade.bulkCreate(trades);
-            const insertedCount = Array.isArray(insertResult) ? insertResult.length : trades.length;
+            // Bulk insert valid trades
+            if (validTrades.length > 0) {
+                await base44.entities.Trade.bulkCreate(validTrades);
+            }
 
+            setFailedRows(invalidTrades);
             setResult({ 
                 success: true, 
-                message: `Successfully imported ${insertedCount} out of ${extractedCount} trades`,
-                details: extractedCount > insertedCount 
-                    ? `${extractedCount - insertedCount} rows were skipped (possibly due to missing required fields or invalid data)`
+                message: `Successfully imported ${validTrades.length} out of ${extractedCount} trades`,
+                details: invalidTrades.length > 0 
+                    ? `${invalidTrades.length} rows failed validation. See details below.`
                     : null
             });
             
@@ -111,6 +146,7 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
         if (!uploading) {
             setFile(null);
             setResult(null);
+            setFailedRows([]);
             onClose();
         }
     };
@@ -200,6 +236,38 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                                         {result.details}
                                     </p>
                                 )}
+                            </div>
+                        </div>
+                    )}
+
+                    {failedRows.length > 0 && (
+                        <div className="border border-red-200 rounded-lg overflow-hidden">
+                            <div className="bg-red-50 px-4 py-2 border-b border-red-200">
+                                <p className="text-sm font-medium text-red-900">Failed Rows ({failedRows.length})</p>
+                            </div>
+                            <div className="max-h-60 overflow-auto">
+                                <table className="w-full text-xs">
+                                    <thead className="bg-slate-50 sticky top-0">
+                                        <tr>
+                                            <th className="px-3 py-2 text-left font-medium text-slate-700">Row</th>
+                                            <th className="px-3 py-2 text-left font-medium text-slate-700">Ticker</th>
+                                            <th className="px-3 py-2 text-left font-medium text-slate-700">Type</th>
+                                            <th className="px-3 py-2 text-left font-medium text-slate-700">Open Date</th>
+                                            <th className="px-3 py-2 text-left font-medium text-slate-700">Error</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {failedRows.map((row, idx) => (
+                                            <tr key={idx} className="border-t border-slate-200 hover:bg-slate-50">
+                                                <td className="px-3 py-2 text-slate-600">{row.rowNum}</td>
+                                                <td className="px-3 py-2 text-slate-900">{row.ticker || '-'}</td>
+                                                <td className="px-3 py-2 text-slate-900">{row.type || '-'}</td>
+                                                <td className="px-3 py-2 text-slate-900">{row.open_date || '-'}</td>
+                                                <td className="px-3 py-2 text-red-600">{row.errors}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     )}
