@@ -116,14 +116,13 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                 onScroll={handleScroll}
                 style={{ 
                     maxHeight: `${tableHeight}px`,
-                    overflowX: 'scroll',
+                    overflowX: 'auto',
                     overflowY: 'auto',
                     width: '100%'
                 }}
             >
-                <div ref={tableRef} style={{ minWidth: '2000px' }}>
-                <Table>
-                    <TableHeader className="sticky top-0 z-10 bg-white">
+                <Table style={{ minWidth: '2000px' }}>
+                    <TableHeader style={{ position: 'sticky', top: 0, zIndex: 20, backgroundColor: 'white' }}>
                         <TableRow className="bg-slate-50 border-b border-slate-200">
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">Actions</TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">#</TableHead>
