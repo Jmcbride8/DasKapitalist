@@ -6,7 +6,7 @@ const formatCurrency = (value) => {
     if (value === null || value === undefined) return '-';
     const num = parseFloat(value);
     if (isNaN(num)) return '-';
-    const formatted = Math.abs(num).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    const formatted = Math.abs(num).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
     return num < 0 ? `(${formatted})` : formatted;
 };
 
@@ -65,32 +65,37 @@ export default function KPICards({ trades }) {
         })
         .reduce((sum, trade) => sum + calculateProfit(trade), 0);
 
+    // Weekly average
+    const weeks = new Set();
+    trades.forEach(trade => {
+        if (trade.income_week) weeks.add(trade.income_week);
+    });
+    const totalProfit = trades.reduce((sum, trade) => sum + calculateProfit(trade), 0);
+    const weeklyAverage = weeks.size > 0 ? totalProfit / weeks.size : 0;
+
     const kpis = [
         { label: 'Peak Trade Profit', value: allTimeHigh },
         { label: '2025 Total', value: lastYearProfit },
-        { label: '2026 Total', value: thisYearProfit }
+        { label: '2026 Total', value: thisYearProfit },
+        { label: 'Weekly Average', value: weeklyAverage }
     ];
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
             {kpis.map((kpi, idx) => (
-                <Card key={idx} className="bg-white border-slate-200">
-                    <CardContent className="pt-6">
-                        <div className="flex items-start justify-between">
-                            <div>
-                                <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">{kpi.label}</p>
-                                <p className={`text-2xl font-bold mt-2 font-mono ${
-                                    kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-600' : 'text-slate-900'
-                                }`}>
-                                    {formatCurrency(kpi.value)}
-                                </p>
-                            </div>
-                            <TrendingUp className={`h-5 w-5 ${
-                                kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-600' : 'text-slate-400'
-                            }`} />
+                <div key={idx} className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-xs text-slate-500 font-medium">{kpi.label}</p>
+                            <p className={`text-lg font-bold mt-0.5 ${kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-600' : 'text-slate-900'}`}>
+                                {formatCurrency(kpi.value)}
+                            </p>
                         </div>
-                    </CardContent>
-                </Card>
+                        <div className={`p-2 rounded-lg ${kpi.value > 0 ? 'bg-emerald-100' : kpi.value < 0 ? 'bg-red-100' : 'bg-slate-100'}`}>
+                            <TrendingUp className={`w-4 h-4 ${kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-600' : 'text-slate-400'}`} />
+                        </div>
+                    </div>
+                </div>
             ))}
         </div>
     );
