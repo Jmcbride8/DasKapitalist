@@ -38,6 +38,7 @@ export default function TickerHistoryChart({ trades }) {
                             placeholder="0"
                             className="w-24"
                         />
+                        <span className="text-sm text-slate-500">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(minImpact)}</span>
                     </div>
                 </div>
                 <ProfitChart trades={filteredTrades} />
