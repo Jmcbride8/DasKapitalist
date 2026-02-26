@@ -95,6 +95,7 @@ export default function ProfitChart({ trades }) {
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <ReferenceLine y={0} stroke="#94a3b8" strokeWidth={1} />
+                    <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} />
                     <Bar dataKey="unrealized" stackId="a" radius={[4, 4, 4, 4]}>
                         {chartData.map((entry, index) => (
                             <Cell 
@@ -103,7 +104,6 @@ export default function ProfitChart({ trades }) {
                             />
                         ))}
                     </Bar>
-                    <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} />
                 </BarChart>
             </ResponsiveContainer>
         </div>
