@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Upload, FileSpreadsheet, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import * as XLSX from 'xlsx';
 
 export default function BulkUpload({ open, onClose, onSuccess }) {
     const [file, setFile] = useState(null);
@@ -25,53 +26,42 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
         setResult(null);
 
         try {
-            // Upload the file
-            const { file_url } = await base44.integrations.Core.UploadFile({ file });
+            // Parse Excel/CSV file directly in frontend
+            const arrayBuffer = await file.arrayBuffer();
+            const workbook = XLSX.read(arrayBuffer);
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-            // Extract data with the Trade schema
-            const extractResult = await base44.integrations.Core.ExtractDataFromUploadedFile({
-                file_url,
-                json_schema: {
-                    type: "array",
-                    items: {
-                        type: "object",
-                        properties: {
-                            status: { type: "string" },
-                            account: { type: "string" },
-                            type: { type: "string" },
-                            ticker: { type: "string" },
-                            open_date: { type: "string" },
-                            expiration: { type: "string" },
-                            strike_price: { type: "number" },
-                            open_premium: { type: "number" },
-                            collateral_start: { type: "number" },
-                            potential_yield: { type: "number" },
-                            close_premium: { type: "number" },
-                            close_date: { type: "string" },
-                            income_week: { type: "string" },
-                            close_type: { type: "string" },
-                            collateral_gain: { type: "number" },
-                            profit: { type: "number" }
-                        }
-                    }
-                }
-            });
-
-            if (extractResult.status === 'error') {
-                setResult({ success: false, message: extractResult.details || 'Failed to extract data' });
-                setUploading(false);
-                return;
-            }
+            // Map column names to match our schema
+            const extractedData = jsonData.map(row => ({
+                status: row['Status'] || row['status'],
+                account: row['Account'] || row['account'],
+                type: row['Type'] || row['type'],
+                ticker: row['Ticker'] || row['ticker'],
+                open_date: row['Open date'] || row['Open Date'] || row['open_date'],
+                expiration: row['Expiration'] || row['expiration'],
+                strike_price: row['Strike Price'] || row['Strike price'] || row['strike_price'],
+                open_premium: row['Open'] || row['open'] || row['open_premium'],
+                collateral_start: row['Collateral Start'] || row['Collateral start'] || row['collateral_start'],
+                potential_yield: row['Potential Yield'] || row['Potential yield'] || row['potential_yield'],
+                close_premium: row['Close'] || row['close'] || row['close_premium'],
+                close_date: row['Close date'] || row['Close Date'] || row['close_date'],
+                income_week: row['Income Week'] || row['Income week'] || row['income_week'],
+                close_type: row['Close Type'] || row['Close type'] || row['close_type'],
+                collateral_gain: row['Collateral Gain'] || row['Collateral gain'] || row['collateral_gain'],
+                profit: row['Profit'] || row['profit']
+            }));
 
             // Map alternate trade type names and convert percentage values
-            const extractedCount = Array.isArray(extractResult.output) ? extractResult.output.length : 0;
+            const extractedCount = extractedData.length;
             const validTypes = ["Trade", "Covered Call", "Cash Secured Put", "Long Call", "Long Put", "Naked Put", "Naked Call"];
             const validStatuses = ["Open", "Closed"];
             
             const validTrades = [];
             const invalidTrades = [];
             
-            (Array.isArray(extractResult.output) ? extractResult.output : []).forEach((trade, index) => {
+            extractedData.forEach((trade, index) => {
                 const rowNum = index + 2; // +2 because Excel starts at 1 and has header row
                 const errors = [];
                 
