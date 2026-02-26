@@ -161,6 +161,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                     <TableHeader>
                         <TableRow className="bg-slate-50/80">
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">Actions</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">#</TableHead>
                             <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
                                 Status<SortIcon field="status" />
                             </TableHead>
@@ -219,7 +220,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 </TableCell>
                             </TableRow>
                         ) : (
-                            visibleTrades.map((trade) => {
+                            visibleTrades.map((trade, index) => {
                                 const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
                                 return (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
@@ -248,6 +249,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </TableCell>
+                                    <TableCell className="text-slate-500 text-xs py-2 text-center">{index + 1}</TableCell>
                                     <TableCell className="py-2">
                                         <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 
                                                className={`text-xs ${trade.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
