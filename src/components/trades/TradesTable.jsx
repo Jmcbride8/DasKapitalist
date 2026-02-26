@@ -145,6 +145,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                     overflowY: 'auto',
                     width: '100%'
                 }}
+                className="overflow-x-auto"
             >
                 <Table style={{ minWidth: '2000px' }}>
                     <TableHeader style={{ position: 'sticky', top: 0, zIndex: 20, backgroundColor: 'white' }}>
@@ -181,7 +182,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             <TableHead className="py-1"></TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.status} onValueChange={(value) => setFilters({...filters, status: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-16">
                                         <SelectValue placeholder="All" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -193,7 +194,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             </TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.account} onValueChange={(value) => setFilters({...filters, account: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-20">
                                         <SelectValue placeholder="All" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -206,7 +207,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             </TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.type} onValueChange={(value) => setFilters({...filters, type: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-24">
                                         <SelectValue placeholder="All" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -219,7 +220,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             </TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.ticker} onValueChange={(value) => setFilters({...filters, ticker: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-16">
                                         <SelectValue placeholder="All" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -234,7 +235,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             </TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.closeType} onValueChange={(value) => setFilters({...filters, closeType: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-28">
                                         <SelectValue placeholder="All" />
                                     </SelectTrigger>
                                     <SelectContent>
