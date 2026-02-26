@@ -1,15 +1,11 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import ProfitChart from '@/components/trades/ProfitChart';
 
 export default function TickerHistoryChart({ trades }) {
     return (
         <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
-            <CardHeader>
-                <CardTitle className="text-lg font-semibold text-slate-900">Ticker History</CardTitle>
-                <p className="text-sm text-slate-500">Realized vs Unrealized profits by ticker</p>
-            </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
                 <div className="flex items-center gap-6 mb-4">
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded bg-gray-400"></div>
