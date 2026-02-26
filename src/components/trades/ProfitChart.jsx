@@ -76,7 +76,7 @@ export default function ProfitChart({ trades }) {
 
     return (
         <div className="h-full flex flex-col">
-            <ResponsiveContainer width="100%" height={0} flex="1">
+            <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: hasNegativeUnrealized ? 80 : 60 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis 
@@ -108,11 +108,7 @@ export default function ProfitChart({ trades }) {
                     </Bar>
                 </BarChart>
             </ResponsiveContainer>
-            {hasNegativeUnrealized && (
-                <div className="text-xs text-red-600 text-center mt-1">
-                    Unrealized (Negative)
-                </div>
-            )}
+
         </div>
     );
 }
