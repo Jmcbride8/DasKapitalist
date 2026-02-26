@@ -24,9 +24,9 @@ export default function Dashboards() {
                     <Tabs defaultValue="weekly" className="w-full">
                         <TabsList className="mb-6">
                             <TabsTrigger value="weekly">Weekly Totals</TabsTrigger>
+                            <TabsTrigger value="ticker">Ticker History</TabsTrigger>
                             <TabsTrigger value="open">Open Positions</TabsTrigger>
                             <TabsTrigger value="time">Time Comparisons</TabsTrigger>
-                            <TabsTrigger value="ticker">Ticker History</TabsTrigger>
                         </TabsList>
                         
                         <TabsContent value="weekly">
