@@ -38,13 +38,13 @@ export default function Layout({ children, currentPageName }) {
                                     </summary>
                                     <div className="pl-6 space-y-1 mt-1">
                                         {dashboardCharts.map((chart) => (
-                                            <button
+                                            <Link
                                                 key={chart.tab}
-                                                onClick={() => window.location.href = createPageUrl('Dashboards')}
+                                                to={createPageUrl(`Dashboards?view=${chart.tab}`)}
                                                 className="w-full text-left flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                                             >
                                                 {chart.name}
-                                            </button>
+                                            </Link>
                                         ))}
                                     </div>
                                 </details>
