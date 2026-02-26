@@ -29,8 +29,7 @@ export default function ProfitChart({ trades }) {
             .map(([ticker, data]) => ({
                 ticker,
                 realized: data.realized,
-                unrealizedGains: data.unrealizedGains,
-                unrealizedLosses: data.unrealizedLosses,
+                unrealized: data.unrealizedGains + data.unrealizedLosses,
                 total: data.realized + data.unrealizedGains + data.unrealizedLosses
             }))
             .sort((a, b) => b.total - a.total);
