@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import DashboardKPIs from '@/components/dashboard/DashboardKPIs';
 import WeeklyTotalsChart from '@/components/dashboard/WeeklyTotalsChart';
 import OpenPositionsChart from '@/components/dashboard/OpenPositionsChart';
 import TimeComparisonsChart from '@/components/dashboard/TimeComparisonsChart';
