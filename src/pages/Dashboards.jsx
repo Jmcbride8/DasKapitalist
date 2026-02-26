@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import WeeklyTotalsChart from '@/components/dashboard/WeeklyTotalsChart';
 import OpenPositionsChart from '@/components/dashboard/OpenPositionsChart';
 import TimeComparisonsChart from '@/components/dashboard/TimeComparisonsChart';
 import TickerHistoryChart from '@/components/dashboard/TickerHistoryChart';
 
 export default function Dashboards() {
-    const [view, setView] = useState('weekly');
-
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        setView(urlParams.get('view') || 'weekly');
-    }, [window.location.search]);
+    const [searchParams] = useSearchParams();
+    const view = searchParams.get('view') || 'weekly';
     
     const { data: trades = [], isLoading } = useQuery({
         queryKey: ['trades'],
