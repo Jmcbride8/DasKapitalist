@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3 } from 'lucide-react';
+import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3, X } from 'lucide-react';
 import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
 import CloseTradeModal from '@/components/trades/CloseTradeModal';
@@ -16,7 +16,9 @@ export default function Trades() {
     const [showCloseModal, setShowCloseModal] = useState(false);
     const [closingTrade, setClosingTrade] = useState(null);
     const [showBulkUpload, setShowBulkUpload] = useState(false);
+    const [selectedTypes, setSelectedTypes] = useState([]);
     const queryClient = useQueryClient();
+    const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
 
     const { data: trades = [], isLoading } = useQuery({
         queryKey: ['trades'],
@@ -82,12 +84,17 @@ export default function Trades() {
 
 
 
+    const filteredTrades = useMemo(() => {
+        if (selectedTypes.length === 0) return trades;
+        return trades.filter(t => selectedTypes.includes(t.type));
+    }, [trades, selectedTypes]);
+
     const stats = {
-        totalProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
-        realizedProfit: trades.filter(t => t.status === 'Closed').reduce((sum, t) => sum + (t.profit || 0), 0),
-        unrealizedProfit: trades.filter(t => t.status === 'Open').reduce((sum, t) => sum + (t.profit || 0), 0),
-        openTrades: trades.filter(t => t.status === 'Open').length,
-        closedTrades: trades.filter(t => t.status === 'Closed').length
+        totalProfit: filteredTrades.reduce((sum, t) => sum + (t.profit || 0), 0),
+        realizedProfit: filteredTrades.filter(t => t.status === 'Closed').reduce((sum, t) => sum + (t.profit || 0), 0),
+        unrealizedProfit: filteredTrades.filter(t => t.status === 'Open').reduce((sum, t) => sum + (t.profit || 0), 0),
+        openTrades: filteredTrades.filter(t => t.status === 'Open').length,
+        closedTrades: filteredTrades.filter(t => t.status === 'Closed').length
     };
 
     return (
@@ -99,7 +106,25 @@ export default function Trades() {
                         <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Positions Tracker</h1>
                         <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex flex-col gap-3">
+                        <div className="flex flex-wrap gap-2">
+                            {tradeTypes.map(type => (
+                                <button
+                                    key={type}
+                                    onClick={() => setSelectedTypes(prev => 
+                                        prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+                                    )}
+                                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                                        selectedTypes.includes(type)
+                                            ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
+                                            : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+                                    }`}
+                                >
+                                    {type}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="flex gap-3">
                         <TradeLegendModal />
                         <Button 
                             onClick={() => setShowBulkUpload(true)}
@@ -117,7 +142,8 @@ export default function Trades() {
                             Add Trade
                         </Button>
                     </div>
-                </div>
+                    </div>
+                    </div>
 
                 {/* Trades Table */}
                 <div>
@@ -180,7 +206,7 @@ export default function Trades() {
                         {isLoading ? (
                             <div className="p-12 text-center text-slate-400">Loading trades...</div>
                         ) : (
-                            <TradesTable trades={trades} onEdit={handleEdit} onClose={handleClose} onDelete={handleDelete} />
+                            <TradesTable trades={filteredTrades} onEdit={handleEdit} onClose={handleClose} onDelete={handleDelete} />
                         )}
                 </div>
 
