@@ -124,33 +124,33 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                 }}
                 className="overflow-x-auto"
             >
-                <Table style={{ minWidth: '2000px' }}>
+                <Table style={{ minWidth: '1400px' }}>
                     <TableHeader style={{ position: 'sticky', top: 0, zIndex: 20, backgroundColor: 'white' }}>
                         <TableRow className="bg-slate-50 border-b border-slate-200">
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">Actions</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">#</TableHead>
-                            <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 text-center">Actions</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 text-center">#</TableHead>
+                            <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Status<SortIcon field="status" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Account<SortIcon field="account" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Type<SortIcon field="type" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Ticker<SortIcon field="ticker" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('open_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead onClick={() => handleSort('open_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Open Date<SortIcon field="open_date" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Expiration<SortIcon field="expiration" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Close Date<SortIcon field="close_date" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                            <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Close Type<SortIcon field="close_type" />
                             </TableHead>
                         </TableRow>
@@ -167,11 +167,11 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
                                 return (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
-                                    <TableCell className="py-2">
+                                    <TableCell className="py-1 px-2">
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" size="icon" className="h-7 w-7 hover:bg-slate-100">
-                                                    <MoreVertical className="h-4 w-4 text-slate-500" />
+                                                <Button variant="ghost" size="icon" className="h-6 w-6 hover:bg-slate-100">
+                                                    <MoreVertical className="h-3 w-3 text-slate-500" />
                                                 </Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="start">
@@ -192,20 +192,20 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </TableCell>
-                                    <TableCell className="text-slate-500 text-xs py-2 text-center">{index + 1}</TableCell>
-                                    <TableCell className="py-2">
+                                    <TableCell className="text-slate-500 text-xs py-1 px-2 text-center">{index + 1}</TableCell>
+                                    <TableCell className="py-1 px-2">
                                         <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 
                                                className={`text-xs ${trade.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
                                             {trade.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-2">{trade.account || '-'}</TableCell>
-                                    <TableCell className="text-slate-700 font-medium text-xs py-2">{trade.type}</TableCell>
-                                    <TableCell className="font-semibold text-slate-900 text-xs py-2">{trade.ticker}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.open_date)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.expiration)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.close_date)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-2">{trade.close_type || '-'}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-2">{trade.account || '-'}</TableCell>
+                                    <TableCell className="text-slate-700 font-medium text-xs py-1 px-2">{trade.type}</TableCell>
+                                    <TableCell className="font-semibold text-slate-900 text-xs py-1 px-2">{trade.ticker}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-2">{formatDate(trade.open_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-2">{formatDate(trade.expiration)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-2">{formatDate(trade.close_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-2">{trade.close_type || '-'}</TableCell>
                                 </TableRow>
                                 );
                             })
