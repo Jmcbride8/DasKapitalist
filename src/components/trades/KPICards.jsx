@@ -13,8 +13,39 @@ const formatCurrency = (value) => {
 export default function KPICards({ trades }) {
     const calculateProfit = (trade) => (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
 
-    // All time high
-    const allTimeHigh = Math.max(...trades.map(calculateProfit), 0);
+    // Calculate max cumulative profit
+    const groupedByStatusAndWeek = {};
+    trades.forEach(trade => {
+        const status = trade.status || 'Unknown';
+        const week = trade.income_week || 'Unspecified';
+        if (!groupedByStatusAndWeek[status]) {
+            groupedByStatusAndWeek[status] = {};
+        }
+        if (!groupedByStatusAndWeek[status][week]) {
+            groupedByStatusAndWeek[status][week] = [];
+        }
+        groupedByStatusAndWeek[status][week].push(trade);
+    });
+
+    const allWeekData = [];
+    Object.keys(groupedByStatusAndWeek).forEach(status => {
+        Object.entries(groupedByStatusAndWeek[status]).forEach(([week, weekTrades]) => {
+            const weeklyProfit = weekTrades.reduce((sum, t) => sum + calculateProfit(t), 0);
+            allWeekData.push({ status, week, weeklyProfit });
+        });
+    });
+
+    const sortedChronologically = [...allWeekData].sort((a, b) => {
+        const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
+        const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
+        return dateA - dateB;
+    });
+
+    let maxCumulativeProfit = 0;
+    sortedChronologically.forEach(item => {
+        maxCumulativeProfit += item.weeklyProfit;
+    });
+    const allTimeHigh = maxCumulativeProfit;
 
     // Total last year (2025)
     const lastYearProfit = trades
