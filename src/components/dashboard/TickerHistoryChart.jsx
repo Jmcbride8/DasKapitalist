@@ -17,11 +17,11 @@ export default function TickerHistoryChart({ trades }) {
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded bg-emerald-500"></div>
-                        <span className="text-sm text-slate-600">Unrealized Gains</span>
+                        <span className="text-sm text-slate-600">Unrealized (Positive)</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded bg-red-500"></div>
-                        <span className="text-sm text-slate-600">Unrealized Losses</span>
+                        <span className="text-sm text-slate-600">Unrealized (Negative)</span>
                     </div>
                 </div>
                 <ProfitChart trades={trades} />
