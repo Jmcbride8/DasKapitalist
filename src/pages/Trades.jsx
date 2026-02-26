@@ -101,30 +101,31 @@ export default function Trades() {
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
             <div className="max-w-[1800px] mx-auto p-6 lg:p-8">
                 {/* Header */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Positions Tracker</h1>
-                        <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Positions Tracker</h1>
+                    <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
+                </div>
+
+                {/* Buttons and Filters */}
+                <div className="mb-6 flex flex-col gap-3">
+                    <div className="flex flex-wrap gap-2">
+                        {tradeTypes.map(type => (
+                            <button
+                                key={type}
+                                onClick={() => setSelectedTypes(prev => 
+                                    prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+                                )}
+                                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                                    selectedTypes.includes(type)
+                                        ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
+                                        : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+                                }`}
+                            >
+                                {type}
+                            </button>
+                        ))}
                     </div>
-                    <div className="flex flex-col gap-3">
-                        <div className="flex flex-wrap gap-2">
-                            {tradeTypes.map(type => (
-                                <button
-                                    key={type}
-                                    onClick={() => setSelectedTypes(prev => 
-                                        prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-                                    )}
-                                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                                        selectedTypes.includes(type)
-                                            ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
-                                            : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
-                                    }`}
-                                >
-                                    {type}
-                                </button>
-                            ))}
-                        </div>
-                        <div className="flex gap-3">
+                    <div className="flex gap-3">
                         <TradeLegendModal />
                         <Button 
                             onClick={() => setShowBulkUpload(true)}
@@ -142,8 +143,7 @@ export default function Trades() {
                             Add Trade
                         </Button>
                     </div>
-                    </div>
-                    </div>
+                </div>
 
                 {/* Trades Table */}
                 <div>
