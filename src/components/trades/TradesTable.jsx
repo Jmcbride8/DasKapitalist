@@ -145,25 +145,27 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         <div ref={containerRef} className="border rounded-xl overflow-hidden bg-white shadow-sm">
             <div 
                 ref={topScrollRef}
-                className="overflow-x-auto border-b border-slate-200"
+                className="border-b border-slate-200"
                 style={{ 
                     height: '16px', 
                     overflowY: 'hidden',
-                    overflowX: 'scroll'
+                    overflowX: 'scroll',
+                    width: '100%'
                 }}
             >
-                <div style={{ height: '1px' }}></div>
+                <div style={{ height: '1px', width: '2000px' }}></div>
             </div>
             <div 
                 ref={bottomScrollRef}
                 onScroll={handleScroll}
-                className="overflow-x-auto overflow-y-auto"
                 style={{ 
                     maxHeight: `${tableHeight}px`,
-                    overflowX: 'scroll'
+                    overflowX: 'scroll',
+                    overflowY: 'auto',
+                    width: '100%'
                 }}
             >
-                <div ref={tableRef}>
+                <div ref={tableRef} style={{ minWidth: '2000px' }}>
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-slate-50/80">
