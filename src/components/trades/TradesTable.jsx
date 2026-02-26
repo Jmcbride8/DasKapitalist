@@ -107,19 +107,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
             : <ArrowDown className="h-3 w-3 ml-1 inline" />;
     };
 
-    const tableRef = useRef(null);
 
-    useEffect(() => {
-        const topScroll = topScrollRef.current;
-        const table = tableRef.current;
-        
-        if (topScroll && table) {
-            const contentDiv = topScroll.querySelector('div');
-            if (contentDiv) {
-                contentDiv.style.width = `${table.scrollWidth}px`;
-            }
-        }
-    }, [trades, visibleTrades]);
 
     return (
         <div ref={containerRef} className="border rounded-xl overflow-hidden bg-white shadow-sm">
