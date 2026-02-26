@@ -168,6 +168,9 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                              <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-right">
                                  Close Date<SortIcon field="close_date" />
                              </TableHead>
+                             <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-right">
+                                 Income Week<SortIcon field="income_week" />
+                             </TableHead>
                              <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-right">
                                  Close Type<SortIcon field="close_type" />
                              </TableHead>
