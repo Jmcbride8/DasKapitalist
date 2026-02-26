@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import WeeklyProfitChart from '@/components/trades/WeeklyProfitChart';
 
 export default function WeeklyTotalsChart({ trades }) {
     return (
@@ -9,9 +10,7 @@ export default function WeeklyTotalsChart({ trades }) {
                 <p className="text-sm text-slate-500">Income grouped by week</p>
             </CardHeader>
             <CardContent>
-                <div className="h-96 flex items-center justify-center text-slate-400">
-                    Chart coming soon
-                </div>
+                <WeeklyProfitChart trades={trades} />
             </CardContent>
         </Card>
     );
