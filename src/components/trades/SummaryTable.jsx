@@ -44,17 +44,18 @@ export default function SummaryTable({ trades }) {
         groupedByStatusAndWeek[status][week].push(trade);
     });
 
-    // Sort statuses with Closed first, then Open
+    // Sort statuses with Open first, then Closed
     const sortedStatuses = Object.keys(groupedByStatusAndWeek).sort((a, b) => {
-        if (a === 'Closed') return -1;
-        if (b === 'Closed') return 1;
+        if (a === 'Open') return -1;
+        if (b === 'Open') return 1;
         return a.localeCompare(b);
     });
 
     // Calculate summary for each status/week combination
     const weeklySummaries = [];
+    let cumulativeProfit = 0;
     sortedStatuses.forEach(status => {
-        const weeksInStatus = Object.entries(groupedByStatusAndWeek[status])
+        Object.entries(groupedByStatusAndWeek[status])
             .sort((a, b) => b[0].localeCompare(a[0]))
             .forEach(([week, weekTrades]) => {
                 const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
@@ -63,6 +64,8 @@ export default function SummaryTable({ trades }) {
                     ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
                     : 0;
                 const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0)), 0);
+                
+                cumulativeProfit += weeklyProfit;
 
                 weeklySummaries.push({
                     status,
@@ -71,7 +74,8 @@ export default function SummaryTable({ trades }) {
                     totalCollateral,
                     totalProfit,
                     avgYield,
-                    weeklyProfit
+                    weeklyProfit,
+                    cumulativeProfit
                 });
             });
     });
@@ -97,6 +101,7 @@ export default function SummaryTable({ trades }) {
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-center">Trades</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Collateral</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Profit</TableHead>
+                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Cumulative Profit</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Weekly Profit</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Avg Yield</TableHead>
                     </TableRow>
@@ -116,6 +121,9 @@ export default function SummaryTable({ trades }) {
                             <TableCell className={`text-right font-mono text-xs py-2 ${summary.totalProfit > 0 ? 'text-emerald-600' : summary.totalProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                 {formatCurrency(summary.totalProfit)}
                             </TableCell>
+                            <TableCell className={`text-right font-mono text-xs py-2 font-semibold ${summary.cumulativeProfit > 0 ? 'text-emerald-600' : summary.cumulativeProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
+                                {formatCurrency(summary.cumulativeProfit)}
+                            </TableCell>
                             <TableCell className={`text-right font-mono text-xs py-2 ${summary.weeklyProfit > 0 ? 'text-emerald-600' : summary.weeklyProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                 {formatCurrency(summary.weeklyProfit)}
                             </TableCell>
@@ -124,10 +132,14 @@ export default function SummaryTable({ trades }) {
                     ))}
                     <TableRow className="bg-yellow-50 border-t-2 border-slate-300 font-semibold">
                         <TableCell className="text-slate-900 text-xs py-2">Grand Total</TableCell>
+                        <TableCell></TableCell>
                         <TableCell className="text-slate-900 text-xs py-2 text-center">{grandTotals.count}</TableCell>
                         <TableCell className="text-right font-mono text-xs py-2 text-slate-900">{formatCurrency(grandTotals.totalCollateral)}</TableCell>
                         <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.totalProfit > 0 ? 'text-emerald-700' : grandTotals.totalProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
                             {formatCurrency(grandTotals.totalProfit)}
+                        </TableCell>
+                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-700' : grandTotals.weeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
+                            {formatCurrency(grandTotals.weeklyProfit)}
                         </TableCell>
                         <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-700' : grandTotals.weeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
                             {formatCurrency(grandTotals.weeklyProfit)}
