@@ -96,6 +96,31 @@ export default function Trades() {
                     </div>
                 </div>
 
+                {/* Trade Type Legend */}
+                <Card className="border-emerald-200 bg-gradient-to-r from-emerald-50 to-green-50 mb-6">
+                    <CardContent className="p-4">
+                        <h3 className="text-sm font-semibold text-emerald-900 mb-3">Trade Type Reference</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <p className="font-semibold text-emerald-800 mb-2">📈 Buying Options (Pay Premium = Rights)</p>
+                                <ul className="space-y-1 text-slate-700 ml-4">
+                                    <li><strong>Long Call</strong> - Right to buy at strike price</li>
+                                    <li><strong>Long Put</strong> - Right to sell at strike price</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p className="font-semibold text-emerald-800 mb-2">📉 Selling Options (Receive Premium = Obligations)</p>
+                                <ul className="space-y-1 text-slate-700 ml-4">
+                                    <li><strong>Covered Call</strong> - Obligation to sell (backed by stock)</li>
+                                    <li><strong>Cash Secured Put</strong> - Obligation to buy (backed by cash)</li>
+                                    <li><strong>Naked Call</strong> - Obligation to sell (no stock backing)</li>
+                                    <li><strong>Naked Put</strong> - Obligation to buy (no cash backing)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
                 {/* Stats Cards */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
