@@ -182,6 +182,9 @@ export default function SummaryTable({ trades }) {
                         <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-700' : grandTotals.weeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
                             {formatCurrency(grandTotals.weeklyProfit)}
                         </TableCell>
+                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.avgWeeklyProfit > 0 ? 'text-emerald-700' : grandTotals.avgWeeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
+                            {formatCurrency(grandTotals.avgWeeklyProfit)}
+                        </TableCell>
                         <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-700' : grandTotals.weeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
                             {formatCurrency(grandTotals.weeklyProfit)}
                         </TableCell>
