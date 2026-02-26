@@ -48,17 +48,17 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import Dashboards from './pages/Dashboards';
+import QuickUpdate from './pages/QuickUpdate';
 import Summaries from './pages/Summaries';
 import Trades from './pages/Trades';
-import QuickUpdate from './pages/QuickUpdate';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "Dashboards": Dashboards,
+    "QuickUpdate": QuickUpdate,
     "Summaries": Summaries,
     "Trades": Trades,
-    "QuickUpdate": QuickUpdate,
 }
 
 export const pagesConfig = {

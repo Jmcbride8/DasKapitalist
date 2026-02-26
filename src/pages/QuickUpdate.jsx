@@ -123,12 +123,22 @@ export default function QuickUpdate() {
         const value = isEditing ? data[field] : trade[field];
 
         if (!isEditing) {
+            let displayValue = '-';
+            if (value) {
+                if (type === 'number') {
+                    displayValue = `$${parseFloat(value).toFixed(2)}`;
+                } else if (type === 'date') {
+                    displayValue = formatDate(value);
+                } else {
+                    displayValue = value;
+                }
+            }
             return (
                 <TableCell 
                     className="text-slate-600 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 hover:text-slate-900 transition-colors"
                     onClick={() => startEdit(trade)}
                 >
-                    {type === 'number' && value ? `$${parseFloat(value).toFixed(2)}` : (value ? formatDate(value) : '-')}
+                    {displayValue}
                 </TableCell>
             );
         }
