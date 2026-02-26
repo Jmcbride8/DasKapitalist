@@ -200,6 +200,85 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 Profit<SortIcon field="profit" />
                             </TableHead>
                         </TableRow>
+                        <TableRow className="bg-white border-b border-slate-200">
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1">
+                                <Select value={filters.status} onValueChange={(value) => setFilters({...filters, status: value})}>
+                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                        <SelectValue placeholder="All" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value={null}>All</SelectItem>
+                                        <SelectItem value="Open">Open</SelectItem>
+                                        <SelectItem value="Closed">Closed</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <Select value={filters.account} onValueChange={(value) => setFilters({...filters, account: value})}>
+                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                        <SelectValue placeholder="All" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value={null}>All</SelectItem>
+                                        {uniqueAccounts.map(acc => (
+                                            <SelectItem key={acc} value={acc}>{acc}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <Select value={filters.type} onValueChange={(value) => setFilters({...filters, type: value})}>
+                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                        <SelectValue placeholder="All" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value={null}>All</SelectItem>
+                                        {tradeTypes.map(type => (
+                                            <SelectItem key={type} value={type}>{type}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </TableHead>
+                            <TableHead className="py-1">
+                                <Select value={filters.ticker} onValueChange={(value) => setFilters({...filters, ticker: value})}>
+                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                        <SelectValue placeholder="All" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value={null}>All</SelectItem>
+                                        {uniqueTickers.map(ticker => (
+                                            <SelectItem key={ticker} value={ticker}>{ticker}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1">
+                                <Select value={filters.closeType} onValueChange={(value) => setFilters({...filters, closeType: value})}>
+                                    <SelectTrigger className="h-7 text-xs border-slate-300">
+                                        <SelectValue placeholder="All" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value={null}>All</SelectItem>
+                                        {closeTypes.map(type => (
+                                            <SelectItem key={type} value={type}>{type}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </TableHead>
+                            <TableHead className="py-1"></TableHead>
+                            <TableHead className="py-1"></TableHead>
+                        </TableRow>
                     </TableHeader>
                     <TableBody>
                         {trades.length === 0 ? (
