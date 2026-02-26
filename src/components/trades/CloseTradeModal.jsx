@@ -16,7 +16,7 @@ const getNextFriday = () => {
 
 export default function CloseTradeModal({ open, onClose, onSave, trade }) {
     const [formData, setFormData] = useState({
-        close_premium: '',
+        latest_value: '',
         close_date: '',
         income_week: getNextFriday(),
         close_type: ''
@@ -25,14 +25,14 @@ export default function CloseTradeModal({ open, onClose, onSave, trade }) {
     useEffect(() => {
         if (trade) {
             setFormData({
-                close_premium: trade.close_premium || '',
+                latest_value: trade.latest_value || '',
                 close_date: trade.close_date || '',
                 income_week: trade.income_week || getNextFriday(),
                 close_type: trade.close_type || ''
             });
         } else {
             setFormData({
-                close_premium: '',
+                latest_value: '',
                 close_date: '',
                 income_week: getNextFriday(),
                 close_type: ''
@@ -44,7 +44,7 @@ export default function CloseTradeModal({ open, onClose, onSave, trade }) {
         e.preventDefault();
         const dataToSave = {
             status: 'Closed',
-            close_premium: formData.close_premium ? parseFloat(formData.close_premium) : null,
+            latest_value: formData.latest_value ? parseFloat(formData.latest_value) : null,
             close_date: formData.close_date || null,
             income_week: formData.income_week || null,
             close_type: formData.close_type || null
@@ -60,13 +60,13 @@ export default function CloseTradeModal({ open, onClose, onSave, trade }) {
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4 mt-4">
                     <div>
-                        <Label htmlFor="close_premium">Latest Value</Label>
+                        <Label htmlFor="latest_value">Latest Value</Label>
                         <Input
-                            id="close_premium"
+                            id="latest_value"
                             type="number"
                             step="0.01"
-                            value={formData.close_premium}
-                            onChange={(e) => setFormData({ ...formData, close_premium: e.target.value })}
+                            value={formData.latest_value}
+                            onChange={(e) => setFormData({ ...formData, latest_value: e.target.value })}
                             placeholder="Enter latest value"
                         />
                     </div>
