@@ -104,10 +104,15 @@ export default function SummaryTable({ trades }) {
         const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
         const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
         return dateA - dateB;
-    }).map(item => ({
-        ...item,
-        cumulativeProfit: cumulativeMap[`${item.status}-${item.week}`]
-    }));
+    }).map(item => {
+        const cumData = cumulativeMap[`${item.status}-${item.week}`];
+        return {
+            ...item,
+            cumulativeProfit: cumData.cumulativeProfit,
+            weekCount: cumData.weekCount,
+            avgWeeklyProfit: cumData.avgWeeklyProfit
+        };
+    });
 
     // Calculate grand totals
     const grandTotals = {
