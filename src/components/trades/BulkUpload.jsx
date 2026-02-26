@@ -31,7 +31,19 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
             const workbook = XLSX.read(arrayBuffer);
             const sheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[sheetName];
-            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+            const jsonData = XLSX.utils.sheet_to_json(worksheet, { raw: false, dateNF: 'yyyy-mm-dd' });
+
+            // Helper to format dates
+            const formatDate = (value) => {
+                if (!value) return null;
+                if (typeof value === 'string') return value;
+                // Handle Excel date serial numbers
+                if (typeof value === 'number') {
+                    const date = XLSX.SSF.parse_date_code(value);
+                    return `${date.y}-${String(date.m).padStart(2, '0')}-${String(date.d).padStart(2, '0')}`;
+                }
+                return null;
+            };
 
             // Map column names to match our schema
             const extractedData = jsonData.map(row => ({
@@ -39,15 +51,15 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                 account: row['Account'] || row['account'],
                 type: row['Type'] || row['type'],
                 ticker: row['Ticker'] || row['ticker'],
-                open_date: row['Open date'] || row['Open Date'] || row['open_date'],
-                expiration: row['Expiration'] || row['expiration'],
+                open_date: formatDate(row['Open date'] || row['Open Date'] || row['open_date']),
+                expiration: formatDate(row['Expiration'] || row['expiration']),
                 strike_price: row['Strike Price'] || row['Strike price'] || row['strike_price'],
                 open_premium: row['Open'] || row['open'] || row['open_premium'],
                 collateral_start: row['Collateral Start'] || row['Collateral start'] || row['collateral_start'],
                 potential_yield: row['Potential Yield'] || row['Potential yield'] || row['potential_yield'],
                 close_premium: row['Close'] || row['close'] || row['close_premium'],
-                close_date: row['Close date'] || row['Close Date'] || row['close_date'],
-                income_week: row['Income Week'] || row['Income week'] || row['income_week'],
+                close_date: formatDate(row['Close date'] || row['Close Date'] || row['close_date']),
+                income_week: formatDate(row['Income Week'] || row['Income week'] || row['income_week']),
                 close_type: row['Close Type'] || row['Close type'] || row['close_type'],
                 collateral_gain: row['Collateral Gain'] || row['Collateral gain'] || row['collateral_gain'],
                 profit: row['Profit'] || row['profit']
