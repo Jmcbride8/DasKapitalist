@@ -27,34 +27,52 @@ const formatDate = (dateStr) => {
 };
 
 export default function SummaryTable({ trades }) {
-    // Group trades by income week
-    const groupedByWeek = {};
+    // Group trades by status, then by income week
+    const groupedByStatusAndWeek = {};
     
     trades.forEach(trade => {
+        const status = trade.status || 'Unknown';
         const week = trade.income_week || 'Unspecified';
-        if (!groupedByWeek[week]) {
-            groupedByWeek[week] = [];
+        
+        if (!groupedByStatusAndWeek[status]) {
+            groupedByStatusAndWeek[status] = {};
         }
-        groupedByWeek[week].push(trade);
+        if (!groupedByStatusAndWeek[status][week]) {
+            groupedByStatusAndWeek[status][week] = [];
+        }
+        groupedByStatusAndWeek[status][week].push(trade);
     });
 
-    // Calculate summary for each week
-    const weeklySummaries = Object.entries(groupedByWeek).sort((a, b) => b[0].localeCompare(a[0])).map(([week, weekTrades]) => {
-        const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
-        const totalProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
-        const avgYield = weekTrades.length > 0 
-            ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
-            : 0;
-        const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0)), 0);
+    // Sort statuses with Closed first, then Open
+    const sortedStatuses = Object.keys(groupedByStatusAndWeek).sort((a, b) => {
+        if (a === 'Closed') return -1;
+        if (b === 'Closed') return 1;
+        return a.localeCompare(b);
+    });
 
-        return {
-            week,
-            count: weekTrades.length,
-            totalCollateral,
-            totalProfit,
-            avgYield,
-            weeklyProfit
-        };
+    // Calculate summary for each status/week combination
+    const weeklySummaries = [];
+    sortedStatuses.forEach(status => {
+        const weeksInStatus = Object.entries(groupedByStatusAndWeek[status])
+            .sort((a, b) => b[0].localeCompare(a[0]))
+            .forEach(([week, weekTrades]) => {
+                const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
+                const totalProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
+                const avgYield = weekTrades.length > 0 
+                    ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
+                    : 0;
+                const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0)), 0);
+
+                weeklySummaries.push({
+                    status,
+                    week,
+                    count: weekTrades.length,
+                    totalCollateral,
+                    totalProfit,
+                    avgYield,
+                    weeklyProfit
+                });
+            });
     });
 
     // Calculate grand totals
