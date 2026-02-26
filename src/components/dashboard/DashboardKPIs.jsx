@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TrendingUp } from 'lucide-react';
 
 const formatCurrency = (value) => {
     if (value === null || value === undefined || isNaN(value)) return '$0';
@@ -57,16 +57,17 @@ export default function DashboardKPIs({ trades }) {
     ];
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {kpiData.map((kpi, idx) => (
-                <Card key={idx} className="border-t-2 border-slate-300 border-l-0 border-r-0 border-b-0 shadow-none bg-yellow-50">
-                    <CardHeader className="pb-3">
-                        <CardTitle className="text-sm font-medium text-slate-600">{kpi.label}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className={`text-2xl font-bold ${kpi.color}`}>{formatCurrency(kpi.value)}</p>
-                    </CardContent>
-                </Card>
+                <div key={idx} className="border-b border-slate-200 pb-4">
+                    <div className="flex items-start justify-between">
+                        <div>
+                            <p className="text-xs text-slate-500 font-medium mb-1">{kpi.label}</p>
+                            <p className={`text-2xl font-bold ${kpi.color}`}>{formatCurrency(kpi.value)}</p>
+                        </div>
+                        <TrendingUp className="h-5 w-5 text-emerald-500 mt-1" />
+                    </div>
+                </div>
             ))}
         </div>
     );
