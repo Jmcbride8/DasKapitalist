@@ -9,7 +9,7 @@ export default function ProfitChart({ trades }) {
             if (!trade.ticker) return;
             
             if (!tickerMap[trade.ticker]) {
-                tickerMap[trade.ticker] = { realized: 0, unrealized: 0 };
+                tickerMap[trade.ticker] = { realized: 0, unrealizedGains: 0, unrealizedLosses: 0 };
             }
             
             const profit = trade.profit || 0;
@@ -17,7 +17,11 @@ export default function ProfitChart({ trades }) {
             if (trade.status === 'Closed') {
                 tickerMap[trade.ticker].realized += profit;
             } else {
-                tickerMap[trade.ticker].unrealized += profit;
+                if (profit >= 0) {
+                    tickerMap[trade.ticker].unrealizedGains += profit;
+                } else {
+                    tickerMap[trade.ticker].unrealizedLosses += profit;
+                }
             }
         });
         
@@ -25,8 +29,9 @@ export default function ProfitChart({ trades }) {
             .map(([ticker, data]) => ({
                 ticker,
                 realized: data.realized,
-                unrealized: data.unrealized,
-                total: data.realized + data.unrealized
+                unrealizedGains: data.unrealizedGains,
+                unrealizedLosses: data.unrealizedLosses,
+                total: data.realized + data.unrealizedGains + data.unrealizedLosses
             }))
             .sort((a, b) => b.total - a.total);
     }, [trades]);
