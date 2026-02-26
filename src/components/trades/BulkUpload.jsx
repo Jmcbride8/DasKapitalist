@@ -50,10 +50,7 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                             income_week: { type: "string" },
                             close_type: { type: "string" },
                             collateral_gain: { type: "number" },
-                            days_open: { type: "number" },
-                            profit: { type: "number" },
-                            realized_yield: { type: "number" },
-                            normalized_weekly: { type: "number" }
+                            profit: { type: "number" }
                         }
                     }
                 }
@@ -68,9 +65,7 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
             // Convert percentage values from percentages to decimals
             const trades = (Array.isArray(extractResult.output) ? extractResult.output : []).map(trade => ({
                 ...trade,
-                potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null,
-                realized_yield: trade.realized_yield ? trade.realized_yield / 100 : null,
-                normalized_weekly: trade.normalized_weekly ? trade.normalized_weekly / 100 : null
+                potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null
             }));
 
             // Bulk insert trades

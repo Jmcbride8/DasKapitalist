@@ -25,10 +25,7 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
         income_week: "",
         close_type: "",
         collateral_gain: "",
-        days_open: "",
-        profit: "",
-        realized_yield: "",
-        normalized_weekly: ""
+        profit: ""
     });
 
     useEffect(() => {
@@ -49,10 +46,7 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
                 income_week: trade.income_week || "",
                 close_type: trade.close_type || "",
                 collateral_gain: trade.collateral_gain || "",
-                days_open: trade.days_open || "",
-                profit: trade.profit || "",
-                realized_yield: trade.realized_yield ? (trade.realized_yield * 100).toFixed(1) : "",
-                normalized_weekly: trade.normalized_weekly ? (trade.normalized_weekly * 100).toFixed(1) : ""
+                profit: trade.profit || ""
             });
         } else {
             setFormData({
@@ -71,10 +65,7 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
                 income_week: "",
                 close_type: "",
                 collateral_gain: "",
-                days_open: "",
-                profit: "",
-                realized_yield: "",
-                normalized_weekly: ""
+                profit: ""
             });
         }
     }, [trade, open]);
@@ -93,10 +84,7 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
             potential_yield: formData.potential_yield ? parseFloat(formData.potential_yield) / 100 : null,
             close_premium: formData.close_premium ? parseFloat(formData.close_premium) : null,
             collateral_gain: formData.collateral_gain ? parseFloat(formData.collateral_gain) : null,
-            days_open: formData.days_open ? parseInt(formData.days_open) : null,
-            profit: formData.profit ? parseFloat(formData.profit) : null,
-            realized_yield: formData.realized_yield ? parseFloat(formData.realized_yield) / 100 : null,
-            normalized_weekly: formData.normalized_weekly ? parseFloat(formData.normalized_weekly) / 100 : null
+            profit: formData.profit ? parseFloat(formData.profit) : null
         };
         onSave(data);
     };
@@ -189,20 +177,8 @@ export default function TradeForm({ open, onClose, onSave, trade }) {
                             <Input type="number" step="0.01" value={formData.collateral_gain} onChange={(e) => handleChange("collateral_gain", e.target.value)} />
                         </div>
                         <div className="space-y-2">
-                            <Label>Days Open</Label>
-                            <Input type="number" value={formData.days_open} onChange={(e) => handleChange("days_open", e.target.value)} />
-                        </div>
-                        <div className="space-y-2">
                             <Label>Profit ($)</Label>
                             <Input type="number" step="0.01" value={formData.profit} onChange={(e) => handleChange("profit", e.target.value)} />
-                        </div>
-                        <div className="space-y-2">
-                            <Label>Realized Yield (%)</Label>
-                            <Input type="number" step="0.1" value={formData.realized_yield} onChange={(e) => handleChange("realized_yield", e.target.value)} />
-                        </div>
-                        <div className="space-y-2">
-                            <Label>Normalized Weekly (%)</Label>
-                            <Input type="number" step="0.1" value={formData.normalized_weekly} onChange={(e) => handleChange("normalized_weekly", e.target.value)} />
                         </div>
                     </div>
                     <div className="flex justify-end gap-3 pt-4 border-t">

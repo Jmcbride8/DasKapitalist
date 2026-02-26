@@ -51,17 +51,14 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Income Week</TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Close Type</TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Collateral Gain</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Days Open</TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Profit</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Realized Yield</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Normalized Weekly</TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-center">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {trades.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={20} className="text-center py-12 text-slate-400">
+                                <TableCell colSpan={17} className="text-center py-12 text-slate-400">
                                     No trades yet. Add your first trade to get started.
                                 </TableCell>
                             </TableRow>
@@ -92,15 +89,8 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                                     <TableCell className={`text-right font-mono ${trade.collateral_gain > 0 ? 'text-emerald-600' : trade.collateral_gain < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                         {formatCurrency(trade.collateral_gain)}
                                     </TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700">{trade.days_open || '-'}</TableCell>
                                     <TableCell className={`text-right font-mono font-semibold ${trade.profit > 0 ? 'text-emerald-600' : trade.profit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                         {formatCurrency(trade.profit)}
-                                    </TableCell>
-                                    <TableCell className={`text-right font-mono ${trade.realized_yield > 0 ? 'text-emerald-600' : trade.realized_yield < 0 ? 'text-red-600' : 'text-slate-700'}`}>
-                                        {formatPercent(trade.realized_yield)}
-                                    </TableCell>
-                                    <TableCell className={`text-right font-mono ${trade.normalized_weekly > 0 ? 'text-emerald-600' : trade.normalized_weekly < 0 ? 'text-red-600' : 'text-slate-700'}`}>
-                                        {formatPercent(trade.normalized_weekly)}
                                     </TableCell>
                                     <TableCell>
                                         <div className="flex items-center justify-center gap-1">
