@@ -247,7 +247,6 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                         )}
                     </TableBody>
                 </Table>
-                </div>
             </div>
         </div>
     );
