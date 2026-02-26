@@ -100,7 +100,10 @@ export default function Dashboards() {
                 {isLoading ? (
                     <div className="text-center text-slate-400 py-12">Loading...</div>
                 ) : (
-                    dashboard.component
+                    <>
+                        <DashboardKPIs trades={filteredTrades} />
+                        {dashboard.component}
+                    </>
                 )}
             </div>
         </div>
