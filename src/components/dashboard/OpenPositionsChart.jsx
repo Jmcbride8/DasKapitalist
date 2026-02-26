@@ -74,8 +74,8 @@ export default function OpenPositionsChart({ trades }) {
                         <Tooltip content={<CustomTooltip />} />
                         <Legend wrapperStyle={{ paddingTop: '20px' }} />
                         <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" />
-                        <Bar dataKey="open" fill="#64748b" name="Open" />
-                        <Bar dataKey="unrealized" fill="#10b981" name="Unrealized" />
+                        <Bar dataKey="open" stackId="a" fill="#64748b" name="Open" />
+                        <Bar dataKey="unrealized" stackId="a" fill="#10b981" name="Unrealized" />
                     </BarChart>
                 </ResponsiveContainer>
             </CardContent>
