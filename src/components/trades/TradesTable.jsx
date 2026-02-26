@@ -37,7 +37,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     const [tableHeight, setTableHeight] = useState(500);
     const bottomScrollRef = useRef(null);
     const containerRef = useRef(null);
-    const tableRef = useRef(null);
+
 
     useEffect(() => {
         setVisibleCount(20);
