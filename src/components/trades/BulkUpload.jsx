@@ -63,7 +63,8 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
             }
 
             // Map alternate trade type names and convert percentage values
-            const trades = (Array.isArray(extractResult.output) ? extractResult.output : []).map(trade => {
+            const extractedCount = Array.isArray(extractResult.output) ? extractResult.output.length : 0;
+            const trades = (Array.isArray(extractResult.output) ? extractResult.output : []).map((trade, index) => {
                 let mappedType = trade.type;
                 // Map "Bought Call" to "Long Call" and "Bought Put" to "Long Put"
                 if (trade.type === "Bought Call") mappedType = "Long Call";
@@ -72,16 +73,21 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                 return {
                     ...trade,
                     type: mappedType,
-                    potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null
+                    potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null,
+                    _originalIndex: index + 1 // Track original row number
                 };
             });
 
             // Bulk insert trades
-            await base44.entities.Trade.bulkCreate(trades);
+            const insertResult = await base44.entities.Trade.bulkCreate(trades);
+            const insertedCount = Array.isArray(insertResult) ? insertResult.length : trades.length;
 
             setResult({ 
                 success: true, 
-                message: `Successfully imported ${trades.length} trade${trades.length !== 1 ? 's' : ''}` 
+                message: `Successfully imported ${insertedCount} out of ${extractedCount} trades`,
+                details: extractedCount > insertedCount 
+                    ? `${extractedCount - insertedCount} rows were skipped (possibly due to missing required fields or invalid data)`
+                    : null
             });
             
             setTimeout(() => {
@@ -185,9 +191,16 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                             ) : (
                                 <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                             )}
-                            <p className={`text-sm ${result.success ? 'text-emerald-800' : 'text-red-800'}`}>
-                                {result.message}
-                            </p>
+                            <div className="flex-1">
+                                <p className={`text-sm ${result.success ? 'text-emerald-800' : 'text-red-800'}`}>
+                                    {result.message}
+                                </p>
+                                {result.details && (
+                                    <p className={`text-xs mt-1 ${result.success ? 'text-emerald-700' : 'text-red-700'}`}>
+                                        {result.details}
+                                    </p>
+                                )}
+                            </div>
                         </div>
                     )}
 
