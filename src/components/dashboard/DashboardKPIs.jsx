@@ -54,10 +54,10 @@ export default function DashboardKPIs({ trades }) {
     }, [trades]);
 
     const kpiData = [
-        { label: 'Total Profit', value: kpis.totalProfit, color: 'text-emerald-600' },
+        { label: 'Total Profit', value: kpis.totalProfit, color: kpis.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600' },
         { label: 'Unrealized', value: kpis.unrealizedGainLoss, color: kpis.unrealizedGainLoss >= 0 ? 'text-emerald-600' : 'text-red-600' },
-        { label: 'Avg Weekly Profit', value: kpis.avgWeeklyProfit, color: 'text-blue-600' },
-        { label: 'Avg Annualized Profit', value: kpis.avgAnnualizedProfit, color: 'text-purple-600' }
+        { label: 'Avg Weekly Profit', value: kpis.avgWeeklyProfit, color: kpis.avgWeeklyProfit >= 0 ? 'text-emerald-600' : 'text-red-600' },
+        { label: 'Avg Annualized Profit', value: kpis.avgAnnualizedProfit, color: kpis.avgAnnualizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600' }
     ];
 
     return (
