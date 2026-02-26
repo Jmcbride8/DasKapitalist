@@ -148,8 +148,6 @@ export default function Trades() {
 
                 {/* Trades Table */}
                 <div>
-                        <TradeFilters filters={filters} onFilterChange={setFilters} trades={trades} />
-                        
                         {/* Stats Cards */}
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 my-4">
                             <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
