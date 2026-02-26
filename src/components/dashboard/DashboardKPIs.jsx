@@ -64,7 +64,7 @@ export default function DashboardKPIs({ trades }) {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {kpiData.map((kpi, idx) => (
-                <Card key={idx} className="border-0 shadow-sm bg-white/80 backdrop-blur">
+                <Card key={idx} className="border-b-2 border-slate-200 border-t-0 border-l-0 border-r-0 shadow-none bg-white">
                     <CardHeader className="pb-3">
                         <CardTitle className="text-sm font-medium text-slate-600">{kpi.label}</CardTitle>
                     </CardHeader>
