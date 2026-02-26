@@ -8,7 +8,6 @@ import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
 import CloseTradeModal from '@/components/trades/CloseTradeModal';
 import BulkUpload from '@/components/trades/BulkUpload';
-import TradeFilters from '@/components/trades/TradeFilters';
 import TradeLegendModal from '@/components/trades/TradeLegendModal';
 
 export default function Trades() {
