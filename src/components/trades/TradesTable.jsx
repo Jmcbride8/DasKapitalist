@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Pencil, Trash2 } from 'lucide-react';
+import { Pencil, Trash2, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { format } from 'date-fns';
 
 const formatCurrency = (value) => {
@@ -31,11 +31,36 @@ const formatDate = (dateStr) => {
 
 export default function TradesTable({ trades, onEdit, onDelete }) {
     const [visibleCount, setVisibleCount] = useState(20);
+    const [sortField, setSortField] = useState(null);
+    const [sortDirection, setSortDirection] = useState('asc');
     const scrollContainerRef = useRef(null);
+    const topScrollRef = useRef(null);
+    const bottomScrollRef = useRef(null);
 
     useEffect(() => {
         setVisibleCount(20);
     }, [trades]);
+
+    useEffect(() => {
+        const topScroll = topScrollRef.current;
+        const bottomScroll = bottomScrollRef.current;
+        
+        const syncScroll = (e) => {
+            if (e.target === topScroll) {
+                bottomScroll.scrollLeft = topScroll.scrollLeft;
+            } else {
+                topScroll.scrollLeft = bottomScroll.scrollLeft;
+            }
+        };
+
+        topScroll?.addEventListener('scroll', syncScroll);
+        bottomScroll?.addEventListener('scroll', syncScroll);
+
+        return () => {
+            topScroll?.removeEventListener('scroll', syncScroll);
+            bottomScroll?.removeEventListener('scroll', syncScroll);
+        };
+    }, []);
 
     const handleScroll = (e) => {
         const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -44,36 +69,112 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
         }
     };
 
-    const visibleTrades = trades.slice(0, visibleCount);
+    const handleSort = (field) => {
+        if (sortField === field) {
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortField(field);
+            setSortDirection('asc');
+        }
+    };
+
+    const sortedTrades = [...trades].sort((a, b) => {
+        if (!sortField) return 0;
+        
+        let aVal = a[sortField];
+        let bVal = b[sortField];
+        
+        if (sortField === 'profit') {
+            aVal = (a.open_premium || 0) + (a.close_premium || 0) + (a.collateral_gain || 0);
+            bVal = (b.open_premium || 0) + (b.close_premium || 0) + (b.collateral_gain || 0);
+        }
+        
+        if (aVal === null || aVal === undefined) return 1;
+        if (bVal === null || bVal === undefined) return -1;
+        
+        if (typeof aVal === 'string') {
+            return sortDirection === 'asc' 
+                ? aVal.localeCompare(bVal) 
+                : bVal.localeCompare(aVal);
+        }
+        
+        return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+    });
+
+    const visibleTrades = sortedTrades.slice(0, visibleCount);
+
+    const SortIcon = ({ field }) => {
+        if (sortField !== field) return <ArrowUpDown className="h-3 w-3 ml-1 inline" />;
+        return sortDirection === 'asc' 
+            ? <ArrowUp className="h-3 w-3 ml-1 inline" /> 
+            : <ArrowDown className="h-3 w-3 ml-1 inline" />;
+    };
 
     return (
         <div className="border rounded-xl overflow-hidden bg-white shadow-sm">
             <div 
-                ref={scrollContainerRef}
+                ref={topScrollRef}
+                className="overflow-x-auto"
+                style={{ height: '12px' }}
+            >
+                <div style={{ width: '2000px', height: '1px' }}></div>
+            </div>
+            <div 
+                ref={bottomScrollRef}
                 onScroll={handleScroll}
                 className="overflow-x-auto max-h-[800px] overflow-y-auto"
-                style={{ transform: 'rotateX(180deg)' }}
             >
-                <div style={{ transform: 'rotateX(180deg)' }}>
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-slate-50/80">
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Status</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Account</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Type</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Ticker</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Open Date</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Expiration</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Strike Price</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Open</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Collateral Start</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Potential Yield</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Latest Value</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Close Date</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Income Week</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Close Type</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Collateral Gain</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Profit</TableHead>
+                            <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Status<SortIcon field="status" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Account<SortIcon field="account" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Type<SortIcon field="type" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Ticker<SortIcon field="ticker" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('open_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Open Date<SortIcon field="open_date" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Expiration<SortIcon field="expiration" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('strike_price')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
+                                Strike Price<SortIcon field="strike_price" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('open_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
+                                Open<SortIcon field="open_premium" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('collateral_start')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
+                                Collateral Start<SortIcon field="collateral_start" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('potential_yield')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
+                                Potential Yield<SortIcon field="potential_yield" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
+                                Latest Value<SortIcon field="close_premium" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Close Date<SortIcon field="close_date" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Income Week<SortIcon field="income_week" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
+                                Close Type<SortIcon field="close_type" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('collateral_gain')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
+                                Collateral Gain<SortIcon field="collateral_gain" />
+                            </TableHead>
+                            <TableHead onClick={() => handleSort('profit')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
+                                Profit<SortIcon field="profit" />
+                            </TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -132,7 +233,6 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                         )}
                     </TableBody>
                 </Table>
-                </div>
             </div>
         </div>
     );
