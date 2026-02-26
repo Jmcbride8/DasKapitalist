@@ -155,8 +155,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
             >
                 <div ref={tableRef} style={{ minWidth: '2000px' }}>
                 <Table>
-                    <TableHeader className="sticky top-0 z-10">
-                        <TableRow className="bg-slate-50">
+                    <TableHeader className="sticky top-0 z-10 bg-white">
+                        <TableRow className="bg-slate-50 border-b border-slate-200">
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">Actions</TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">#</TableHead>
                             <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
