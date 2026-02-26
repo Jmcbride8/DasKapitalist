@@ -22,6 +22,12 @@ export default function Layout({ children, currentPageName }) {
                         {navItems.slice(0, 1).map((item) => {
                             const Icon = item.icon;
                             const isActive = currentPageName === item.path;
+                            const dashboardCharts = [
+                                { name: 'Weekly Totals', tab: 'weekly' },
+                                { name: 'Ticker History', tab: 'ticker' },
+                                { name: 'Open Positions', tab: 'open' },
+                                { name: 'Time Comparisons', tab: 'time' }
+                            ];
                             return (
                                 <details key={item.name} className="group">
                                     <summary className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors cursor-pointer ${
@@ -31,26 +37,35 @@ export default function Layout({ children, currentPageName }) {
                                         {item.name}
                                     </summary>
                                     <div className="pl-6 space-y-1 mt-1">
-                                        {navItems.slice(1).map((subItem) => {
-                                            const SubIcon = subItem.icon;
-                                            const isSubActive = currentPageName === subItem.path;
-                                            return (
-                                                <Link
-                                                    key={subItem.name}
-                                                    to={createPageUrl(subItem.path)}
-                                                    className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm ${
-                                                        isSubActive
-                                                            ? 'bg-emerald-50 text-emerald-700 font-medium'
-                                                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                                                    }`}
-                                                >
-                                                    <SubIcon className="w-4 h-4" />
-                                                    {subItem.name}
-                                                </Link>
-                                            );
-                                        })}
+                                        {dashboardCharts.map((chart) => (
+                                            <button
+                                                key={chart.tab}
+                                                onClick={() => window.location.href = createPageUrl('Dashboards')}
+                                                className="w-full text-left flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                            >
+                                                {chart.name}
+                                            </button>
+                                        ))}
                                     </div>
                                 </details>
+                            );
+                        })}
+                        {navItems.slice(1).map((item) => {
+                            const Icon = item.icon;
+                            const isActive = currentPageName === item.path;
+                            return (
+                                <Link
+                                    key={item.name}
+                                    to={createPageUrl(item.path)}
+                                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                                        isActive
+                                            ? 'bg-emerald-50 text-emerald-700 font-medium'
+                                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                                    }`}
+                                >
+                                    <Icon className="w-5 h-5" />
+                                    {item.name}
+                                </Link>
                             );
                         })}
                     </div>
