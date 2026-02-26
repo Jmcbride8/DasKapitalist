@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Pencil, Trash2, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { MoreVertical, Pencil, Trash2, XCircle, ArrowUp, ArrowDown } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { format } from 'date-fns';
 
 const formatCurrency = (value) => {
@@ -29,7 +30,7 @@ const formatDate = (dateStr) => {
     }
 };
 
-export default function TradesTable({ trades, onEdit, onDelete }) {
+export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     const [visibleCount, setVisibleCount] = useState(20);
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
@@ -206,14 +207,29 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                                 return (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
                                     <TableCell className="py-2">
-                                        <div className="flex items-center justify-center gap-1">
-                                            <Button variant="ghost" size="icon" className="h-7 w-7 hover:bg-slate-100" onClick={() => onEdit(trade)}>
-                                                <Pencil className="h-3.5 w-3.5 text-slate-500" />
-                                            </Button>
-                                            <Button variant="ghost" size="icon" className="h-7 w-7 hover:bg-red-50" onClick={() => onDelete(trade.id)}>
-                                                <Trash2 className="h-3.5 w-3.5 text-red-400" />
-                                            </Button>
-                                        </div>
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon" className="h-7 w-7 hover:bg-slate-100">
+                                                    <MoreVertical className="h-4 w-4 text-slate-500" />
+                                                </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="start">
+                                                <DropdownMenuItem onClick={() => onEdit(trade)}>
+                                                    <Pencil className="h-4 w-4 mr-2" />
+                                                    Edit
+                                                </DropdownMenuItem>
+                                                {trade.status === 'Open' && (
+                                                    <DropdownMenuItem onClick={() => onClose(trade)}>
+                                                        <XCircle className="h-4 w-4 mr-2" />
+                                                        Close
+                                                    </DropdownMenuItem>
+                                                )}
+                                                <DropdownMenuItem onClick={() => onDelete(trade.id)} className="text-red-600">
+                                                    <Trash2 className="h-4 w-4 mr-2" />
+                                                    Delete
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </TableCell>
                                     <TableCell className="py-2">
                                         <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 

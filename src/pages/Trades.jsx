@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3 } from 'lucide-react';
 import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
+import CloseTradeModal from '@/components/trades/CloseTradeModal';
 import BulkUpload from '@/components/trades/BulkUpload';
 import TradeFilters from '@/components/trades/TradeFilters';
 import TradeLegendModal from '@/components/trades/TradeLegendModal';
@@ -13,6 +14,8 @@ import TradeLegendModal from '@/components/trades/TradeLegendModal';
 export default function Trades() {
     const [showForm, setShowForm] = useState(false);
     const [editingTrade, setEditingTrade] = useState(null);
+    const [showCloseModal, setShowCloseModal] = useState(false);
+    const [closingTrade, setClosingTrade] = useState(null);
     const [showBulkUpload, setShowBulkUpload] = useState(false);
     const [filters, setFilters] = useState({
         status: 'all',
@@ -65,6 +68,22 @@ export default function Trades() {
     const handleEdit = (trade) => {
         setEditingTrade(trade);
         setShowForm(true);
+    };
+
+    const handleClose = (trade) => {
+        setClosingTrade(trade);
+        setShowCloseModal(true);
+    };
+
+    const handleCloseSave = (data) => {
+        if (closingTrade) {
+            updateMutation.mutate({ 
+                id: closingTrade.id, 
+                data: { ...closingTrade, ...data }
+            });
+            setShowCloseModal(false);
+            setClosingTrade(null);
+        }
     };
 
     const handleDelete = (id) => {
@@ -201,7 +220,7 @@ export default function Trades() {
                         {isLoading ? (
                             <div className="p-12 text-center text-slate-400">Loading trades...</div>
                         ) : (
-                            <TradesTable trades={filteredTrades} onEdit={handleEdit} onDelete={handleDelete} />
+                            <TradesTable trades={filteredTrades} onEdit={handleEdit} onClose={handleClose} onDelete={handleDelete} />
                         )}
                     </CardContent>
                 </Card>
@@ -212,6 +231,14 @@ export default function Trades() {
                     onClose={() => { setShowForm(false); setEditingTrade(null); }}
                     onSave={handleSave}
                     trade={editingTrade}
+                />
+
+                {/* Close Trade Modal */}
+                <CloseTradeModal
+                    open={showCloseModal}
+                    onClose={() => { setShowCloseModal(false); setClosingTrade(null); }}
+                    onSave={handleCloseSave}
+                    trade={closingTrade}
                 />
 
                 {/* Bulk Upload Dialog */}
