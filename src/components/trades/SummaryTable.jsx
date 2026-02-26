@@ -83,10 +83,10 @@ export default function SummaryTable({ trades }) {
         return { ...item, cumulativeProfit };
     });
 
-    // Now sort for display (Open first, then Closed, latest weeks first within each status)
+    // Now sort for display (Closed first, then Open, latest weeks first within each status)
     const weeklySummaries = [...weekDataWithCumulative].sort((a, b) => {
         if (a.status !== b.status) {
-            return a.status === 'Open' ? -1 : 1;
+            return a.status === 'Closed' ? -1 : 1;
         }
         return (b.week || '').localeCompare(a.week || '');
     });
