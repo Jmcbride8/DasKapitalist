@@ -180,7 +180,7 @@ export default function Trades() {
                         {isLoading ? (
                             <div className="p-12 text-center text-slate-400">Loading trades...</div>
                         ) : (
-                            <TradesTable trades={filteredTrades} onEdit={handleEdit} onClose={handleClose} onDelete={handleDelete} />
+                            <TradesTable trades={trades} onEdit={handleEdit} onClose={handleClose} onDelete={handleDelete} />
                         )}
                 </div>
 
