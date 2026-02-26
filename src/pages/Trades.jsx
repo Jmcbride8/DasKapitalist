@@ -107,7 +107,26 @@ export default function Trades() {
                         <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Positions Tracker</h1>
                         <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 items-center">
+                        <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
+                            if (value === '') {
+                                setSelectedTypes([]);
+                            } else {
+                                setSelectedTypes(prev => 
+                                    prev.includes(value) ? prev.filter(t => t !== value) : [...prev, value]
+                                );
+                            }
+                        }}>
+                            <SelectTrigger className="w-40">
+                                <SelectValue placeholder="Filter by Trade Type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value={null}>All Types</SelectItem>
+                                {tradeTypes.map(type => (
+                                    <SelectItem key={type} value={type}>{type}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                         <TradeLegendModal />
                         <Button 
                             onClick={() => setShowBulkUpload(true)}
@@ -127,29 +146,6 @@ export default function Trades() {
                             <Plus className="w-4 h-4" />
                         </Button>
                     </div>
-                </div>
-
-                {/* Filters */}
-                <div className="mb-6">
-                    <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
-                        if (value === '') {
-                            setSelectedTypes([]);
-                        } else {
-                            setSelectedTypes(prev => 
-                                prev.includes(value) ? prev.filter(t => t !== value) : [...prev, value]
-                            );
-                        }
-                    }}>
-                        <SelectTrigger className="w-40">
-                            <SelectValue placeholder="Filter by Trade Type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value={null}>All Types</SelectItem>
-                            {tradeTypes.map(type => (
-                                <SelectItem key={type} value={type}>{type}</SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
                 </div>
 
                 {/* Trades Table */}
