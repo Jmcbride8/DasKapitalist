@@ -53,7 +53,7 @@ export default function QuickUpdate() {
         setFormData({
             [trade.id]: {
                 status: trade.status,
-                close_premium: trade.close_premium || '',
+                current_value: trade.current_value || '',
                 close_date: trade.close_date || '',
                 income_week: trade.income_week || getNextFriday(),
                 close_type: trade.close_type || '',
@@ -85,7 +85,7 @@ export default function QuickUpdate() {
         <div className="p-6 max-w-6xl mx-auto">
             <div className="mb-6">
                 <h1 className="text-3xl font-bold text-slate-900">Quick Update Positions</h1>
-                <p className="text-slate-500 mt-2">Update open positions: Status, Close Premium, Close Date, Income Week, Close Type</p>
+                <p className="text-slate-500 mt-2">Update open positions: Status, Current Value, Close Date, Income Week, Close Type</p>
             </div>
 
             {openTrades.length === 0 ? (
@@ -102,7 +102,7 @@ export default function QuickUpdate() {
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Ticker</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Type</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Status</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Close Premium</TableHead>
+                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Current Value</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Close Date</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Income Week</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Close Type</TableHead>
@@ -138,13 +138,13 @@ export default function QuickUpdate() {
                                                 <Input
                                                     type="number"
                                                     step="0.01"
-                                                    value={data.close_premium ?? ''}
-                                                    onChange={(e) => handleChange(trade.id, 'close_premium', e.target.value)}
+                                                    value={data.current_value ?? ''}
+                                                    onChange={(e) => handleChange(trade.id, 'current_value', e.target.value)}
                                                     className="h-8 text-xs"
                                                     placeholder="0.00"
                                                 />
                                             ) : (
-                                                <span className="text-xs text-slate-600">{trade.close_premium ? `$${trade.close_premium.toFixed(2)}` : '-'}</span>
+                                                <span className="text-xs text-slate-600">{trade.current_value ? `$${trade.current_value.toFixed(2)}` : '-'}</span>
                                             )}
                                         </TableCell>
                                         <TableCell className="py-3 px-3">
