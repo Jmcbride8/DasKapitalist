@@ -84,8 +84,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         let bVal = b[sortField];
         
         if (sortField === 'profit') {
-            aVal = (a.open_price || 0) + (a.latest_value || 0) + (a.collateral_gain || 0);
-            bVal = (b.open_price || 0) + (b.latest_value || 0) + (b.collateral_gain || 0);
+            aVal = (a.open_premium || 0) + (a.close_premium || 0) + (a.collateral_gain || 0);
+            bVal = (b.open_premium || 0) + (b.close_premium || 0) + (b.collateral_gain || 0);
         }
         
         if (aVal === null || aVal === undefined) return 1;
@@ -156,14 +156,14 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             <TableHead onClick={() => handleSort('strike_price')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Strike<SortIcon field="strike_price" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('open_price')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
-                                Open<SortIcon field="open_price" />
+                            <TableHead onClick={() => handleSort('open_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
+                                Open Premium<SortIcon field="open_premium" />
                             </TableHead>
                             <TableHead onClick={() => handleSort('potential_yield')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Yield<SortIcon field="potential_yield" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('latest_value')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
-                                Latest value<SortIcon field="latest_value" />
+                            <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
+                                Close Premium<SortIcon field="close_premium" />
                             </TableHead>
                             <TableHead onClick={() => handleSort('collateral_gain')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Collateral Gain<SortIcon field="collateral_gain" />
@@ -182,7 +182,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             </TableRow>
                         ) : (
                             visibleTrades.map((trade, index) => {
-                                const calculatedProfit = (trade.open_price || 0) + (trade.latest_value || 0) + (trade.collateral_gain || 0);
+                                const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
                                 return (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
                                     <TableCell className="py-1 px-1">
@@ -225,9 +225,9 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                     <TableCell className="text-slate-600 text-xs py-1 px-2">{formatDate(trade.close_date)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-2">{trade.close_type || '-'}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-2 text-right">{trade.strike_price ? `$${trade.strike_price.toFixed(2)}` : '-'}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-2 text-right">{formatCurrency(trade.open_price)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-2 text-right">{formatCurrency(trade.open_premium)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-2 text-right">{formatPercent(trade.potential_yield)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-2 text-right">{formatCurrency(trade.latest_value)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-2 text-right">{formatCurrency(trade.close_premium)}</TableCell>
                                     <TableCell className={`text-xs py-1 px-2 text-right ${(trade.collateral_gain || 0) >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(trade.collateral_gain)}</TableCell>
                                     <TableCell className={`font-semibold text-xs py-1 px-2 text-right ${calculatedProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(calculatedProfit)}</TableCell>
                                 </TableRow>

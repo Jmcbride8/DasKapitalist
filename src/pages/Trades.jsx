@@ -23,10 +23,7 @@ export default function Trades() {
 
     const { data: trades = [], isLoading } = useQuery({
         queryKey: ['trades'],
-        queryFn: async () => {
-            const result = await base44.entities.Trade.list('-open_date');
-            return result;
-        }
+        queryFn: () => base44.entities.Trade.list('-open_date')
     });
 
     const createMutation = useMutation({
