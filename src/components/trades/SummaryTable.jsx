@@ -159,6 +159,9 @@ export default function SummaryTable({ trades }) {
                             <TableCell className={`text-right font-mono text-xs py-2 font-semibold ${summary.cumulativeProfit > 0 ? 'text-emerald-600' : summary.cumulativeProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                 {formatCurrency(summary.cumulativeProfit)}
                             </TableCell>
+                            <TableCell className={`text-right font-mono text-xs py-2 ${summary.avgWeeklyProfit > 0 ? 'text-emerald-600' : summary.avgWeeklyProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
+                                {formatCurrency(summary.avgWeeklyProfit)}
+                            </TableCell>
                             <TableCell className={`text-right font-mono text-xs py-2 ${summary.weeklyProfit > 0 ? 'text-emerald-600' : summary.weeklyProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                 {formatCurrency(summary.weeklyProfit)}
                             </TableCell>
