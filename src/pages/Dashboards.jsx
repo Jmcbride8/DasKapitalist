@@ -14,6 +14,8 @@ export default function Dashboards() {
     const view = searchParams.get('view') || 'weekly';
     const [selectedYear, setSelectedYear] = useState('all');
     const [selectedTicker, setSelectedTicker] = useState('all');
+    const [selectedTypes, setSelectedTypes] = useState([]);
+    const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
     const { data: trades = [], isLoading } = useQuery({
         queryKey: ['trades'],
@@ -48,10 +50,11 @@ export default function Dashboards() {
             
             const yearMatch = selectedYear === 'all' || tradeYear.toString() === selectedYear;
             const tickerMatch = selectedTicker === 'all' || trade.ticker === selectedTicker;
+            const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(trade.type);
             
-            return yearMatch && tickerMatch;
+            return yearMatch && tickerMatch && typeMatch;
         });
-    }, [trades, selectedYear, selectedTicker]);
+    }, [trades, selectedYear, selectedTicker, selectedTypes]);
 
     const dashboardMap = {
         weekly: { title: 'Weekly Totals', component: <WeeklyTotalsChart trades={filteredTrades} /> },
@@ -67,7 +70,7 @@ export default function Dashboards() {
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-8">
                     <h1 className="text-3xl font-bold text-slate-900">{dashboard.title}</h1>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 items-center">
                         <div className="w-40">
                             <Select value={selectedYear} onValueChange={setSelectedYear}>
                                 <SelectTrigger>
@@ -95,6 +98,24 @@ export default function Dashboards() {
                             </Select>
                         </div>
                     </div>
+                </div>
+
+                <div className="mb-6 flex flex-wrap gap-2">
+                    {tradeTypes.map(type => (
+                        <button
+                            key={type}
+                            onClick={() => setSelectedTypes(prev => 
+                                prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+                            )}
+                            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                                selectedTypes.includes(type)
+                                    ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
+                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+                            }`}
+                        >
+                            {type}
+                        </button>
+                    ))}
                 </div>
                 
                 {isLoading ? (
