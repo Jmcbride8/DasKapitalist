@@ -12,7 +12,7 @@ export default function TickerHistoryChart({ trades }) {
     });
 
     return (
-        <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
+        <Card className="border-0 shadow-none bg-white">
             <CardContent className="pt-6">
                 <div className="mb-4">
                     <div className="flex items-center gap-6 mb-4">

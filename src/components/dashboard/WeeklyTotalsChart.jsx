@@ -4,7 +4,7 @@ import WeeklyProfitChart from '@/components/trades/WeeklyProfitChart';
 
 export default function WeeklyTotalsChart({ trades }) {
     return (
-        <Card className="border-0 shadow-sm bg-white/80 backdrop-blur">
+        <Card className="border-0 shadow-none bg-white">
             <CardContent className="pt-6">
                 <WeeklyProfitChart trades={trades} />
             </CardContent>
