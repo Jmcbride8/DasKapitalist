@@ -52,7 +52,9 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                 ref={scrollContainerRef}
                 onScroll={handleScroll}
                 className="overflow-x-auto max-h-[800px] overflow-y-auto"
+                style={{ transform: 'rotateX(180deg)' }}
             >
+                <div style={{ transform: 'rotateX(180deg)' }}>
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-slate-50/80">
@@ -130,6 +132,7 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                         )}
                     </TableBody>
                 </Table>
+                </div>
             </div>
         </div>
     );
