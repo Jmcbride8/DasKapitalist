@@ -87,14 +87,14 @@ export default function SummaryTable({ trades }) {
         return { ...item, cumulativeProfit };
     });
 
-    // Now sort for display (Closed first, then Open, newest weeks first within each status)
+    // Now sort for display (Closed first, then Open, oldest weeks first within each status)
     const weeklySummaries = [...weekDataWithCumulative].sort((a, b) => {
         if (a.status !== b.status) {
             return a.status === 'Closed' ? -1 : 1;
         }
         const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
         const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
-        return dateB - dateA;
+        return dateA - dateB;
     });
 
     // Calculate grand totals
