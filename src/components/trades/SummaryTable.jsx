@@ -83,10 +83,17 @@ export default function SummaryTable({ trades }) {
     });
 
     let cumulativeProfit = 0;
+    const uniqueWeeks = new Set();
     const cumulativeMap = {};
     sortedChronologically.forEach(item => {
         cumulativeProfit += item.weeklyProfit;
-        cumulativeMap[`${item.status}-${item.week}`] = cumulativeProfit;
+        uniqueWeeks.add(item.week);
+        const weekCount = uniqueWeeks.size;
+        cumulativeMap[`${item.status}-${item.week}`] = {
+            cumulativeProfit,
+            weekCount,
+            avgWeeklyProfit: weekCount > 0 ? cumulativeProfit / weekCount : 0
+        };
     });
 
     // Sort for display (Closed first, then Open, oldest weeks first within each status)
