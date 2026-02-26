@@ -62,11 +62,19 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                 return;
             }
 
-            // Convert percentage values from percentages to decimals
-            const trades = (Array.isArray(extractResult.output) ? extractResult.output : []).map(trade => ({
-                ...trade,
-                potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null
-            }));
+            // Map alternate trade type names and convert percentage values
+            const trades = (Array.isArray(extractResult.output) ? extractResult.output : []).map(trade => {
+                let mappedType = trade.type;
+                // Map "Bought Call" to "Long Call" and "Bought Put" to "Long Put"
+                if (trade.type === "Bought Call") mappedType = "Long Call";
+                if (trade.type === "Bought Put") mappedType = "Long Put";
+                
+                return {
+                    ...trade,
+                    type: mappedType,
+                    potential_yield: trade.potential_yield ? trade.potential_yield / 100 : null
+                };
+            });
 
             // Bulk insert trades
             await base44.entities.Trade.bulkCreate(trades);
