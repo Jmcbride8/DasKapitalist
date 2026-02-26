@@ -37,8 +37,21 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
     const [tableHeight, setTableHeight] = useState(500);
+    const [filters, setFilters] = useState({
+        status: '',
+        account: '',
+        type: '',
+        ticker: '',
+        closeType: ''
+    });
     const bottomScrollRef = useRef(null);
     const containerRef = useRef(null);
+
+    // Extract unique values for dropdowns
+    const uniqueAccounts = [...new Set(trades.map(t => t.account).filter(Boolean))];
+    const uniqueTickers = [...new Set(trades.map(t => t.ticker).filter(Boolean))].sort();
+    const tradeTypes = ["Trade", "Covered Call", "Cash Secured Put", "Long Call", "Long Put", "Naked Put", "Naked Call"];
+    const closeTypes = ["Assigned", "Bought to Close", "Rolled", "Expired Worthless"];
 
 
     useEffect(() => {
