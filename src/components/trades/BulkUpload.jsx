@@ -45,6 +45,19 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                 return null;
             };
 
+            // Helper to parse numbers
+            const parseNumber = (value) => {
+                if (!value && value !== 0) return null;
+                if (typeof value === 'number') return value;
+                if (typeof value === 'string') {
+                    // Remove currency symbols, commas, parentheses
+                    const cleaned = value.replace(/[$,()]/g, '').trim();
+                    const num = parseFloat(cleaned);
+                    return isNaN(num) ? null : num;
+                }
+                return null;
+            };
+
             // Map column names to match our schema
             const extractedData = jsonData.map(row => ({
                 status: row['Status'] || row['status'],
@@ -53,16 +66,16 @@ export default function BulkUpload({ open, onClose, onSuccess }) {
                 ticker: row['Ticker'] || row['ticker'],
                 open_date: formatDate(row['Open date'] || row['Open Date'] || row['open_date']),
                 expiration: formatDate(row['Expiration'] || row['expiration']),
-                strike_price: row['Strike Price'] || row['Strike price'] || row['strike_price'],
-                open_premium: row['Open'] || row['open'] || row['open_premium'],
-                collateral_start: row['Collateral Start'] || row['Collateral start'] || row['collateral_start'],
-                potential_yield: row['Potential Yield'] || row['Potential yield'] || row['potential_yield'],
-                close_premium: row['Close'] || row['close'] || row['close_premium'],
+                strike_price: parseNumber(row['Strike Price'] || row['Strike price'] || row['strike_price']),
+                open_premium: parseNumber(row['Open'] || row['open'] || row['open_premium']),
+                collateral_start: parseNumber(row['Collateral Start'] || row['Collateral start'] || row['collateral_start']),
+                potential_yield: parseNumber(row['Potential Yield'] || row['Potential yield'] || row['potential_yield']),
+                close_premium: parseNumber(row['Close'] || row['close'] || row['close_premium']),
                 close_date: formatDate(row['Close date'] || row['Close Date'] || row['close_date']),
                 income_week: formatDate(row['Income Week'] || row['Income week'] || row['income_week']),
                 close_type: row['Close Type'] || row['Close type'] || row['close_type'],
-                collateral_gain: row['Collateral Gain'] || row['Collateral gain'] || row['collateral_gain'],
-                profit: row['Profit'] || row['profit']
+                collateral_gain: parseNumber(row['Collateral Gain'] || row['Collateral gain'] || row['collateral_gain']),
+                profit: parseNumber(row['Profit'] || row['profit'])
             }));
 
             // Map alternate trade type names and convert percentage values
