@@ -41,9 +41,11 @@ export default function KPICards({ trades }) {
         return dateA - dateB;
     });
 
+    let cumulativeProfit = 0;
     let maxCumulativeProfit = 0;
     sortedChronologically.forEach(item => {
-        maxCumulativeProfit += item.weeklyProfit;
+        cumulativeProfit += item.weeklyProfit;
+        maxCumulativeProfit = Math.max(maxCumulativeProfit, cumulativeProfit);
     });
     const allTimeHigh = maxCumulativeProfit;
 
