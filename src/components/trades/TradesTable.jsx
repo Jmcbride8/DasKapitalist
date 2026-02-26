@@ -34,13 +34,29 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     const [visibleCount, setVisibleCount] = useState(20);
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
+    const [tableHeight, setTableHeight] = useState(500);
     const scrollContainerRef = useRef(null);
     const topScrollRef = useRef(null);
     const bottomScrollRef = useRef(null);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         setVisibleCount(20);
     }, [trades]);
+
+    useEffect(() => {
+        const updateTableHeight = () => {
+            if (containerRef.current) {
+                const rect = containerRef.current.getBoundingClientRect();
+                const availableHeight = window.innerHeight - rect.top - 40;
+                setTableHeight(Math.max(300, availableHeight));
+            }
+        };
+
+        updateTableHeight();
+        window.addEventListener('resize', updateTableHeight);
+        return () => window.removeEventListener('resize', updateTableHeight);
+    }, []);
 
     useEffect(() => {
         const topScroll = topScrollRef.current;
@@ -126,18 +142,19 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     }, [trades, visibleTrades]);
 
     return (
-        <div className="border rounded-xl overflow-hidden bg-white shadow-sm">
+        <div ref={containerRef} className="border rounded-xl overflow-hidden bg-white shadow-sm">
             <div 
                 ref={topScrollRef}
-                className="overflow-x-auto"
-                style={{ height: '12px', overflowY: 'hidden' }}
+                className="overflow-x-auto border-b border-slate-200"
+                style={{ height: '16px', overflowY: 'hidden' }}
             >
                 <div style={{ height: '1px' }}></div>
             </div>
             <div 
                 ref={bottomScrollRef}
                 onScroll={handleScroll}
-                className="overflow-x-auto max-h-[800px] overflow-y-auto"
+                className="overflow-x-auto overflow-y-auto"
+                style={{ maxHeight: `${tableHeight}px` }}
             >
                 <div ref={tableRef}>
                 <Table>
