@@ -14,14 +14,14 @@ export default function Dashboards() {
     });
 
     return (
-        <div className="p-8">
-            <div className="max-w-7xl mx-auto">
+        <div className="p-8 h-screen flex flex-col">
+            <div className="max-w-7xl mx-auto flex-1 flex flex-col w-full">
                 <h1 className="text-3xl font-bold text-slate-900 mb-8">Dashboards</h1>
                 
                 {isLoading ? (
                     <div className="text-center text-slate-400 py-12">Loading...</div>
                 ) : (
-                    <Tabs defaultValue="open" className="w-full h-full flex flex-col">
+                    <Tabs defaultValue="open" className="w-full flex-1 flex flex-col">
                         <TabsList className="mb-6">
                             <TabsTrigger value="open">Open Positions</TabsTrigger>
                             <TabsTrigger value="ticker">Ticker History</TabsTrigger>
