@@ -127,7 +127,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                 <Table style={{ minWidth: '1400px' }}>
                     <TableHeader style={{ position: 'sticky', top: 0, zIndex: 20, backgroundColor: 'white' }}>
                         <TableRow className="bg-slate-50 border-b border-slate-200">
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 text-center"></TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 text-center w-8"></TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 text-center border-l border-r border-slate-300">#</TableHead>
                             <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-2 cursor-pointer hover:bg-slate-100">
                                 Status<SortIcon field="status" />
@@ -167,7 +167,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
                                 return (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
-                                    <TableCell className="py-1 px-2">
+                                    <TableCell className="py-1 px-1">
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
                                                 <Button variant="ghost" size="icon" className="h-6 w-6 hover:bg-slate-100">
