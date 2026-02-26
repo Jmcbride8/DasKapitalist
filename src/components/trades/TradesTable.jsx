@@ -37,21 +37,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
     const [tableHeight, setTableHeight] = useState(500);
-    const [filters, setFilters] = useState({
-        status: '',
-        account: '',
-        type: '',
-        ticker: '',
-        closeType: ''
-    });
     const bottomScrollRef = useRef(null);
     const containerRef = useRef(null);
-
-    // Extract unique values for dropdowns
-    const uniqueAccounts = [...new Set(trades.map(t => t.account).filter(Boolean))];
-    const uniqueTickers = [...new Set(trades.map(t => t.ticker).filter(Boolean))].sort();
-    const tradeTypes = ["Trade", "Covered Call", "Cash Secured Put", "Long Call", "Long Put", "Naked Put", "Naked Call"];
-    const closeTypes = ["Assigned", "Bought to Close", "Rolled", "Expired Worthless"];
 
 
     useEffect(() => {
@@ -90,17 +77,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         }
     };
 
-    // Apply filters
-    const filteredTrades = trades.filter(trade => {
-        if (filters.status && trade.status !== filters.status) return false;
-        if (filters.account && trade.account !== filters.account) return false;
-        if (filters.type && trade.type !== filters.type) return false;
-        if (filters.ticker && trade.ticker !== filters.ticker) return false;
-        if (filters.closeType && trade.close_type !== filters.closeType) return false;
-        return true;
-    });
-
-    const sortedTrades = [...filteredTrades].sort((a, b) => {
+    const sortedTrades = [...trades].sort((a, b) => {
         if (!sortField) return 0;
         
         let aVal = a[sortField];
@@ -175,76 +152,6 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             </TableHead>
                             <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
                                 Close Type<SortIcon field="close_type" />
-                            </TableHead>
-                        </TableRow>
-                        <TableRow className="bg-white border-b border-slate-200">
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1"></TableHead>
-                            <TableHead className="py-1">
-                                <Select value={filters.status} onValueChange={(value) => setFilters({...filters, status: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-16">
-                                        <SelectValue placeholder="All" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value={null}>All</SelectItem>
-                                        <SelectItem value="Open">Open</SelectItem>
-                                        <SelectItem value="Closed">Closed</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <Select value={filters.account} onValueChange={(value) => setFilters({...filters, account: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-20">
-                                        <SelectValue placeholder="All" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value={null}>All</SelectItem>
-                                        {uniqueAccounts.map(acc => (
-                                            <SelectItem key={acc} value={acc}>{acc}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <Select value={filters.type} onValueChange={(value) => setFilters({...filters, type: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-24">
-                                        <SelectValue placeholder="All" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value={null}>All</SelectItem>
-                                        {tradeTypes.map(type => (
-                                            <SelectItem key={type} value={type}>{type}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <Select value={filters.ticker} onValueChange={(value) => setFilters({...filters, ticker: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-16">
-                                        <SelectValue placeholder="All" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value={null}>All</SelectItem>
-                                        {uniqueTickers.map(ticker => (
-                                            <SelectItem key={ticker} value={ticker}>{ticker}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </TableHead>
-                            <TableHead className="py-1">
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <Select value={filters.closeType} onValueChange={(value) => setFilters({...filters, closeType: value})}>
-                                    <SelectTrigger className="h-7 text-xs border-slate-300 w-28">
-                                        <SelectValue placeholder="All" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value={null}>All</SelectItem>
-                                        {closeTypes.map(type => (
-                                            <SelectItem key={type} value={type}>{type}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
                             </TableHead>
                         </TableRow>
                     </TableHeader>
