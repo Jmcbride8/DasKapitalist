@@ -35,10 +35,9 @@ export default function TickerHistoryChart({ trades }) {
                             type="number"
                             value={minImpact}
                             onChange={(e) => setMinImpact(Math.max(0, parseFloat(e.target.value) || 0))}
-                            placeholder="0"
-                            className="w-24"
+                            placeholder="$0"
+                            className="w-32"
                         />
-                        <span className="text-sm text-slate-500">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(minImpact)}</span>
                     </div>
                 </div>
                 <ProfitChart trades={filteredTrades} />

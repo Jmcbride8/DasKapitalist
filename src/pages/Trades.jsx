@@ -132,7 +132,7 @@ export default function Trades() {
                             onClick={() => setShowBulkUpload(true)}
                             variant="outline"
                             size="icon"
-                            className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                            className="border-slate-300 text-slate-700 hover:bg-slate-100"
                             title="Bulk Upload"
                         >
                             <Upload className="w-4 h-4" />
@@ -140,7 +140,7 @@ export default function Trades() {
                         <Button 
                             onClick={() => { setEditingTrade(null); setShowForm(true); }}
                             size="icon"
-                            className="bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-200"
+                            className="bg-slate-900 hover:bg-slate-800 text-white"
                             title="Add Trade"
                         >
                             <Plus className="w-4 h-4" />
