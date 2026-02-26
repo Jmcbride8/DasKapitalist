@@ -115,6 +115,8 @@ export default function SummaryTable({ trades }) {
     });
 
     // Calculate grand totals
+    const totalUniqueWeeks = uniqueWeeks.size;
+    const grandTotalCumulativeProfit = cumulativeProfit;
     const grandTotals = {
         count: trades.length,
         totalCollateral: trades.reduce((sum, t) => sum + (t.collateral_start || 0), 0),
@@ -122,7 +124,8 @@ export default function SummaryTable({ trades }) {
         avgYield: trades.length > 0 
             ? trades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / trades.length
             : 0,
-        weeklyProfit: trades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0)), 0)
+        weeklyProfit: trades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0),
+        avgWeeklyProfit: totalUniqueWeeks > 0 ? grandTotalCumulativeProfit / totalUniqueWeeks : 0
     };
 
     return (
