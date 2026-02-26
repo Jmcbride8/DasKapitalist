@@ -12,28 +12,14 @@ export default function WeeklyProfitChart({ trades }) {
             if (!incomeWeek) return;
 
             if (!weekMap[incomeWeek]) {
-                weekMap[incomeWeek] = { week: incomeWeek, positive: 0, negative: 0, trades: 0 };
+                weekMap[incomeWeek] = { week: incomeWeek, net: 0 };
             }
 
             const profit = trade.profit || 0;
-            if (profit >= 0) {
-                weekMap[incomeWeek].positive += profit;
-            } else {
-                weekMap[incomeWeek].negative += profit;
-            }
-            weekMap[incomeWeek].trades += 1;
+            weekMap[incomeWeek].net += profit;
         });
 
-        let data = Object.values(weekMap).sort((a, b) => new Date(a.week) - new Date(b.week));
-
-        // Calculate cumulative profit
-        let cumulative = 0;
-        data = data.map(item => {
-            cumulative += item.positive + item.negative;
-            return { ...item, cumulative };
-        });
-
-        return data;
+        return Object.values(weekMap).sort((a, b) => new Date(a.week) - new Date(b.week));
     }, [trades]);
 
     const formatCurrency = (value) => {
