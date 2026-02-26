@@ -57,11 +57,11 @@ export default function SummaryTable({ trades }) {
      sortedStatuses.forEach(status => {
          Object.entries(groupedByStatusAndWeek[status]).forEach(([week, weekTrades]) => {
              const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
-             const totalProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
+             const totalProfit = weekTrades.reduce((sum, t) => sum + (t.profit || 0), 0);
              const avgYield = weekTrades.length > 0 
                  ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
                  : 0;
-             const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
+             const weeklyProfit = weekTrades.reduce((sum, t) => sum + (t.profit || 0), 0);
              const monthStr = week && week !== 'Unspecified' ? format(new Date(week), 'MMMM yyyy') : 'Unspecified';
 
              allWeekData.push({
@@ -131,11 +131,11 @@ export default function SummaryTable({ trades }) {
     const grandTotals = {
         count: trades.length,
         totalCollateral: trades.reduce((sum, t) => sum + (t.collateral_start || 0), 0),
-        totalProfit: trades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0),
+        totalProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
         avgYield: trades.length > 0 
             ? trades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / trades.length
             : 0,
-        weeklyProfit: trades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0),
+        weeklyProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
         avgWeeklyProfit: totalUniqueWeeks > 0 ? grandTotalCumulativeProfit / totalUniqueWeeks : 0
     };
 

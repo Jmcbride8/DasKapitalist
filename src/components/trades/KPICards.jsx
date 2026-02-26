@@ -11,7 +11,7 @@ const formatCurrency = (value) => {
 };
 
 export default function KPICards({ trades }) {
-    const calculateProfit = (trade) => (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
+    const calculateProfit = (trade) => trade.profit || 0;
 
     // Calculate max cumulative profit
     const groupedByStatusAndWeek = {};
