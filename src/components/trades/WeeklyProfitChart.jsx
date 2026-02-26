@@ -36,17 +36,13 @@ export default function WeeklyProfitChart({ trades }) {
         return `${month}/${day}`;
     };
 
-    const CustomTooltip = ({ active, payload, label }) => {
+    const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             const data = payload[0].payload;
             return (
                 <div className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg shadow-lg p-3">
                     <p className="font-semibold text-slate-900 mb-2">{formatWeek(data.week)}</p>
-                    <div className="space-y-1 text-sm">
-                        <p className="text-emerald-600">Positive: {formatCurrency(data.positive)}</p>
-                        <p className="text-red-600">Negative: {formatCurrency(data.negative)}</p>
-                        <p className="font-semibold text-slate-900 pt-1 border-t">Cumulative: {formatCurrency(data.cumulative)}</p>
-                    </div>
+                    <p className="font-semibold text-slate-900">Net: {formatCurrency(data.net)}</p>
                 </div>
             );
         }
