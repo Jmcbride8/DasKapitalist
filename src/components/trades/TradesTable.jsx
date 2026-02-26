@@ -306,15 +306,15 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 </Select>
                             </TableHead>
                             <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="date" value={filters.openDateFrom} onChange={(e) => setFilters({...filters, openDateFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
-                                    <Input type="date" value={filters.openDateTo} onChange={(e) => setFilters({...filters, openDateTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                <div className="flex gap-0.5">
+                                    <Input type="date" value={filters.openDateFrom} onChange={(e) => setFilters({...filters, openDateFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
+                                    <Input type="date" value={filters.openDateTo} onChange={(e) => setFilters({...filters, openDateTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
                                 </div>
                             </TableHead>
                             <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="date" value={filters.expirationFrom} onChange={(e) => setFilters({...filters, expirationFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
-                                    <Input type="date" value={filters.expirationTo} onChange={(e) => setFilters({...filters, expirationTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                <div className="flex gap-0.5">
+                                    <Input type="date" value={filters.expirationFrom} onChange={(e) => setFilters({...filters, expirationFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
+                                    <Input type="date" value={filters.expirationTo} onChange={(e) => setFilters({...filters, expirationTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
                                 </div>
                             </TableHead>
                             <TableHead className="py-1">
@@ -348,15 +348,15 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 </div>
                             </TableHead>
                             <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="date" value={filters.closeDateFrom} onChange={(e) => setFilters({...filters, closeDateFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
-                                    <Input type="date" value={filters.closeDateTo} onChange={(e) => setFilters({...filters, closeDateTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                <div className="flex gap-0.5">
+                                    <Input type="date" value={filters.closeDateFrom} onChange={(e) => setFilters({...filters, closeDateFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
+                                    <Input type="date" value={filters.closeDateTo} onChange={(e) => setFilters({...filters, closeDateTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
                                 </div>
                             </TableHead>
                             <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="date" value={filters.incomeWeekFrom} onChange={(e) => setFilters({...filters, incomeWeekFrom: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="From" />
-                                    <Input type="date" value={filters.incomeWeekTo} onChange={(e) => setFilters({...filters, incomeWeekTo: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="To" />
+                                <div className="flex gap-0.5">
+                                    <Input type="date" value={filters.incomeWeekFrom} onChange={(e) => setFilters({...filters, incomeWeekFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
+                                    <Input type="date" value={filters.incomeWeekTo} onChange={(e) => setFilters({...filters, incomeWeekTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
                                 </div>
                             </TableHead>
                             <TableHead className="py-1">
