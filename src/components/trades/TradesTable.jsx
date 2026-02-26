@@ -35,10 +35,9 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
     const [tableHeight, setTableHeight] = useState(500);
-    const scrollContainerRef = useRef(null);
-    const topScrollRef = useRef(null);
     const bottomScrollRef = useRef(null);
     const containerRef = useRef(null);
+    const tableRef = useRef(null);
 
     useEffect(() => {
         setVisibleCount(20);
