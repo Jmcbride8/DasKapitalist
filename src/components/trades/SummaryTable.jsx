@@ -75,22 +75,32 @@ export default function SummaryTable({ trades }) {
         });
     });
 
+    // Calculate cumulative based on pure chronological order (by income week across all statuses)
+    const sortedChronologically = [...allWeekData].sort((a, b) => {
+        const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
+        const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
+        return dateA - dateB;
+    });
+
+    let cumulativeProfit = 0;
+    const cumulativeMap = {};
+    sortedChronologically.forEach(item => {
+        cumulativeProfit += item.weeklyProfit;
+        cumulativeMap[`${item.status}-${item.week}`] = cumulativeProfit;
+    });
+
     // Sort for display (Closed first, then Open, oldest weeks first within each status)
-    const sortedForDisplay = [...allWeekData].sort((a, b) => {
+    const weeklySummaries = [...allWeekData].sort((a, b) => {
         if (a.status !== b.status) {
             return a.status === 'Closed' ? -1 : 1;
         }
         const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
         const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
         return dateA - dateB;
-    });
-
-    // Calculate cumulative based on chronological order (by income week)
-    let cumulativeProfit = 0;
-    const weeklySummaries = sortedForDisplay.map(item => {
-        cumulativeProfit += item.weeklyProfit;
-        return { ...item, cumulativeProfit };
-    });
+    }).map(item => ({
+        ...item,
+        cumulativeProfit: cumulativeMap[`${item.status}-${item.week}`]
+    }));
 
     // Calculate grand totals
     const grandTotals = {
