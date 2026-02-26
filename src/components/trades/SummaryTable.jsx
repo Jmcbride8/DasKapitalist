@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import { format } from 'date-fns';
 
 const formatCurrency = (value) => {
@@ -91,6 +92,7 @@ export default function SummaryTable({ trades }) {
             <Table>
                 <TableHeader className="bg-slate-50 border-b border-slate-200">
                     <TableRow>
+                        <TableHead className="font-semibold text-slate-700 text-xs py-2">Status</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2">Income Week</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-center">Trades</TableHead>
                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Collateral</TableHead>
@@ -100,8 +102,14 @@ export default function SummaryTable({ trades }) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {weeklySummaries.map((summary) => (
-                        <TableRow key={summary.week} className="hover:bg-slate-50/50 transition-colors border-b border-slate-200">
+                    {weeklySummaries.map((summary, idx) => (
+                        <TableRow key={`${summary.status}-${summary.week}`} className="hover:bg-slate-50/50 transition-colors border-b border-slate-200">
+                            <TableCell className="text-slate-600 text-xs py-2">
+                                <Badge variant={summary.status === 'Closed' ? 'secondary' : 'default'} 
+                                       className={`text-xs ${summary.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
+                                    {summary.status}
+                                </Badge>
+                            </TableCell>
                             <TableCell className="text-slate-600 text-xs py-2">{formatDate(summary.week)}</TableCell>
                             <TableCell className="text-slate-600 text-xs py-2 text-center">{summary.count}</TableCell>
                             <TableCell className={`text-right font-mono text-xs py-2`}>{formatCurrency(summary.totalCollateral)}</TableCell>
