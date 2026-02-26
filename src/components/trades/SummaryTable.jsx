@@ -126,7 +126,7 @@ export default function SummaryTable({ trades }) {
     });
 
     // Calculate grand totals
-    const totalUniqueWeeks = uniqueWeeks.size;
+    const totalUniqueWeeks = sortedWeeks.filter(w => w !== 'Unspecified').length;
     const grandTotalCumulativeProfit = cumulativeProfit;
     const grandTotals = {
         count: trades.length,
