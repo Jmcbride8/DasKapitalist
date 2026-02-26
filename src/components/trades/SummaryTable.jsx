@@ -77,25 +77,34 @@ export default function SummaryTable({ trades }) {
          });
      });
 
-    // Calculate cumulative based on pure chronological order (by income week across all statuses)
-    const sortedChronologically = [...allWeekData].sort((a, b) => {
-        const dateA = a.week && a.week !== 'Unspecified' ? new Date(a.week).getTime() : -Infinity;
-        const dateB = b.week && b.week !== 'Unspecified' ? new Date(b.week).getTime() : -Infinity;
+    // Calculate cumulative based on pure chronological order (by income week, aggregating all statuses per week)
+    const weeksMap = new Map();
+    allWeekData.forEach(item => {
+        const weekKey = item.week;
+        if (!weeksMap.has(weekKey)) {
+            weeksMap.set(weekKey, []);
+        }
+        weeksMap.get(weekKey).push(item);
+    });
+
+    const sortedWeeks = [...weeksMap.keys()].sort((a, b) => {
+        const dateA = a && a !== 'Unspecified' ? new Date(a).getTime() : -Infinity;
+        const dateB = b && b !== 'Unspecified' ? new Date(b).getTime() : -Infinity;
         return dateA - dateB;
     });
 
     let cumulativeProfit = 0;
-    const uniqueWeeks = new Set();
     const cumulativeMap = {};
-    sortedChronologically.forEach(item => {
-        cumulativeProfit += item.weeklyProfit;
-        uniqueWeeks.add(item.week);
-        const weekCount = uniqueWeeks.size;
-        cumulativeMap[`${item.status}-${item.week}`] = {
-            cumulativeProfit,
-            weekCount,
-            avgWeeklyProfit: weekCount > 0 ? cumulativeProfit / weekCount : 0
-        };
+    sortedWeeks.forEach((week, weekIndex) => {
+        const weekItems = weeksMap.get(week);
+        weekItems.forEach(item => {
+            cumulativeProfit += item.weeklyProfit;
+            const avgWeeklyProfit = weekIndex > 0 ? cumulativeProfit / (weekIndex + 1) : item.weeklyProfit;
+            cumulativeMap[`${item.status}-${item.week}`] = {
+                cumulativeProfit,
+                avgWeeklyProfit
+            };
+        });
     });
 
     // Sort for display (Closed first, then Open, oldest weeks first within each status)
