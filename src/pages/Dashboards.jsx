@@ -14,35 +14,35 @@ export default function Dashboards() {
     });
 
     return (
-        <div className="p-8 h-screen flex flex-col">
-            <div className="max-w-7xl mx-auto flex-1 flex flex-col w-full">
+        <div className="p-8">
+            <div className="max-w-7xl mx-auto">
                 <h1 className="text-3xl font-bold text-slate-900 mb-8">Dashboards</h1>
                 
                 {isLoading ? (
                     <div className="text-center text-slate-400 py-12">Loading...</div>
                 ) : (
-                    <Tabs defaultValue="open" className="w-full flex-1 flex flex-col">
+                    <Tabs defaultValue="weekly" className="w-full">
                         <TabsList className="mb-6">
-                            <TabsTrigger value="open">Open Positions</TabsTrigger>
-                            <TabsTrigger value="ticker">Ticker History</TabsTrigger>
                             <TabsTrigger value="weekly">Weekly Totals</TabsTrigger>
+                            <TabsTrigger value="open">Open Positions</TabsTrigger>
                             <TabsTrigger value="time">Time Comparisons</TabsTrigger>
+                            <TabsTrigger value="ticker">Ticker History</TabsTrigger>
                         </TabsList>
                         
-                        <TabsContent value="open" className="flex-1">
-                            <OpenPositionsChart trades={trades} />
-                        </TabsContent>
-                        
-                        <TabsContent value="ticker" className="flex-1">
-                            <TickerHistoryChart trades={trades} />
-                        </TabsContent>
-                        
-                        <TabsContent value="weekly" className="flex-1">
+                        <TabsContent value="weekly">
                             <WeeklyTotalsChart trades={trades} />
                         </TabsContent>
                         
-                        <TabsContent value="time" className="flex-1">
+                        <TabsContent value="open">
+                            <OpenPositionsChart trades={trades} />
+                        </TabsContent>
+                        
+                        <TabsContent value="time">
                             <TimeComparisonsChart trades={trades} />
+                        </TabsContent>
+                        
+                        <TabsContent value="ticker">
+                            <TickerHistoryChart trades={trades} />
                         </TabsContent>
                     </Tabs>
                 )}
