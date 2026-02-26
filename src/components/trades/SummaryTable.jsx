@@ -33,7 +33,10 @@ export default function SummaryTable({ trades }) {
     
     trades.forEach(trade => {
         const status = trade.status || 'Unknown';
-        const week = trade.income_week || 'Unspecified';
+        let week = trade.income_week;
+        if (!week) {
+            week = trade.status === 'Closed' && trade.close_date ? trade.close_date : 'Unspecified';
+        }
         
         if (!groupedByStatusAndWeek[status]) {
             groupedByStatusAndWeek[status] = {};
