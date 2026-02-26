@@ -21,28 +21,28 @@ export default function Dashboards() {
                 {isLoading ? (
                     <div className="text-center text-slate-400 py-12">Loading...</div>
                 ) : (
-                    <Tabs defaultValue="weekly" className="w-full">
+                    <Tabs defaultValue="open" className="w-full h-full flex flex-col">
                         <TabsList className="mb-6">
                             <TabsTrigger value="open">Open Positions</TabsTrigger>
+                            <TabsTrigger value="ticker">Ticker History</TabsTrigger>
                             <TabsTrigger value="weekly">Weekly Totals</TabsTrigger>
                             <TabsTrigger value="time">Time Comparisons</TabsTrigger>
-                            <TabsTrigger value="ticker">Ticker History</TabsTrigger>
                         </TabsList>
                         
-                        <TabsContent value="weekly">
-                            <WeeklyTotalsChart trades={trades} />
-                        </TabsContent>
-                        
-                        <TabsContent value="open">
+                        <TabsContent value="open" className="flex-1">
                             <OpenPositionsChart trades={trades} />
                         </TabsContent>
                         
-                        <TabsContent value="time">
-                            <TimeComparisonsChart trades={trades} />
+                        <TabsContent value="ticker" className="flex-1">
+                            <TickerHistoryChart trades={trades} />
                         </TabsContent>
                         
-                        <TabsContent value="ticker">
-                            <TickerHistoryChart trades={trades} />
+                        <TabsContent value="weekly" className="flex-1">
+                            <WeeklyTotalsChart trades={trades} />
+                        </TabsContent>
+                        
+                        <TabsContent value="time" className="flex-1">
+                            <TimeComparisonsChart trades={trades} />
                         </TabsContent>
                     </Tabs>
                 )}
