@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
@@ -7,11 +7,23 @@ import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3 } from 'lucide-re
 import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
 import BulkUpload from '@/components/trades/BulkUpload';
+import TradeFilters from '@/components/trades/TradeFilters';
 
 export default function Trades() {
     const [showForm, setShowForm] = useState(false);
     const [editingTrade, setEditingTrade] = useState(null);
     const [showBulkUpload, setShowBulkUpload] = useState(false);
+    const [filters, setFilters] = useState({
+        status: 'all',
+        account: 'all',
+        type: 'all',
+        ticker: 'all',
+        openDateFrom: '',
+        openDateTo: '',
+        closeDateFrom: '',
+        closeDateTo: '',
+        closeType: 'all'
+    });
     const queryClient = useQueryClient();
 
     const { data: trades = [], isLoading } = useQuery({
@@ -59,6 +71,23 @@ export default function Trades() {
             deleteMutation.mutate(id);
         }
     };
+
+    const filteredTrades = useMemo(() => {
+        return trades.filter(trade => {
+            if (filters.status !== 'all' && trade.status !== filters.status) return false;
+            if (filters.account !== 'all' && trade.account !== filters.account) return false;
+            if (filters.type !== 'all' && trade.type !== filters.type) return false;
+            if (filters.ticker !== 'all' && trade.ticker !== filters.ticker) return false;
+            if (filters.closeType !== 'all' && trade.close_type !== filters.closeType) return false;
+            
+            if (filters.openDateFrom && trade.open_date < filters.openDateFrom) return false;
+            if (filters.openDateTo && trade.open_date > filters.openDateTo) return false;
+            if (filters.closeDateFrom && trade.close_date < filters.closeDateFrom) return false;
+            if (filters.closeDateTo && trade.close_date > filters.closeDateTo) return false;
+            
+            return true;
+        });
+    }, [trades, filters]);
 
     const stats = {
         totalProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
@@ -190,11 +219,12 @@ export default function Trades() {
                     <CardHeader className="pb-2">
                         <CardTitle className="text-lg font-semibold text-slate-900">All Trades</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-0">
+                    <CardContent>
+                        <TradeFilters filters={filters} onFilterChange={setFilters} trades={trades} />
                         {isLoading ? (
                             <div className="p-12 text-center text-slate-400">Loading trades...</div>
                         ) : (
-                            <TradesTable trades={trades} onEdit={handleEdit} onDelete={handleDelete} />
+                            <TradesTable trades={filteredTrades} onEdit={handleEdit} onDelete={handleDelete} />
                         )}
                     </CardContent>
                 </Card>
