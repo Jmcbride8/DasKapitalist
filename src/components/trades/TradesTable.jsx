@@ -110,20 +110,35 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
             : <ArrowDown className="h-3 w-3 ml-1 inline" />;
     };
 
+    const tableRef = useRef(null);
+
+    useEffect(() => {
+        const topScroll = topScrollRef.current;
+        const table = tableRef.current;
+        
+        if (topScroll && table) {
+            const contentDiv = topScroll.querySelector('div');
+            if (contentDiv) {
+                contentDiv.style.width = `${table.scrollWidth}px`;
+            }
+        }
+    }, [trades, visibleTrades]);
+
     return (
         <div className="border rounded-xl overflow-hidden bg-white shadow-sm">
             <div 
                 ref={topScrollRef}
                 className="overflow-x-auto"
-                style={{ height: '12px' }}
+                style={{ height: '12px', overflowY: 'hidden' }}
             >
-                <div style={{ width: '2000px', height: '1px' }}></div>
+                <div style={{ height: '1px' }}></div>
             </div>
             <div 
                 ref={bottomScrollRef}
                 onScroll={handleScroll}
                 className="overflow-x-auto max-h-[800px] overflow-y-auto"
             >
+                <div ref={tableRef}>
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-slate-50/80">
@@ -233,6 +248,7 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                         )}
                     </TableBody>
                 </Table>
+                </div>
             </div>
         </div>
     );
