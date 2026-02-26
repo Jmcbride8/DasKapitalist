@@ -101,14 +101,36 @@ export default function Trades() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
             <div className="max-w-[1800px] mx-auto p-6 lg:p-8">
-                {/* Header */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Positions Tracker</h1>
-                    <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
+                {/* Header with Actions */}
+                <div className="flex justify-between items-start mb-8">
+                    <div>
+                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Positions Tracker</h1>
+                        <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
+                    </div>
+                    <div className="flex gap-2">
+                        <TradeLegendModal />
+                        <Button 
+                            onClick={() => setShowBulkUpload(true)}
+                            variant="outline"
+                            size="icon"
+                            className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                            title="Bulk Upload"
+                        >
+                            <Upload className="w-4 h-4" />
+                        </Button>
+                        <Button 
+                            onClick={() => { setEditingTrade(null); setShowForm(true); }}
+                            size="icon"
+                            className="bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-200"
+                            title="Add Trade"
+                        >
+                            <Plus className="w-4 h-4" />
+                        </Button>
+                    </div>
                 </div>
 
-                {/* Buttons and Filters */}
-                <div className="mb-6 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                {/* Filters */}
+                <div className="mb-6">
                     <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
                         if (value === '') {
                             setSelectedTypes([]);
@@ -128,24 +150,6 @@ export default function Trades() {
                             ))}
                         </SelectContent>
                     </Select>
-                    <div className="flex gap-3">
-                        <TradeLegendModal />
-                        <Button 
-                            onClick={() => setShowBulkUpload(true)}
-                            variant="outline"
-                            className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
-                        >
-                            <Plus className="w-4 h-4 mr-2" />
-                            Bulk Upload
-                        </Button>
-                        <Button 
-                            onClick={() => { setEditingTrade(null); setShowForm(true); }}
-                            className="bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-200"
-                        >
-                            <Plus className="w-4 h-4 mr-2" />
-                            Add Trade
-                        </Button>
-                    </div>
                 </div>
 
                 {/* Trades Table */}
