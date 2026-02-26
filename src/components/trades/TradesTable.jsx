@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,9 +30,29 @@ const formatDate = (dateStr) => {
 };
 
 export default function TradesTable({ trades, onEdit, onDelete }) {
+    const [visibleCount, setVisibleCount] = useState(20);
+    const scrollContainerRef = useRef(null);
+
+    useEffect(() => {
+        setVisibleCount(20);
+    }, [trades]);
+
+    const handleScroll = (e) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.target;
+        if (scrollHeight - scrollTop <= clientHeight * 1.5 && visibleCount < trades.length) {
+            setVisibleCount(prev => Math.min(prev + 20, trades.length));
+        }
+    };
+
+    const visibleTrades = trades.slice(0, visibleCount);
+
     return (
         <div className="border rounded-xl overflow-hidden bg-white shadow-sm">
-            <div className="overflow-x-auto">
+            <div 
+                ref={scrollContainerRef}
+                onScroll={handleScroll}
+                className="overflow-x-auto max-h-[800px] overflow-y-auto"
+            >
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-slate-50/80">
@@ -63,7 +83,7 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                                 </TableCell>
                             </TableRow>
                         ) : (
-                            trades.map((trade) => (
+                            visibleTrades.map((trade) => (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
                                     <TableCell>
                                         <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 
