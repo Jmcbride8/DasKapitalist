@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { LayoutDashboard, FileText, TrendingUp } from 'lucide-react';
+import { LayoutDashboard, FileText, TrendingUp, Zap } from 'lucide-react';
 
 export default function Layout({ children, currentPageName }) {
     const navItems = [
         { name: 'Dashboards', icon: LayoutDashboard, path: 'Dashboards' },
         { name: 'Summaries', icon: FileText, path: 'Summaries' },
-        { name: 'Trades', icon: TrendingUp, path: 'Trades' }
+        { name: 'Trades', icon: TrendingUp, path: 'Trades' },
+        { name: 'Quick Update', icon: Zap, path: 'QuickUpdate' }
     ];
 
     return (
