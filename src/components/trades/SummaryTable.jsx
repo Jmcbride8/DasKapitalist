@@ -52,32 +52,43 @@ export default function SummaryTable({ trades }) {
     });
 
     // Calculate summary for each status/week combination
-    const weeklySummaries = [];
-    let cumulativeProfit = 0;
+    // First, collect all weeks with their data
+    const allWeekData = [];
     sortedStatuses.forEach(status => {
-        Object.entries(groupedByStatusAndWeek[status])
-            .sort((a, b) => b[0].localeCompare(a[0]))
-            .forEach(([week, weekTrades]) => {
-                const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
-                const totalProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
-                const avgYield = weekTrades.length > 0 
-                    ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
-                    : 0;
-                const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0)), 0);
-                
-                cumulativeProfit += weeklyProfit;
+        Object.entries(groupedByStatusAndWeek[status]).forEach(([week, weekTrades]) => {
+            const totalCollateral = weekTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
+            const totalProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0);
+            const avgYield = weekTrades.length > 0 
+                ? weekTrades.reduce((sum, t) => sum + (t.potential_yield || 0), 0) / weekTrades.length
+                : 0;
+            const weeklyProfit = weekTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0)), 0);
 
-                weeklySummaries.push({
-                    status,
-                    week,
-                    count: weekTrades.length,
-                    totalCollateral,
-                    totalProfit,
-                    avgYield,
-                    weeklyProfit,
-                    cumulativeProfit
-                });
+            allWeekData.push({
+                status,
+                week,
+                count: weekTrades.length,
+                totalCollateral,
+                totalProfit,
+                avgYield,
+                weeklyProfit
             });
+        });
+    });
+
+    // Sort by week (oldest to latest) to calculate cumulative running total
+    const sortedByDate = [...allWeekData].sort((a, b) => (a.week || '').localeCompare(b.week || ''));
+    let cumulativeProfit = 0;
+    const weekDataWithCumulative = sortedByDate.map(item => {
+        cumulativeProfit += item.weeklyProfit;
+        return { ...item, cumulativeProfit };
+    });
+
+    // Now sort for display (Open first, then Closed, latest weeks first within each status)
+    const weeklySummaries = [...weekDataWithCumulative].sort((a, b) => {
+        if (a.status !== b.status) {
+            return a.status === 'Open' ? -1 : 1;
+        }
+        return (b.week || '').localeCompare(a.week || '');
     });
 
     // Calculate grand totals
