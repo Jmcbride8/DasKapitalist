@@ -99,6 +99,7 @@ export default function QuickUpdate() {
                     <Table>
                         <TableHeader>
                             <TableRow className="bg-slate-50 border-b border-slate-200">
+                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Account</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Ticker</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Type</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Status</TableHead>
@@ -116,6 +117,7 @@ export default function QuickUpdate() {
 
                                 return (
                                     <TableRow key={trade.id} className="hover:bg-slate-50/50 border-b border-slate-100">
+                                        <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.account || '-'}</TableCell>
                                         <TableCell className="text-slate-900 font-semibold text-sm py-3 px-3">{trade.ticker}</TableCell>
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.type}</TableCell>
                                         <TableCell className="py-3 px-3">
