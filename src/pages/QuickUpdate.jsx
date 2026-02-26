@@ -117,6 +117,72 @@ export default function QuickUpdate() {
         setFormData({});
     };
 
+    const EditableCell = ({ trade, field, type = 'text' }) => {
+        const isEditing = editingId === trade.id;
+        const data = formData[trade.id] || {};
+        const value = isEditing ? data[field] : trade[field];
+
+        if (!isEditing) {
+            return (
+                <TableCell 
+                    className="text-slate-600 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                    onClick={() => startEdit(trade)}
+                >
+                    {type === 'number' && value ? `$${parseFloat(value).toFixed(2)}` : (value ? formatDate(value) : '-')}
+                </TableCell>
+            );
+        }
+
+        if (type === 'select' && field === 'status') {
+            return (
+                <TableCell className="py-3 px-3">
+                    <Select value={data.status || ''} onValueChange={(v) => handleChange(trade.id, 'status', v)}>
+                        <SelectTrigger className="h-8 text-xs">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Open">Open</SelectItem>
+                            <SelectItem value="Closed">Closed</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </TableCell>
+            );
+        }
+
+        if (type === 'select' && field === 'close_type') {
+            return (
+                <TableCell className="py-3 px-3">
+                    <Select value={data.close_type || ''} onValueChange={(v) => handleChange(trade.id, 'close_type', v)}>
+                        <SelectTrigger className="h-8 text-xs">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value={null}>None</SelectItem>
+                            <SelectItem value="Assigned">Assigned</SelectItem>
+                            <SelectItem value="Bought to Close">Bought to Close</SelectItem>
+                            <SelectItem value="Rolled">Rolled</SelectItem>
+                            <SelectItem value="Expired Worthless">Expired Worthless</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </TableCell>
+            );
+        }
+
+        return (
+            <TableCell className="py-3 px-3">
+                <Input
+                    type={type}
+                    step={type === 'number' ? '0.01' : undefined}
+                    value={data[field] ?? ''}
+                    onChange={(e) => handleChange(trade.id, field, e.target.value)}
+                    className="h-8 text-xs"
+                    placeholder={type === 'number' ? '0.00' : ''}
+                    autoFocus
+                />
+            </TableCell>
+        );
+    };
+
     return (
         <div className="p-6 max-w-6xl mx-auto">
             <div className="mb-6">
