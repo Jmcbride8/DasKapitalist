@@ -42,7 +42,29 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         account: '',
         type: '',
         ticker: '',
-        closeType: ''
+        openDateFrom: '',
+        openDateTo: '',
+        expirationFrom: '',
+        expirationTo: '',
+        strikePriceMin: '',
+        strikePriceMax: '',
+        openPremiumMin: '',
+        openPremiumMax: '',
+        collateralStartMin: '',
+        collateralStartMax: '',
+        potentialYieldMin: '',
+        potentialYieldMax: '',
+        closePremiumMin: '',
+        closePremiumMax: '',
+        closeDateFrom: '',
+        closeDateTo: '',
+        incomeWeekFrom: '',
+        incomeWeekTo: '',
+        closeType: '',
+        collateralGainMin: '',
+        collateralGainMax: '',
+        profitMin: '',
+        profitMax: ''
     });
     const bottomScrollRef = useRef(null);
     const containerRef = useRef(null);
@@ -97,6 +119,35 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         if (filters.type && trade.type !== filters.type) return false;
         if (filters.ticker && trade.ticker !== filters.ticker) return false;
         if (filters.closeType && trade.close_type !== filters.closeType) return false;
+        
+        // Date filters
+        if (filters.openDateFrom && trade.open_date < filters.openDateFrom) return false;
+        if (filters.openDateTo && trade.open_date > filters.openDateTo) return false;
+        if (filters.expirationFrom && trade.expiration < filters.expirationFrom) return false;
+        if (filters.expirationTo && trade.expiration > filters.expirationTo) return false;
+        if (filters.closeDateFrom && trade.close_date < filters.closeDateFrom) return false;
+        if (filters.closeDateTo && trade.close_date > filters.closeDateTo) return false;
+        if (filters.incomeWeekFrom && trade.income_week < filters.incomeWeekFrom) return false;
+        if (filters.incomeWeekTo && trade.income_week > filters.incomeWeekTo) return false;
+        
+        // Numeric filters
+        if (filters.strikePriceMin && (trade.strike_price || 0) < parseFloat(filters.strikePriceMin)) return false;
+        if (filters.strikePriceMax && (trade.strike_price || 0) > parseFloat(filters.strikePriceMax)) return false;
+        if (filters.openPremiumMin && (trade.open_premium || 0) < parseFloat(filters.openPremiumMin)) return false;
+        if (filters.openPremiumMax && (trade.open_premium || 0) > parseFloat(filters.openPremiumMax)) return false;
+        if (filters.collateralStartMin && (trade.collateral_start || 0) < parseFloat(filters.collateralStartMin)) return false;
+        if (filters.collateralStartMax && (trade.collateral_start || 0) > parseFloat(filters.collateralStartMax)) return false;
+        if (filters.potentialYieldMin && (trade.potential_yield || 0) < parseFloat(filters.potentialYieldMin)) return false;
+        if (filters.potentialYieldMax && (trade.potential_yield || 0) > parseFloat(filters.potentialYieldMax)) return false;
+        if (filters.closePremiumMin && (trade.close_premium || 0) < parseFloat(filters.closePremiumMin)) return false;
+        if (filters.closePremiumMax && (trade.close_premium || 0) > parseFloat(filters.closePremiumMax)) return false;
+        if (filters.collateralGainMin && (trade.collateral_gain || 0) < parseFloat(filters.collateralGainMin)) return false;
+        if (filters.collateralGainMax && (trade.collateral_gain || 0) > parseFloat(filters.collateralGainMax)) return false;
+        
+        const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
+        if (filters.profitMin && calculatedProfit < parseFloat(filters.profitMin)) return false;
+        if (filters.profitMax && calculatedProfit > parseFloat(filters.profitMax)) return false;
+        
         return true;
     });
 
