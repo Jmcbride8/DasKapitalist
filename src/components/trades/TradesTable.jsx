@@ -83,7 +83,9 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                                 </TableCell>
                             </TableRow>
                         ) : (
-                            visibleTrades.map((trade) => (
+                            visibleTrades.map((trade) => {
+                                const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
+                                return (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
                                     <TableCell>
                                         <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 
@@ -109,8 +111,8 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                                     <TableCell className={`text-right font-mono ${trade.collateral_gain > 0 ? 'text-emerald-600' : trade.collateral_gain < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                         {formatCurrency(trade.collateral_gain)}
                                     </TableCell>
-                                    <TableCell className={`text-right font-mono font-semibold ${trade.profit > 0 ? 'text-emerald-600' : trade.profit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
-                                        {formatCurrency(trade.profit)}
+                                    <TableCell className={`text-right font-mono font-semibold ${calculatedProfit > 0 ? 'text-emerald-600' : calculatedProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
+                                        {formatCurrency(calculatedProfit)}
                                     </TableCell>
                                     <TableCell>
                                         <div className="flex items-center justify-center gap-1">
@@ -123,7 +125,8 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                                         </div>
                                     </TableCell>
                                 </TableRow>
-                            ))
+                                );
+                            })
                         )}
                     </TableBody>
                 </Table>
