@@ -9,6 +9,7 @@ import TradeForm from '@/components/trades/TradeForm';
 import CloseTradeModal from '@/components/trades/CloseTradeModal';
 import BulkUpload from '@/components/trades/BulkUpload';
 import TradeLegendModal from '@/components/trades/TradeLegendModal';
+import SummaryTable from '@/components/trades/SummaryTable';
 
 export default function Trades() {
     const [showForm, setShowForm] = useState(false);
@@ -16,6 +17,7 @@ export default function Trades() {
     const [showCloseModal, setShowCloseModal] = useState(false);
     const [closingTrade, setClosingTrade] = useState(null);
     const [showBulkUpload, setShowBulkUpload] = useState(false);
+    const [showSummary, setShowSummary] = useState(false);
     const queryClient = useQueryClient();
 
     const { data: trades = [], isLoading } = useQuery({
@@ -102,6 +104,13 @@ export default function Trades() {
                     <div className="flex gap-3">
                         <TradeLegendModal />
                         <Button 
+                            onClick={() => setShowSummary(!showSummary)}
+                            variant="outline"
+                            className="border-slate-200"
+                        >
+                            Summary
+                        </Button>
+                        <Button 
                             onClick={() => setShowBulkUpload(true)}
                             variant="outline"
                             className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
@@ -118,6 +127,14 @@ export default function Trades() {
                         </Button>
                     </div>
                 </div>
+
+                {/* Summary Section */}
+                {showSummary && (
+                    <div className="mb-6">
+                        <h2 className="text-lg font-semibold text-slate-900 mb-4">Weekly Summary</h2>
+                        <SummaryTable trades={trades} />
+                    </div>
+                )}
 
                 {/* Trades Table */}
                 <div>
