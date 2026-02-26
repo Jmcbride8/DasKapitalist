@@ -58,26 +58,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         return () => window.removeEventListener('resize', updateTableHeight);
     }, []);
 
-    useEffect(() => {
-        const topScroll = topScrollRef.current;
-        const bottomScroll = bottomScrollRef.current;
-        
-        const syncScroll = (e) => {
-            if (e.target === topScroll) {
-                bottomScroll.scrollLeft = topScroll.scrollLeft;
-            } else {
-                topScroll.scrollLeft = bottomScroll.scrollLeft;
-            }
-        };
 
-        topScroll?.addEventListener('scroll', syncScroll);
-        bottomScroll?.addEventListener('scroll', syncScroll);
-
-        return () => {
-            topScroll?.removeEventListener('scroll', syncScroll);
-            bottomScroll?.removeEventListener('scroll', syncScroll);
-        };
-    }, []);
 
     const handleScroll = (e) => {
         const { scrollTop, scrollHeight, clientHeight } = e.target;
