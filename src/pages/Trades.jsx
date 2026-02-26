@@ -80,22 +80,7 @@ export default function Trades() {
         }
     };
 
-    const filteredTrades = useMemo(() => {
-        return trades.filter(trade => {
-            if (filters.status !== 'all' && trade.status !== filters.status) return false;
-            if (filters.account !== 'all' && trade.account !== filters.account) return false;
-            if (filters.type !== 'all' && trade.type !== filters.type) return false;
-            if (filters.ticker !== 'all' && trade.ticker !== filters.ticker) return false;
-            if (filters.closeType !== 'all' && trade.close_type !== filters.closeType) return false;
-            
-            if (filters.openDateFrom && trade.open_date < filters.openDateFrom) return false;
-            if (filters.openDateTo && trade.open_date > filters.openDateTo) return false;
-            if (filters.closeDateFrom && trade.close_date < filters.closeDateFrom) return false;
-            if (filters.closeDateTo && trade.close_date > filters.closeDateTo) return false;
-            
-            return true;
-        });
-    }, [trades, filters]);
+
 
     const stats = {
         totalProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
