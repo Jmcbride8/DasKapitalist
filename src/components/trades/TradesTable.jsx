@@ -42,29 +42,9 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         account: '',
         type: '',
         ticker: '',
-        openDateFrom: '',
-        openDateTo: '',
-        expirationFrom: '',
-        expirationTo: '',
-        strikePriceMin: '',
-        strikePriceMax: '',
-        openPremiumMin: '',
-        openPremiumMax: '',
-        collateralStartMin: '',
-        collateralStartMax: '',
-        potentialYieldMin: '',
-        potentialYieldMax: '',
-        closePremiumMin: '',
-        closePremiumMax: '',
         closeDateFrom: '',
         closeDateTo: '',
-        incomeWeekFrom: '',
-        incomeWeekTo: '',
-        closeType: '',
-        collateralGainMin: '',
-        collateralGainMax: '',
-        profitMin: '',
-        profitMax: ''
+        closeType: ''
     });
     const bottomScrollRef = useRef(null);
     const containerRef = useRef(null);
@@ -119,35 +99,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         if (filters.type && trade.type !== filters.type) return false;
         if (filters.ticker && trade.ticker !== filters.ticker) return false;
         if (filters.closeType && trade.close_type !== filters.closeType) return false;
-        
-        // Date filters
-        if (filters.openDateFrom && trade.open_date < filters.openDateFrom) return false;
-        if (filters.openDateTo && trade.open_date > filters.openDateTo) return false;
-        if (filters.expirationFrom && trade.expiration < filters.expirationFrom) return false;
-        if (filters.expirationTo && trade.expiration > filters.expirationTo) return false;
         if (filters.closeDateFrom && trade.close_date < filters.closeDateFrom) return false;
         if (filters.closeDateTo && trade.close_date > filters.closeDateTo) return false;
-        if (filters.incomeWeekFrom && trade.income_week < filters.incomeWeekFrom) return false;
-        if (filters.incomeWeekTo && trade.income_week > filters.incomeWeekTo) return false;
-        
-        // Numeric filters
-        if (filters.strikePriceMin && (trade.strike_price || 0) < parseFloat(filters.strikePriceMin)) return false;
-        if (filters.strikePriceMax && (trade.strike_price || 0) > parseFloat(filters.strikePriceMax)) return false;
-        if (filters.openPremiumMin && (trade.open_premium || 0) < parseFloat(filters.openPremiumMin)) return false;
-        if (filters.openPremiumMax && (trade.open_premium || 0) > parseFloat(filters.openPremiumMax)) return false;
-        if (filters.collateralStartMin && (trade.collateral_start || 0) < parseFloat(filters.collateralStartMin)) return false;
-        if (filters.collateralStartMax && (trade.collateral_start || 0) > parseFloat(filters.collateralStartMax)) return false;
-        if (filters.potentialYieldMin && (trade.potential_yield || 0) < parseFloat(filters.potentialYieldMin)) return false;
-        if (filters.potentialYieldMax && (trade.potential_yield || 0) > parseFloat(filters.potentialYieldMax)) return false;
-        if (filters.closePremiumMin && (trade.close_premium || 0) < parseFloat(filters.closePremiumMin)) return false;
-        if (filters.closePremiumMax && (trade.close_premium || 0) > parseFloat(filters.closePremiumMax)) return false;
-        if (filters.collateralGainMin && (trade.collateral_gain || 0) < parseFloat(filters.collateralGainMin)) return false;
-        if (filters.collateralGainMax && (trade.collateral_gain || 0) > parseFloat(filters.collateralGainMax)) return false;
-        
-        const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
-        if (filters.profitMin && calculatedProfit < parseFloat(filters.profitMin)) return false;
-        if (filters.profitMax && calculatedProfit > parseFloat(filters.profitMax)) return false;
-        
         return true;
     });
 
@@ -220,35 +173,11 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
                                 Expiration<SortIcon field="expiration" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('strike_price')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
-                                Strike Price<SortIcon field="strike_price" />
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('open_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
-                                Open<SortIcon field="open_premium" />
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('collateral_start')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
-                                Collateral Start<SortIcon field="collateral_start" />
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('potential_yield')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
-                                Potential Yield<SortIcon field="potential_yield" />
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
-                                Latest Value<SortIcon field="close_premium" />
-                            </TableHead>
                             <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
                                 Close Date<SortIcon field="close_date" />
                             </TableHead>
-                            <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
-                                Income Week<SortIcon field="income_week" />
-                            </TableHead>
                             <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
                                 Close Type<SortIcon field="close_type" />
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('collateral_gain')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
-                                Collateral Gain<SortIcon field="collateral_gain" />
-                            </TableHead>
-                            <TableHead onClick={() => handleSort('profit')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right cursor-pointer hover:bg-slate-100">
-                                Profit<SortIcon field="profit" />
                             </TableHead>
                         </TableRow>
                         <TableRow className="bg-white border-b border-slate-200">
@@ -307,58 +236,10 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                             </TableHead>
                             <TableHead className="py-1">
                                 <div className="flex gap-0.5">
-                                    <Input type="date" value={filters.openDateFrom} onChange={(e) => setFilters({...filters, openDateFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
-                                    <Input type="date" value={filters.openDateTo} onChange={(e) => setFilters({...filters, openDateTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-0.5">
-                                    <Input type="date" value={filters.expirationFrom} onChange={(e) => setFilters({...filters, expirationFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
-                                    <Input type="date" value={filters.expirationTo} onChange={(e) => setFilters({...filters, expirationTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="number" value={filters.strikePriceMin} onChange={(e) => setFilters({...filters, strikePriceMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
-                                    <Input type="number" value={filters.strikePriceMax} onChange={(e) => setFilters({...filters, strikePriceMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="number" value={filters.openPremiumMin} onChange={(e) => setFilters({...filters, openPremiumMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
-                                    <Input type="number" value={filters.openPremiumMax} onChange={(e) => setFilters({...filters, openPremiumMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="number" value={filters.collateralStartMin} onChange={(e) => setFilters({...filters, collateralStartMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
-                                    <Input type="number" value={filters.collateralStartMax} onChange={(e) => setFilters({...filters, collateralStartMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="number" step="0.01" value={filters.potentialYieldMin} onChange={(e) => setFilters({...filters, potentialYieldMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min %" />
-                                    <Input type="number" step="0.01" value={filters.potentialYieldMax} onChange={(e) => setFilters({...filters, potentialYieldMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max %" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="number" value={filters.closePremiumMin} onChange={(e) => setFilters({...filters, closePremiumMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
-                                    <Input type="number" value={filters.closePremiumMax} onChange={(e) => setFilters({...filters, closePremiumMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-0.5">
                                     <Input type="date" value={filters.closeDateFrom} onChange={(e) => setFilters({...filters, closeDateFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
                                     <Input type="date" value={filters.closeDateTo} onChange={(e) => setFilters({...filters, closeDateTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-0.5">
-                                    <Input type="date" value={filters.incomeWeekFrom} onChange={(e) => setFilters({...filters, incomeWeekFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
-                                    <Input type="date" value={filters.incomeWeekTo} onChange={(e) => setFilters({...filters, incomeWeekTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
-                                </div>
-                            </TableHead>
+                                 </div>
+                             </TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.closeType} onValueChange={(value) => setFilters({...filters, closeType: value})}>
                                     <SelectTrigger className="h-7 text-xs border-slate-300">
@@ -435,22 +316,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                     <TableCell className="font-semibold text-slate-900 text-xs py-2">{trade.ticker}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.open_date)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.expiration)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatCurrency(trade.strike_price)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatCurrency(trade.open_premium)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatCurrency(trade.collateral_start)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatPercent(trade.potential_yield)}</TableCell>
-                                    <TableCell className={`text-right font-mono text-xs py-2 ${trade.close_premium < 0 ? 'text-red-600' : 'text-slate-700'}`}>
-                                        {formatCurrency(trade.close_premium)}
-                                    </TableCell>
                                     <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.close_date)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.income_week)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-2">{trade.close_type || '-'}</TableCell>
-                                    <TableCell className={`text-right font-mono text-xs py-2 ${trade.collateral_gain > 0 ? 'text-emerald-600' : trade.collateral_gain < 0 ? 'text-red-600' : 'text-slate-700'}`}>
-                                        {formatCurrency(trade.collateral_gain)}
-                                    </TableCell>
-                                    <TableCell className={`text-right font-mono font-semibold text-xs py-2 ${calculatedProfit > 0 ? 'text-emerald-600' : calculatedProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
-                                        {formatCurrency(calculatedProfit)}
-                                    </TableCell>
                                 </TableRow>
                                 );
                             })
