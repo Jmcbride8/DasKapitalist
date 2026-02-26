@@ -144,18 +144,6 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
     return (
         <div ref={containerRef} className="border rounded-xl overflow-hidden bg-white shadow-sm">
             <div 
-                ref={topScrollRef}
-                className="border-b border-slate-200"
-                style={{ 
-                    height: '16px', 
-                    overflowY: 'hidden',
-                    overflowX: 'scroll',
-                    width: '100%'
-                }}
-            >
-                <div style={{ height: '1px', width: '2000px' }}></div>
-            </div>
-            <div 
                 ref={bottomScrollRef}
                 onScroll={handleScroll}
                 style={{ 
@@ -167,8 +155,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
             >
                 <div ref={tableRef} style={{ minWidth: '2000px' }}>
                 <Table>
-                    <TableHeader>
-                        <TableRow className="bg-slate-50/80">
+                    <TableHeader className="sticky top-0 z-10">
+                        <TableRow className="bg-slate-50">
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">Actions</TableHead>
                             <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">#</TableHead>
                             <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 cursor-pointer hover:bg-slate-100">
