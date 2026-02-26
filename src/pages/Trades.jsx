@@ -3,6 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3, X } from 'lucide-react';
 import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
@@ -107,24 +108,26 @@ export default function Trades() {
                 </div>
 
                 {/* Buttons and Filters */}
-                <div className="mb-6 flex flex-col gap-3">
-                    <div className="flex flex-wrap gap-2">
-                        {tradeTypes.map(type => (
-                            <button
-                                key={type}
-                                onClick={() => setSelectedTypes(prev => 
-                                    prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-                                )}
-                                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                                    selectedTypes.includes(type)
-                                        ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
-                                        : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
-                                }`}
-                            >
-                                {type}
-                            </button>
-                        ))}
-                    </div>
+                <div className="mb-6 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                    <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
+                        if (value === '') {
+                            setSelectedTypes([]);
+                        } else {
+                            setSelectedTypes(prev => 
+                                prev.includes(value) ? prev.filter(t => t !== value) : [...prev, value]
+                            );
+                        }
+                    }}>
+                        <SelectTrigger className="w-40">
+                            <SelectValue placeholder="Filter by Trade Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value={null}>All Types</SelectItem>
+                            {tradeTypes.map(type => (
+                                <SelectItem key={type} value={type}>{type}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
                     <div className="flex gap-3">
                         <TradeLegendModal />
                         <Button 
