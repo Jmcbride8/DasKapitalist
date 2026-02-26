@@ -66,7 +66,7 @@ export default function Dashboards() {
     const dashboard = dashboardMap[view] || dashboardMap.weekly;
 
     return (
-        <div className="p-8">
+        <div className="min-h-screen bg-white p-8">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-8">
                     <h1 className="text-3xl font-bold text-slate-900">{dashboard.title}</h1>

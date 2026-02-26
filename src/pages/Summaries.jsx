@@ -19,7 +19,7 @@ export default function Summaries() {
     }, [trades, selectedTypes]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+        <div className="min-h-screen bg-white">
             <div className="max-w-6xl mx-auto p-6 lg:p-8">
                 <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-8">Weekly Summary</h1>
                 
