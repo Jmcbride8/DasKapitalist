@@ -57,26 +57,10 @@ export default function WeeklyProfitChart({ trades }) {
         );
     }
 
-    const renderNetLabel = (props) => {
-        const { x, y, width, height, index, payload } = props;
-        if (!chartData[index]) return null;
-        
-        const data = chartData[index];
-        const netValue = data.positive + data.negative;
-        const labelY = netValue >= 0 ? y - 10 : y + height + 15;
-        const textColor = netValue >= 0 ? '#10b981' : '#ef4444';
-
-        return (
-            <text x={x + width / 2} y={labelY} textAnchor="middle" fill={textColor} fontSize={11} fontWeight={600}>
-                {formatCurrency(netValue)}
-            </text>
-        );
-    };
-
     return (
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+                <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis
                         dataKey="week"
@@ -95,11 +79,12 @@ export default function WeeklyProfitChart({ trades }) {
                         axisLine={false}
                     />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="positive" stackId="a" fill="#10b981" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="negative" stackId="a" fill="#ef4444" radius={[4, 4, 0, 0]} label={renderNetLabel} />
-                    <Line type="monotone" dataKey="cumulative" stroke="#000000" strokeWidth={2} dot={false} yAxisId="right" />
-                    <YAxis yAxisId="right" orientation="right" tickFormatter={formatCurrency} tick={{ fontSize: 11, fill: '#64748b' }} tickLine={false} axisLine={false} />
-                </ComposedChart>
+                    <Bar dataKey="net" radius={[4, 4, 0, 0]}>
+                        {chartData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.net >= 0 ? '#10b981' : '#ef4444'} />
+                        ))}
+                    </Bar>
+                </BarChart>
             </ResponsiveContainer>
         </div>
     );
