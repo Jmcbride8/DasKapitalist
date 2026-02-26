@@ -28,15 +28,14 @@ export default function TradeFilters({ filters, onFilterChange, trades }) {
 
     return (
         <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-4">
-            <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-semibold text-slate-700">Filters</h3>
-                {hasActiveFilters && (
+            {hasActiveFilters && (
+                <div className="flex justify-end mb-3">
                     <Button variant="ghost" size="sm" onClick={clearFilters} className="h-7 text-xs">
                         <X className="w-3 h-3 mr-1" />
                         Clear All
                     </Button>
-                )}
-            </div>
+                </div>
+            )}
             
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 <div>
