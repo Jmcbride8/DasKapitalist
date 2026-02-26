@@ -22,10 +22,10 @@ export default function OpenPositionsChart({ trades }) {
             }
             
             const collateralStart = trade.collateral_start || 0;
-            const collateralGain = trade.collateral_gain || 0;
+            const profit = trade.profit || 0;
             
             dataByTicker[trade.ticker].open += collateralStart;
-            dataByTicker[trade.ticker].unrealized += collateralGain;
+            dataByTicker[trade.ticker].unrealized += profit;
         });
 
         return Object.values(dataByTicker).sort((a, b) => (b.open + b.unrealized) - (a.open + a.unrealized));
