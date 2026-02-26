@@ -42,8 +42,6 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         account: '',
         type: '',
         ticker: '',
-        closeDateFrom: '',
-        closeDateTo: '',
         closeType: ''
     });
     const bottomScrollRef = useRef(null);
@@ -99,8 +97,6 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         if (filters.type && trade.type !== filters.type) return false;
         if (filters.ticker && trade.ticker !== filters.ticker) return false;
         if (filters.closeType && trade.close_type !== filters.closeType) return false;
-        if (filters.closeDateFrom && trade.close_date < filters.closeDateFrom) return false;
-        if (filters.closeDateTo && trade.close_date > filters.closeDateTo) return false;
         return true;
     });
 
@@ -235,11 +231,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 </Select>
                             </TableHead>
                             <TableHead className="py-1">
-                                <div className="flex gap-0.5">
-                                    <Input type="date" value={filters.closeDateFrom} onChange={(e) => setFilters({...filters, closeDateFrom: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="From" />
-                                    <Input type="date" value={filters.closeDateTo} onChange={(e) => setFilters({...filters, closeDateTo: e.target.value})} className="h-7 text-xs border-slate-300 w-20" placeholder="To" />
-                                 </div>
-                             </TableHead>
+                            </TableHead>
                             <TableHead className="py-1">
                                 <Select value={filters.closeType} onValueChange={(value) => setFilters({...filters, closeType: value})}>
                                     <SelectTrigger className="h-7 text-xs border-slate-300">
@@ -252,18 +244,6 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                         ))}
                                     </SelectContent>
                                 </Select>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="number" value={filters.collateralGainMin} onChange={(e) => setFilters({...filters, collateralGainMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
-                                    <Input type="number" value={filters.collateralGainMax} onChange={(e) => setFilters({...filters, collateralGainMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
-                                </div>
-                            </TableHead>
-                            <TableHead className="py-1">
-                                <div className="flex gap-1">
-                                    <Input type="number" value={filters.profitMin} onChange={(e) => setFilters({...filters, profitMin: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Min" />
-                                    <Input type="number" value={filters.profitMax} onChange={(e) => setFilters({...filters, profitMax: e.target.value})} className="h-7 text-xs border-slate-300" placeholder="Max" />
-                                </div>
                             </TableHead>
                         </TableRow>
                     </TableHeader>
