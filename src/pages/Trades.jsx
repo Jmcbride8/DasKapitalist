@@ -16,17 +16,6 @@ export default function Trades() {
     const [showCloseModal, setShowCloseModal] = useState(false);
     const [closingTrade, setClosingTrade] = useState(null);
     const [showBulkUpload, setShowBulkUpload] = useState(false);
-    const [filters, setFilters] = useState({
-        status: 'all',
-        account: 'all',
-        type: 'all',
-        ticker: 'all',
-        openDateFrom: '',
-        openDateTo: '',
-        closeDateFrom: '',
-        closeDateTo: '',
-        closeType: 'all'
-    });
     const queryClient = useQueryClient();
 
     const { data: trades = [], isLoading } = useQuery({
