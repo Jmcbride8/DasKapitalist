@@ -108,6 +108,11 @@ export default function ProfitChart({ trades }) {
                     </Bar>
                 </BarChart>
             </ResponsiveContainer>
+            {hasNegativeUnrealized && (
+                <div className="text-xs text-red-600 text-center mt-1">
+                    Unrealized (Negative)
+                </div>
+            )}
         </div>
     );
 }
