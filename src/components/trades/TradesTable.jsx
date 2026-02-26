@@ -56,23 +56,23 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-slate-50/80">
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Status</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Account</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Type</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Ticker</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Open Date</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Expiration</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Strike Price</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Open</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Collateral Start</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Potential Yield</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Close</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Close Date</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Income Week</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap">Close Type</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Collateral Gain</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-right">Profit</TableHead>
-                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-center">Actions</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Status</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Account</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Type</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Ticker</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Open Date</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Expiration</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Strike Price</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Open</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Collateral Start</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Potential Yield</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Latest Value</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Close Date</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Income Week</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2">Close Type</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Collateral Gain</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-right">Profit</TableHead>
+                            <TableHead className="font-semibold text-slate-700 whitespace-nowrap text-xs py-2 text-center">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -87,40 +87,40 @@ export default function TradesTable({ trades, onEdit, onDelete }) {
                                 const calculatedProfit = (trade.open_premium || 0) + (trade.close_premium || 0) + (trade.collateral_gain || 0);
                                 return (
                                 <TableRow key={trade.id} className="hover:bg-slate-50/50 transition-colors">
-                                    <TableCell>
+                                    <TableCell className="py-2">
                                         <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 
-                                               className={trade.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}>
+                                               className={`text-xs ${trade.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
                                             {trade.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell className="text-slate-600">{trade.account || '-'}</TableCell>
-                                    <TableCell className="text-slate-700 font-medium">{trade.type}</TableCell>
-                                    <TableCell className="font-semibold text-slate-900">{trade.ticker}</TableCell>
-                                    <TableCell className="text-slate-600">{formatDate(trade.open_date)}</TableCell>
-                                    <TableCell className="text-slate-600">{formatDate(trade.expiration)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700">{formatCurrency(trade.strike_price)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700">{formatCurrency(trade.open_premium)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700">{formatCurrency(trade.collateral_start)}</TableCell>
-                                    <TableCell className="text-right font-mono text-slate-700">{formatPercent(trade.potential_yield)}</TableCell>
-                                    <TableCell className={`text-right font-mono ${trade.close_premium < 0 ? 'text-red-600' : 'text-slate-700'}`}>
+                                    <TableCell className="text-slate-600 text-xs py-2">{trade.account || '-'}</TableCell>
+                                    <TableCell className="text-slate-700 font-medium text-xs py-2">{trade.type}</TableCell>
+                                    <TableCell className="font-semibold text-slate-900 text-xs py-2">{trade.ticker}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.open_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.expiration)}</TableCell>
+                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatCurrency(trade.strike_price)}</TableCell>
+                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatCurrency(trade.open_premium)}</TableCell>
+                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatCurrency(trade.collateral_start)}</TableCell>
+                                    <TableCell className="text-right font-mono text-slate-700 text-xs py-2">{formatPercent(trade.potential_yield)}</TableCell>
+                                    <TableCell className={`text-right font-mono text-xs py-2 ${trade.close_premium < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                         {formatCurrency(trade.close_premium)}
                                     </TableCell>
-                                    <TableCell className="text-slate-600">{formatDate(trade.close_date)}</TableCell>
-                                    <TableCell className="text-slate-600">{formatDate(trade.income_week)}</TableCell>
-                                    <TableCell className="text-slate-600">{trade.close_type || '-'}</TableCell>
-                                    <TableCell className={`text-right font-mono ${trade.collateral_gain > 0 ? 'text-emerald-600' : trade.collateral_gain < 0 ? 'text-red-600' : 'text-slate-700'}`}>
+                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.close_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-2">{formatDate(trade.income_week)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-2">{trade.close_type || '-'}</TableCell>
+                                    <TableCell className={`text-right font-mono text-xs py-2 ${trade.collateral_gain > 0 ? 'text-emerald-600' : trade.collateral_gain < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                         {formatCurrency(trade.collateral_gain)}
                                     </TableCell>
-                                    <TableCell className={`text-right font-mono font-semibold ${calculatedProfit > 0 ? 'text-emerald-600' : calculatedProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
+                                    <TableCell className={`text-right font-mono font-semibold text-xs py-2 ${calculatedProfit > 0 ? 'text-emerald-600' : calculatedProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                         {formatCurrency(calculatedProfit)}
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className="py-2">
                                         <div className="flex items-center justify-center gap-1">
-                                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-slate-100" onClick={() => onEdit(trade)}>
-                                                <Pencil className="h-4 w-4 text-slate-500" />
+                                            <Button variant="ghost" size="icon" className="h-7 w-7 hover:bg-slate-100" onClick={() => onEdit(trade)}>
+                                                <Pencil className="h-3.5 w-3.5 text-slate-500" />
                                             </Button>
-                                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-red-50" onClick={() => onDelete(trade.id)}>
-                                                <Trash2 className="h-4 w-4 text-red-400" />
+                                            <Button variant="ghost" size="icon" className="h-7 w-7 hover:bg-red-50" onClick={() => onDelete(trade.id)}>
+                                                <Trash2 className="h-3.5 w-3.5 text-red-400" />
                                             </Button>
                                         </div>
                                     </TableCell>
