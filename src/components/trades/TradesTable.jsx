@@ -244,6 +244,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.open_date)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.expiration)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.close_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.income_week)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{trade.close_type || '-'}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{trade.strike_price ? `$${trade.strike_price.toFixed(2)}` : '-'}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatCurrency(trade.open_premium)}</TableCell>
