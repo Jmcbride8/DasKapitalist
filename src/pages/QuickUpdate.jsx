@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { format } from 'date-fns';
-import { Check, X } from 'lucide-react';
+import { Check, X, ArrowUp, ArrowDown } from 'lucide-react';
 
 const formatDate = (dateStr) => {
     if (!dateStr) return '';
@@ -31,6 +31,8 @@ export default function QuickUpdate() {
     const queryClient = useQueryClient();
     const [editingId, setEditingId] = useState(null);
     const [formData, setFormData] = useState({});
+    const [sortField, setSortField] = useState(null);
+    const [sortDirection, setSortDirection] = useState('asc');
 
     const { data: trades = [] } = useQuery({
         queryKey: ['trades'],
@@ -46,7 +48,41 @@ export default function QuickUpdate() {
         },
     });
 
-    const openTrades = trades.filter(t => t.status === 'Open');
+    const handleSort = (field) => {
+        if (sortField === field) {
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortField(field);
+            setSortDirection('asc');
+        }
+    };
+
+    const SortIcon = ({ field }) => {
+        if (sortField !== field) return null;
+        return sortDirection === 'asc' 
+            ? <ArrowUp className="h-3 w-3 ml-1 inline" /> 
+            : <ArrowDown className="h-3 w-3 ml-1 inline" />;
+    };
+
+    const sortedTrades = [...trades].sort((a, b) => {
+        if (!sortField) return 0;
+        
+        let aVal = a[sortField];
+        let bVal = b[sortField];
+        
+        if (aVal === null || aVal === undefined) return 1;
+        if (bVal === null || bVal === undefined) return -1;
+        
+        if (typeof aVal === 'string') {
+            return sortDirection === 'asc' 
+                ? aVal.localeCompare(bVal) 
+                : bVal.localeCompare(aVal);
+        }
+        
+        return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+    });
+
+    const openTrades = sortedTrades.filter(t => t.status === 'Open');
 
     const startEdit = (trade) => {
         setEditingId(trade.id);
@@ -99,14 +135,14 @@ export default function QuickUpdate() {
                     <Table>
                         <TableHeader>
                             <TableRow className="bg-slate-50 border-b border-slate-200">
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Account</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Ticker</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Type</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Status</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Current Value</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Close Date</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Income Week</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Close Type</TableHead>
+                                <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Account<SortIcon field="account" /></TableHead>
+                                <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Ticker<SortIcon field="ticker" /></TableHead>
+                                <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Type<SortIcon field="type" /></TableHead>
+                                <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Status<SortIcon field="status" /></TableHead>
+                                <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Current Value<SortIcon field="close_premium" /></TableHead>
+                                <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Close Date<SortIcon field="close_date" /></TableHead>
+                                <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Income Week<SortIcon field="income_week" /></TableHead>
+                                <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Close Type<SortIcon field="close_type" /></TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3 text-center">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
