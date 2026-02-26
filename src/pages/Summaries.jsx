@@ -1,19 +1,19 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { base44 } from '@/api/base44Client';
+import { useQuery } from '@tanstack/react-query';
+import SummaryTable from '@/components/trades/SummaryTable';
 
 export default function Summaries() {
+    const { data: trades = [] } = useQuery({
+        queryKey: ['trades'],
+        queryFn: () => base44.entities.Trade.list('-open_date')
+    });
+
     return (
-        <div className="p-8">
-            <div className="max-w-7xl mx-auto">
-                <h1 className="text-3xl font-bold text-slate-900 mb-8">Summaries</h1>
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Coming Soon</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-slate-600">Summary reports will be added here.</p>
-                    </CardContent>
-                </Card>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+            <div className="max-w-6xl mx-auto p-6 lg:p-8">
+                <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-8">Weekly Summary</h1>
+                <SummaryTable trades={trades} />
             </div>
         </div>
     );
