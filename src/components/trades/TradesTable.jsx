@@ -90,7 +90,17 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
         }
     };
 
-    const sortedTrades = [...trades].sort((a, b) => {
+    // Apply filters
+    const filteredTrades = trades.filter(trade => {
+        if (filters.status && trade.status !== filters.status) return false;
+        if (filters.account && trade.account !== filters.account) return false;
+        if (filters.type && trade.type !== filters.type) return false;
+        if (filters.ticker && trade.ticker !== filters.ticker) return false;
+        if (filters.closeType && trade.close_type !== filters.closeType) return false;
+        return true;
+    });
+
+    const sortedTrades = [...filteredTrades].sort((a, b) => {
         if (!sortField) return 0;
         
         let aVal = a[sortField];
