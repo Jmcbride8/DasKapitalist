@@ -8,43 +8,32 @@ import TimeComparisonsChart from '@/components/dashboard/TimeComparisonsChart';
 import TickerHistoryChart from '@/components/dashboard/TickerHistoryChart';
 
 export default function Dashboards() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const view = urlParams.get('view') || 'weekly';
+    
     const { data: trades = [], isLoading } = useQuery({
         queryKey: ['trades'],
         queryFn: () => base44.entities.Trade.list('-open_date')
     });
 
+    const dashboardMap = {
+        weekly: { title: 'Weekly Totals', component: <WeeklyTotalsChart trades={trades} /> },
+        ticker: { title: 'Ticker History', component: <TickerHistoryChart trades={trades} /> },
+        open: { title: 'Open Positions', component: <OpenPositionsChart trades={trades} /> },
+        time: { title: 'Time Comparisons', component: <TimeComparisonsChart trades={trades} /> }
+    };
+
+    const dashboard = dashboardMap[view] || dashboardMap.weekly;
+
     return (
         <div className="p-8">
             <div className="max-w-7xl mx-auto">
-                <h1 className="text-3xl font-bold text-slate-900 mb-8">Dashboards</h1>
+                <h1 className="text-3xl font-bold text-slate-900 mb-8">{dashboard.title}</h1>
                 
                 {isLoading ? (
                     <div className="text-center text-slate-400 py-12">Loading...</div>
                 ) : (
-                    <Tabs defaultValue="weekly" className="w-full">
-                        <TabsList className="mb-6">
-                            <TabsTrigger value="weekly">Weekly Totals</TabsTrigger>
-                            <TabsTrigger value="ticker">Ticker History</TabsTrigger>
-                            <TabsTrigger value="open">Open Positions</TabsTrigger>
-                            <TabsTrigger value="time">Time Comparisons</TabsTrigger>
-                        </TabsList>
-                        
-                        <TabsContent value="weekly">
-                            <WeeklyTotalsChart trades={trades} />
-                        </TabsContent>
-                        
-                        <TabsContent value="open">
-                            <OpenPositionsChart trades={trades} />
-                        </TabsContent>
-                        
-                        <TabsContent value="time">
-                            <TimeComparisonsChart trades={trades} />
-                        </TabsContent>
-                        
-                        <TabsContent value="ticker">
-                            <TickerHistoryChart trades={trades} />
-                        </TabsContent>
-                    </Tabs>
+                    dashboard.component
                 )}
             </div>
         </div>
