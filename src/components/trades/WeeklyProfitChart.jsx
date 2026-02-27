@@ -106,12 +106,14 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                         angle={-45}
                         textAnchor="end"
                         height={60}
+                        className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
                     />
                     <YAxis
                         tickFormatter={formatCurrency}
                         tick={{ fontSize: 11, fill: '#64748b' }}
                         tickLine={false}
                         axisLine={false}
+                        className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Bar 
