@@ -6,8 +6,48 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { format } from 'date-fns';
-import { Check, X, ArrowUp, ArrowDown, DollarSign, TrendingUp, TrendingDown, BarChart3 } from 'lucide-react';
+import { format, differenceInDays, startOfWeek, endOfWeek } from 'date-fns';
+import { Check, X, ArrowUp, ArrowDown, DollarSign, TrendingUp, TrendingDown, BarChart3, Clock } from 'lucide-react';
+
+// Returns days until expiration (negative = past), or null if no expiry
+const getDaysToExpiry = (expirationStr) => {
+    if (!expirationStr) return null;
+    const expiry = new Date(expirationStr);
+    expiry.setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return differenceInDays(expiry, today);
+};
+
+// Smooth color interpolation: green (15+) → yellow (7) → orange (3) → red (0)
+const getDaysToExpiryStyle = (days) => {
+    if (days === null) return {};
+    if (days > 15) return { backgroundColor: 'transparent', color: '#64748b' };
+
+    // Clamp
+    const d = Math.max(0, Math.min(15, days));
+
+    if (d >= 8) {
+        // 15→8: transparent to yellow tint
+        const t = (15 - d) / 7; // 0 at d=15, 1 at d=8
+        const r = Math.round(255 * t + 0 * (1 - t));
+        const g = Math.round(200 + 55 * (1 - t));
+        const b = Math.round(0 + 0 * t);
+        return { backgroundColor: `rgba(${r},${g},${b},${0.15 + t * 0.2})`, color: '#92400e', fontWeight: '600' };
+    } else if (d >= 4) {
+        // 7→4: yellow to orange
+        const t = (7 - d) / 3;
+        const r = 255;
+        const g = Math.round(200 - 80 * t);
+        return { backgroundColor: `rgba(${r},${g},0,${0.2 + t * 0.15})`, color: '#c2410c', fontWeight: '700' };
+    } else {
+        // 3→0: orange to red
+        const t = (3 - d) / 3;
+        const r = 255;
+        const g = Math.round(120 - 120 * t);
+        return { backgroundColor: `rgba(${r},${g},0,${0.3 + t * 0.2})`, color: '#b91c1c', fontWeight: '700' };
+    }
+};
 
 const formatDate = (dateStr) => {
     if (!dateStr) return '';
