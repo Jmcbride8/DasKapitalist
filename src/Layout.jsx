@@ -24,8 +24,8 @@ export default function Layout({ children, currentPageName }) {
             path: 'Trades',
             isCollapsible: true,
             subItems: [
-                { name: 'Main Trades', path: 'Trades' },
-                { name: 'Quick Update', path: 'QuickUpdate' }
+                { name: 'All Trades', path: 'Trades' },
+                { name: 'Open Trades', path: 'QuickUpdate' }
             ]
         }
     ];
