@@ -124,7 +124,16 @@ export default function QuickUpdate() {
         return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
     });
 
-    const openTrades = sortedTrades.filter(t => t.status === 'Open');
+    const openTrades = sortedTrades.filter(t => {
+        if (t.status !== 'Open') return false;
+        if (filterAccount && t.account !== filterAccount) return false;
+        if (filterTicker && t.ticker !== filterTicker) return false;
+        return true;
+    });
+
+    const allOpenTrades = trades.filter(t => t.status === 'Open');
+    const uniqueAccounts = [...new Set(allOpenTrades.map(t => t.account).filter(Boolean))].sort();
+    const uniqueTickers = [...new Set(allOpenTrades.map(t => t.ticker).filter(Boolean))].sort();
 
     const closePremiumTotal = openTrades.reduce((sum, t) => sum + (t.close_premium || 0), 0);
 
