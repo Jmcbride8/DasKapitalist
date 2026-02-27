@@ -121,6 +121,7 @@ export default function TimeComparisonsChart({ trades }) {
             const dateStr = t.income_week || t.close_date || t.open_date;
             if (!dateStr) return;
             const d = parseISO(dateStr);
+            if (isNaN(d.getTime())) return;
             const year = getYear(d);
             const monthIdx = d.getMonth();
             const key = `${year}-${monthIdx}`;
