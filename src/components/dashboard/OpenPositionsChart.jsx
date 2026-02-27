@@ -2,7 +2,18 @@ import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function OpenPositionsChart({ trades }) {
+export default function OpenPositionsChart({ trades, onTickerSelect }) {
+    const [selectedTicker, setSelectedTicker] = React.useState(null);
+
+    const handleBarClick = (data) => {
+        if (selectedTicker === data.ticker) {
+            setSelectedTicker(null);
+            if (onTickerSelect) onTickerSelect(null);
+        } else {
+            setSelectedTicker(data.ticker);
+            if (onTickerSelect) onTickerSelect(data.ticker);
+        }
+    };
     const chartData = useMemo(() => {
         const openTrades = trades.filter(t => t.status === 'Open');
         
@@ -99,14 +110,19 @@ export default function OpenPositionsChart({ trades }) {
                         />
                         <Tooltip content={<CustomTooltip />} />
                         <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" />
-                        <Bar dataKey="open" stackId="a" fill="#9ca3af" name="Open" />
-                        <Bar dataKey="unrealized" stackId="a" name="Unrealized" label={renderUnrealizedLabel}>
-                            {chartData.map((entry, index) => (
-                                <Cell 
-                                    key={`cell-${index}`} 
-                                    fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'} 
-                                />
-                            ))}
+                        <Bar dataKey="open" stackId="a" fill="#9ca3af" name="Open" onClick={(e) => handleBarClick(e)} />
+                        <Bar dataKey="unrealized" stackId="a" name="Unrealized" label={renderUnrealizedLabel} onClick={(e) => handleBarClick(e)}>
+                            {chartData.map((entry, index) => {
+                                const isSelected = selectedTicker === entry.ticker;
+                                const opacity = selectedTicker ? (isSelected ? 1 : 0.3) : 1;
+                                return (
+                                    <Cell 
+                                        key={`cell-${index}`} 
+                                        fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'}
+                                        opacity={opacity}
+                                    />
+                                );
+                            })}
                         </Bar>
                     </BarChart>
                 </ResponsiveContainer>
