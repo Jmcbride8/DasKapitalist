@@ -64,8 +64,10 @@ export default function ProfitChart({ trades }) {
         return null;
     };
 
+    // CustomLabel is attached to the realized bar but uses yAxisMap to find the true
+    // outermost pixel of the full stacked bar so we can place labels outside.
     const CustomLabel = (props) => {
-        const { x, y, width, height, index } = props;
+        const { x, y, width, height, index, yAxisMap, yAxis } = props;
         const entry = chartData[index];
         if (!entry || !entry.realized || entry.unrealized === 0) return null;
 
@@ -73,11 +75,30 @@ export default function ProfitChart({ trades }) {
         const formattedPct = `${pct >= 0 ? '+' : ''}${Math.round(pct)}%`;
         const color = pct >= 0 ? '#10b981' : '#ef4444';
 
-        // y/height here refer to the unrealized bar segment
-        // For positive unrealized: segment is above realized, so label goes above segment top
-        // For negative unrealized: segment hangs below zero, so label goes below segment bottom
-        const labelY = entry.unrealized >= 0 ? y - 5 : y + Math.abs(height) + 13;
+        // Use the yAxis scale if available to convert data value → pixel
+        const scale = yAxis?.scale || (yAxisMap && Object.values(yAxisMap)[0]?.scale);
+        if (scale) {
+            const totalPx = scale(entry.total);
+            const zeroPx = scale(0);
+            if (entry.total >= 0) {
+                // Label above the tallest bar
+                return (
+                    <text x={x + width / 2} y={totalPx - 5} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
+                        {formattedPct}
+                    </text>
+                );
+            } else {
+                // Label below the lowest bar
+                return (
+                    <text x={x + width / 2} y={totalPx + 13} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
+                        {formattedPct}
+                    </text>
+                );
+            }
+        }
 
+        // Fallback: use y/height from the realized segment
+        const labelY = entry.unrealized >= 0 ? y - 5 : y + Math.abs(height) + 13;
         return (
             <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
                 {formattedPct}
