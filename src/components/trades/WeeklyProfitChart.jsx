@@ -49,15 +49,15 @@ export default function WeeklyProfitChart({ trades }) {
         return null;
     };
 
-    const WeeklyLabel = ({ data, formatter }) => (props) => {
+    const renderWeeklyLabel = (props) => {
         const { x, y, width, value, index } = props;
         if (value === 0) return null;
-        const entry = data[index];
+        const entry = chartData[index];
         const color = entry?.net >= 0 ? '#10b981' : '#ef4444';
         const labelY = entry?.net >= 0 ? y - 5 : y + 13;
         return (
-            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={10} fill={color} fontWeight="600">
-                {formatter(value)}
+            <text key={index} x={x + width / 2} y={labelY} textAnchor="middle" fontSize={10} fill={color} fontWeight="600">
+                {formatCurrency(value)}
             </text>
         );
     };
