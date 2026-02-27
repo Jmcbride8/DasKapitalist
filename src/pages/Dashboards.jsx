@@ -8,6 +8,8 @@ import WeeklyTotalsChart from '@/components/dashboard/WeeklyTotalsChart';
 import OpenPositionsChart from '@/components/dashboard/OpenPositionsChart';
 import TimeComparisonsChart from '@/components/dashboard/TimeComparisonsChart';
 import TickerHistoryChart from '@/components/dashboard/TickerHistoryChart';
+import TickerTradesTable from '@/components/dashboard/TickerTradesTable';
+import OpenPositionsTable from '@/components/dashboard/OpenPositionsTable';
 
 export default function Dashboards() {
     const [searchParams] = useSearchParams();
@@ -15,6 +17,7 @@ export default function Dashboards() {
     const [selectedYear, setSelectedYear] = useState('all');
     const [selectedTicker, setSelectedTicker] = useState('all');
     const [selectedTypes, setSelectedTypes] = useState([]);
+    const [selectedChartTicker, setSelectedChartTicker] = useState(null);
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
     const { data: trades = [], isLoading } = useQuery({
@@ -58,8 +61,8 @@ export default function Dashboards() {
 
     const dashboardMap = {
         weekly: { title: 'Weekly Totals', component: <WeeklyTotalsChart trades={filteredTrades} /> },
-        ticker: { title: 'Ticker History', component: <TickerHistoryChart trades={filteredTrades} /> },
-        open: { title: 'Open Positions', component: <OpenPositionsChart trades={filteredTrades} /> },
+        ticker: { title: 'Ticker History', component: <><TickerHistoryChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><TickerTradesTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
+        open: { title: 'Open Positions', component: <><OpenPositionsChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><OpenPositionsTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
         time: { title: 'Time Comparisons', component: <TimeComparisonsChart trades={filteredTrades} /> }
     };
 
