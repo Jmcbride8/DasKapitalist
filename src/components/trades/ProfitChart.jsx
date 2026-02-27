@@ -131,14 +131,8 @@ export default function ProfitChart({ trades }) {
                     <Tooltip content={<CustomTooltip />} />
                     <ReferenceLine y={0} stroke="#94a3b8" strokeWidth={1} />
                     <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} />
-                    <Bar dataKey="unrealized" stackId="a" radius={[0, 0, 0, 0]} label={<CustomLabel />}>
-                        {chartData.map((entry, index) => (
-                            <Cell 
-                                key={`cell-${index}`} 
-                                fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'} 
-                            />
-                        ))}
-                    </Bar>
+                    <Bar dataKey="unrealizedPositive" stackId="a" fill="#10b981" radius={[0, 0, 0, 0]} label={<CustomLabelPositive />} />
+                    <Bar dataKey="unrealizedNegative" fill="#ef4444" radius={[0, 0, 0, 0]} label={<CustomLabelNegative />} />
                 </BarChart>
             </ResponsiveContainer>
         </div>
