@@ -254,9 +254,6 @@ export default function TimeComparisonsChart({ trades }) {
     };
 
     const tabs = [
-        { id: 'cumulative', label: 'Equity Curve' },
-        { id: 'monthly', label: 'Monthly P&L' },
-        { id: 'yoy', label: 'Year-over-Year' },
         { id: 'tickers', label: 'Ticker Matrix' },
     ];
 
