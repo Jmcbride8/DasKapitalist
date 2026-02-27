@@ -71,11 +71,16 @@ export default function ProfitChart({ trades }) {
 
         const pct = (entry.unrealized / Math.abs(entry.realized)) * 100;
         const formattedPct = `${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%`;
-        const labelY = entry.unrealized >= 0 ? y - 6 : y + height + 14;
         const color = pct >= 0 ? '#10b981' : '#ef4444';
 
+        // Place label strictly outside the full stacked bar
+        // y is the top of the unrealized segment; y + height is its bottom
+        // For positive total: label above the top of the bar (min y of unrealized segment)
+        // For negative total: label below the bottom of the bar
+        const labelY = entry.total >= 0 ? y - 6 : y + height + 12;
+
         return (
-            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={color} fontWeight="600">
+            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
                 {formattedPct}
             </text>
         );
