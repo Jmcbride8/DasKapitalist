@@ -71,6 +71,11 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
         );
     }
 
+    const handleBarClick = (data) => {
+        setSelectedWeek(data.week);
+        if (onWeekSelect) onWeekSelect(data.week);
+    };
+
     return (
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -93,9 +98,19 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
                         axisLine={false}
                     />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="net" radius={[4, 4, 0, 0]} label={renderWeeklyLabel}>
+                    <Bar 
+                        dataKey="net" 
+                        radius={[4, 4, 0, 0]} 
+                        label={renderWeeklyLabel}
+                        onClick={(state) => handleBarClick(state.payload)}
+                        style={{ cursor: 'pointer' }}
+                    >
                         {chartData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.net >= 0 ? '#10b981' : '#ef4444'} />
+                            <Cell 
+                                key={`cell-${index}`} 
+                                fill={entry.net >= 0 ? '#10b981' : '#ef4444'}
+                                opacity={selectedWeek === entry.week ? 1 : 0.7}
+                            />
                         ))}
                     </Bar>
                 </BarChart>
