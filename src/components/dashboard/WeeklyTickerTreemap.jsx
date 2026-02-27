@@ -21,12 +21,14 @@ export default function WeeklyTickerTreemap({ trades, selectedWeek }) {
             }
         });
 
-        return Object.entries(tickerProfit).map(([ticker, profit]) => ({
-            name: ticker,
-            value: Math.abs(profit),
-            profit,
-            fill: profit >= 0 ? '#10b981' : '#ef4444'
-        }));
+        return Object.entries(tickerProfit)
+            .map(([ticker, profit]) => ({
+                name: ticker,
+                value: Math.abs(profit),
+                profit,
+                fill: profit >= 0 ? '#10b981' : '#ef4444'
+            }))
+            .sort((a, b) => b.value - a.value);
     }, [trades, selectedWeek]);
 
     if (!selectedWeek || treemapData.length === 0) return null;
