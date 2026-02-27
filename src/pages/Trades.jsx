@@ -197,7 +197,7 @@ export default function Trades() {
                         </div>
 
                         {/* Filters */}
-                        <div className="flex gap-3 mb-4 flex-wrap items-center">
+                        <div className="flex gap-3 mb-4 flex-wrap">
                             <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
                                 if (value === '') {
                                     setSelectedTypes([]);
@@ -207,8 +207,8 @@ export default function Trades() {
                                     );
                                 }
                             }}>
-                                <SelectTrigger className="h-8 w-8 p-0 flex items-center justify-center border border-slate-300 hover:bg-slate-100">
-                                    <Filter className="w-4 h-4 text-slate-700" />
+                                <SelectTrigger className="h-8 text-xs w-40">
+                                    <SelectValue placeholder="All Types" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value={null}>All Types</SelectItem>
