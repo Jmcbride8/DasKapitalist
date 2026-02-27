@@ -84,6 +84,14 @@ export default function QuickUpdate() {
 
     const openTrades = sortedTrades.filter(t => t.status === 'Open');
 
+    const stats = {
+        totalProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
+        realizedProfit: trades.filter(t => t.status === 'Closed').reduce((sum, t) => sum + (t.profit || 0), 0),
+        unrealizedProfit: openTrades.reduce((sum, t) => sum + (t.profit || 0), 0),
+        openTrades: openTrades.length,
+        closedTrades: trades.filter(t => t.status === 'Closed').length
+    };
+
     const startEdit = (trade) => {
         setEditingId(trade.id);
         setFormData({
