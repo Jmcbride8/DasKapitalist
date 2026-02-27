@@ -340,17 +340,26 @@ export default function QuickUpdate() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {openTrades.map(trade => {
+                            {openTrades.map((trade, index) => {
                                 const isEditing = editingId === trade.id;
+                                const dte = getDaysToExpiry(trade.expiration);
+                                const dteStyle = getDaysToExpiryStyle(dte);
 
                                 return (
                                     <TableRow key={trade.id} className="hover:bg-slate-50/50 border-b border-slate-100">
+                                        <TableCell className="text-slate-500 text-xs py-3 px-3 text-center border-r border-slate-200">{index + 1}</TableCell>
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.account || '-'}</TableCell>
                                         <TableCell className="text-slate-900 font-semibold text-sm py-3 px-3">{trade.ticker}</TableCell>
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.type}</TableCell>
                                         {renderCell(trade, "status", "select")}
                                         {renderCell(trade, "close_premium", "number")}
                                         {renderCell(trade, "close_date", "date")}
+                                        <TableCell className="text-slate-600 text-xs py-3 px-3">
+                                            {trade.expiration ? formatDate(trade.expiration) : '-'}
+                                        </TableCell>
+                                        <TableCell className="text-xs py-3 px-3 text-center rounded" style={dte !== null ? dteStyle : {}}>
+                                            {dte !== null ? dte : '-'}
+                                        </TableCell>
                                         {renderCell(trade, "income_week", "date")}
                                         {renderCell(trade, "close_type", "select")}
                                         <TableCell className="py-3 px-3 text-center">
