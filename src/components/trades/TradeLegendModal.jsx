@@ -3,6 +3,72 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from "@/components/ui/button";
 import { Info } from 'lucide-react';
 
+const TradeTypeVisualization = ({ type, direction }) => {
+    return (
+        <svg width="100%" height="120" viewBox="0 0 200 120" className="mt-2">
+            {/* Grid background */}
+            <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" strokeWidth="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="200" height="120" fill="url(#grid)" />
+            
+            {/* Axes */}
+            <line x1="30" y1="100" x2="190" y2="100" stroke="#94a3b8" strokeWidth="1.5" />
+            <line x1="30" y1="20" x2="30" y2="100" stroke="#94a3b8" strokeWidth="1.5" />
+            
+            {/* Axis labels */}
+            <text x="185" y="115" fontSize="10" fill="#64748b">Price</text>
+            <text x="10" y="25" fontSize="10" fill="#64748b">P&L</text>
+            
+            {/* Breakeven line */}
+            <line x1="30" y1="60" x2="190" y2="60" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="4,4" />
+            
+            {/* Profit/Loss lines based on type */}
+            {direction === 'bull' && (
+                <>
+                  <path d="M 30 100 L 110 100 L 190 30" stroke="#10b981" strokeWidth="2.5" fill="none" />
+                  <path d="M 110 100 L 110 85" stroke="#94a3b8" strokeWidth="1" strokeDasharray="2,2" />
+                  <text x="105" y="80" fontSize="9" fill="#64748b">Strike</text>
+                </>
+            )}
+            {direction === 'bear' && (
+                <>
+                  <path d="M 30 30 L 110 100 L 190 100" stroke="#f43f5e" strokeWidth="2.5" fill="none" />
+                  <path d="M 110 100 L 110 85" stroke="#94a3b8" strokeWidth="1" strokeDasharray="2,2" />
+                  <text x="105" y="80" fontSize="9" fill="#64748b">Strike</text>
+                </>
+            )}
+            {direction === 'capped-bull' && (
+                <>
+                  <path d="M 30 100 L 90 100 L 150 50 L 190 50" stroke="#10b981" strokeWidth="2.5" fill="none" />
+                  <path d="M 90 100 L 90 85" stroke="#94a3b8" strokeWidth="1" strokeDasharray="2,2" />
+                  <path d="M 150 50 L 150 35" stroke="#94a3b8" strokeWidth="1" strokeDasharray="2,2" />
+                </>
+            )}
+            {direction === 'unlimited-loss' && (
+                <>
+                  <path d="M 30 50 L 110 100 L 190 100" stroke="#f43f5e" strokeWidth="2.5" fill="none" />
+                  <path d="M 110 100 L 110 85" stroke="#94a3b8" strokeWidth="1" strokeDasharray="2,2" />
+                  <text x="105" y="80" fontSize="9" fill="#64748b">Sold @</text>
+                </>
+            )}
+            {direction === 'capped-profit' && (
+                <>
+                  <path d="M 30 100 L 110 50 L 190 50" stroke="#10b981" strokeWidth="2.5" fill="none" />
+                  <path d="M 110 50 L 110 35" stroke="#94a3b8" strokeWidth="1" strokeDasharray="2,2" />
+                </>
+            )}
+            {direction === 'simple-long' && (
+                <>
+                  <path d="M 30 100 L 190 30" stroke="#10b981" strokeWidth="2.5" fill="none" />
+                </>
+            )}
+        </svg>
+    );
+};
+
 export default function TradeLegendModal() {
     return (
         <Dialog>
