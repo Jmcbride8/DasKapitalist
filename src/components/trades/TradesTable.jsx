@@ -248,26 +248,28 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                         </DropdownMenu>
                                     </TableCell>
                                     <TableCell className="text-slate-500 text-xs py-1 px-1 text-center border-l border-r border-slate-300">{index + 1}</TableCell>
-                                    <TableCell className="py-1 px-1 text-right">
+                                    <TableCell className="py-1 px-1 text-center w-16">
                                         <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 
                                                className={`text-xs ${trade.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
                                             {trade.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{trade.account || '-'}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-left">{trade.account || '-'}</TableCell>
                                     <TableCell className="text-slate-700 font-medium text-xs py-1 px-1 text-right">{trade.type}</TableCell>
-                                    <TableCell className="font-semibold text-slate-900 text-xs py-1 px-1 text-right">{trade.ticker}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.open_date)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.expiration)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.close_date)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatDate(trade.income_week)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{trade.close_type || '-'}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{trade.strike_price ? `$${trade.strike_price.toFixed(2)}` : '-'}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatCurrency(trade.open_premium)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatPercent(trade.potential_yield)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right">{formatCurrency(trade.close_premium)}</TableCell>
-                                    <TableCell className={`text-xs py-1 px-1 text-right ${(trade.collateral_gain || 0) >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(trade.collateral_gain)}</TableCell>
-                                    <TableCell className={`font-semibold text-xs py-1 px-1 text-right ${calculatedProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(calculatedProfit)}</TableCell>
+                                    <TableCell className="font-semibold text-slate-900 text-xs py-1 px-1 text-right border-r border-slate-300">{trade.ticker}</TableCell>
+                                    {/* Position Open */}
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-blue-50/20">{formatDate(trade.open_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-blue-50/20">{formatDate(trade.expiration)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-blue-50/20">{trade.strike_price ? `$${trade.strike_price.toFixed(2)}` : '-'}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-blue-50/20 border-r border-slate-300">{formatCurrency(trade.open_premium)}</TableCell>
+                                    {/* Position Close */}
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-emerald-50/20">{formatDate(trade.close_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-emerald-50/20">{formatDate(trade.income_week)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-emerald-50/20">{formatCurrency(trade.close_premium)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-emerald-50/20">{formatPercent(trade.potential_yield)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-emerald-50/20">{trade.close_type || '-'}</TableCell>
+                                    <TableCell className={`text-xs py-1 px-1 text-right bg-emerald-50/20 ${(trade.collateral_gain || 0) >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(trade.collateral_gain)}</TableCell>
+                                    <TableCell className={`font-semibold text-xs py-1 px-1 text-right bg-emerald-50/20 ${calculatedProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(calculatedProfit)}</TableCell>
                                 </TableRow>
                                 );
                             })
