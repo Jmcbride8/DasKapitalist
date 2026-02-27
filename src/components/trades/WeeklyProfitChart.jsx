@@ -49,6 +49,19 @@ export default function WeeklyProfitChart({ trades }) {
         return null;
     };
 
+    const WeeklyLabel = ({ data, formatter }) => (props) => {
+        const { x, y, width, value, index } = props;
+        if (value === 0) return null;
+        const entry = data[index];
+        const color = entry?.net >= 0 ? '#10b981' : '#ef4444';
+        const labelY = entry?.net >= 0 ? y - 5 : y + 13;
+        return (
+            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={10} fill={color} fontWeight="600">
+                {formatter(value)}
+            </text>
+        );
+    };
+
     if (chartData.length === 0) {
         return (
             <div className="h-96 flex items-center justify-center text-slate-400">
