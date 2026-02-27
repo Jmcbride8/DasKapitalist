@@ -70,7 +70,7 @@ export default function Dashboards() {
 
     return (
         <div className="min-h-screen bg-white p-4 md:p-8">
-            <div className="max-w-7xl mx-auto px-0 md:px-4">
+            <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
                     <h1 className="text-3xl font-bold text-slate-900">{dashboard.title}</h1>
                     <div className="flex gap-4 items-center">
