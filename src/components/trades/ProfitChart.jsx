@@ -64,41 +64,23 @@ export default function ProfitChart({ trades }) {
         return null;
     };
 
-    // CustomLabel is attached to the realized bar but uses yAxisMap to find the true
-    // outermost pixel of the full stacked bar so we can place labels outside.
+    // Label on the unrealized bar — placed just outside the end of the combined stack
     const CustomLabel = (props) => {
-        const { x, y, width, height, index, yAxisMap, yAxis } = props;
+        const { x, y, width, height, index } = props;
         const entry = chartData[index];
-        if (!entry || !entry.realized || entry.unrealized === 0) return null;
+        if (!entry || entry.unrealized === 0) return null;
 
-        const pct = (entry.unrealized / Math.abs(entry.realized)) * 100;
+        const pct = entry.realized !== 0
+            ? (entry.unrealized / Math.abs(entry.realized)) * 100
+            : 0;
         const formattedPct = `${pct >= 0 ? '+' : ''}${Math.round(pct)}%`;
-        const color = pct >= 0 ? '#10b981' : '#ef4444';
+        const color = entry.unrealized >= 0 ? '#10b981' : '#ef4444';
 
-        // Use the yAxis scale if available to convert data value → pixel
-        const scale = yAxis?.scale || (yAxisMap && Object.values(yAxisMap)[0]?.scale);
-        if (scale) {
-            const totalPx = scale(entry.total);
-            const zeroPx = scale(0);
-            if (entry.total >= 0) {
-                // Label above the tallest bar
-                return (
-                    <text x={x + width / 2} y={totalPx - 5} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
-                        {formattedPct}
-                    </text>
-                );
-            } else {
-                // Label below the lowest bar
-                return (
-                    <text x={x + width / 2} y={totalPx + 13} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
-                        {formattedPct}
-                    </text>
-                );
-            }
-        }
-
-        // Fallback: use y/height from the realized segment
+        // y is the top of this bar segment, height is its pixel height
+        // For positive unrealized: label above (y - 5)
+        // For negative unrealized: label below (y + height + 13)
         const labelY = entry.unrealized >= 0 ? y - 5 : y + Math.abs(height) + 13;
+
         return (
             <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
                 {formattedPct}
