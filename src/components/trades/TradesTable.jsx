@@ -263,8 +263,8 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                         )}
                                     </TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-left">{trade.account || '-'}</TableCell>
-                                    <TableCell className="text-slate-700 font-medium text-xs py-1 px-1 text-right">{trade.type}</TableCell>
-                                    <TableCell className="font-semibold text-slate-900 text-xs py-1 px-1 text-right border-r border-slate-300">{trade.ticker}</TableCell>
+                                    <TableCell className="text-slate-700 font-medium text-xs py-1 px-1 text-center">{trade.type}</TableCell>
+                                    <TableCell className="font-semibold text-slate-900 text-xs py-1 px-1 text-center border-r border-slate-300">{trade.ticker}</TableCell>
                                     {/* Position Open */}
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-blue-50/20">{formatDate(trade.open_date)}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-right bg-blue-50/20">{formatDate(trade.expiration)}</TableCell>
