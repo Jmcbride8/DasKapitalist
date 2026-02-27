@@ -369,6 +369,7 @@ export default function QuickUpdate() {
                                 <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Expiry Date<SortIcon field="expiration" /></TableHead>
                                 <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Income Week<SortIcon field="income_week" /></TableHead>
                                 <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Close Type<SortIcon field="close_type" /></TableHead>
+                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Profit</TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3 text-center">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
