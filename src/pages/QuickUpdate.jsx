@@ -349,6 +349,9 @@ export default function QuickUpdate() {
                                 return (
                                     <TableRow key={trade.id} className="hover:bg-slate-50/50 border-b border-slate-100">
                                         <TableCell className="text-slate-500 text-xs py-3 px-3 text-center border-r border-slate-200">{index + 1}</TableCell>
+                                        <TableCell className="text-xs py-3 px-3 text-center" style={dte !== null ? dteStyle : {}}>
+                                            {dte !== null ? dte : '-'}
+                                        </TableCell>
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.account || '-'}</TableCell>
                                         <TableCell className="text-slate-900 font-semibold text-sm py-3 px-3">{trade.ticker}</TableCell>
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.type}</TableCell>
