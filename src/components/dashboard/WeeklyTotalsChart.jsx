@@ -8,12 +8,35 @@ import WeeklyTickerTreemap from '@/components/dashboard/WeeklyTickerTreemap';
 export default function WeeklyTotalsChart({ trades }) {
     const [selectedWeek, setSelectedWeek] = useState(null);
     const [viewMode, setViewMode] = useState('treemap');
+    const [periodMode, setPeriodMode] = useState('weekly');
 
     return (
         <div className="space-y-2">
+            <div className="flex gap-2 border-b border-slate-200 mb-4">
+                <button
+                    onClick={() => setPeriodMode('weekly')}
+                    className={`px-4 py-3 text-sm font-medium border-b-2 transition-all ${
+                        periodMode === 'weekly'
+                            ? 'border-slate-900 text-slate-900'
+                            : 'border-transparent text-slate-500 hover:text-slate-700'
+                    }`}
+                >
+                    Weekly
+                </button>
+                <button
+                    onClick={() => setPeriodMode('monthly')}
+                    className={`px-4 py-3 text-sm font-medium border-b-2 transition-all ${
+                        periodMode === 'monthly'
+                            ? 'border-slate-900 text-slate-900'
+                            : 'border-transparent text-slate-500 hover:text-slate-700'
+                    }`}
+                >
+                    Monthly
+                </button>
+            </div>
             <Card className="border-0 shadow-none bg-white">
                 <CardContent className="pt-6">
-                    <WeeklyProfitChart trades={trades} onWeekSelect={setSelectedWeek} />
+                    <WeeklyProfitChart trades={trades} onWeekSelect={setSelectedWeek} periodMode={periodMode} />
                 </CardContent>
             </Card>
             {selectedWeek && (
