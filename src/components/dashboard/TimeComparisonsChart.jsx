@@ -105,18 +105,26 @@ export default function TimeComparisonsChart({ trades }) {
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
             if (!dateStr) return;
-            const key = format(parseISO(dateStr), 'yyyy-MM');
-            if (!byMonth[key]) byMonth[key] = { profit: 0, trades: 0, wins: 0 };
-            byMonth[key].profit += t.profit || 0;
-            byMonth[key].trades += 1;
-            if ((t.profit || 0) > 0) byMonth[key].wins += 1;
+            try {
+                const d = parseISO(dateStr);
+                if (isNaN(d.getTime())) return;
+                const key = format(d, 'yyyy-MM');
+                if (!byMonth[key]) byMonth[key] = { profit: 0, trades: 0, wins: 0 };
+                byMonth[key].profit += t.profit || 0;
+                byMonth[key].trades += 1;
+                if ((t.profit || 0) > 0) byMonth[key].wins += 1;
+            } catch {
+                return;
+            }
         });
         return Object.entries(byMonth)
             .sort(([a], [b]) => a.localeCompare(b))
             .map(([month, d]) => {
                 try {
+                    const monthDate = new Date(month + '-01T00:00:00Z');
+                    if (isNaN(monthDate.getTime())) return null;
                     return {
-                        month: format(parseISO(month + '-01'), 'MMM yy'),
+                        month: format(monthDate, 'MMM yy'),
                         profit: d.profit,
                         winRate: d.trades > 0 ? (d.wins / d.trades) * 100 : 0,
                         trades: d.trades,
