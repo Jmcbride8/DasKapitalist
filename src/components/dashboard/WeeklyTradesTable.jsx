@@ -115,7 +115,9 @@ export default function WeeklyTradesTable({ trades, selectedWeek }) {
                                         </span>
                                     </td>
                                     <td className="px-4 py-3 text-right text-xs text-slate-600">
-                                        {trade.open_premium ? formatCurrency(trade.open_premium) : '-'}
+                                        {trade.collateral_start && trade.profit !== undefined
+                                            ? `${((trade.profit / trade.collateral_start) * 100).toFixed(2)}%`
+                                            : '-'}
                                     </td>
                                     <td className="px-4 py-3 text-right">
                                         <div className="flex items-center justify-end gap-2">
