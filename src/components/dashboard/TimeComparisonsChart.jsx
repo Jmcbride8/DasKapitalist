@@ -340,8 +340,8 @@ export default function TimeComparisonsChart({ trades }) {
                     <table className="w-full text-xs">
                         <thead className="bg-slate-50">
                             <tr>
-                                    {['Ticker', 'Total P&L', 'Trades', 'Win Rate', 'Avg/Trade', 'Efficiency'].map(h => (
-                                        <th key={h} className="text-left px-4 py-3 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">{h}</th>
+                                {['Ticker', 'Total P&L', 'Trades', 'Win Rate', 'Avg/Trade', 'Efficiency'].map(h => (
+                                    <th key={h} className="text-left px-4 py-3 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">{h}</th>
                                     ))}
                                 </tr>
                             </thead>
