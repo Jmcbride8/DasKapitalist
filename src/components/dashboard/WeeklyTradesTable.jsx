@@ -19,29 +19,16 @@ export default function WeeklyTradesTable({ trades, selectedWeek }) {
     const weekTrades = useMemo(() => {
         if (!selectedWeek) return [];
         
-        try {
-            const weekStart = startOfWeek(parseISO(selectedWeek), { weekStartsOn: 1 });
-            const weekEnd = endOfWeek(weekStart, { weekStartsOn: 1 });
-            
-            return trades
-                .filter(t => {
-                    const dateStr = t.income_week || t.close_date || t.open_date;
-                    if (!dateStr) return false;
-                    try {
-                        const d = parseISO(dateStr);
-                        return isWithinInterval(d, { start: weekStart, end: weekEnd });
-                    } catch {
-                        return false;
-                    }
-                })
-                .sort((a, b) => {
-                    const dateA = a.income_week || a.close_date || a.open_date;
-                    const dateB = b.income_week || b.close_date || b.open_date;
-                    return dateA.localeCompare(dateB);
-                });
-        } catch {
-            return [];
-        }
+        return trades
+            .filter(t => {
+                const tradeWeek = t.income_week || t.open_date;
+                return tradeWeek === selectedWeek;
+            })
+            .sort((a, b) => {
+                const dateA = a.income_week || a.close_date || a.open_date;
+                const dateB = b.income_week || b.close_date || b.open_date;
+                return dateA.localeCompare(dateB);
+            });
     }, [trades, selectedWeek]);
 
     const stats = useMemo(() => {
