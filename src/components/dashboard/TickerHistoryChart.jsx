@@ -63,8 +63,10 @@ export default function TickerHistoryChart({ trades }) {
                         </div>
                     </div>
 
-                    {/* Donut chart overlay - top right */}
-                    <div className="absolute top-0 right-0 flex flex-col items-center" style={{ width: 110 }}>
+                    <ProfitChart trades={filteredTrades} />
+
+                    {/* Donut chart overlay - rendered after chart so it sits on top */}
+                    <div className="absolute top-0 right-0 flex flex-col items-center bg-white rounded-lg p-1" style={{ width: 120, zIndex: 20 }}>
                         <div className="relative" style={{ width: 100, height: 100 }}>
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
@@ -87,7 +89,7 @@ export default function TickerHistoryChart({ trades }) {
                             </ResponsiveContainer>
                             {/* Center label */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <span className={`text-sm font-bold ${pctColor}`} style={{ fontSize: 18 }}>
+                                <span className={`font-bold ${pctColor}`} style={{ fontSize: 18 }}>
                                     {pct >= 0 ? '+' : ''}{pct}%
                                 </span>
                             </div>
@@ -96,8 +98,6 @@ export default function TickerHistoryChart({ trades }) {
                             Unrealized<br />vs Realized
                         </p>
                     </div>
-
-                    <ProfitChart trades={filteredTrades} />
                 </div>
             </CardContent>
         </Card>
