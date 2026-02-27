@@ -58,7 +58,7 @@ export default function TickerHistoryChart({ trades }) {
                                 value={inputDisplay}
                                 onChange={handleInputChange}
                                 onBlur={handleBlur}
-                                className="w-24 text-sm bg-transparent outline-none py-0.5 text-slate-700"
+                                className="w-24 text-sm bg-transparent outline-none py-0.5 text-slate-700 text-center"
                             />
                         </div>
                     </div>
