@@ -7,7 +7,7 @@ export default function WeeklyTotalsChart({ trades }) {
     const [selectedWeek, setSelectedWeek] = useState(null);
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-2">
             <Card className="border-0 shadow-none bg-white">
                 <CardContent className="pt-6">
                     <WeeklyProfitChart trades={trades} onWeekSelect={setSelectedWeek} />
