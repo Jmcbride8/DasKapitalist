@@ -74,7 +74,7 @@ export default function DashboardKPIs({ trades, view }) {
         { label: 'Avg Weekly Profit', value: kpis.avgWeeklyProfit, color: kpis.avgWeeklyProfit >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'currency' },
         isOpenView
             ? { label: 'Unrealized % of Realized', value: kpis.unrealizedVsRealized, color: kpis.unrealizedVsRealized >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'percent' }
-            : { label: 'Avg Annualized Profit', value: kpis.avgAnnualizedProfit, color: kpis.avgAnnualizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'currency' }
+            : { label: 'Profit Annualized', value: kpis.avgAnnualizedProfit, color: kpis.avgAnnualizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'currency' }
     ];
 
     return (
