@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3, X, Upload } from 'lucide-react';
+import { Plus, TrendingUp, TrendingDown, DollarSign, BarChart3, X, Upload, Filter } from 'lucide-react';
 import TradesTable from '@/components/trades/TradesTable';
 import TradeForm from '@/components/trades/TradeForm';
 import CloseTradeModal from '@/components/trades/CloseTradeModal';
