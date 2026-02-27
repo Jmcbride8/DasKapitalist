@@ -87,7 +87,7 @@ export default function TickerHistoryChart({ trades }) {
                             </ResponsiveContainer>
                             {/* Center label */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <span className={`text-xs font-bold ${pctColor}`}>
+                                <span className={`text-sm font-bold ${pctColor}`} style={{ fontSize: 18 }}>
                                     {pct >= 0 ? '+' : ''}{pct}%
                                 </span>
                             </div>
