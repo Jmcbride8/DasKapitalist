@@ -3,9 +3,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import ProfitChart from '@/components/trades/ProfitChart';
 
-export default function TickerHistoryChart({ trades }) {
+export default function TickerHistoryChart({ trades, onTickerSelect }) {
     const [minImpact, setMinImpact] = useState(1000);
     const [inputDisplay, setInputDisplay] = useState('1,000');
+    const [selectedTicker, setSelectedTicker] = useState(null);
 
     const filteredTrades = trades.filter(trade => {
         const profit = trade.profit || 0;
@@ -21,6 +22,16 @@ export default function TickerHistoryChart({ trades }) {
 
     const handleBlur = () => {
         setInputDisplay(minImpact > 0 ? minImpact.toLocaleString('en-US') : '0');
+    };
+
+    const handleTickerClick = (ticker) => {
+        if (selectedTicker === ticker) {
+            setSelectedTicker(null);
+            if (onTickerSelect) onTickerSelect(null);
+        } else {
+            setSelectedTicker(ticker);
+            if (onTickerSelect) onTickerSelect(ticker);
+        }
     };
 
     // Calculate total unrealized vs realized for donut
@@ -63,7 +74,7 @@ export default function TickerHistoryChart({ trades }) {
                         </div>
                     </div>
 
-                    <ProfitChart trades={filteredTrades} />
+                    <ProfitChart trades={filteredTrades} selectedTicker={selectedTicker} onTickerSelect={handleTickerClick} />
 
                     {/* Donut chart overlay - rendered after chart so it sits on top */}
                     <div className="absolute top-0 right-0 flex flex-col items-center bg-white rounded-lg p-1" style={{ width: 120, zIndex: 20 }}>
