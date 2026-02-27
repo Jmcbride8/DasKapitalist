@@ -56,6 +56,21 @@ export default function OpenPositionsChart({ trades }) {
         return null;
     };
 
+    const renderUnrealizedLabel = (props) => {
+        const { x, y, width, height, value, index } = props;
+        if (!value || value === 0) return null;
+        const entry = chartData[index];
+        if (!entry || !entry.open || entry.open === 0) return null;
+        const pct = ((entry.unrealized / entry.open) * 100).toFixed(1);
+        const color = value >= 0 ? '#10b981' : '#ef4444';
+        const labelY = value >= 0 ? y - 5 : y + height + 13;
+        return (
+            <text key={index} x={x + width / 2} y={labelY} textAnchor="middle" fontSize={10} fill={color} fontWeight="600">
+                {value >= 0 ? '+' : ''}{pct}%
+            </text>
+        );
+    };
+
     if (chartData.length === 0) {
         return (
             <Card className="border-0 shadow-none bg-white">
