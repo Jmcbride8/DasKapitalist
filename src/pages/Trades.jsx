@@ -88,9 +88,16 @@ export default function Trades() {
 
 
     const filteredTrades = useMemo(() => {
-        if (selectedTypes.length === 0) return trades;
-        return trades.filter(t => selectedTypes.includes(t.type));
-    }, [trades, selectedTypes]);
+        return trades.filter(t => {
+            const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(t.type);
+            const accountMatch = !filterAccount || t.account === filterAccount;
+            const tickerMatch = !filterTicker || t.ticker === filterTicker;
+            return typeMatch && accountMatch && tickerMatch;
+        });
+    }, [trades, selectedTypes, filterAccount, filterTicker]);
+
+    const uniqueAccounts = [...new Set(trades.map(t => t.account).filter(Boolean))].sort();
+    const uniqueTickers = [...new Set(trades.map(t => t.ticker).filter(Boolean))].sort();
 
     const stats = {
         totalProfit: filteredTrades.reduce((sum, t) => sum + (t.profit || 0), 0),
