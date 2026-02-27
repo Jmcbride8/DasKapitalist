@@ -1,15 +1,6 @@
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ReferenceLine, LabelList } from 'recharts';
 
-const DiagonalStripePattern = ({ id, color }) => (
-    <defs>
-        <pattern id={id} patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
-            <rect width="6" height="6" fill={color} fillOpacity={0.15} />
-            <line x1="0" y1="0" x2="0" y2="6" stroke={color} strokeWidth="3" strokeOpacity={0.6} />
-        </pattern>
-    </defs>
-);
-
 export default function ProfitChart({ trades }) {
     const chartData = useMemo(() => {
         const tickerMap = {};
@@ -127,8 +118,6 @@ export default function ProfitChart({ trades }) {
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 50, right: 30, left: 20, bottom: 60 }}>
-                    <DiagonalStripePattern id="stripe-green" color="#10b981" />
-                    <DiagonalStripePattern id="stripe-red" color="#ef4444" />
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis 
                         dataKey="ticker" 
@@ -153,7 +142,7 @@ export default function ProfitChart({ trades }) {
                         {chartData.map((entry, index) => (
                             <Cell 
                                 key={`cell-${index}`} 
-                                fill={entry.unrealized >= 0 ? 'url(#stripe-green)' : 'url(#stripe-red)'} 
+                                fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'} 
                             />
                         ))}
                     </Bar>
