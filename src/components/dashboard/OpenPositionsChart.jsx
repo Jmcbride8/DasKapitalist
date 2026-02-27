@@ -110,7 +110,7 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
                         />
                         <Tooltip content={<CustomTooltip />} />
                         <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" />
-                        <Bar dataKey="open" stackId="a" fill="#9ca3af" name="Open" onClick={(e) => handleBarClick(e)} />
+                        <Bar dataKey="open" stackId="a" fill="#d1d5db" name="Open" onClick={(e) => handleBarClick(e)} />
                         <Bar dataKey="unrealized" stackId="a" name="Unrealized" label={renderUnrealizedLabel} onClick={(e) => handleBarClick(e)}>
                             {chartData.map((entry, index) => {
                                 const isSelected = selectedTicker === entry.ticker;

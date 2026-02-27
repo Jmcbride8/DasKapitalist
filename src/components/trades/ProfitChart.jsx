@@ -119,7 +119,7 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <ReferenceLine y={0} stroke="#94a3b8" strokeWidth={1} />
-                    <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} opacity={selectedTicker ? (selectedTicker === chartData[0]?.ticker ? 1 : 0.3) : 1} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)} />
+                    <Bar dataKey="realized" stackId="a" fill="#d1d5db" radius={[0, 0, 0, 0]} opacity={selectedTicker ? (selectedTicker === chartData[0]?.ticker ? 1 : 0.3) : 1} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)} />
                     <Bar dataKey="unrealized" stackId="a" radius={[0, 0, 0, 0]} label={<CustomLabel />} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)}>
                         {chartData.map((entry, index) => {
                             const isSelected = selectedTicker === entry.ticker;
