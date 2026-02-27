@@ -326,6 +326,7 @@ export default function QuickUpdate() {
                         <TableHeader>
                             <TableRow className="bg-slate-50 border-b border-slate-200">
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3 text-center border-r border-slate-300">#</TableHead>
+                                <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 text-center">DTE<SortIcon field="expiration" /></TableHead>
                                 <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Account<SortIcon field="account" /></TableHead>
                                 <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Ticker<SortIcon field="ticker" /></TableHead>
                                 <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Type<SortIcon field="type" /></TableHead>
