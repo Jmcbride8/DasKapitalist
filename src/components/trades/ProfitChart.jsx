@@ -70,7 +70,7 @@ export default function ProfitChart({ trades }) {
         if (!entry || !entry.realized || entry.unrealized === 0) return null;
 
         const pct = (entry.unrealized / Math.abs(entry.realized)) * 100;
-        const formattedPct = `${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%`;
+        const formattedPct = `${pct >= 0 ? '+' : ''}${Math.round(pct)}%`;
         const color = pct >= 0 ? '#10b981' : '#ef4444';
 
         // Place label strictly outside the full stacked bar
