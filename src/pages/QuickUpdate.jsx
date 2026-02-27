@@ -325,12 +325,15 @@ export default function QuickUpdate() {
                     <Table>
                         <TableHeader>
                             <TableRow className="bg-slate-50 border-b border-slate-200">
+                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3 text-center border-r border-slate-300">#</TableHead>
                                 <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Account<SortIcon field="account" /></TableHead>
                                 <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Ticker<SortIcon field="ticker" /></TableHead>
                                 <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Type<SortIcon field="type" /></TableHead>
                                 <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Status<SortIcon field="status" /></TableHead>
                                 <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Current Value<SortIcon field="close_premium" /></TableHead>
                                 <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Close Date<SortIcon field="close_date" /></TableHead>
+                                <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Expiry Date<SortIcon field="expiration" /></TableHead>
+                                <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 text-center">DTE<SortIcon field="expiration" /></TableHead>
                                 <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Income Week<SortIcon field="income_week" /></TableHead>
                                 <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Close Type<SortIcon field="close_type" /></TableHead>
                                 <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3 text-center">Actions</TableHead>
