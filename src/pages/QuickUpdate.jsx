@@ -127,7 +127,7 @@ export default function QuickUpdate() {
         setFormData({});
     };
 
-    const EditableCell = ({ trade, field, type = 'text' }) => {
+    const renderCell = (trade, field, type = 'text') => {
         const isEditing = editingId === trade.id;
         const data = formData[trade.id] || {};
         const value = isEditing ? data[field] : trade[field];
@@ -197,7 +197,6 @@ export default function QuickUpdate() {
                     onChange={(e) => handleChange(trade.id, field, e.target.value)}
                     className="h-8 text-xs"
                     placeholder={type === 'number' ? '0.00' : ''}
-                    autoFocus
                 />
             </TableCell>
         );
