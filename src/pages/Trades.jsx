@@ -117,25 +117,6 @@ export default function Trades() {
                         <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
                     </div>
                     <div className="flex gap-2 items-center">
-                        <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
-                            if (value === '') {
-                                setSelectedTypes([]);
-                            } else {
-                                setSelectedTypes(prev => 
-                                    prev.includes(value) ? prev.filter(t => t !== value) : [...prev, value]
-                                );
-                            }
-                        }}>
-                            <SelectTrigger className="w-40">
-                                <SelectValue placeholder="Filter by Trade Type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value={null}>All Types</SelectItem>
-                                {tradeTypes.map(type => (
-                                    <SelectItem key={type} value={type}>{type}</SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
                         <TradeLegendModal />
                         <Button 
                             onClick={() => setShowBulkUpload(true)}
