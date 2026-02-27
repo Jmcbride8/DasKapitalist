@@ -249,10 +249,18 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                     </TableCell>
                                     <TableCell className="text-slate-500 text-xs py-1 px-1 text-center border-l border-r border-slate-300">{index + 1}</TableCell>
                                     <TableCell className="py-1 px-1 text-center w-16">
-                                        <Badge variant={trade.status === 'Closed' ? 'secondary' : 'default'} 
-                                               className={`text-xs ${trade.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
-                                            {trade.status}
-                                        </Badge>
+                                        {trade.status === 'Open' ? (
+                                            <Badge 
+                                                className="text-xs bg-emerald-100 text-emerald-700 hover:bg-emerald-700 hover:text-white cursor-pointer transition-colors"
+                                                onClick={() => onClose(trade)}
+                                            >
+                                                {trade.status}
+                                            </Badge>
+                                        ) : (
+                                            <Badge variant="secondary" className="text-xs bg-slate-100 text-slate-600">
+                                                {trade.status}
+                                            </Badge>
+                                        )}
                                     </TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-left">{trade.account || '-'}</TableCell>
                                     <TableCell className="text-slate-700 font-medium text-xs py-1 px-1 text-right">{trade.type}</TableCell>
