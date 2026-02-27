@@ -183,7 +183,7 @@ export default function QuickUpdate() {
         const currentValue = parseFloat(data.close_premium) || 0;
         const openValue = trade?.open_premium || 0;
         const collateral = trade?.collateral_gain || 0;
-        const profit = currentValue - openValue + collateral;
+        const profit = currentValue + openValue + collateral;
         updateMutation.mutate({ id: tradeId, data: { ...data, profit } });
     };
 
