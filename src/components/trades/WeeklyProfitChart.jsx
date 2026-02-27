@@ -109,7 +109,7 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
                             <Cell 
                                 key={`cell-${index}`} 
                                 fill={entry.net >= 0 ? '#10b981' : '#ef4444'}
-                                opacity={selectedWeek === entry.week ? 1 : 0.7}
+                                opacity={selectedWeek ? (selectedWeek === entry.week ? 1 : 0.3) : 1}
                             />
                         ))}
                     </Bar>
