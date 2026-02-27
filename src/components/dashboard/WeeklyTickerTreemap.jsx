@@ -25,7 +25,7 @@ export default function WeeklyTickerTreemap({ trades, selectedWeek }) {
             name: ticker,
             value: Math.abs(profit),
             profit,
-            isPositive: profit >= 0
+            fill: profit >= 0 ? '#10b981' : '#ef4444'
         }));
     }, [trades, selectedWeek]);
 
