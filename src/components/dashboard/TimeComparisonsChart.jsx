@@ -79,6 +79,7 @@ export default function TimeComparisonsChart({ trades }) {
             const dateStr = t.income_week || t.close_date || t.open_date;
             if (!dateStr) return;
             const d = parseISO(dateStr);
+            if (isNaN(d.getTime())) return;
             const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
             byWeek[key] = (byWeek[key] || 0) + (t.profit || 0);
         });
