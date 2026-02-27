@@ -52,7 +52,9 @@ export default function ProfitChart({ trades }) {
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             const realized = payload.find(p => p.dataKey === 'realized')?.value || 0;
-            const unrealized = payload.find(p => p.dataKey === 'unrealized')?.value || 0;
+            const unrealizedPositive = payload.find(p => p.dataKey === 'unrealizedPositive')?.value || 0;
+            const unrealizedNegative = payload.find(p => p.dataKey === 'unrealizedNegative')?.value || 0;
+            const unrealized = unrealizedPositive + unrealizedNegative;
             const total = realized + unrealized;
             
             return (
