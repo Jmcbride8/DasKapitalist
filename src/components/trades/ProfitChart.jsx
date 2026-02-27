@@ -135,7 +135,7 @@ export default function ProfitChart({ trades }) {
                     <ReferenceLine y={0} stroke="#94a3b8" strokeWidth={1} />
                     <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} />
                     <Bar dataKey="unrealizedPositive" stackId="a" fill="#10b981" radius={[0, 0, 0, 0]} label={<CustomLabelPositive />} />
-                    <Bar dataKey="unrealizedNegative" shape={<NegativeUnrealizedShape />} label={<NegativeUnrealizedLabel />} />
+                    <Bar dataKey="unrealizedNegative" fill="#ef4444" radius={[0, 0, 0, 0]} label={<CustomLabelNegative />} />
                 </BarChart>
             </ResponsiveContainer>
         </div>
