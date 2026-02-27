@@ -270,14 +270,11 @@ export default function TimeComparisonsChart({ trades }) {
 
     return (
         <div className="space-y-6">
-            {/* KPI Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                <Pill label="Total P&L" value={fmtFull(kpis.totalProfit)} sub={`${kpis.totalTrades} closed trades`} color={kpis.totalProfit >= 0 ? 'emerald' : 'rose'} icon={TrendingUp} />
-                <Pill label="Win Rate" value={`${kpis.winRate.toFixed(0)}%`} sub="of closed trades profitable" color="blue" icon={Target} />
-                <Pill label="Avg Win" value={fmtFull(kpis.avgWin)} sub="per winning trade" color="emerald" icon={Zap} />
-                <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="win/loss ratio" color="violet" icon={Activity} />
-                <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
-            </div>
+             {/* KPI Strip */}
+             <div className="grid grid-cols-2 md:grid-cols-2 gap-3">
+                 <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="win/loss ratio" color="violet" icon={Activity} />
+                 <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
+             </div>
 
             {/* Live Market Panel */}
             {topTickers.length > 0 && (
