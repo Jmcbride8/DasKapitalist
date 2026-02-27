@@ -101,6 +101,38 @@ export default function ProfitChart({ trades }) {
         );
     };
 
+    // Custom shape for negative unrealized: renders overlapping the realized bar column, starting from zero going down
+    const NegativeUnrealizedShape = (props) => {
+        const { x, width, index, yAxis } = props;
+        const entry = chartData[index];
+        if (!entry || entry.unrealizedNegative === 0) return null;
+
+        const zeroY = yAxis?.scale ? yAxis.scale(0) : props.background?.y + props.background?.height;
+        const bottomY = yAxis?.scale ? yAxis.scale(entry.unrealizedNegative) : zeroY;
+        const barHeight = Math.abs(bottomY - zeroY);
+
+        return <rect x={x} y={zeroY} width={width} height={barHeight} fill="#ef4444" />;
+    };
+
+    const NegativeUnrealizedLabel = (props) => {
+        const { x, width, index, yAxis } = props;
+        const entry = chartData[index];
+        if (!entry || entry.unrealizedNegative === 0) return null;
+
+        const zeroY = yAxis?.scale ? yAxis.scale(0) : 0;
+        const bottomY = yAxis?.scale ? yAxis.scale(entry.unrealizedNegative) : zeroY;
+        const barHeight = Math.abs(bottomY - zeroY);
+
+        const pct = (entry.unrealizedNegative / Math.abs(entry.realized || entry.unrealizedNegative)) * 100;
+        const formattedPct = `${Math.round(pct)}%`;
+
+        return (
+            <text x={x + width / 2} y={zeroY + barHeight + 12} textAnchor="middle" fontSize={9} fill="#ef4444" fontWeight="700">
+                {formattedPct}
+            </text>
+        );
+    };
+
     if (chartData.length === 0) {
         return (
             <div className="h-96 flex items-center justify-center text-slate-400">
