@@ -92,7 +92,7 @@ export default function WeeklyProfitChart({ trades }) {
                         axisLine={false}
                     />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="net" radius={[4, 4, 0, 0]} label={<WeeklyLabel data={chartData} formatter={formatCurrency} />}>
+                    <Bar dataKey="net" radius={[4, 4, 0, 0]} label={renderWeeklyLabel}>
                         {chartData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.net >= 0 ? '#10b981' : '#ef4444'} />
                         ))}
