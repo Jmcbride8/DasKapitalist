@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { format } from 'date-fns';
-import { Check, X, ArrowUp, ArrowDown } from 'lucide-react';
+import { Check, X, ArrowUp, ArrowDown, DollarSign, TrendingUp, TrendingDown, BarChart3 } from 'lucide-react';
 
 const formatDate = (dateStr) => {
     if (!dateStr) return '';
