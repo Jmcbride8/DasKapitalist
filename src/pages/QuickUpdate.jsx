@@ -405,7 +405,7 @@ export default function QuickUpdate() {
                                             const currentValue = isEditing ? parseFloat(formData[trade.id]?.close_premium) || 0 : (trade.close_premium || 0);
                                             const openValue = trade.open_premium || 0;
                                             const collateral = trade.collateral_gain || 0;
-                                            const profit = currentValue - openValue + collateral;
+                                            const profit = currentValue + openValue + collateral;
                                             const hasData = trade.open_premium !== null && trade.open_premium !== undefined;
                                             return (
                                                 <TableCell className={`text-xs py-3 px-3 font-semibold ${!hasData ? 'text-slate-400' : profit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
