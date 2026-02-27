@@ -1,6 +1,15 @@
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ReferenceLine, LabelList } from 'recharts';
 
+const DiagonalStripePattern = ({ id, color }) => (
+    <defs>
+        <pattern id={id} patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+            <rect width="6" height="6" fill={color} fillOpacity={0.15} />
+            <line x1="0" y1="0" x2="0" y2="6" stroke={color} strokeWidth="3" strokeOpacity={0.6} />
+        </pattern>
+    </defs>
+);
+
 export default function ProfitChart({ trades }) {
     const chartData = useMemo(() => {
         const tickerMap = {};
