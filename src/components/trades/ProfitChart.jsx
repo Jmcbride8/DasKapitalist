@@ -69,23 +69,31 @@ export default function ProfitChart({ trades }) {
         return null;
     };
 
-    const CustomLabel = (props) => {
-        const { x, y, width, height, index } = props;
+    const CustomLabelPositive = (props) => {
+        const { x, y, width, index } = props;
         const entry = chartData[index];
-        if (!entry || !entry.realized || entry.unrealized === 0) return null;
+        if (!entry || entry.unrealizedPositive === 0) return null;
 
-        const pct = (entry.unrealized / Math.abs(entry.realized)) * 100;
-        const formattedPct = `${pct >= 0 ? '+' : ''}${Math.round(pct)}%`;
-        const color = pct >= 0 ? '#10b981' : '#ef4444';
-
-        // Place label strictly outside the full stacked bar
-        // y is the top of the unrealized segment; y + height is its bottom
-        // For positive total: label above the top of the bar (min y of unrealized segment)
-        // For negative total: label below the bottom of the bar
-        const labelY = entry.total >= 0 ? y - 6 : y + height + 12;
+        const pct = (entry.unrealizedPositive / Math.abs(entry.realized || entry.unrealizedPositive)) * 100;
+        const formattedPct = `+${Math.round(pct)}%`;
 
         return (
-            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
+            <text x={x + width / 2} y={y - 6} textAnchor="middle" fontSize={9} fill="#10b981" fontWeight="700">
+                {formattedPct}
+            </text>
+        );
+    };
+
+    const CustomLabelNegative = (props) => {
+        const { x, y, width, height, index } = props;
+        const entry = chartData[index];
+        if (!entry || entry.unrealizedNegative === 0) return null;
+
+        const pct = (entry.unrealizedNegative / Math.abs(entry.realized || entry.unrealizedNegative)) * 100;
+        const formattedPct = `${Math.round(pct)}%`;
+
+        return (
+            <text x={x + width / 2} y={y + height + 12} textAnchor="middle" fontSize={9} fill="#ef4444" fontWeight="700">
                 {formattedPct}
             </text>
         );
