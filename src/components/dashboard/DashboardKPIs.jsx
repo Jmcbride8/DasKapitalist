@@ -44,8 +44,8 @@ export default function DashboardKPIs({ trades, view }) {
         // Avg Annualized Profit (assuming 52 weeks per year)
         const avgAnnualizedProfit = avgWeeklyProfit * 52;
 
-        // Total Invested - sum of collateral_start for open trades
-        const totalInvested = openTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
+        // Invested At Risk - sum of -open_premium for open trades
+        const investedAtRisk = openTrades.reduce((sum, t) => sum + (-(t.open_premium || 0)), 0);
 
         // Unrealized % of Realized Profits
         const realizedProfit = closedTrades.reduce((sum, t) => sum + (t.profit || 0), 0);
@@ -56,7 +56,7 @@ export default function DashboardKPIs({ trades, view }) {
             unrealizedGainLoss,
             avgWeeklyProfit,
             avgAnnualizedProfit,
-            totalInvested,
+            investedAtRisk,
             unrealizedVsRealized
         };
     }, [trades]);
@@ -65,8 +65,8 @@ export default function DashboardKPIs({ trades, view }) {
 
     const kpiData = [
         {
-            label: isOpenView ? 'Total Invested' : 'Total Profit',
-            value: isOpenView ? kpis.totalInvested : kpis.totalProfit,
+            label: isOpenView ? 'Invested At Risk' : 'Total Profit',
+            value: isOpenView ? kpis.investedAtRisk : kpis.totalProfit,
             color: isOpenView ? 'text-slate-700' : (kpis.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'),
             format: 'currency'
         },
