@@ -79,6 +79,7 @@ export default function OpenPositionsTable({ trades, selectedTicker }) {
                             const returnPct = openCap > 0 ? (unrealized / openCap) * 100 : 0;
                             return (
                                 <TableRow key={trade.id} className="border-b border-slate-100 hover:bg-slate-50">
+                                    <TableCell className="text-sm font-medium text-slate-900">{trade.account || '-'}</TableCell>
                                     <TableCell className="text-sm font-medium text-slate-900">{trade.type}</TableCell>
                                     <TableCell className="text-sm text-slate-600">{fmtDate(trade.open_date)}</TableCell>
                                     <TableCell className="text-sm text-slate-600">{fmtDate(trade.expiration)}</TableCell>
