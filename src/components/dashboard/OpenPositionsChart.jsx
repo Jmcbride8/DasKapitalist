@@ -32,10 +32,10 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
                 };
             }
             
-            const collateralStart = trade.collateral_start || 0;
+            const openPremium = trade.open_premium || 0;
             const profit = trade.profit || 0;
             
-            dataByTicker[trade.ticker].open += collateralStart;
+            dataByTicker[trade.ticker].open += openPremium;
             dataByTicker[trade.ticker].unrealized += profit;
         });
 
