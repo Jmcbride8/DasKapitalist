@@ -296,11 +296,11 @@ export default function QuickUpdate() {
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.account || '-'}</TableCell>
                                         <TableCell className="text-slate-900 font-semibold text-sm py-3 px-3">{trade.ticker}</TableCell>
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.type}</TableCell>
-                                        <EditableCell trade={trade} field="status" type="select" />
-                                        <EditableCell trade={trade} field="close_premium" type="number" />
-                                        <EditableCell trade={trade} field="close_date" type="date" />
-                                        <EditableCell trade={trade} field="income_week" type="date" />
-                                        <EditableCell trade={trade} field="close_type" type="select" />
+                                        {renderCell(trade, "status", "select")}
+                                        {renderCell(trade, "close_premium", "number")}
+                                        {renderCell(trade, "close_date", "date")}
+                                        {renderCell(trade, "income_week", "date")}
+                                        {renderCell(trade, "close_type", "select")}
                                         <TableCell className="py-3 px-3 text-center">
                                             {isEditing ? (
                                                 <div className="flex gap-2 justify-center">
