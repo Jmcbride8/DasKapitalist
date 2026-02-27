@@ -78,17 +78,25 @@ export default function TimeComparisonsChart({ trades }) {
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
             if (!dateStr) return;
-            const d = parseISO(dateStr);
-            if (isNaN(d.getTime())) return;
-            const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
-            byWeek[key] = (byWeek[key] || 0) + (t.profit || 0);
+            try {
+                const d = parseISO(dateStr);
+                if (isNaN(d.getTime())) return;
+                const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
+                byWeek[key] = (byWeek[key] || 0) + (t.profit || 0);
+            } catch {
+                return;
+            }
         });
         const sorted = Object.entries(byWeek).sort(([a], [b]) => a.localeCompare(b));
         let cumulative = 0;
         return sorted.map(([week, profit]) => {
-            cumulative += profit;
-            return { week: format(parseISO(week), 'MMM dd'), profit, cumulative, date: week };
-        });
+            try {
+                cumulative += profit;
+                return { week: format(parseISO(week), 'MMM dd'), profit, cumulative, date: week };
+            } catch {
+                return null;
+            }
+        }).filter(Boolean);
     }, [closedTrades]);
 
     // ── Monthly breakdown ────────────────────────────────────────────────────
