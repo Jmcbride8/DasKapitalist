@@ -93,16 +93,22 @@ export default function TradeLegendModal() {
                     <div className="space-y-3">
                         <div className="flex items-start gap-3 p-4 rounded-lg bg-emerald-50/50 border border-emerald-100">
                             <div className="flex-1">
-                                <p className="font-semibold text-emerald-900 text-sm mb-2">Buying Options</p>
+                                <p className="font-semibold text-emerald-900 text-sm mb-3">Buying Options</p>
                                 <p className="text-xs text-emerald-700 mb-3 italic">Pay Premium = Rights</p>
-                                <div className="space-y-2 text-xs text-slate-700">
-                                    <div className="flex items-start gap-2">
-                                        <span className="text-emerald-600">•</span>
-                                        <span><strong className="text-slate-900">Long Call</strong> — Right to buy at strike</span>
+                                <div className="space-y-4">
+                                    <div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <span className="text-emerald-600">•</span>
+                                            <span><strong className="text-slate-900">Long Call</strong> — Right to buy at strike</span>
+                                        </div>
+                                        <TradeTypeVisualization direction="bull" />
                                     </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="text-emerald-600">•</span>
-                                        <span><strong className="text-slate-900">Long Put</strong> — Right to sell at strike</span>
+                                    <div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <span className="text-emerald-600">•</span>
+                                            <span><strong className="text-slate-900">Long Put</strong> — Right to sell at strike</span>
+                                        </div>
+                                        <TradeTypeVisualization direction="bear" />
                                     </div>
                                 </div>
                             </div>
