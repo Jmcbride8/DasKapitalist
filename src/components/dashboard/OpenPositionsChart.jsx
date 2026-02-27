@@ -101,12 +101,13 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 0 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                        <XAxis dataKey="ticker" stroke="#64748b" />
+                        <XAxis dataKey="ticker" stroke="#64748b" className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block" />
                         <YAxis 
                             tickFormatter={formatCurrency}
                             tick={{ fontSize: 11, fill: '#64748b' }}
                             tickLine={false}
                             axisLine={false}
+                            className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
                         />
                         <Tooltip content={<CustomTooltip />} />
                         <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" />
