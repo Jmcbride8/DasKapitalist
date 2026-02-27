@@ -84,12 +84,14 @@ export default function QuickUpdate() {
 
     const openTrades = sortedTrades.filter(t => t.status === 'Open');
 
+    const openPremiumTotal = openTrades.reduce((sum, t) => sum + (t.open_premium || 0), 0);
+    const closePremiumTotal = openTrades.reduce((sum, t) => sum + (t.close_premium || 0), 0);
+    const collateralGainTotal = openTrades.reduce((sum, t) => sum + (t.collateral_gain || 0), 0);
     const stats = {
-        totalProfit: trades.reduce((sum, t) => sum + (t.profit || 0), 0),
-        realizedProfit: trades.filter(t => t.status === 'Closed').reduce((sum, t) => sum + (t.profit || 0), 0),
-        unrealizedProfit: openTrades.reduce((sum, t) => sum + (t.profit || 0), 0),
+        totalProfit: openTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0),
+        openPremium: openPremiumTotal,
+        closePremium: closePremiumTotal,
         openTrades: openTrades.length,
-        closedTrades: trades.filter(t => t.status === 'Closed').length
     };
 
     const startEdit = (trade) => {
