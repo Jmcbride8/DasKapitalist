@@ -26,12 +26,17 @@ export default function ProfitChart({ trades }) {
         });
         
         return Object.entries(tickerMap)
-            .map(([ticker, data]) => ({
-                ticker,
-                realized: data.realized,
-                unrealized: data.unrealizedGains + data.unrealizedLosses,
-                total: data.realized + data.unrealizedGains + data.unrealizedLosses
-            }))
+            .map(([ticker, data]) => {
+                const unrealized = data.unrealizedGains + data.unrealizedLosses;
+                return {
+                    ticker,
+                    realized: data.realized,
+                    unrealizedPositive: unrealized >= 0 ? unrealized : 0,
+                    unrealizedNegative: unrealized < 0 ? unrealized : 0,
+                    unrealized,
+                    total: data.realized + unrealized
+                };
+            })
             .sort((a, b) => b.total - a.total);
     }, [trades]);
 
