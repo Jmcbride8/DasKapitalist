@@ -89,7 +89,7 @@ export default function WeeklyTradesTable({ trades, selectedWeek }) {
                             <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600">Type</th>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600">Date</th>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600">Status</th>
-                            <th className="px-4 py-3 text-right text-xs font-semibold text-slate-600">Premium</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-slate-600">Gain (%)</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-slate-600">P&L</th>
                         </tr>
                     </thead>
