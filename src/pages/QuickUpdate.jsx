@@ -179,7 +179,12 @@ export default function QuickUpdate() {
 
     const handleSave = (tradeId) => {
         const data = formData[tradeId];
-        updateMutation.mutate({ id: tradeId, data });
+        const trade = trades.find(t => t.id === tradeId);
+        const currentValue = parseFloat(data.close_premium) || 0;
+        const openValue = trade?.open_premium || 0;
+        const collateral = trade?.collateral_gain || 0;
+        const profit = currentValue - openValue + collateral;
+        updateMutation.mutate({ id: tradeId, data: { ...data, profit } });
     };
 
     const handleCancel = () => {
