@@ -105,13 +105,20 @@ export default function TimeComparisonsChart({ trades }) {
         });
         return Object.entries(byMonth)
             .sort(([a], [b]) => a.localeCompare(b))
-            .map(([month, d]) => ({
-                month: format(parseISO(month + '-01'), 'MMM yy'),
-                profit: d.profit,
-                winRate: d.trades > 0 ? (d.wins / d.trades) * 100 : 0,
-                trades: d.trades,
-                rawMonth: month,
-            }));
+            .map(([month, d]) => {
+                try {
+                    return {
+                        month: format(parseISO(month + '-01'), 'MMM yy'),
+                        profit: d.profit,
+                        winRate: d.trades > 0 ? (d.wins / d.trades) * 100 : 0,
+                        trades: d.trades,
+                        rawMonth: month,
+                    };
+                } catch {
+                    return null;
+                }
+            })
+            .filter(Boolean);
     }, [closedTrades]);
 
     // ── Year-over-year comparison ────────────────────────────────────────────
