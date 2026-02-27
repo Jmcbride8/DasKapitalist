@@ -104,7 +104,7 @@ export default function Trades() {
                 {/* Header with Actions */}
                 <div className="flex justify-between items-start mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Positions Tracker</h1>
+                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">All Trades</h1>
                         <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
                     </div>
                     <div className="flex gap-2 items-center">
