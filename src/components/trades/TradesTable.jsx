@@ -153,7 +153,7 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                 Position Open
                             </TableHead>
                             {/* Position Close group */}
-                            <TableHead colSpan={7} className="text-xs py-0.5 px-1 text-center font-bold text-slate-600 bg-emerald-50">
+                            <TableHead colSpan={7} className="text-xs py-0.5 px-1 text-center font-bold text-slate-600 bg-slate-100">
                                 Position Close
                             </TableHead>
                         </TableRow>
