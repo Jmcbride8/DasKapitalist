@@ -143,7 +143,9 @@ export default function TimeComparisonsChart({ trades }) {
     const yoyYears = useMemo(() => {
         return [...new Set(closedTrades.map(t => {
             const ds = t.income_week || t.close_date || t.open_date;
-            return ds ? getYear(parseISO(ds)) : null;
+            if (!ds) return null;
+            const d = parseISO(ds);
+            return isNaN(d.getTime()) ? null : getYear(d);
         }).filter(Boolean))].sort();
     }, [closedTrades]);
 
