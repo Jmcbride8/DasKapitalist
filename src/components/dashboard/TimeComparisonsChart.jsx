@@ -379,7 +379,6 @@ export default function TimeComparisonsChart({ trades }) {
                         </tbody>
                     </table>
                 </div>
-                </div>
             )}
         </div>
     );
