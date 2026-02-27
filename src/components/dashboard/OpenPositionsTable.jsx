@@ -63,6 +63,7 @@ export default function OpenPositionsTable({ trades, selectedTicker }) {
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-slate-50 border-b border-slate-200">
+                            <TableHead className="text-xs text-slate-500 font-semibold">Account</TableHead>
                             <TableHead className="text-xs text-slate-500 font-semibold">Type</TableHead>
                             <TableHead className="text-xs text-slate-500 font-semibold">Open Date</TableHead>
                             <TableHead className="text-xs text-slate-500 font-semibold">Expiration</TableHead>
