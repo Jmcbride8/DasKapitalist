@@ -325,6 +325,28 @@ export default function QuickUpdate() {
                 </div>
             </div>
 
+            {/* Filters */}
+            <div className="flex gap-3 mb-3">
+                <Select value={filterAccount} onValueChange={setFilterAccount}>
+                    <SelectTrigger className="h-8 text-xs w-40">
+                        <SelectValue placeholder="All Accounts" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value={null}>All Accounts</SelectItem>
+                        {uniqueAccounts.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+                    </SelectContent>
+                </Select>
+                <Select value={filterTicker} onValueChange={setFilterTicker}>
+                    <SelectTrigger className="h-8 text-xs w-40">
+                        <SelectValue placeholder="All Tickers" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value={null}>All Tickers</SelectItem>
+                        {uniqueTickers.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+                    </SelectContent>
+                </Select>
+            </div>
+
             {openTrades.length === 0 ? (
                 <Card>
                     <CardContent className="py-12 text-center text-slate-400">
