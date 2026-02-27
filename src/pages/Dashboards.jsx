@@ -71,7 +71,7 @@ export default function Dashboards() {
     return (
         <div className="min-h-screen bg-white p-8">
             <div className="max-w-7xl mx-auto">
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
                     <h1 className="text-3xl font-bold text-slate-900">{dashboard.title}</h1>
                     <div className="flex gap-4 items-center">
                         <div className="w-40">
@@ -87,7 +87,7 @@ export default function Dashboards() {
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div className="w-40">
+                        <div className="hidden md:block w-40">
                             <Select value={selectedTicker} onValueChange={setSelectedTicker}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Ticker" />
@@ -103,7 +103,7 @@ export default function Dashboards() {
                     </div>
                 </div>
 
-                <div className="mb-6 flex flex-wrap gap-2">
+                <div className="hidden md:flex mb-6 flex-wrap gap-2">
                     {tradeTypes.map(type => (
                         <button
                             key={type}
