@@ -361,9 +361,6 @@ export default function QuickUpdate() {
                                         <TableCell className="text-slate-600 text-xs py-3 px-3">
                                             {trade.expiration ? formatDate(trade.expiration) : '-'}
                                         </TableCell>
-                                        <TableCell className="text-xs py-3 px-3 text-center rounded" style={dte !== null ? dteStyle : {}}>
-                                            {dte !== null ? dte : '-'}
-                                        </TableCell>
                                         {renderCell(trade, "income_week", "date")}
                                         {renderCell(trade, "close_type", "select")}
                                         <TableCell className="py-3 px-3 text-center">
