@@ -73,6 +73,8 @@ export default function QuickUpdate() {
     const [formData, setFormData] = useState({});
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
+    const [filterAccount, setFilterAccount] = useState('');
+    const [filterTicker, setFilterTicker] = useState('');
 
     const { data: trades = [] } = useQuery({
         queryKey: ['trades'],
