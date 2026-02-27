@@ -72,8 +72,13 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
     }
 
     const handleBarClick = (data) => {
-        setSelectedWeek(data.week);
-        if (onWeekSelect) onWeekSelect(data.week);
+        if (selectedWeek === data.week) {
+            setSelectedWeek(null);
+            if (onWeekSelect) onWeekSelect(null);
+        } else {
+            setSelectedWeek(data.week);
+            if (onWeekSelect) onWeekSelect(data.week);
+        }
     };
 
     return (
