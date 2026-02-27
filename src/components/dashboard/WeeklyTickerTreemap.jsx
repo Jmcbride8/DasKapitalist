@@ -6,7 +6,7 @@ export default function WeeklyTickerTreemap({ trades, selectedWeek }) {
     const treemapData = useMemo(() => {
         if (!selectedWeek) return [];
 
-        const selectedWeekStart = startOfWeek(parseISO(selectedWeek), { weekStartsOn: 1 });
+        const selectedWeekStart = format(startOfWeek(parseISO(selectedWeek), { weekStartsOn: 1 }), 'yyyy-MM-dd');
 
         const tickerProfit = {};
         trades.forEach(trade => {
@@ -14,8 +14,8 @@ export default function WeeklyTickerTreemap({ trades, selectedWeek }) {
             if (!tradeDate) return;
 
             try {
-                const tradeWeekStart = startOfWeek(parseISO(tradeDate), { weekStartsOn: 1 });
-                if (tradeWeekStart.getTime() === selectedWeekStart.getTime() && trade.profit != null) {
+                const tradeWeekStart = format(startOfWeek(parseISO(tradeDate), { weekStartsOn: 1 }), 'yyyy-MM-dd');
+                if (tradeWeekStart === selectedWeekStart && trade.profit != null) {
                     const ticker = trade.ticker || 'Unknown';
                     tickerProfit[ticker] = (tickerProfit[ticker] || 0) + trade.profit;
                 }
