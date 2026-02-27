@@ -39,16 +39,9 @@ export default function WeeklyTickerTreemap({ trades, selectedWeek }) {
                     data={treemapData}
                     dataKey="value"
                     aspectRatio={16/9}
-                    fill="#8884d8"
                     stroke="#fff"
                     fillOpacity={0.8}
                 >
-                    {treemapData.map((entry, index) => (
-                        <Cell
-                            key={`cell-${index}`}
-                            fill={entry.isPositive ? '#10b981' : '#ef4444'}
-                        />
-                    ))}
                     <Tooltip
                         contentStyle={{
                             backgroundColor: '#fff',
