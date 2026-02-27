@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts';
 
 export default function ProfitChart({ trades }) {
     const chartData = useMemo(() => {
@@ -7,14 +7,21 @@ export default function ProfitChart({ trades }) {
         
         trades.forEach(trade => {
             if (!trade.ticker) return;
+            
             if (!tickerMap[trade.ticker]) {
-                tickerMap[trade.ticker] = { realized: 0, unrealized: 0 };
+                tickerMap[trade.ticker] = { realized: 0, unrealizedGains: 0, unrealizedLosses: 0 };
             }
+            
             const profit = trade.profit || 0;
+            
             if (trade.status === 'Closed') {
                 tickerMap[trade.ticker].realized += profit;
             } else {
-                tickerMap[trade.ticker].unrealized += profit;
+                if (profit >= 0) {
+                    tickerMap[trade.ticker].unrealizedGains += profit;
+                } else {
+                    tickerMap[trade.ticker].unrealizedLosses += profit;
+                }
             }
         });
         
@@ -22,8 +29,8 @@ export default function ProfitChart({ trades }) {
             .map(([ticker, data]) => ({
                 ticker,
                 realized: data.realized,
-                unrealized: data.unrealized,
-                total: data.realized + data.unrealized
+                unrealized: data.unrealizedGains + data.unrealizedLosses,
+                total: data.realized + data.unrealizedGains + data.unrealizedLosses
             }))
             .sort((a, b) => b.total - a.total);
     }, [trades]);
@@ -39,17 +46,17 @@ export default function ProfitChart({ trades }) {
 
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
-            const entry = chartData.find(d => d.ticker === label);
-            if (!entry) return null;
+            const realized = payload.find(p => p.dataKey === 'realized')?.value || 0;
+            const unrealized = payload.find(p => p.dataKey === 'unrealized')?.value || 0;
+            const total = realized + unrealized;
+            
             return (
                 <div className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg shadow-lg p-3">
                     <p className="font-semibold text-slate-900 mb-2">{label}</p>
                     <div className="space-y-1 text-sm">
-                        <p className="text-slate-500">Realized: {formatCurrency(entry.realized)}</p>
-                        <p className={entry.unrealized >= 0 ? "text-emerald-600" : "text-red-600"}>
-                            Unrealized: {formatCurrency(entry.unrealized)}
-                        </p>
-                        <p className="font-semibold text-slate-900 pt-1 border-t">Total: {formatCurrency(entry.total)}</p>
+                        <p className="text-slate-500">Realized: {formatCurrency(realized)}</p>
+                        <p className={unrealized >= 0 ? "text-emerald-600" : "text-red-600"}>Unrealized: {formatCurrency(unrealized)}</p>
+                        <p className="font-semibold text-slate-900 pt-1 border-t">Total: {formatCurrency(total)}</p>
                     </div>
                 </div>
             );
@@ -57,56 +64,24 @@ export default function ProfitChart({ trades }) {
         return null;
     };
 
-    // Custom shape for the realized bar — just grey
-    const RealizedShape = (props) => {
-        const { x, y, width, height } = props;
-        if (height === 0) return null;
-        return <rect x={x} y={y} width={width} height={Math.abs(height)} fill="#9ca3af" />;
-    };
-
-    // Custom shape for unrealized: always extends AWAY from zero (on top of realized if positive realized, below if negative realized)
-    // Uses the yAxis scale to compute exact pixel positions
-    const UnrealizedShape = (props) => {
-        const { x, width, index, yAxis } = props;
+    const CustomLabel = (props) => {
+        const { x, y, width, height, index } = props;
         const entry = chartData[index];
-        if (!entry || entry.unrealized === 0 || !yAxis?.scale) return null;
+        if (!entry || !entry.realized || entry.unrealized === 0) return null;
 
-        const scale = yAxis.scale;
-        const zeroY = scale(0);
-        const realizedY = scale(entry.realized);
-        const fill = entry.unrealized >= 0 ? '#10b981' : '#ef4444';
+        const pct = (entry.unrealized / Math.abs(entry.realized)) * 100;
+        const formattedPct = `${pct >= 0 ? '+' : ''}${Math.round(pct)}%`;
+        const color = pct >= 0 ? '#10b981' : '#ef4444';
 
-        // Start of unrealized bar: at the top/bottom of the realized bar (away from zero)
-        const startY = realizedY; // top of positive realized bar, or bottom of negative
-        // End of unrealized bar: realized + unrealized
-        const endY = scale(entry.realized + entry.unrealized);
-
-        const top = Math.min(startY, endY);
-        const barHeight = Math.abs(endY - startY);
-
-        if (barHeight < 1) return null;
-        return <rect x={x} y={top} width={width} height={barHeight} fill={fill} />;
-    };
-
-    // Custom label for unrealized
-    const UnrealizedLabel = (props) => {
-        const { x, width, index, yAxis } = props;
-        const entry = chartData[index];
-        if (!entry || entry.unrealized === 0 || !yAxis?.scale) return null;
-
-        const scale = yAxis.scale;
-        const endY = scale(entry.realized + entry.unrealized);
-
-        const base = Math.abs(entry.realized) || Math.abs(entry.unrealized);
-        const pct = Math.round((entry.unrealized / base) * 100);
-        const label = entry.unrealized >= 0 ? `+${pct}%` : `${pct}%`;
-        const fill = entry.unrealized >= 0 ? '#10b981' : '#ef4444';
-        // Place label above the bar top if going up, below bar bottom if going down
-        const labelY = entry.unrealized >= 0 ? endY - 6 : endY + 12;
+        // Place label strictly outside the full stacked bar
+        // y is the top of the unrealized segment; y + height is its bottom
+        // For positive total: label above the top of the bar (min y of unrealized segment)
+        // For negative total: label below the bottom of the bar
+        const labelY = entry.total >= 0 ? y - 6 : y + height + 12;
 
         return (
-            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={fill} fontWeight="700">
-                {label}
+            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={color} fontWeight="700">
+                {formattedPct}
             </text>
         );
     };
@@ -142,8 +117,15 @@ export default function ProfitChart({ trades }) {
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <ReferenceLine y={0} stroke="#94a3b8" strokeWidth={1} />
-                    <Bar dataKey="realized" shape={<RealizedShape />} />
-                    <Bar dataKey="unrealized" shape={<UnrealizedShape />} label={<UnrealizedLabel />} />
+                    <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} />
+                    <Bar dataKey="unrealized" stackId="a" radius={[0, 0, 0, 0]} label={<CustomLabel />}>
+                        {chartData.map((entry, index) => (
+                            <Cell 
+                                key={`cell-${index}`} 
+                                fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'} 
+                            />
+                        ))}
+                    </Bar>
                 </BarChart>
             </ResponsiveContainer>
         </div>
