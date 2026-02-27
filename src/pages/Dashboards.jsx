@@ -125,7 +125,7 @@ export default function Dashboards() {
                     <div className="text-center text-slate-400 py-12">Loading...</div>
                 ) : (
                     <>
-                        <DashboardKPIs trades={filteredTrades} view={view} />
+                        {view !== 'time' && <DashboardKPIs trades={filteredTrades} view={view} />}
                         {dashboard.component}
                     </>
                 )}
