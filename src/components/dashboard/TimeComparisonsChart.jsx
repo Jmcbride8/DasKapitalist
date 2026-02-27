@@ -336,40 +336,7 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* ── Ticker Matrix ── */}
             {activeTab === 'tickers' && (
-                <div className="space-y-4">
-                    <div className="bg-white rounded-xl border border-slate-200 p-6">
-                        <h3 className="text-base font-semibold text-slate-800 mb-1">Ticker Performance Matrix</h3>
-                        <p className="text-xs text-slate-400 mb-4">Total realized P&L ranked by ticker</p>
-                        <ResponsiveContainer width="100%" height={Math.max(200, tickerMatrix.length * 38)}>
-                            <BarChart data={tickerMatrix} layout="vertical" margin={{ top: 0, right: 80, left: 20, bottom: 0 }}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
-                                <XAxis type="number" tickFormatter={fmt} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                                <YAxis type="category" dataKey="ticker" tick={{ fontSize: 11, fill: '#334155', fontWeight: 600 }} tickLine={false} axisLine={false} width={50} />
-                                <Tooltip content={({ active, payload }) => {
-                                    if (!active || !payload?.length) return null;
-                                    const d = payload[0]?.payload;
-                                    return (
-                                        <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
-                                            <p className="font-bold text-slate-700 mb-1">{d.ticker}</p>
-                                            <p>Total P&L: <span className={`font-bold ${d.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(d.profit)}</span></p>
-                                            <p className="text-slate-500">Trades: {d.trades}</p>
-                                            <p className="text-slate-500">Win Rate: {d.winRate.toFixed(0)}%</p>
-                                            <p className="text-slate-500">Avg/Trade: {fmtFull(d.avgProfit)}</p>
-                                        </div>
-                                    );
-                                }} />
-                                <ReferenceLine x={0} stroke="#cbd5e1" />
-                                <Bar dataKey="profit" radius={[0, 4, 4, 0]}>
-                                    {tickerMatrix.map((entry, i) => (
-                                        <Cell key={i} fill={entry.profit >= 0 ? '#10b981' : '#f43f5e'} />
-                                    ))}
-                                </Bar>
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    {/* Stats table */}
-                    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
                         <table className="w-full text-xs">
                             <thead className="bg-slate-50">
                                 <tr>
