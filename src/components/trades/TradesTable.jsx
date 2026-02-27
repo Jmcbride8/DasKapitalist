@@ -271,13 +271,13 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-blue-50/20">{trade.strike_price ? `$${trade.strike_price.toFixed(2)}` : '-'}</TableCell>
                                     <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-blue-50/20 border-r border-slate-300">{formatCurrency(trade.open_premium)}</TableCell>
                                     {/* Position Close */}
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-emerald-50/20">{formatDate(trade.close_date)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-emerald-50/20">{formatDate(trade.income_week)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-emerald-50/20">{formatCurrency(trade.close_premium)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-emerald-50/20">{formatPercent(trade.potential_yield)}</TableCell>
-                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-emerald-50/20">{trade.close_type || '-'}</TableCell>
-                                    <TableCell className={`text-xs py-1 px-1 text-center bg-emerald-50/20 ${(trade.collateral_gain || 0) >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(trade.collateral_gain)}</TableCell>
-                                    <TableCell className={`font-semibold text-xs py-1 px-1 text-center bg-emerald-50/20 ${calculatedProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(calculatedProfit)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-slate-50/40">{formatDate(trade.close_date)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-slate-50/40">{formatDate(trade.income_week)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-slate-50/40">{formatCurrency(trade.close_premium)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-slate-50/40">{formatPercent(trade.potential_yield)}</TableCell>
+                                    <TableCell className="text-slate-600 text-xs py-1 px-1 text-center bg-slate-50/40">{trade.close_type || '-'}</TableCell>
+                                    <TableCell className={`text-xs py-1 px-1 text-center bg-slate-50/40 ${(trade.collateral_gain || 0) >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(trade.collateral_gain)}</TableCell>
+                                    <TableCell className={`font-semibold text-xs py-1 px-1 text-center bg-slate-50/40 ${calculatedProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{formatCurrency(calculatedProfit)}</TableCell>
                                 </TableRow>
                                 );
                             })
