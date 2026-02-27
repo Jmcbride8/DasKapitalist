@@ -342,11 +342,11 @@ export default function TimeComparisonsChart({ trades }) {
                             <tr>
                                 {['Ticker', 'Total P&L', 'Trades', 'Win Rate', 'Avg/Trade', 'Efficiency'].map(h => (
                                     <th key={h} className="text-left px-4 py-3 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">{h}</th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {tickerMatrix.map((row, i) => {
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tickerMatrix.map((row, i) => {
                                     const maxProfit = Math.max(...tickerMatrix.map(r => Math.abs(r.profit)));
                                     const efficiency = maxProfit > 0 ? (row.profit / maxProfit) * 100 : 0;
                                     return (
