@@ -62,11 +62,12 @@ export default function OpenPositionsChart({ trades }) {
         const entry = chartData[index];
         if (!entry || !entry.open || entry.open === 0) return null;
         const pct = ((entry.unrealized / entry.open) * 100).toFixed(1);
-        const color = value >= 0 ? '#10b981' : '#ef4444';
+        const isPositive = parseFloat(pct) >= 0;
+        const color = isPositive ? '#10b981' : '#ef4444';
         const labelY = value >= 0 ? y - 5 : y + height + 13;
         return (
             <text key={index} x={x + width / 2} y={labelY} textAnchor="middle" fontSize={10} fill={color} fontWeight="600">
-                {value >= 0 ? '+' : ''}{pct}%
+                {isPositive ? '+' : ''}{pct}%
             </text>
         );
     };
