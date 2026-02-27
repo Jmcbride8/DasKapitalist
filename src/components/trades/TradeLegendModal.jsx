@@ -7,9 +7,13 @@ export default function TradeLegendModal() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline" className="gap-2">
+                <Button 
+                    variant="outline"
+                    size="icon"
+                    className="border-slate-300 text-slate-700 hover:bg-slate-100"
+                    title="Trade Types Legend"
+                >
                     <Info className="w-4 h-4" />
-                    Trade Types
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-w-3xl">
