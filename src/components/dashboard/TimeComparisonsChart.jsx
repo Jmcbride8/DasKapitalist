@@ -351,34 +351,34 @@ export default function TimeComparisonsChart({ trades }) {
                                 const efficiency = maxProfit > 0 ? (row.profit / maxProfit) * 100 : 0;
                                 return (
                                     <tr key={row.ticker} className="border-t border-slate-50 hover:bg-slate-50 transition-colors">
-                                            <td className="px-4 py-3 font-bold text-slate-800">{row.ticker}</td>
-                                            <td className={`px-4 py-3 font-bold ${row.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.profit)}</td>
-                                            <td className="px-4 py-3 text-slate-500">{row.trades}</td>
-                                            <td className="px-4 py-3">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                                        <div className="h-full rounded-full bg-indigo-400" style={{ width: `${row.winRate}%` }} />
-                                                    </div>
-                                                    <span className="text-slate-600">{row.winRate.toFixed(0)}%</span>
+                                        <td className="px-4 py-3 font-bold text-slate-800">{row.ticker}</td>
+                                        <td className={`px-4 py-3 font-bold ${row.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.profit)}</td>
+                                        <td className="px-4 py-3 text-slate-500">{row.trades}</td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                                    <div className="h-full rounded-full bg-indigo-400" style={{ width: `${row.winRate}%` }} />
                                                 </div>
-                                            </td>
-                                            <td className={`px-4 py-3 font-medium ${row.avgProfit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.avgProfit)}</td>
-                                            <td className="px-4 py-3">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-20 h-2 bg-slate-100 rounded-full overflow-hidden">
-                                                        <div
-                                                            className={`h-full rounded-full ${efficiency >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`}
-                                                            style={{ width: `${Math.abs(efficiency)}%` }}
-                                                        />
-                                                    </div>
+                                                <span className="text-slate-600">{row.winRate.toFixed(0)}%</span>
+                                            </div>
+                                        </td>
+                                        <td className={`px-4 py-3 font-medium ${row.avgProfit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.avgProfit)}</td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-20 h-2 bg-slate-100 rounded-full overflow-hidden">
+                                                    <div
+                                                        className={`h-full rounded-full ${efficiency >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`}
+                                                        style={{ width: `${Math.abs(efficiency)}%` }}
+                                                    />
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
                 </div>
             )}
         </div>
