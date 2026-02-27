@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, Label } from 'recharts';
 
-export default function WeeklyProfitChart({ trades }) {
+export default function WeeklyProfitChart({ trades, onWeekSelect }) {
+    const [selectedWeek, setSelectedWeek] = useState(null);
     const chartData = useMemo(() => {
         if (!trades || trades.length === 0) return [];
 
