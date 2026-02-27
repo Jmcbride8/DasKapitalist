@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ReferenceLine, LabelList } from 'recharts';
 
-export default function ProfitChart({ trades }) {
+export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) {
     const chartData = useMemo(() => {
         const tickerMap = {};
         
@@ -119,14 +119,19 @@ export default function ProfitChart({ trades }) {
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <ReferenceLine y={0} stroke="#94a3b8" strokeWidth={1} />
-                    <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} />
-                    <Bar dataKey="unrealized" stackId="a" radius={[0, 0, 0, 0]} label={<CustomLabel />}>
-                        {chartData.map((entry, index) => (
-                            <Cell 
-                                key={`cell-${index}`} 
-                                fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'} 
-                            />
-                        ))}
+                    <Bar dataKey="realized" stackId="a" fill="#9ca3af" radius={[0, 0, 0, 0]} opacity={selectedTicker ? (selectedTicker === chartData[0]?.ticker ? 1 : 0.3) : 1} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)} />
+                    <Bar dataKey="unrealized" stackId="a" radius={[0, 0, 0, 0]} label={<CustomLabel />} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)}>
+                        {chartData.map((entry, index) => {
+                            const isSelected = selectedTicker === entry.ticker;
+                            const opacity = selectedTicker ? (isSelected ? 1 : 0.3) : 1;
+                            return (
+                                <Cell 
+                                    key={`cell-${index}`} 
+                                    fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'}
+                                    opacity={opacity}
+                                />
+                            );
+                        })}
                     </Bar>
                 </BarChart>
             </ResponsiveContainer>
