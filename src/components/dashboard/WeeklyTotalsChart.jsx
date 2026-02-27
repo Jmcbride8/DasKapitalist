@@ -18,13 +18,13 @@ export default function WeeklyTotalsChart({ trades }) {
             </Card>
             {selectedWeek && (
                 <>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 border-b border-slate-200">
                         <button
                             onClick={() => setViewMode('treemap')}
-                            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-all ${
                                 viewMode === 'treemap'
-                                    ? 'bg-emerald-100 text-emerald-700'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                    ? 'border-slate-900 text-slate-900'
+                                    : 'border-transparent text-slate-500 hover:text-slate-700'
                             }`}
                         >
                             <BarChart3 className="w-4 h-4" />
@@ -32,10 +32,10 @@ export default function WeeklyTotalsChart({ trades }) {
                         </button>
                         <button
                             onClick={() => setViewMode('table')}
-                            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-all ${
                                 viewMode === 'table'
-                                    ? 'bg-emerald-100 text-emerald-700'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                    ? 'border-slate-900 text-slate-900'
+                                    : 'border-transparent text-slate-500 hover:text-slate-700'
                             }`}
                         >
                             <Table2 className="w-4 h-4" />
