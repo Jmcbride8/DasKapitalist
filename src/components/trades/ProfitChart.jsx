@@ -64,6 +64,23 @@ export default function ProfitChart({ trades }) {
         return null;
     };
 
+    const CustomLabel = (props) => {
+        const { x, y, width, height, index } = props;
+        const entry = chartData[index];
+        if (!entry || !entry.realized || entry.unrealized === 0) return null;
+
+        const pct = (entry.unrealized / Math.abs(entry.realized)) * 100;
+        const formattedPct = `${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%`;
+        const labelY = entry.unrealized >= 0 ? y - 6 : y + height + 14;
+        const color = pct >= 0 ? '#10b981' : '#ef4444';
+
+        return (
+            <text x={x + width / 2} y={labelY} textAnchor="middle" fontSize={9} fill={color} fontWeight="600">
+                {formattedPct}
+            </text>
+        );
+    };
+
     if (chartData.length === 0) {
         return (
             <div className="h-96 flex items-center justify-center text-slate-400">
