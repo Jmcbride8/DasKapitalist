@@ -276,13 +276,13 @@ export default function QuickUpdate() {
                 <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs text-slate-500 font-medium">Open Premium</p>
-                            <p className={`text-lg font-bold mt-0.5 ${stats.openPremium >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
-                                ${stats.openPremium.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                            <p className="text-xs text-slate-500 font-medium">Expiring This Week</p>
+                            <p className={`text-lg font-bold mt-0.5 ${stats.expiringThisWeek > 0 ? 'text-amber-600' : 'text-slate-900'}`}>
+                                {stats.expiringThisWeek} <span className="text-xs font-normal text-slate-400">trades</span>
                             </p>
                         </div>
-                        <div className="p-2 rounded-lg bg-emerald-100">
-                            <TrendingUp className="w-4 h-4 text-emerald-600" />
+                        <div className={`p-2 rounded-lg ${stats.expiringThisWeek > 0 ? 'bg-amber-100' : 'bg-slate-100'}`}>
+                            <Clock className={`w-4 h-4 ${stats.expiringThisWeek > 0 ? 'text-amber-600' : 'text-slate-500'}`} />
                         </div>
                     </div>
                 </div>
