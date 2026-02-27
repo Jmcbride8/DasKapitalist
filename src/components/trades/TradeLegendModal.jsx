@@ -117,24 +117,36 @@ export default function TradeLegendModal() {
                     <div className="space-y-3">
                         <div className="flex items-start gap-3 p-4 rounded-lg bg-blue-50/50 border border-blue-100">
                             <div className="flex-1">
-                                <p className="font-semibold text-blue-900 text-sm mb-2">Selling Options</p>
+                                <p className="font-semibold text-blue-900 text-sm mb-3">Selling Options</p>
                                 <p className="text-xs text-blue-700 mb-3 italic">Receive Premium = Obligations</p>
-                                <div className="space-y-2 text-xs text-slate-700">
-                                    <div className="flex items-start gap-2">
-                                        <span className="text-blue-600">•</span>
-                                        <span><strong className="text-slate-900">Covered Call</strong> — Sell obligation (with stock)</span>
+                                <div className="space-y-4">
+                                    <div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <span className="text-blue-600">•</span>
+                                            <span><strong className="text-slate-900">Covered Call</strong> — Sell obligation (with stock)</span>
+                                        </div>
+                                        <TradeTypeVisualization direction="capped-bull" />
                                     </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="text-blue-600">•</span>
-                                        <span><strong className="text-slate-900">Cash Secured Put</strong> — Buy obligation (with cash)</span>
+                                    <div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <span className="text-blue-600">•</span>
+                                            <span><strong className="text-slate-900">Cash Secured Put</strong> — Buy obligation (with cash)</span>
+                                        </div>
+                                        <TradeTypeVisualization direction="capped-profit" />
                                     </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="text-blue-600">•</span>
-                                        <span><strong className="text-slate-900">Naked Call</strong> — Sell obligation (no stock)</span>
+                                    <div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <span className="text-blue-600">•</span>
+                                            <span><strong className="text-slate-900">Naked Call</strong> — Sell obligation (no stock)</span>
+                                        </div>
+                                        <TradeTypeVisualization direction="unlimited-loss" />
                                     </div>
-                                    <div className="flex items-start gap-2">
-                                        <span className="text-blue-600">•</span>
-                                        <span><strong className="text-slate-900">Naked Put</strong> — Buy obligation (no cash)</span>
+                                    <div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <span className="text-blue-600">•</span>
+                                            <span><strong className="text-slate-900">Naked Put</strong> — Buy obligation (no cash)</span>
+                                        </div>
+                                        <TradeTypeVisualization direction="bear" />
                                     </div>
                                 </div>
                             </div>
