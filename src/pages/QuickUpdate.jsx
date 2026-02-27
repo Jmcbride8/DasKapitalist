@@ -124,12 +124,21 @@ export default function QuickUpdate() {
 
     const openTrades = sortedTrades.filter(t => t.status === 'Open');
 
-    const openPremiumTotal = openTrades.reduce((sum, t) => sum + (t.open_premium || 0), 0);
     const closePremiumTotal = openTrades.reduce((sum, t) => sum + (t.close_premium || 0), 0);
-    const collateralGainTotal = openTrades.reduce((sum, t) => sum + (t.collateral_gain || 0), 0);
+
+    // Trades expiring this calendar week (Mon–Sun)
+    const now = new Date();
+    const weekStart = startOfWeek(now, { weekStartsOn: 1 });
+    const weekEnd = endOfWeek(now, { weekStartsOn: 1 });
+    const expiringThisWeek = openTrades.filter(t => {
+        if (!t.expiration) return false;
+        const exp = new Date(t.expiration);
+        return exp >= weekStart && exp <= weekEnd;
+    }).length;
+
     const stats = {
         totalProfit: openTrades.reduce((sum, t) => sum + ((t.open_premium || 0) + (t.close_premium || 0) + (t.collateral_gain || 0)), 0),
-        openPremium: openPremiumTotal,
+        expiringThisWeek,
         closePremium: closePremiumTotal,
         openTrades: openTrades.length,
     };
