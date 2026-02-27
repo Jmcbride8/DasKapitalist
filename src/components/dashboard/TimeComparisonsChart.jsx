@@ -350,7 +350,7 @@ export default function TimeComparisonsChart({ trades }) {
                                 const maxProfit = Math.max(...tickerMatrix.map(r => Math.abs(r.profit)));
                                 const efficiency = maxProfit > 0 ? (row.profit / maxProfit) * 100 : 0;
                                 return (
-                                        <tr key={row.ticker} className="border-t border-slate-50 hover:bg-slate-50 transition-colors">
+                                    <tr key={row.ticker} className="border-t border-slate-50 hover:bg-slate-50 transition-colors">
                                             <td className="px-4 py-3 font-bold text-slate-800">{row.ticker}</td>
                                             <td className={`px-4 py-3 font-bold ${row.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.profit)}</td>
                                             <td className="px-4 py-3 text-slate-500">{row.trades}</td>
