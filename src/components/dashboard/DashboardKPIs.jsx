@@ -11,24 +11,27 @@ const formatCurrency = (value) => {
     }).format(value);
 };
 
-export default function DashboardKPIs({ trades }) {
+export default function DashboardKPIs({ trades, view }) {
     const kpis = useMemo(() => {
         if (!trades || trades.length === 0) {
             return {
                 totalProfit: 0,
                 unrealizedGainLoss: 0,
                 avgWeeklyProfit: 0,
-                avgAnnualizedProfit: 0
+                avgAnnualizedProfit: 0,
+                totalInvested: 0,
+                unrealizedVsRealized: 0
             };
         }
 
+        const openTrades = trades.filter(t => t.status === 'Open');
+        const closedTrades = trades.filter(t => t.status === 'Closed');
+
         // Total Profit
-        const totalProfit = trades.reduce((sum, trade) => sum + (trade.profit || 0), 0);
+        const totalProfit = trades.reduce((sum, t) => sum + (t.profit || 0), 0);
 
         // Unrealized (Gains/Losses) - sum of open trades
-         const unrealizedGainLoss = trades
-             .filter(trade => trade.status === 'Open')
-             .reduce((sum, trade) => sum + (trade.profit || 0), 0);
+        const unrealizedGainLoss = openTrades.reduce((sum, t) => sum + (t.profit || 0), 0);
 
         // Avg Weekly Profit
         const weeks = new Set();
@@ -41,19 +44,37 @@ export default function DashboardKPIs({ trades }) {
         // Avg Annualized Profit (assuming 52 weeks per year)
         const avgAnnualizedProfit = avgWeeklyProfit * 52;
 
+        // Total Invested - sum of collateral_start for open trades
+        const totalInvested = openTrades.reduce((sum, t) => sum + (t.collateral_start || 0), 0);
+
+        // Unrealized % of Realized Profits
+        const realizedProfit = closedTrades.reduce((sum, t) => sum + (t.profit || 0), 0);
+        const unrealizedVsRealized = realizedProfit !== 0 ? (unrealizedGainLoss / Math.abs(realizedProfit)) * 100 : 0;
+
         return {
             totalProfit,
             unrealizedGainLoss,
             avgWeeklyProfit,
-            avgAnnualizedProfit
+            avgAnnualizedProfit,
+            totalInvested,
+            unrealizedVsRealized
         };
     }, [trades]);
 
+    const isOpenView = view === 'open';
+
     const kpiData = [
-        { label: 'Total Profit', value: kpis.totalProfit, color: kpis.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600' },
-        { label: 'Unrealized', value: kpis.unrealizedGainLoss, color: kpis.unrealizedGainLoss >= 0 ? 'text-emerald-600' : 'text-red-600' },
-        { label: 'Avg Weekly Profit', value: kpis.avgWeeklyProfit, color: kpis.avgWeeklyProfit >= 0 ? 'text-emerald-600' : 'text-red-600' },
-        { label: 'Avg Annualized Profit', value: kpis.avgAnnualizedProfit, color: kpis.avgAnnualizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600' }
+        {
+            label: isOpenView ? 'Total Invested' : 'Total Profit',
+            value: isOpenView ? kpis.totalInvested : kpis.totalProfit,
+            color: isOpenView ? 'text-slate-700' : (kpis.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'),
+            format: 'currency'
+        },
+        { label: 'Unrealized', value: kpis.unrealizedGainLoss, color: kpis.unrealizedGainLoss >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'currency' },
+        { label: 'Avg Weekly Profit', value: kpis.avgWeeklyProfit, color: kpis.avgWeeklyProfit >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'currency' },
+        isOpenView
+            ? { label: 'Unrealized % of Realized', value: kpis.unrealizedVsRealized, color: kpis.unrealizedVsRealized >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'percent' }
+            : { label: 'Avg Annualized Profit', value: kpis.avgAnnualizedProfit, color: kpis.avgAnnualizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'currency' }
     ];
 
     return (
