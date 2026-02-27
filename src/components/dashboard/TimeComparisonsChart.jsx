@@ -337,7 +337,7 @@ export default function TimeComparisonsChart({ trades }) {
             {/* ── Ticker Matrix ── */}
             {activeTab === 'tickers' && (
                 <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-                        <table className="w-full text-xs">
+                    <table className="w-full text-xs">
                             <thead className="bg-slate-50">
                                 <tr>
                                     {['Ticker', 'Total P&L', 'Trades', 'Win Rate', 'Avg/Trade', 'Efficiency'].map(h => (
