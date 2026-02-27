@@ -196,6 +196,51 @@ export default function Trades() {
                             </div>
                         </div>
 
+                        {/* Filters */}
+                        <div className="flex gap-3 mb-4 flex-wrap">
+                            <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
+                                if (value === '') {
+                                    setSelectedTypes([]);
+                                } else {
+                                    setSelectedTypes(prev => 
+                                        prev.includes(value) ? prev.filter(t => t !== value) : [...prev, value]
+                                    );
+                                }
+                            }}>
+                                <SelectTrigger className="h-8 text-xs w-40">
+                                    <SelectValue placeholder="All Types" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value={null}>All Types</SelectItem>
+                                    {tradeTypes.map(type => (
+                                        <SelectItem key={type} value={type}>{type}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <Select value={filterAccount} onValueChange={setFilterAccount}>
+                                <SelectTrigger className="h-8 text-xs w-40">
+                                    <SelectValue placeholder="All Accounts" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value={null}>All Accounts</SelectItem>
+                                    {uniqueAccounts.map(a => (
+                                        <SelectItem key={a} value={a}>{a}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <Select value={filterTicker} onValueChange={setFilterTicker}>
+                                <SelectTrigger className="h-8 text-xs w-40">
+                                    <SelectValue placeholder="All Tickers" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value={null}>All Tickers</SelectItem>
+                                    {uniqueTickers.map(t => (
+                                        <SelectItem key={t} value={t}>{t}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+
                         {isLoading ? (
                             <div className="p-12 text-center text-slate-400">Loading trades...</div>
                         ) : (
