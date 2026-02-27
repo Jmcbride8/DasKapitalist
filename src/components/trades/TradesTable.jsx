@@ -187,25 +187,25 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                  Open Value<SortIcon field="open_premium" />
                              </TableHead>
                              {/* Position Close columns */}
-                             <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-emerald-50/40">
+                             <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-slate-50/60">
                                  Close Date<SortIcon field="close_date" />
                              </TableHead>
-                             <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-emerald-50/40">
+                             <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-slate-50/60">
                                  Income Week<SortIcon field="income_week" />
                              </TableHead>
-                             <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-emerald-50/40">
+                             <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-slate-50/60">
                                  Current Value<SortIcon field="close_premium" />
                              </TableHead>
-                             <TableHead onClick={() => handleSort('potential_yield')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-emerald-50/40">
+                             <TableHead onClick={() => handleSort('potential_yield')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-slate-50/60">
                                  Yield<SortIcon field="potential_yield" />
                              </TableHead>
-                             <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-emerald-50/40">
+                             <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-slate-50/60">
                                  Close Type<SortIcon field="close_type" />
                              </TableHead>
-                             <TableHead onClick={() => handleSort('collateral_gain')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-emerald-50/40">
+                             <TableHead onClick={() => handleSort('collateral_gain')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-slate-50/60">
                                  Collateral Gain<SortIcon field="collateral_gain" />
                              </TableHead>
-                             <TableHead onClick={() => handleSort('profit')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-emerald-50/40">
+                             <TableHead onClick={() => handleSort('profit')} className="font-semibold text-slate-700 whitespace-nowrap text-xs py-1 px-1 cursor-pointer hover:bg-slate-100 text-center bg-slate-50/60">
                                  Profit<SortIcon field="profit" />
                              </TableHead>
                          </TableRow>
