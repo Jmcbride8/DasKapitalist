@@ -1,27 +1,35 @@
 import React, { useMemo, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, Label } from 'recharts';
 
-export default function WeeklyProfitChart({ trades, onWeekSelect }) {
+export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = 'weekly' }) {
     const [selectedWeek, setSelectedWeek] = useState(null);
     const chartData = useMemo(() => {
         if (!trades || trades.length === 0) return [];
 
-        const weekMap = {};
+        const periodMap = {};
 
         trades.forEach(trade => {
-            const incomeWeek = trade.income_week || trade.open_date;
-            if (!incomeWeek) return;
+            const date = trade.income_week || trade.open_date;
+            if (!date) return;
 
-            if (!weekMap[incomeWeek]) {
-                weekMap[incomeWeek] = { week: incomeWeek, net: 0 };
+            let periodKey;
+            if (periodMode === 'monthly') {
+                const d = new Date(date);
+                periodKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+            } else {
+                periodKey = date;
+            }
+
+            if (!periodMap[periodKey]) {
+                periodMap[periodKey] = { period: periodKey, net: 0 };
             }
 
             const profit = trade.profit || 0;
-            weekMap[incomeWeek].net += profit;
+            periodMap[periodKey].net += profit;
         });
 
-        return Object.values(weekMap).sort((a, b) => new Date(a.week) - new Date(b.week));
-    }, [trades]);
+        return Object.values(periodMap).sort((a, b) => new Date(a.period) - new Date(b.period));
+    }, [trades, periodMode]);
 
     const formatCurrency = (value) => {
         if (value === 0) return '$0k';
@@ -30,8 +38,11 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
         return `${value < 0 ? '-' : ''}$${formatted}k`;
     };
 
-    const formatWeek = (date) => {
+    const formatPeriod = (date) => {
         const d = new Date(date);
+        if (periodMode === 'monthly') {
+            return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        }
         const month = (d.getMonth() + 1).toString().padStart(2, '0');
         const day = d.getDate().toString().padStart(2, '0');
         return `${month}/${day}`;
@@ -42,7 +53,7 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
             const data = payload[0].payload;
             return (
                 <div className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg shadow-lg p-3">
-                    <p className="font-semibold text-slate-900 mb-2">{formatWeek(data.week)}</p>
+                    <p className="font-semibold text-slate-900 mb-2">{formatPeriod(data.period)}</p>
                     <p className="font-semibold text-slate-900">Net: {formatCurrency(data.net)}</p>
                 </div>
             );
@@ -72,12 +83,12 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
     }
 
     const handleBarClick = (data) => {
-        if (selectedWeek === data.week) {
+        if (selectedWeek === data.period) {
             setSelectedWeek(null);
             if (onWeekSelect) onWeekSelect(null);
         } else {
-            setSelectedWeek(data.week);
-            if (onWeekSelect) onWeekSelect(data.week);
+            setSelectedWeek(data.period);
+            if (onWeekSelect) onWeekSelect(data.period);
         }
     };
 
@@ -87,8 +98,8 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
                 <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis
-                        dataKey="week"
-                        tickFormatter={formatWeek}
+                        dataKey="period"
+                        tickFormatter={formatPeriod}
                         tick={{ fontSize: 11, fill: '#64748b' }}
                         tickLine={false}
                         axisLine={{ stroke: '#e2e8f0' }}
@@ -114,7 +125,7 @@ export default function WeeklyProfitChart({ trades, onWeekSelect }) {
                             <Cell 
                                 key={`cell-${index}`} 
                                 fill={entry.net >= 0 ? '#10b981' : '#ef4444'}
-                                opacity={selectedWeek ? (selectedWeek === entry.week ? 1 : 0.3) : 1}
+                                opacity={selectedWeek ? (selectedWeek === entry.period ? 1 : 0.3) : 1}
                             />
                         ))}
                     </Bar>
