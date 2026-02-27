@@ -83,8 +83,8 @@ export default function OpenPositionsChart({ trades }) {
                         />
                         <Tooltip content={<CustomTooltip />} />
                         <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" />
-                        <Bar dataKey="open" stackId="a" fill="#64748b" name="Open" />
-                        <Bar dataKey="unrealized" stackId="a" name="Unrealized">
+                        <Bar dataKey="open" stackId="a" fill="#9ca3af" name="Open" />
+                        <Bar dataKey="unrealized" stackId="a" name="Unrealized" label={renderUnrealizedLabel}>
                             {chartData.map((entry, index) => (
                                 <Cell 
                                     key={`cell-${index}`} 
