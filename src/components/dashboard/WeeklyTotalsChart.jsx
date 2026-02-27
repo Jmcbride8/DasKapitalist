@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import { BarChart3, Table2 } from 'lucide-react';
 import WeeklyProfitChart from '@/components/trades/WeeklyProfitChart';
 import WeeklyTradesTable from '@/components/dashboard/WeeklyTradesTable';
 import WeeklyTickerTreemap from '@/components/dashboard/WeeklyTickerTreemap';
 
 export default function WeeklyTotalsChart({ trades }) {
     const [selectedWeek, setSelectedWeek] = useState(null);
+    const [viewMode, setViewMode] = useState('treemap');
 
     return (
         <div className="space-y-2">
