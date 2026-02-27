@@ -45,7 +45,7 @@ export default function Layout({ children, currentPageName }) {
                             
                             if (item.isCollapsible) {
                                 return (
-                                    <details key={item.name} className="group">
+                                    <details key={item.name} className="group" open>
                                         <summary className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors cursor-pointer ${
                                             isActive ? 'bg-emerald-50 text-emerald-700 font-medium' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                                         }`}>
