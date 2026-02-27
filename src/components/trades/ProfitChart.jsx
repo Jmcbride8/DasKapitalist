@@ -153,7 +153,7 @@ export default function ProfitChart({ trades }) {
                         {chartData.map((entry, index) => (
                             <Cell 
                                 key={`cell-${index}`} 
-                                fill={entry.unrealized >= 0 ? '#10b981' : '#ef4444'} 
+                                fill={entry.unrealized >= 0 ? 'url(#stripe-green)' : 'url(#stripe-red)'} 
                             />
                         ))}
                     </Bar>
