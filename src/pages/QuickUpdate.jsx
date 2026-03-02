@@ -278,7 +278,7 @@ export default function QuickUpdate() {
     };
 
     return (
-        <div className="p-6 max-w-6xl mx-auto">
+        <div className="p-6 max-w-[1400px] mx-auto">
             <div className="mb-6">
                 <h1 className="text-3xl font-bold text-slate-900">Open Trades</h1>
                 <p className="text-slate-500 mt-2">Update open positions: Status, Current Value, Close Date, Income Week, Close Type</p>
