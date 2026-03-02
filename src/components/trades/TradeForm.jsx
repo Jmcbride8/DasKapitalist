@@ -169,36 +169,44 @@ export default function TradeForm({ open, onClose, onSave, trade, accounts = [] 
                             <Label>Potential Yield (%)</Label>
                             <Input type="number" step="0.1" value={formData.potential_yield} onChange={(e) => handleChange("potential_yield", e.target.value)} />
                         </div>
-                        <div className="space-y-2">
-                            <Label>Close Premium ($)</Label>
-                            <Input type="number" step="0.01" value={formData.close_premium} onChange={(e) => handleChange("close_premium", e.target.value)} />
-                        </div>
-                        <div className="space-y-2">
-                            <Label>Close Date</Label>
-                            <Input type="date" value={formData.close_date} onChange={(e) => handleChange("close_date", e.target.value)} />
-                        </div>
+                        {!isNew && (
+                            <>
+                                <div className="space-y-2">
+                                    <Label>Close Premium ($)</Label>
+                                    <Input type="number" step="0.01" value={formData.close_premium} onChange={(e) => handleChange("close_premium", e.target.value)} />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Close Date</Label>
+                                    <Input type="date" value={formData.close_date} onChange={(e) => handleChange("close_date", e.target.value)} />
+                                </div>
+                            </>
+                        )}
                         <div className="space-y-2">
                             <Label>Income Week</Label>
                             <Input type="date" value={formData.income_week} onChange={(e) => handleChange("income_week", e.target.value)} />
                         </div>
-                        <div className="space-y-2">
-                            <Label>Close Type</Label>
-                            <Select value={formData.close_type || "none"} onValueChange={(v) => handleChange("close_type", v === "none" ? "" : v)}>
-                                <SelectTrigger><SelectValue placeholder="Select..." /></SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="none">None</SelectItem>
-                                    {CLOSE_TYPES.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div className="space-y-2">
-                            <Label>Collateral Gain ($)</Label>
-                            <Input type="number" step="0.01" value={formData.collateral_gain} onChange={(e) => handleChange("collateral_gain", e.target.value)} />
-                        </div>
-                        <div className="space-y-2">
-                            <Label>Profit ($)</Label>
-                            <Input type="number" step="0.01" value={formData.profit} onChange={(e) => handleChange("profit", e.target.value)} />
-                        </div>
+                        {!isNew && (
+                            <>
+                                <div className="space-y-2">
+                                    <Label>Close Type</Label>
+                                    <Select value={formData.close_type || "none"} onValueChange={(v) => handleChange("close_type", v === "none" ? "" : v)}>
+                                        <SelectTrigger><SelectValue placeholder="Select..." /></SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="none">None</SelectItem>
+                                            {CLOSE_TYPES.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Collateral Gain ($)</Label>
+                                    <Input type="number" step="0.01" value={formData.collateral_gain} onChange={(e) => handleChange("collateral_gain", e.target.value)} />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Profit ($)</Label>
+                                    <Input type="number" step="0.01" value={formData.profit} onChange={(e) => handleChange("profit", e.target.value)} />
+                                </div>
+                            </>
+                        )}
                     </div>
                     <div className="flex justify-end gap-3 pt-4 border-t">
                         <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
