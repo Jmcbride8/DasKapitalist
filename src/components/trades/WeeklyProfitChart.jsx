@@ -144,17 +144,17 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                         activeDot={false}
                         isAnimationActive={false}
                     />
-                    <Bar 
+                    <Bar
                         yAxisId="profit"
-                        dataKey="net" 
-                        radius={[4, 4, 0, 0]} 
+                        dataKey="net"
+                        radius={[4, 4, 0, 0]}
                         label={renderWeeklyLabel}
-                        onClick={(state) => handleBarClick(state.payload)}
+                        onClick={(data) => handleBarClick(data)}
                         style={{ cursor: 'pointer' }}
                     >
                         {chartData.map((entry, index) => (
-                            <Cell 
-                                key={`cell-${index}`} 
+                            <Cell
+                                key={`cell-${index}`}
                                 fill={entry.net >= 0 ? '#10b981' : '#ef4444'}
                                 opacity={selectedWeek ? (selectedWeek === entry.period ? 1 : 0.3) : 1}
                             />
