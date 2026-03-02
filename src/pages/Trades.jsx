@@ -20,6 +20,7 @@ export default function Trades() {
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [filterAccount, setFilterAccount] = useState('');
     const [filterTicker, setFilterTicker] = useState('');
+    const [filterStatus, setFilterStatus] = useState('');
     const queryClient = useQueryClient();
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
 
