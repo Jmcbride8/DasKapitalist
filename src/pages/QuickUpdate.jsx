@@ -168,13 +168,23 @@ export default function QuickUpdate() {
     };
 
     const handleChange = (tradeId, field, value) => {
-        setFormData(prev => ({
-            ...prev,
-            [tradeId]: {
-                ...prev[tradeId],
-                [field]: value
+        setFormData(prev => {
+            const updated = {
+                ...prev,
+                [tradeId]: {
+                    ...prev[tradeId],
+                    [field]: value
+                }
+            };
+            // Auto-close when a close_type is selected
+            if (field === 'close_type' && value) {
+                updated[tradeId].status = 'Closed';
+                if (!updated[tradeId].close_date) {
+                    updated[tradeId].close_date = format(new Date(), 'yyyy-MM-dd');
+                }
             }
-        }));
+            return updated;
+        });
     };
 
     const handleSave = (tradeId) => {
