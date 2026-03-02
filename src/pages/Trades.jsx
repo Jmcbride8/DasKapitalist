@@ -200,6 +200,16 @@ export default function Trades() {
 
                         {/* Filters */}
                         <div className="flex gap-3 mb-4 flex-wrap">
+                            <Select value={filterStatus} onValueChange={setFilterStatus}>
+                                <SelectTrigger className="h-8 text-xs w-36">
+                                    <SelectValue placeholder="All Statuses" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value={null}>All Statuses</SelectItem>
+                                    <SelectItem value="Open">Open</SelectItem>
+                                    <SelectItem value="Closed">Closed</SelectItem>
+                                </SelectContent>
+                            </Select>
                             <Select value={selectedTypes.length === 0 ? '' : selectedTypes[0]} onValueChange={(value) => {
                                 if (value === '') {
                                     setSelectedTypes([]);
