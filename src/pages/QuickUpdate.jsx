@@ -465,14 +465,13 @@ export default function QuickUpdate() {
                     </Table>
                 </div>
             )}
+            <TradeForm
+                open={showTradeForm}
+                onClose={() => setShowTradeForm(false)}
+                onSave={(data) => createMutation.mutate(data)}
+                trade={null}
+                accounts={uniqueAccounts}
+            />
         </div>
-
-        <TradeForm
-            open={showTradeForm}
-            onClose={() => setShowTradeForm(false)}
-            onSave={(data) => createMutation.mutate(data)}
-            trade={null}
-            accounts={uniqueAccounts}
-        />
     );
 }
