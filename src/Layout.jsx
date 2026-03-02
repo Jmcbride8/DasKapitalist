@@ -36,7 +36,10 @@ export default function Layout({ children, currentPageName }) {
             {/* Desktop Sidebar */}
             <div className="hidden md:flex md:w-64 bg-white border-r border-slate-200 flex-col">
                 <div className="p-6 border-b border-slate-200">
-                    <h1 className="text-xl font-bold text-slate-900">Positions Tracker</h1>
+                    <div className="flex items-center gap-2">
+                        <span className="text-2xl" style={{background: 'linear-gradient(180deg, #B22234 33%, #FFFFFF 33%, #FFFFFF 66%, #3C3B6E 66%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 'bold', fontSize: '1.6rem'}}>☭</span>
+                        <h1 className="text-xl font-bold text-slate-900">DasKapitalist</h1>
+                    </div>
                 </div>
                 <nav className="flex-1 p-4">
                     <div className="space-y-1">
