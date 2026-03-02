@@ -92,6 +92,14 @@ export default function QuickUpdate() {
         },
     });
 
+    const createMutation = useMutation({
+        mutationFn: (data) => base44.entities.Trade.create(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['trades'] });
+            setShowTradeForm(false);
+        },
+    });
+
     const handleSort = (field) => {
         if (sortField === field) {
             setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
