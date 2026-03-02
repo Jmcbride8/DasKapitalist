@@ -133,7 +133,19 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                         className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
                     />
                     <Tooltip content={<CustomTooltip />} />
+                    <Area
+                        yAxisId="collateral"
+                        type="monotone"
+                        dataKey="collateral"
+                        fill="#f1f5f9"
+                        stroke="#e2e8f0"
+                        strokeWidth={1}
+                        dot={false}
+                        activeDot={false}
+                        isAnimationActive={false}
+                    />
                     <Bar 
+                        yAxisId="profit"
                         dataKey="net" 
                         radius={[4, 4, 0, 0]} 
                         label={renderWeeklyLabel}
