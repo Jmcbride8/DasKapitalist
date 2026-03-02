@@ -72,7 +72,16 @@ export default function TradeForm({ open, onClose, onSave, trade, accounts = [] 
     }, [trade, open]);
 
     const handleChange = (field, value) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
+        setFormData(prev => {
+            const updated = { ...prev, [field]: value };
+            // Auto-calculate potential yield when open_premium or collateral_start changes
+            const op = field === 'open_premium' ? value : updated.open_premium;
+            const cs = field === 'collateral_start' ? value : updated.collateral_start;
+            if (op && cs && parseFloat(cs) !== 0) {
+                updated.potential_yield = (Math.abs(parseFloat(op) / parseFloat(cs)) * 100).toFixed(2);
+            }
+            return updated;
+        });
     };
 
     const handleSubmit = (e) => {
