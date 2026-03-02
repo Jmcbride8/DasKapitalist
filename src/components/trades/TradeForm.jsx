@@ -8,7 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const TRADE_TYPES = ["Trade", "Covered Call", "Cash Secured Put", "Long Call", "Long Put", "Naked Put", "Naked Call"];
 const CLOSE_TYPES = ["Assigned", "Bought to Close", "Rolled", "Expired Worthless"];
 
-export default function TradeForm({ open, onClose, onSave, trade }) {
+export default function TradeForm({ open, onClose, onSave, trade, accounts = [] }) {
+    const isNew = !trade;
     const [formData, setFormData] = useState({
         status: "Open",
         account: "",
