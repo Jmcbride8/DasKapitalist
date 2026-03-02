@@ -52,7 +52,7 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
         { value: Math.abs(totalRealized) },
         { value: Math.abs(totalUnrealized) }
     ];
-    const donutColors = ['#9ca3af', totalUnrealized >= 0 ? '#10b981' : '#ef4444'];
+    const donutColors = ['#d1d5db', totalUnrealized >= 0 ? '#10b981' : '#ef4444'];
     const pctColor = pct >= 0 ? 'text-emerald-600' : 'text-red-500';
 
     return (
