@@ -49,6 +49,11 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
         return `${month}/${day}`;
     };
 
+    const formatCollateral = (value) => {
+        if (value === 0) return '$0';
+        return `$${(value / 1000).toFixed(0)}k`;
+    };
+
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             const data = payload[0].payload;
@@ -56,6 +61,7 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                 <div className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg shadow-lg p-3">
                     <p className="font-semibold text-slate-900 mb-2">{formatPeriod(data.period)}</p>
                     <p className="font-semibold text-slate-900">Net: {formatCurrency(data.net)}</p>
+                    {data.collateral > 0 && <p className="text-slate-500 text-sm">Collateral: {formatCollateral(data.collateral)}</p>}
                 </div>
             );
         }
