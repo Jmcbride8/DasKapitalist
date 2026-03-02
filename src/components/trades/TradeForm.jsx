@@ -121,7 +121,16 @@ export default function TradeForm({ open, onClose, onSave, trade, accounts = [] 
                         </div>
                         <div className="space-y-2">
                             <Label>Account</Label>
-                            <Input value={formData.account} onChange={(e) => handleChange("account", e.target.value)} />
+                            {accounts.length > 0 ? (
+                                <Select value={formData.account} onValueChange={(v) => handleChange("account", v)}>
+                                    <SelectTrigger><SelectValue placeholder="Select account..." /></SelectTrigger>
+                                    <SelectContent>
+                                        {accounts.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+                                    </SelectContent>
+                                </Select>
+                            ) : (
+                                <Input value={formData.account} onChange={(e) => handleChange("account", e.target.value)} />
+                            )}
                         </div>
                         <div className="space-y-2">
                             <Label>Type</Label>
