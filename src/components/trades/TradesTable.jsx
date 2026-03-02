@@ -257,7 +257,11 @@ export default function TradesTable({ trades, onEdit, onClose, onDelete }) {
                                                 {trade.status}
                                             </Badge>
                                         ) : (
-                                            <Badge variant="secondary" className="text-xs bg-slate-100 text-slate-600">
+                                            <Badge 
+                                                variant="secondary" 
+                                                className="text-xs bg-slate-100 text-slate-600 hover:bg-slate-700 hover:text-white cursor-pointer transition-colors"
+                                                onClick={() => onEdit(trade)}
+                                            >
                                                 {trade.status}
                                             </Badge>
                                         )}
