@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const TRADE_TYPES = ["Trade", "Covered Call", "Cash Secured Put", "Long Call", "Long Put", "Naked Put", "Naked Call"];
-const CLOSE_TYPES = ["Assigned", "Bought to Close", "Rolled", "Expired Worthless"];
+const CLOSE_TYPES = ["Assigned", "Bought to Close", "Sold to Close", "Rolled", "Expired Worthless"];
 
 export default function TradeForm({ open, onClose, onSave, trade, accounts = [] }) {
     const isNew = !trade;

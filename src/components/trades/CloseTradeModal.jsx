@@ -100,6 +100,7 @@ export default function CloseTradeModal({ open, onClose, onSave, trade }) {
                             <SelectContent>
                                 <SelectItem value="Assigned">Assigned</SelectItem>
                                 <SelectItem value="Bought to Close">Bought to Close</SelectItem>
+                                <SelectItem value="Sold to Close">Sold to Close</SelectItem>
                                 <SelectItem value="Rolled">Rolled</SelectItem>
                                 <SelectItem value="Expired Worthless">Expired Worthless</SelectItem>
                             </SelectContent>

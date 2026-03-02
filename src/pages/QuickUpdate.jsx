@@ -255,7 +255,8 @@ export default function QuickUpdate() {
                             <SelectItem value={null}>None</SelectItem>
                             <SelectItem value="Assigned">Assigned</SelectItem>
                             <SelectItem value="Bought to Close">Bought to Close</SelectItem>
-                            <SelectItem value="Rolled">Rolled</SelectItem>
+                                            <SelectItem value="Sold to Close">Sold to Close</SelectItem>
+                                            <SelectItem value="Rolled">Rolled</SelectItem>
                             <SelectItem value="Expired Worthless">Expired Worthless</SelectItem>
                         </SelectContent>
                     </Select>
