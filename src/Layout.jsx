@@ -95,7 +95,10 @@ export default function Layout({ children, currentPageName }) {
             <div className="flex-1 flex flex-col overflow-auto">
                 {/* Mobile Header */}
                 <div className="md:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between">
-                    <h1 className="text-lg font-bold text-slate-900">Positions Tracker</h1>
+                    <div className="flex items-center gap-2">
+                        <span style={{background: 'linear-gradient(180deg, #B22234 33%, #FFFFFF 33%, #FFFFFF 66%, #3C3B6E 66%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 'bold', fontSize: '1.4rem'}}>☭</span>
+                        <h1 className="text-lg font-bold text-slate-900">DasKapitalist</h1>
+                    </div>
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
