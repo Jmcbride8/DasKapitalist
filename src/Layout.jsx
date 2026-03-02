@@ -5,6 +5,14 @@ import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X } from 'luc
 
 export default function Layout({ children, currentPageName }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === '/' || location.pathname === '') {
+            navigate('/Dashboards?view=weekly', { replace: true });
+        }
+    }, [location.pathname]);
     const navItems = [
         { 
             name: 'Dashboards', 
