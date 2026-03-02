@@ -116,8 +116,18 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                         className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
                     />
                     <YAxis
+                        yAxisId="profit"
                         tickFormatter={formatCurrency}
                         tick={{ fontSize: 11, fill: '#64748b' }}
+                        tickLine={false}
+                        axisLine={false}
+                        className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
+                    />
+                    <YAxis
+                        yAxisId="collateral"
+                        orientation="right"
+                        tickFormatter={formatCollateral}
+                        tick={{ fontSize: 11, fill: '#cbd5e1' }}
                         tickLine={false}
                         axisLine={false}
                         className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
