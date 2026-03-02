@@ -254,6 +254,7 @@ export default function Trades() {
                     onClose={() => { setShowForm(false); setEditingTrade(null); }}
                     onSave={handleSave}
                     trade={editingTrade}
+                    accounts={uniqueAccounts}
                 />
 
                 {/* Close Trade Modal */}
