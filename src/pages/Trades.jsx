@@ -93,7 +93,8 @@ export default function Trades() {
             const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(t.type);
             const accountMatch = !filterAccount || t.account === filterAccount;
             const tickerMatch = !filterTicker || t.ticker === filterTicker;
-            return typeMatch && accountMatch && tickerMatch;
+            const statusMatch = !filterStatus || t.status === filterStatus;
+            return typeMatch && accountMatch && tickerMatch && statusMatch;
         });
     }, [trades, selectedTypes, filterAccount, filterTicker]);
 
