@@ -21,11 +21,12 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
             }
 
             if (!periodMap[periodKey]) {
-                periodMap[periodKey] = { period: periodKey, net: 0 };
+                periodMap[periodKey] = { period: periodKey, net: 0, collateral: 0 };
             }
 
             const profit = trade.profit || 0;
             periodMap[periodKey].net += profit;
+            periodMap[periodKey].collateral += (trade.collateral_start || 0);
         });
 
         return Object.values(periodMap).sort((a, b) => new Date(a.period) - new Date(b.period));
