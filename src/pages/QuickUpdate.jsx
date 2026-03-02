@@ -290,9 +290,19 @@ export default function QuickUpdate() {
 
     return (
         <div className="p-6 max-w-[1400px] mx-auto">
-            <div className="mb-6">
-                <h1 className="text-3xl font-bold text-slate-900">Open Trades</h1>
-                <p className="text-slate-500 mt-2">Update open positions: Status, Current Value, Close Date, Income Week, Close Type</p>
+            <div className="mb-6 flex items-start justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold text-slate-900">Open Trades</h1>
+                    <p className="text-slate-500 mt-2">Update open positions: Status, Current Value, Close Date, Income Week, Close Type</p>
+                </div>
+                <Button
+                    onClick={() => setShowTradeForm(true)}
+                    size="icon"
+                    className="bg-slate-900 hover:bg-slate-800 text-white"
+                    title="Add Trade"
+                >
+                    <Plus className="w-4 h-4" />
+                </Button>
             </div>
 
             {/* Stats Cards */}
