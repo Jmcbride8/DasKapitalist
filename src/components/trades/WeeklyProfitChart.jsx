@@ -160,7 +160,7 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                             />
                         ))}
                     </Bar>
-                </BarChart>
+                </ComposedChart>
             </ResponsiveContainer>
         </div>
     );
