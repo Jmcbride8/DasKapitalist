@@ -7,7 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { format, differenceInDays, startOfWeek, endOfWeek } from 'date-fns';
-import { Check, X, ArrowUp, ArrowDown, DollarSign, TrendingUp, TrendingDown, BarChart3, Clock } from 'lucide-react';
+import { Check, X, ArrowUp, ArrowDown, DollarSign, TrendingUp, TrendingDown, BarChart3, Clock, Plus } from 'lucide-react';
+import TradeForm from '@/components/trades/TradeForm';
 
 // Returns days until expiration (negative = past), or null if no expiry
 const getDaysToExpiry = (expirationStr) => {
