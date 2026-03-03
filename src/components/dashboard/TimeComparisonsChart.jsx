@@ -23,8 +23,8 @@ const parseDate = (dateStr) => {
 };
 
 const fmtFull = (v) => {
-    if (!v && v !== 0) return '$0.00';
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v);
+    if (!v && v !== 0) return '$0';
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v);
 };
 
 const fmt = (v) => {
