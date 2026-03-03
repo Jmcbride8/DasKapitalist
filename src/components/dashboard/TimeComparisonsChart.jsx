@@ -292,7 +292,8 @@ export default function TimeComparisonsChart({ trades }) {
                         <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} barCategoryGap="20%">
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <YAxis allowDecimals={false} tickFormatter={(v) => Math.abs(v)} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <ReferenceLine y={0} stroke="#cbd5e1" />
                             <Tooltip
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
@@ -301,13 +302,13 @@ export default function TimeComparisonsChart({ trades }) {
                                         <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
                                             <p className="font-semibold text-slate-700 mb-1">{label}</p>
                                             <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">Wins:</span><span className="font-bold text-emerald-600">{d?.wins}</span></div>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{d?.losses}</span></div>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{d?.lossesAbs}</span></div>
                                         </div>
                                     );
                                 }}
                             />
                             <Bar dataKey="wins" name="Wins" fill="#10b981" radius={[3, 3, 0, 0]} />
-                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[3, 3, 0, 0]} />
+                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[0, 0, 3, 3]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
