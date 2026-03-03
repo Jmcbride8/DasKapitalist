@@ -175,7 +175,7 @@ export default function TimeComparisonsChart({ trades }) {
 
     // ── Top 10 trades by profit (horizontal stacked) ─────────────────────────
     const top10TradeData = useMemo(() => {
-        const sorted = [...closedTrades].filter(t => (t.profit || 0) > 0).sort((a, b) => b.profit - a.profit);
+        const sorted = [...closedTrades, ...openTrades].filter(t => (t.profit || 0) > 0).sort((a, b) => b.profit - a.profit);
         const top10 = sorted.slice(0, 10);
         const rest = sorted.slice(10).reduce((s, t) => s + (t.profit || 0), 0);
         const total = sorted.reduce((s, t) => s + (t.profit || 0), 0);
