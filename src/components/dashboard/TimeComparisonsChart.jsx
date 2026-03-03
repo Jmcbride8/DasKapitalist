@@ -124,7 +124,8 @@ export default function TimeComparisonsChart({ trades }) {
     // ── Top ticker stacked bar chart by period ──────────────────────────────
     const tickerStackData = useMemo(() => {
         const byPeriod = {};
-        closedTrades.forEach(t => {
+        const allTrades = [...closedTrades, ...openTrades];
+        allTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
             const d = parseDate(dateStr);
             if (!d || !t.ticker) return;
@@ -142,7 +143,6 @@ export default function TimeComparisonsChart({ trades }) {
                     const label = periodMode === 'weekly'
                         ? format(parseISO(period), 'MMM dd')
                         : format(new Date(period + '-01T00:00:00Z'), 'MMM yy');
-                    // Find top ticker by profit
                     const topTicker = Object.entries(tickers).sort(([, a], [, b]) => b - a)[0];
                     const topName = topTicker ? topTicker[0] : null;
                     const topVal = topTicker ? Math.max(0, topTicker[1]) : 0;
@@ -152,7 +152,7 @@ export default function TimeComparisonsChart({ trades }) {
                 } catch { return null; }
             })
             .filter(Boolean);
-    }, [closedTrades, periodMode]);
+    }, [closedTrades, openTrades, periodMode]);
 
     // ── Ticker performance matrix ─────────────────────────────────────────────
     const tickerMatrix = useMemo(() => {
