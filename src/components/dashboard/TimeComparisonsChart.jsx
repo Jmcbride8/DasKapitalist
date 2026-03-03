@@ -120,37 +120,39 @@ export default function TimeComparisonsChart({ trades }) {
         }).filter(Boolean);
     }, [closedTrades, openTrades, periodMode]);
 
-    // ── Win/Loss bar chart by month ──────────────────────────────────────────
+    // ── Win/Loss bar chart by week or month ──────────────────────────────────
     const winLossData = useMemo(() => {
-        const byMonth = {};
+        const byPeriod = {};
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
             const d = parseDate(dateStr);
             if (!d) return;
-            const key = format(d, 'yyyy-MM');
-            if (!byMonth[key]) byMonth[key] = { wins: 0, losses: 0 };
-            if ((t.profit || 0) >= 0) byMonth[key].wins += 1;
-            else byMonth[key].losses += 1;
+            const key = periodMode === 'weekly'
+                ? format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd')
+                : format(d, 'yyyy-MM');
+            if (!byPeriod[key]) byPeriod[key] = { wins: 0, losses: 0 };
+            if ((t.profit || 0) >= 0) byPeriod[key].wins += 1;
+            else byPeriod[key].losses += 1;
         });
-        return Object.entries(byMonth)
+        return Object.entries(byPeriod)
             .sort(([a], [b]) => a.localeCompare(b))
-            .map(([month, d]) => {
+            .map(([period, d]) => {
                 try {
-                    const monthDate = new Date(month + '-01T00:00:00Z');
-                    if (isNaN(monthDate.getTime())) return null;
+                    const label = periodMode === 'weekly'
+                        ? format(parseISO(period), 'MMM dd')
+                        : format(new Date(period + '-01T00:00:00Z'), 'MMM yy');
                     const total = d.wins + d.losses;
                     return {
-                        month: format(monthDate, 'MMM yy'),
+                        month: label,
                         winPct: total > 0 ? Math.round((d.wins / total) * 100) : 0,
                         lossPct: total > 0 ? Math.round((d.losses / total) * 100) : 0,
                         wins: d.wins,
                         losses: d.losses,
-                        winRate: total > 0 ? Math.round((d.wins / total) * 100) : 0,
                     };
                 } catch { return null; }
             })
             .filter(Boolean);
-    }, [closedTrades]);
+    }, [closedTrades, periodMode]);
 
     // ── Ticker performance matrix ─────────────────────────────────────────────
     const tickerMatrix = useMemo(() => {
