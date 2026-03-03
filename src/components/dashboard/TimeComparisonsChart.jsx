@@ -203,32 +203,7 @@ export default function TimeComparisonsChart({ trades }) {
         return { totalProfit, winRate, avgWin, avgLoss, profitFactor, maxStreak, totalTrades: closedTrades.length, avgWeekly, annualized };
     }, [closedTrades, cumulativeData]);
 
-    // ── Live market ───────────────────────────────────────────────────────────
-    const topTickers = useMemo(() => tickerMatrix.slice(0, 5).map(t => t.ticker), [tickerMatrix]);
 
-    const fetchLiveData = async () => {
-        if (!topTickers.length) return;
-        setLiveLoading(true);
-        setLiveError(null);
-        try {
-            const result = await base44.integrations.Core.InvokeLLM({
-                prompt: `Get the current stock price and today's percentage change for these tickers: ${topTickers.join(', ')}. Also provide a one-sentence market sentiment summary.
-Return JSON: { "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5, "change_dollar": 0.92 }], "sentiment": "..." }`,
-                add_context_from_internet: true,
-                response_json_schema: {
-                    type: 'object',
-                    properties: {
-                        stocks: { type: 'array', items: { type: 'object', properties: { ticker: { type: 'string' }, price: { type: 'number' }, change_pct: { type: 'number' }, change_dollar: { type: 'number' } } } },
-                        sentiment: { type: 'string' }
-                    }
-                }
-            });
-            setLiveData(result);
-        } catch (e) {
-            setLiveError('Could not fetch live data');
-        }
-        setLiveLoading(false);
-    };
 
     if (!closedTrades.length) {
         return (
