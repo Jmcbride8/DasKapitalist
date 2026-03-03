@@ -319,7 +319,7 @@ export default function TimeComparisonsChart({ trades }) {
                             <ReferenceLine y={0} stroke="#cbd5e1" strokeDasharray="3 3" />
                             <Bar dataKey="closed" name="Closed" stackId="a" radius={[0, 0, 0, 0]}>
                                 {cumulativeData.map((entry, index) => (
-                                    <Cell key={index} fill="#94a3b8" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                    <Cell key={index} fill="#cbd5e1" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                             <Bar dataKey="open" name="Open" stackId="a" radius={[3, 3, 0, 0]}>
