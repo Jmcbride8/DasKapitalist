@@ -116,14 +116,20 @@ export default function Home() {
                     </Button>
                 </div>
 
-                {/* Day P&L Summary */}
+                {/* Summary Cards */}
                 <div className="grid grid-cols-3 gap-4">
                     <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                        <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Est. Day P&L</div>
-                        <div className={`text-2xl font-bold ${totalDayPnL >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                            {fmtCurrency(totalDayPnL)}
-                        </div>
-                        <div className="text-xs text-slate-400 mt-1">manual entries below</div>
+                        <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">S&P 500 (SPY)</div>
+                        {priceData['SPY'] ? (
+                            <>
+                                <div className={`text-2xl font-bold ${priceData['SPY'].change_pct >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                                    {fmtPct(priceData['SPY'].change_pct)}
+                                </div>
+                                <div className="text-xs text-slate-400 mt-1">${priceData['SPY'].price?.toFixed(2)}</div>
+                            </>
+                        ) : (
+                            <div className="text-2xl font-bold text-slate-300">—</div>
+                        )}
                     </div>
                     <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
                         <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Positions Up</div>
