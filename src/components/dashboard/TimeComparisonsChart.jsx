@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { base44 } from '@/api/base44Client';
 import {
-    BarChart, Bar,
+    BarChart, Bar, ComposedChart,
     XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
     ReferenceLine, Cell
 } from 'recharts';
