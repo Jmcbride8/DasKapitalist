@@ -290,12 +290,12 @@ Return JSON: { "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5
             {/* Win / Loss Chart */}
             <div>
                 <h2 className="text-base font-semibold text-slate-800 mb-3">Win / Loss by Month</h2>
-                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                <div className="p-4">
                     <ResponsiveContainer width="100%" height={220}>
                         <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <YAxis tickFormatter={(v) => `${v}%`} domain={[0, 100]} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
@@ -303,16 +303,14 @@ Return JSON: { "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5
                                     return (
                                         <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
                                             <p className="font-semibold text-slate-700 mb-1">{label}</p>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">Wins:</span><span className="font-bold text-emerald-600">{d?.wins}</span></div>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{Math.abs(d?.losses || 0)}</span></div>
-                                            <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100"><span className="text-slate-500">Win Rate:</span><span className="font-bold text-slate-700">{d?.winRate}%</span></div>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">Wins:</span><span className="font-bold text-emerald-600">{d?.wins} ({d?.winPct}%)</span></div>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{d?.losses} ({d?.lossPct}%)</span></div>
                                         </div>
                                     );
                                 }}
                             />
-                            <ReferenceLine y={0} stroke="#cbd5e1" />
-                            <Bar dataKey="wins" name="Wins" fill="#10b981" radius={[3, 3, 0, 0]} />
-                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[0, 0, 3, 3]} />
+                            <Bar dataKey="winPct" name="Win %" stackId="a" fill="#10b981" radius={[0, 0, 0, 0]} />
+                            <Bar dataKey="lossPct" name="Loss %" stackId="a" fill="#f43f5e" radius={[3, 3, 0, 0]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
