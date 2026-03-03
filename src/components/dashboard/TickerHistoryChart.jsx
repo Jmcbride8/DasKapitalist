@@ -58,6 +58,9 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
     return (
         <Card className="border-0 shadow-none bg-white">
             <CardContent className="pt-6">
+                <p className="text-sm text-slate-500 italic mb-4">
+                    Every ticker tells a story. Identify where you have a genuine edge and let your winners run — but be honest about where the data says cut your losses and move on. Conviction without evidence is just hope.
+                </p>
                 <div className="relative">
                     {/* Min Impact input */}
                     <div className="mb-4 flex items-center gap-2">
