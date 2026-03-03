@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X } from 'lucide-react';
+import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, Home as HomeIcon } from 'lucide-react';
 
 export default function Layout({ children, currentPageName }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
