@@ -6,7 +6,7 @@ import {
     ReferenceLine, Cell
 } from 'recharts';
 import { format, parseISO, parse, startOfWeek, isValid } from 'date-fns';
-import { TrendingUp, Award, Activity, Target, RefreshCw, Zap } from 'lucide-react';
+import { TrendingUp, Award, Activity, Target, Zap } from 'lucide-react';
 
 const parseDate = (dateStr) => {
     if (!dateStr) return null;
