@@ -302,7 +302,7 @@ export default function TimeComparisonsChart({ trades }) {
                         <BarChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
-                            <YAxis tickFormatter={fmt} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
