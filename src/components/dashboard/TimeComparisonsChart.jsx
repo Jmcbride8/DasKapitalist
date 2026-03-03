@@ -145,6 +145,7 @@ export default function TimeComparisonsChart({ trades }) {
                     const total = d.wins + d.losses;
                     return {
                         month: label,
+                        date: period,
                         wins: d.wins,
                         losses: -d.losses,
                         lossesAbs: d.losses,
