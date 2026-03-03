@@ -144,10 +144,9 @@ export default function TimeComparisonsChart({ trades }) {
                     const total = d.wins + d.losses;
                     return {
                         month: label,
-                        winPct: total > 0 ? Math.round((d.wins / total) * 100) : 0,
-                        lossPct: total > 0 ? Math.round((d.losses / total) * 100) : 0,
                         wins: d.wins,
-                        losses: d.losses,
+                        losses: -d.losses,
+                        lossesAbs: d.losses,
                     };
                 } catch { return null; }
             })
