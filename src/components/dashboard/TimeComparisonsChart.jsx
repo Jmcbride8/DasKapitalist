@@ -187,7 +187,7 @@ export default function TimeComparisonsChart({ trades }) {
         row._rest = rest;
         row._total = total;
         return row;
-    }, [closedTrades]);
+    }, [closedTrades, openTrades]);
 
     // Gray shades palette
     const GRAYS = ['#1e293b','#334155','#475569','#64748b','#94a3b8','#b0bec5','#cbd5e1','#dde3ea','#e2e8f0','#f1f5f9'];
