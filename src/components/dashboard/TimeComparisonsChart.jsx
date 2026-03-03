@@ -332,9 +332,108 @@ export default function TimeComparisonsChart({ trades }) {
                 </div>
             </div>
 
-            {/* Top Ticker Stacked Chart */}
+            {/* Profit by Trade Type — horizontal stacked */}
+            {tradeTypeData && (
+                <div>
+                    <h2 className="text-base font-semibold text-slate-800 mb-2">Profit by Trade Type</h2>
+                    <div className="flex h-8 rounded-lg overflow-hidden w-full">
+                        {tradeTypeData._keys.map((k, i) => {
+                            const pct = (tradeTypeData[k] / tradeTypeData._total) * 100;
+                            return (
+                                <div
+                                    key={k}
+                                    style={{ width: `${pct}%`, background: GRAYS[i % GRAYS.length] }}
+                                    title={`${k}: ${fmtFull(tradeTypeData[k])} (${pct.toFixed(1)}%)`}
+                                    className="relative group transition-opacity hover:opacity-80"
+                                >
+                                    {pct > 8 && (
+                                        <span className="absolute inset-0 flex items-center justify-center text-[10px] font-semibold text-white truncate px-1">
+                                            {k}
+                                        </span>
+                                    )}
+                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex bg-slate-800 text-white text-[10px] rounded px-2 py-1 whitespace-nowrap z-10 shadow">
+                                        {k}: {fmtFull(tradeTypeData[k])} · {pct.toFixed(1)}%
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+                        {tradeTypeData._keys.map((k, i) => (
+                            <div key={k} className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                                <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: GRAYS[i % GRAYS.length] }} />
+                                {k} — {fmtFull(tradeTypeData[k])}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* Top 10 Trades by Profit — horizontal stacked */}
+            {top10TradeData && (
+                <div>
+                    <h2 className="text-base font-semibold text-slate-800 mb-2">Top 10 Trades by Profit</h2>
+                    <div className="flex h-8 rounded-lg overflow-hidden w-full">
+                        {top10TradeData._top10.map((t, i) => {
+                            const pct = (t.profit / top10TradeData._total) * 100;
+                            return (
+                                <div
+                                    key={i}
+                                    style={{ width: `${pct}%`, background: GRAYS[i % GRAYS.length] }}
+                                    title={`${t.ticker}: ${fmtFull(t.profit)}`}
+                                    className="relative group transition-opacity hover:opacity-80"
+                                >
+                                    {pct > 6 && (
+                                        <span className="absolute inset-0 flex items-center justify-center text-[10px] font-semibold text-white truncate px-1">
+                                            {t.ticker}
+                                        </span>
+                                    )}
+                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex bg-slate-800 text-white text-[10px] rounded px-2 py-1 whitespace-nowrap z-10 shadow">
+                                        {t.ticker}: {fmtFull(t.profit)} · {pct.toFixed(1)}%
+                                    </div>
+                                </div>
+                            );
+                        })}
+                        {top10TradeData._rest > 0 && (() => {
+                            const pct = (top10TradeData._rest / top10TradeData._total) * 100;
+                            return (
+                                <div
+                                    style={{ width: `${pct}%`, background: GRAYS[GRAYS.length - 1] }}
+                                    title={`Others: ${fmtFull(top10TradeData._rest)}`}
+                                    className="relative group transition-opacity hover:opacity-80"
+                                >
+                                    {pct > 6 && (
+                                        <span className="absolute inset-0 flex items-center justify-center text-[10px] font-semibold text-slate-500 truncate px-1">
+                                            Others
+                                        </span>
+                                    )}
+                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:flex bg-slate-800 text-white text-[10px] rounded px-2 py-1 whitespace-nowrap z-10 shadow">
+                                        Others: {fmtFull(top10TradeData._rest)} · {pct.toFixed(1)}%
+                                    </div>
+                                </div>
+                            );
+                        })()}
+                    </div>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+                        {top10TradeData._top10.map((t, i) => (
+                            <div key={i} className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                                <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: GRAYS[i % GRAYS.length] }} />
+                                {t.ticker} — {fmtFull(t.profit)}
+                            </div>
+                        ))}
+                        {top10TradeData._rest > 0 && (
+                            <div className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                                <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: GRAYS[GRAYS.length - 1] }} />
+                                Others — {fmtFull(top10TradeData._rest)}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+
+            {/* P&L by Top Ticker */}
             <div>
-                <h2 className="text-base font-semibold text-slate-800 mb-3">Weekly P&L by Top Ticker</h2>
+                <h2 className="text-base font-semibold text-slate-800 mb-3">P&L by Top Ticker</h2>
                 <div className="p-4">
                     <ResponsiveContainer width="100%" height={240}>
                         <BarChart data={tickerStackData} margin={{ top: 24, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
