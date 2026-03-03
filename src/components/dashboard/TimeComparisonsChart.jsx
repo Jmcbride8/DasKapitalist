@@ -8,6 +8,20 @@ import {
 import { format, parseISO, parse, startOfWeek, isValid } from 'date-fns';
 import { TrendingUp, Award, Activity, Target, RefreshCw, Zap } from 'lucide-react';
 
+const parseDate = (dateStr) => {
+    if (!dateStr) return null;
+    // Try ISO format first
+    let d = parseISO(dateStr);
+    if (isValid(d)) return d;
+    // Try M/d/yy format
+    d = parse(dateStr, 'M/d/yy', new Date());
+    if (isValid(d)) return d;
+    // Try M/d/yyyy format
+    d = parse(dateStr, 'M/d/yyyy', new Date());
+    if (isValid(d)) return d;
+    return null;
+};
+
 const fmtFull = (v) => {
     if (!v && v !== 0) return '$0.00';
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v);
