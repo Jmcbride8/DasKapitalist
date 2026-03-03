@@ -220,6 +220,13 @@ export default function TimeComparisonsChart({ trades }) {
     return (
         <div className="space-y-6">
 
+            {/* KPI Strip */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="amber" icon={Target} />
+                <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="avg win ÷ avg loss" color="slate" icon={Activity} />
+                <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
+            </div>
+
             {/* Period Toggle */}
             <div className="flex gap-2 border-b border-slate-200">
                 <button
@@ -242,13 +249,6 @@ export default function TimeComparisonsChart({ trades }) {
                 >
                     Monthly
                 </button>
-            </div>
-
-            {/* KPI Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="amber" icon={Target} />
-                <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="avg win ÷ avg loss" color="slate" icon={Activity} />
-                <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
             </div>
 
             {/* Cumulative P&L Chart */}
