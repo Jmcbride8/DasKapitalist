@@ -14,7 +14,7 @@ export default function Layout({ children, currentPageName }) {
         }
     }, [location.pathname]);
     const navItems = [
-        { name: 'Home', icon: LayoutDashboard, path: 'Home' },
+        { name: 'Home', icon: HomeIcon, path: 'Home' },
         { 
             name: 'Dashboards', 
             icon: LayoutDashboard, 
