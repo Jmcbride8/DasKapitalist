@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { base44 } from '@/api/base44Client';
 import {
-    AreaChart, Area, BarChart, Bar,
+    BarChart, Bar,
     XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-    ReferenceLine, Cell, Legend
+    ReferenceLine, Cell
 } from 'recharts';
 import { format, parseISO, parse, startOfWeek, isValid } from 'date-fns';
 import { TrendingUp, Award, Activity, Target, RefreshCw, Zap } from 'lucide-react';
