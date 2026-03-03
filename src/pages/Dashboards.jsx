@@ -63,7 +63,7 @@ export default function Dashboards() {
         weekly: { title: 'Streaks', component: <WeeklyTotalsChart trades={filteredTrades} /> },
         ticker: { title: 'Edge', component: <><TickerHistoryChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><TickerTradesTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
         open: { title: 'Exposure', component: <><OpenPositionsChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><OpenPositionsTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
-        time: { title: 'Time Comparisons', component: <TimeComparisonsChart trades={filteredTrades} /> }
+        time: { title: 'Track Record', component: <TimeComparisonsChart trades={filteredTrades} /> }
     };
 
     const dashboard = dashboardMap[view] || dashboardMap.weekly;

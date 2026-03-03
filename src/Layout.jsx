@@ -23,7 +23,7 @@ export default function Layout({ children, currentPageName }) {
                 { name: 'Streaks', tab: 'weekly' },
                 { name: 'Edge', tab: 'ticker' },
                 { name: 'Exposure', tab: 'open' },
-                { name: 'Time Comparisons', tab: 'time' }
+                { name: 'Track Record', tab: 'time' }
             ]
         },
         { name: 'Summaries', icon: FileText, path: 'Summaries' },

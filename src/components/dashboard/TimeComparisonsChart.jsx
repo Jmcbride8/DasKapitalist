@@ -1,12 +1,17 @@
 import React, { useState, useMemo } from 'react';
 import { base44 } from '@/api/base44Client';
 import {
-    AreaChart, Area, BarChart, Bar, LineChart, Line,
+    AreaChart, Area, BarChart, Bar,
     XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-    ReferenceLine, Cell, RadarChart, PolarGrid, PolarAngleAxis, Radar
+    ReferenceLine, Cell, Legend
 } from 'recharts';
-import { format, startOfMonth, getWeek, getYear, parseISO, subMonths, startOfWeek, endOfWeek, isWithinInterval } from 'date-fns';
-import { TrendingUp, TrendingDown, Zap, Target, Award, Activity, RefreshCw } from 'lucide-react';
+import { format, parseISO, startOfWeek } from 'date-fns';
+import { TrendingUp, Award, Activity, Target, RefreshCw, Zap } from 'lucide-react';
+
+const fmtFull = (v) => {
+    if (!v && v !== 0) return '$0.00';
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v);
+};
 
 const fmt = (v) => {
     if (v === null || v === undefined || isNaN(v)) return '$0';
@@ -15,14 +20,6 @@ const fmt = (v) => {
     return `${v < 0 ? '-' : ''}$${abs.toFixed(0)}`;
 };
 
-const fmtFull = (v) => {
-    if (!v && v !== 0) return '$0.00';
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v);
-};
-
-const pct = (v) => `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`;
-
-// ── Metric pill ──────────────────────────────────────────────────────────────
 const Pill = ({ label, value, sub, color = 'emerald', icon: Icon }) => {
     const colors = {
         emerald: 'from-emerald-50 to-emerald-100/50 border-emerald-200 text-emerald-700',
@@ -30,6 +27,7 @@ const Pill = ({ label, value, sub, color = 'emerald', icon: Icon }) => {
         amber: 'from-amber-50 to-amber-100/50 border-amber-200 text-amber-700',
         rose: 'from-rose-50 to-rose-100/50 border-rose-200 text-rose-700',
         violet: 'from-violet-50 to-violet-100/50 border-violet-200 text-violet-700',
+        slate: 'from-slate-50 to-slate-100/50 border-slate-200 text-slate-700',
     };
     return (
         <div className={`rounded-xl border bg-gradient-to-br p-4 flex flex-col gap-1 ${colors[color]}`}>
@@ -43,8 +41,7 @@ const Pill = ({ label, value, sub, color = 'emerald', icon: Icon }) => {
     );
 };
 
-// ── Custom tooltip ───────────────────────────────────────────────────────────
-const ChartTooltip = ({ active, payload, label, prefix = '$' }) => {
+const ChartTooltip = ({ active, payload, label }) => {
     if (!active || !payload?.length) return null;
     return (
         <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
@@ -62,15 +59,13 @@ const ChartTooltip = ({ active, payload, label, prefix = '$' }) => {
     );
 };
 
-// ── Main Component ───────────────────────────────────────────────────────────
 export default function TimeComparisonsChart({ trades }) {
-    const [activeTab, setActiveTab] = useState('cumulative');
+    const [activeTab, setActiveTab] = useState('tickers');
     const [liveData, setLiveData] = useState(null);
     const [liveLoading, setLiveLoading] = useState(false);
     const [liveError, setLiveError] = useState(null);
 
     const closedTrades = useMemo(() => trades.filter(t => t.status === 'Closed' && t.profit != null), [trades]);
-    const allTrades = useMemo(() => trades.filter(t => t.profit != null || t.open_premium != null), [trades]);
 
     // ── Cumulative P&L by week ───────────────────────────────────────────────
     const cumulativeData = useMemo(() => {
@@ -83,9 +78,7 @@ export default function TimeComparisonsChart({ trades }) {
                 if (isNaN(d.getTime())) return;
                 const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
                 byWeek[key] = (byWeek[key] || 0) + (t.profit || 0);
-            } catch {
-                return;
-            }
+            } catch { return; }
         });
         const sorted = Object.entries(byWeek).sort(([a], [b]) => a.localeCompare(b));
         let cumulative = 0;
@@ -93,14 +86,12 @@ export default function TimeComparisonsChart({ trades }) {
             try {
                 cumulative += profit;
                 return { week: format(parseISO(week), 'MMM dd'), profit, cumulative, date: week };
-            } catch {
-                return null;
-            }
+            } catch { return null; }
         }).filter(Boolean);
     }, [closedTrades]);
 
-    // ── Monthly breakdown ────────────────────────────────────────────────────
-    const monthlyData = useMemo(() => {
+    // ── Win/Loss bar chart by month ──────────────────────────────────────────
+    const winLossData = useMemo(() => {
         const byMonth = {};
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
@@ -109,13 +100,10 @@ export default function TimeComparisonsChart({ trades }) {
                 const d = parseISO(dateStr);
                 if (isNaN(d.getTime())) return;
                 const key = format(d, 'yyyy-MM');
-                if (!byMonth[key]) byMonth[key] = { profit: 0, trades: 0, wins: 0 };
-                byMonth[key].profit += t.profit || 0;
-                byMonth[key].trades += 1;
-                if ((t.profit || 0) > 0) byMonth[key].wins += 1;
-            } catch {
-                return;
-            }
+                if (!byMonth[key]) byMonth[key] = { wins: 0, losses: 0 };
+                if ((t.profit || 0) >= 0) byMonth[key].wins += 1;
+                else byMonth[key].losses += 1;
+            } catch { return; }
         });
         return Object.entries(byMonth)
             .sort(([a], [b]) => a.localeCompare(b))
@@ -125,64 +113,23 @@ export default function TimeComparisonsChart({ trades }) {
                     if (isNaN(monthDate.getTime())) return null;
                     return {
                         month: format(monthDate, 'MMM yy'),
-                        profit: d.profit,
-                        winRate: d.trades > 0 ? (d.wins / d.trades) * 100 : 0,
-                        trades: d.trades,
-                        rawMonth: month,
+                        wins: d.wins,
+                        losses: -d.losses,
+                        winRate: d.wins + d.losses > 0 ? Math.round((d.wins / (d.wins + d.losses)) * 100) : 0,
                     };
-                } catch {
-                    return null;
-                }
+                } catch { return null; }
             })
             .filter(Boolean);
     }, [closedTrades]);
-
-    // ── Year-over-year comparison ────────────────────────────────────────────
-    const yoyData = useMemo(() => {
-        const byYearMonth = {};
-        closedTrades.forEach(t => {
-            const dateStr = t.income_week || t.close_date || t.open_date;
-            if (!dateStr) return;
-            const d = parseISO(dateStr);
-            if (isNaN(d.getTime())) return;
-            const year = getYear(d);
-            const monthIdx = d.getMonth();
-            const key = `${year}-${monthIdx}`;
-            byYearMonth[key] = (byYearMonth[key] || 0) + (t.profit || 0);
-        });
-        const years = [...new Set(closedTrades.map(t => {
-            const ds = t.income_week || t.close_date || t.open_date;
-            return ds ? getYear(parseISO(ds)) : null;
-        }).filter(Boolean))].sort();
-
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return monthNames.map((name, idx) => {
-            const row = { month: name };
-            years.forEach(y => { row[y] = byYearMonth[`${y}-${idx}`] || 0; });
-            return row;
-        });
-    }, [closedTrades]);
-
-    const yoyYears = useMemo(() => {
-        return [...new Set(closedTrades.map(t => {
-            const ds = t.income_week || t.close_date || t.open_date;
-            if (!ds) return null;
-            const d = parseISO(ds);
-            return isNaN(d.getTime()) ? null : getYear(d);
-        }).filter(Boolean))].sort();
-    }, [closedTrades]);
-
-    const YEAR_COLORS = ['#6366f1', '#10b981', '#f59e0b', '#e11d48', '#8b5cf6'];
 
     // ── Ticker performance matrix ─────────────────────────────────────────────
     const tickerMatrix = useMemo(() => {
         const byTicker = {};
         closedTrades.forEach(t => {
             if (!t.ticker) return;
-            if (!byTicker[t.ticker]) byTicker[t.ticker] = { profit: 0, trades: 0, wins: 0, premiums: 0 };
+            if (!byTicker[t.ticker]) byTicker[t.ticker] = { profit: 0, trades: 0, wins: 0 };
             byTicker[t.ticker].profit += t.profit || 0;
             byTicker[t.ticker].trades += 1;
-            byTicker[t.ticker].premiums += t.open_premium || 0;
             if ((t.profit || 0) > 0) byTicker[t.ticker].wins += 1;
         });
         return Object.entries(byTicker)
@@ -190,13 +137,15 @@ export default function TimeComparisonsChart({ trades }) {
                 ticker,
                 profit: d.profit,
                 trades: d.trades,
+                wins: d.wins,
+                losses: d.trades - d.wins,
                 winRate: d.trades > 0 ? (d.wins / d.trades) * 100 : 0,
                 avgProfit: d.trades > 0 ? d.profit / d.trades : 0,
             }))
             .sort((a, b) => b.profit - a.profit);
     }, [closedTrades]);
 
-    // ── Summary KPIs ─────────────────────────────────────────────────────────
+    // ── KPIs ─────────────────────────────────────────────────────────────────
     const kpis = useMemo(() => {
         const totalProfit = closedTrades.reduce((s, t) => s + (t.profit || 0), 0);
         const wins = closedTrades.filter(t => (t.profit || 0) > 0);
@@ -206,7 +155,12 @@ export default function TimeComparisonsChart({ trades }) {
         const avgLoss = losses.length > 0 ? losses.reduce((s, t) => s + t.profit, 0) / losses.length : 0;
         const profitFactor = avgLoss !== 0 ? Math.abs(avgWin / avgLoss) : null;
 
-        // streak
+        // Avg weekly profit
+        const weeklyProfits = cumulativeData.map(d => d.profit);
+        const avgWeekly = weeklyProfits.length > 0 ? weeklyProfits.reduce((a, b) => a + b, 0) / weeklyProfits.length : 0;
+        const annualized = avgWeekly * 52;
+
+        // Best streak
         const sorted = [...closedTrades].sort((a, b) => {
             const da = a.income_week || a.close_date || a.open_date || '';
             const db = b.income_week || b.close_date || b.open_date || '';
@@ -218,10 +172,10 @@ export default function TimeComparisonsChart({ trades }) {
             else streak = 0;
         });
 
-        return { totalProfit, winRate, avgWin, avgLoss, profitFactor, maxStreak, totalTrades: closedTrades.length };
-    }, [closedTrades]);
+        return { totalProfit, winRate, avgWin, avgLoss, profitFactor, maxStreak, totalTrades: closedTrades.length, avgWeekly, annualized };
+    }, [closedTrades, cumulativeData]);
 
-    // ── Live market data ──────────────────────────────────────────────────────
+    // ── Live market ───────────────────────────────────────────────────────────
     const topTickers = useMemo(() => tickerMatrix.slice(0, 5).map(t => t.ticker), [tickerMatrix]);
 
     const fetchLiveData = async () => {
@@ -230,13 +184,8 @@ export default function TimeComparisonsChart({ trades }) {
         setLiveError(null);
         try {
             const result = await base44.integrations.Core.InvokeLLM({
-                prompt: `Get the current stock price and today's percentage change for these tickers: ${topTickers.join(', ')}. 
-                Also provide a one-sentence market sentiment summary.
-                Return JSON with:
-                {
-                  "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5, "change_dollar": 0.92 }],
-                  "sentiment": "Market is showing cautious optimism..."
-                }`,
+                prompt: `Get the current stock price and today's percentage change for these tickers: ${topTickers.join(', ')}. Also provide a one-sentence market sentiment summary.
+Return JSON: { "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5, "change_dollar": 0.92 }], "sentiment": "..." }`,
                 add_context_from_internet: true,
                 response_json_schema: {
                     type: 'object',
@@ -253,10 +202,6 @@ export default function TimeComparisonsChart({ trades }) {
         setLiveLoading(false);
     };
 
-    const tabs = [
-        { id: 'tickers', label: 'Ticker Matrix' },
-    ];
-
     if (!closedTrades.length) {
         return (
             <div className="flex items-center justify-center h-64 text-slate-400 text-sm">
@@ -267,11 +212,70 @@ export default function TimeComparisonsChart({ trades }) {
 
     return (
         <div className="space-y-6">
-             {/* KPI Strip */}
-             <div className="grid grid-cols-2 md:grid-cols-2 gap-3">
-                 <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="win/loss ratio" color="violet" icon={Activity} />
-                 <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
-             </div>
+
+            {/* KPI Strip */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <Pill label="Total Realized" value={fmtFull(kpis.totalProfit)} sub={`${kpis.totalTrades} closed trades`} color={kpis.totalProfit >= 0 ? 'emerald' : 'rose'} icon={TrendingUp} />
+                <Pill label="Avg Weekly" value={fmt(kpis.avgWeekly)} sub="per income week" color="blue" icon={Activity} />
+                <Pill label="Annualized" value={fmt(kpis.annualized)} sub="projected at current pace" color="violet" icon={Zap} />
+                <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="amber" icon={Target} />
+                <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="avg win ÷ avg loss" color="slate" icon={Activity} />
+                <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
+            </div>
+
+            {/* Cumulative P&L Chart */}
+            <div>
+                <h2 className="text-base font-semibold text-slate-800 mb-3">Cumulative P&L</h2>
+                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                    <ResponsiveContainer width="100%" height={280}>
+                        <AreaChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+                            <defs>
+                                <linearGradient id="cumulativeGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.25} />
+                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                                </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                            <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+                            <YAxis tickFormatter={fmt} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <Tooltip content={<ChartTooltip />} />
+                            <ReferenceLine y={0} stroke="#cbd5e1" strokeDasharray="3 3" />
+                            <Area type="monotone" dataKey="cumulative" name="Cumulative P&L" stroke="#10b981" strokeWidth={2} fill="url(#cumulativeGrad)" dot={false} />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+            </div>
+
+            {/* Win / Loss Chart */}
+            <div>
+                <h2 className="text-base font-semibold text-slate-800 mb-3">Win / Loss by Month</h2>
+                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                    <ResponsiveContainer width="100%" height={220}>
+                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                            <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <Tooltip
+                                content={({ active, payload, label }) => {
+                                    if (!active || !payload?.length) return null;
+                                    const d = payload[0]?.payload;
+                                    return (
+                                        <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
+                                            <p className="font-semibold text-slate-700 mb-1">{label}</p>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">Wins:</span><span className="font-bold text-emerald-600">{d?.wins}</span></div>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{Math.abs(d?.losses || 0)}</span></div>
+                                            <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100"><span className="text-slate-500">Win Rate:</span><span className="font-bold text-slate-700">{d?.winRate}%</span></div>
+                                        </div>
+                                    );
+                                }}
+                            />
+                            <ReferenceLine y={0} stroke="#cbd5e1" />
+                            <Bar dataKey="wins" name="Wins" fill="#10b981" radius={[3, 3, 0, 0]} />
+                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[0, 0, 3, 3]} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            </div>
 
             {/* Live Market Panel */}
             {topTickers.length > 0 && (
@@ -315,45 +319,31 @@ export default function TimeComparisonsChart({ trades }) {
                 </div>
             )}
 
-            {/* Tab Navigation */}
-            <div className="flex gap-1 bg-slate-100 rounded-xl p-1 w-fit">
-                {tabs.map(tab => (
-                    <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                            activeTab === tab.id
-                                ? 'bg-white text-slate-900 shadow-sm'
-                                : 'text-slate-500 hover:text-slate-700'
-                        }`}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
-            </div>
-
-
-
-            {/* ── Ticker Matrix ── */}
-            {activeTab === 'tickers' && (
+            {/* Ticker Matrix */}
+            <div>
+                <h2 className="text-base font-semibold text-slate-800 mb-3">Ticker Matrix</h2>
                 <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
                     <table className="w-full text-xs">
                         <thead className="bg-slate-50">
                             <tr>
-                                {['Ticker', 'Total P&L', 'Trades', 'Win Rate', 'Avg/Trade', 'Efficiency'].map(h => (
+                                {['Ticker', 'Total P&L', 'Trades', 'W / L', 'Win Rate', 'Avg/Trade'].map(h => (
                                     <th key={h} className="text-left px-4 py-3 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">{h}</th>
                                 ))}
                             </tr>
                         </thead>
                         <tbody>
-                            {tickerMatrix.map((row, i) => {
+                            {tickerMatrix.map((row) => {
                                 const maxProfit = Math.max(...tickerMatrix.map(r => Math.abs(r.profit)));
-                                const efficiency = maxProfit > 0 ? (row.profit / maxProfit) * 100 : 0;
                                 return (
                                     <tr key={row.ticker} className="border-t border-slate-50 hover:bg-slate-50 transition-colors">
                                         <td className="px-4 py-3 font-bold text-slate-800">{row.ticker}</td>
                                         <td className={`px-4 py-3 font-bold ${row.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.profit)}</td>
                                         <td className="px-4 py-3 text-slate-500">{row.trades}</td>
+                                        <td className="px-4 py-3">
+                                            <span className="text-emerald-600 font-semibold">{row.wins}W</span>
+                                            <span className="text-slate-300 mx-1">/</span>
+                                            <span className="text-rose-500 font-semibold">{row.losses}L</span>
+                                        </td>
                                         <td className="px-4 py-3">
                                             <div className="flex items-center gap-2">
                                                 <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
@@ -363,23 +353,13 @@ export default function TimeComparisonsChart({ trades }) {
                                             </div>
                                         </td>
                                         <td className={`px-4 py-3 font-medium ${row.avgProfit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.avgProfit)}</td>
-                                        <td className="px-4 py-3">
-                                            <div className="flex items-center gap-2">
-                                                <div className="w-20 h-2 bg-slate-100 rounded-full overflow-hidden">
-                                                    <div
-                                                        className={`h-full rounded-full ${efficiency >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`}
-                                                        style={{ width: `${Math.abs(efficiency)}%` }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </td>
                                     </tr>
                                 );
                             })}
                         </tbody>
                     </table>
                 </div>
-            )}
+            </div>
         </div>
     );
 }
