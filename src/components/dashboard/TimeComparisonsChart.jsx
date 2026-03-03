@@ -220,6 +220,11 @@ export default function TimeComparisonsChart({ trades }) {
     return (
         <div className="space-y-6">
 
+            {/* Blurb */}
+            <p className="text-sm text-slate-500 italic">
+                Track record tells the truth. See how your P&L compounds over time, and which tickers are carrying the week.
+            </p>
+
             {/* KPI Strip */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="amber" icon={Target} />
