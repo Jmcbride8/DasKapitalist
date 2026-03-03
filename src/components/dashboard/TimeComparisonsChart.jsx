@@ -75,9 +75,7 @@ const ChartTooltip = ({ active, payload, label }) => {
 
 export default function TimeComparisonsChart({ trades }) {
     const [activeTab, setActiveTab] = useState('tickers');
-    const [liveData, setLiveData] = useState(null);
-    const [liveLoading, setLiveLoading] = useState(false);
-    const [liveError, setLiveError] = useState(null);
+
 
     const closedTrades = useMemo(() => trades.filter(t => t.status === 'Closed' && t.profit != null), [trades]);
     const openTrades = useMemo(() => trades.filter(t => t.status === 'Open' && t.profit != null), [trades]);
