@@ -287,13 +287,13 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* Win / Loss Chart */}
             <div>
-                <h2 className="text-base font-semibold text-slate-800 mb-3">Win / Loss by Month</h2>
+                <h2 className="text-base font-semibold text-slate-800 mb-3">Win / Loss</h2>
                 <div className="p-4">
                     <ResponsiveContainer width="100%" height={220}>
-                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} barCategoryGap="20%">
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <YAxis tickFormatter={(v) => `${v}%`} domain={[0, 100]} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
@@ -301,14 +301,14 @@ export default function TimeComparisonsChart({ trades }) {
                                     return (
                                         <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
                                             <p className="font-semibold text-slate-700 mb-1">{label}</p>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">Wins:</span><span className="font-bold text-emerald-600">{d?.wins} ({d?.winPct}%)</span></div>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{d?.losses} ({d?.lossPct}%)</span></div>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">Wins:</span><span className="font-bold text-emerald-600">{d?.wins}</span></div>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{d?.losses}</span></div>
                                         </div>
                                     );
                                 }}
                             />
-                            <Bar dataKey="winPct" name="Win %" stackId="a" fill="#10b981" radius={[0, 0, 0, 0]} />
-                            <Bar dataKey="lossPct" name="Loss %" stackId="a" fill="#f43f5e" radius={[3, 3, 0, 0]} />
+                            <Bar dataKey="wins" name="Wins" fill="#10b981" radius={[3, 3, 0, 0]} />
+                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[3, 3, 0, 0]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
