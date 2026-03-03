@@ -157,7 +157,7 @@ export default function TimeComparisonsChart({ trades }) {
     // ── Profit by trade type (horizontal stacked) ────────────────────────────
     const tradeTypeData = useMemo(() => {
         const byType = {};
-        closedTrades.forEach(t => {
+        [...closedTrades, ...openTrades].forEach(t => {
             const type = t.type || 'Unknown';
             byType[type] = (byType[type] || 0) + (t.profit || 0);
         });
@@ -171,7 +171,7 @@ export default function TimeComparisonsChart({ trades }) {
         row._keys = sorted.map(([k]) => k);
         row._total = total;
         return row;
-    }, [closedTrades]);
+    }, [closedTrades, openTrades]);
 
     // ── Top 10 trades by profit (horizontal stacked) ─────────────────────────
     const top10TradeData = useMemo(() => {
