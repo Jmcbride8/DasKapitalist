@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
-import { RefreshCw, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Treemap, ResponsiveContainer, Tooltip } from 'recharts';
 
 const fmtCurrency = (v) => {
     if (!v && v !== 0) return '$0';
