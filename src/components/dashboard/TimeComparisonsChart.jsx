@@ -138,11 +138,14 @@ export default function TimeComparisonsChart({ trades }) {
                 try {
                     const monthDate = new Date(month + '-01T00:00:00Z');
                     if (isNaN(monthDate.getTime())) return null;
+                    const total = d.wins + d.losses;
                     return {
                         month: format(monthDate, 'MMM yy'),
+                        winPct: total > 0 ? Math.round((d.wins / total) * 100) : 0,
+                        lossPct: total > 0 ? Math.round((d.losses / total) * 100) : 0,
                         wins: d.wins,
-                        losses: -d.losses,
-                        winRate: d.wins + d.losses > 0 ? Math.round((d.wins / (d.wins + d.losses)) * 100) : 0,
+                        losses: d.losses,
+                        winRate: total > 0 ? Math.round((d.wins / total) * 100) : 0,
                     };
                 } catch { return null; }
             })
