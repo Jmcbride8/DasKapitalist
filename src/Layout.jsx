@@ -20,9 +20,9 @@ export default function Layout({ children, currentPageName }) {
             path: 'Dashboards',
             isCollapsible: true,
             subItems: [
-                { name: 'Weekly Totals', tab: 'weekly' },
-                { name: 'Ticker History', tab: 'ticker' },
-                { name: 'Open Positions', tab: 'open' },
+                { name: 'Streaks', tab: 'weekly' },
+                { name: 'Edge', tab: 'ticker' },
+                { name: 'Exposure', tab: 'open' },
                 { name: 'Time Comparisons', tab: 'time' }
             ]
         },

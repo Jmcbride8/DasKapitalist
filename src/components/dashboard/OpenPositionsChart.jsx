@@ -98,7 +98,7 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
     return (
         <Card className="border-0 shadow-none bg-white -mx-4 md:mx-0">
             <CardContent className="pt-6 px-0">
-                <p className="text-sm text-slate-500 italic mb-4 px-4">
+                <p className="text-sm text-slate-500 italic mb-8 px-4">
                     Know your exposure at all times. Your wins create margin — but margin creates temptation. Monitor where you're concentrated, where unrealized gains are masking real risk, and never let excitement cloud the one question that matters: what's the most I can lose right now?
                 </p>
                 <ResponsiveContainer width="100%" height={400}>

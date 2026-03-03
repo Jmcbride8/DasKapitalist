@@ -60,9 +60,9 @@ export default function Dashboards() {
     }, [trades, selectedYear, selectedTicker, selectedTypes]);
 
     const dashboardMap = {
-        weekly: { title: 'Weekly Totals', component: <WeeklyTotalsChart trades={filteredTrades} /> },
-        ticker: { title: 'Ticker History', component: <><TickerHistoryChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><TickerTradesTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
-        open: { title: 'Open Positions', component: <><OpenPositionsChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><OpenPositionsTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
+        weekly: { title: 'Streaks', component: <WeeklyTotalsChart trades={filteredTrades} /> },
+        ticker: { title: 'Edge', component: <><TickerHistoryChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><TickerTradesTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
+        open: { title: 'Exposure', component: <><OpenPositionsChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><OpenPositionsTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
         time: { title: 'Time Comparisons', component: <TimeComparisonsChart trades={filteredTrades} /> }
     };
 
