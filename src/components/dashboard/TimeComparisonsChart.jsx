@@ -253,7 +253,7 @@ Return JSON: { "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5
             {/* Cumulative P&L Chart */}
             <div>
                 <h2 className="text-base font-semibold text-slate-800 mb-3">Cumulative P&L</h2>
-                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                <div className="p-4">
                     <ResponsiveContainer width="100%" height={280}>
                         <BarChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
