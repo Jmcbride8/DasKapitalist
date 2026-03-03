@@ -51,6 +51,7 @@ import Dashboards from './pages/Dashboards';
 import QuickUpdate from './pages/QuickUpdate';
 import Summaries from './pages/Summaries';
 import Trades from './pages/Trades';
+import Home from './pages/Home';
 import __Layout from './Layout.jsx';
 
 
@@ -59,6 +60,7 @@ export const PAGES = {
     "QuickUpdate": QuickUpdate,
     "Summaries": Summaries,
     "Trades": Trades,
+    "Home": Home,
 }
 
 export const pagesConfig = {
