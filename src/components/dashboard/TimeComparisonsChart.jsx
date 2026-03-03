@@ -154,6 +154,44 @@ export default function TimeComparisonsChart({ trades }) {
             .filter(Boolean);
     }, [closedTrades, openTrades, periodMode]);
 
+    // ── Profit by trade type (horizontal stacked) ────────────────────────────
+    const tradeTypeData = useMemo(() => {
+        const byType = {};
+        closedTrades.forEach(t => {
+            const type = t.type || 'Unknown';
+            byType[type] = (byType[type] || 0) + (t.profit || 0);
+        });
+        const sorted = Object.entries(byType)
+            .filter(([, v]) => v > 0)
+            .sort(([, a], [, b]) => b - a);
+        if (!sorted.length) return null;
+        const total = sorted.reduce((s, [, v]) => s + v, 0);
+        const row = { total };
+        sorted.forEach(([k, v]) => { row[k] = v; });
+        row._keys = sorted.map(([k]) => k);
+        row._total = total;
+        return row;
+    }, [closedTrades]);
+
+    // ── Top 10 trades by profit (horizontal stacked) ─────────────────────────
+    const top10TradeData = useMemo(() => {
+        const sorted = [...closedTrades].filter(t => (t.profit || 0) > 0).sort((a, b) => b.profit - a.profit);
+        const top10 = sorted.slice(0, 10);
+        const rest = sorted.slice(10).reduce((s, t) => s + (t.profit || 0), 0);
+        const total = sorted.reduce((s, t) => s + (t.profit || 0), 0);
+        if (!total) return null;
+        const row = { total };
+        top10.forEach((t, i) => { row[`t${i}`] = t.profit; row[`_label${i}`] = t.ticker; });
+        if (rest > 0) { row['rest'] = rest; }
+        row._top10 = top10;
+        row._rest = rest;
+        row._total = total;
+        return row;
+    }, [closedTrades]);
+
+    // Gray shades palette
+    const GRAYS = ['#1e293b','#334155','#475569','#64748b','#94a3b8','#b0bec5','#cbd5e1','#dde3ea','#e2e8f0','#f1f5f9'];
+
     // ── Ticker performance matrix ─────────────────────────────────────────────
     const tickerMatrix = useMemo(() => {
         const byTicker = {};
