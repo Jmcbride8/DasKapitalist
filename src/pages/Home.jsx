@@ -86,9 +86,7 @@ export default function Home() {
         return { bg: '#7f1d1d', text: '#fff' };
     };
 
-    const totalDayPnL = useMemo(() => {
-        return Object.values(manualGains).reduce((s, v) => s + (v || 0), 0);
-    }, [manualGains]);
+
 
     if (isLoading) {
         return <div className="flex items-center justify-center h-64 text-slate-400">Loading positions...</div>;
