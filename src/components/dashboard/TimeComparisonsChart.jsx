@@ -81,43 +81,44 @@ export default function TimeComparisonsChart({ trades }) {
     const closedTrades = useMemo(() => trades.filter(t => t.status === 'Closed' && t.profit != null), [trades]);
     const openTrades = useMemo(() => trades.filter(t => t.status === 'Open' && t.profit != null), [trades]);
 
-    // ── Cumulative P&L by week (stacked: closed gray + open green/red) ────────
+    // ── Cumulative P&L by week or month ───────────────────────────────────────
     const cumulativeData = useMemo(() => {
-        const byWeek = {};
+        const byPeriod = {};
+
+        const getKey = (dateStr) => {
+            const d = parseDate(dateStr);
+            if (!d) return null;
+            return periodMode === 'weekly'
+                ? format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd')
+                : format(d, 'yyyy-MM');
+        };
 
         closedTrades.forEach(t => {
-            const dateStr = t.income_week || t.close_date || t.open_date;
-            const d = parseDate(dateStr);
-            if (!d) return;
-            const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
-            if (!byWeek[key]) byWeek[key] = { closed: 0, open: 0 };
-            byWeek[key].closed += t.profit || 0;
+            const key = getKey(t.income_week || t.close_date || t.open_date);
+            if (!key) return;
+            if (!byPeriod[key]) byPeriod[key] = { closed: 0, open: 0 };
+            byPeriod[key].closed += t.profit || 0;
         });
 
-        // Assign open trades to their income_week
         openTrades.forEach(t => {
-            const dateStr = t.income_week || t.open_date;
-            const d = parseDate(dateStr);
-            if (!d) return;
-            const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
-            if (!byWeek[key]) byWeek[key] = { closed: 0, open: 0 };
-            byWeek[key].open += t.profit || 0;
+            const key = getKey(t.income_week || t.open_date);
+            if (!key) return;
+            if (!byPeriod[key]) byPeriod[key] = { closed: 0, open: 0 };
+            byPeriod[key].open += t.profit || 0;
         });
 
-        const sorted = Object.entries(byWeek).sort(([a], [b]) => a.localeCompare(b));
+        const sorted = Object.entries(byPeriod).sort(([a], [b]) => a.localeCompare(b));
         let cumulativeClosed = 0;
-        return sorted.map(([week, d]) => {
+        return sorted.map(([period, d]) => {
             try {
                 cumulativeClosed += d.closed;
-                return {
-                    week: format(parseISO(week), 'MMM dd'),
-                    closed: cumulativeClosed,
-                    open: d.open,
-                    date: week,
-                };
+                const label = periodMode === 'weekly'
+                    ? format(parseISO(period), 'MMM dd')
+                    : format(new Date(period + '-01T00:00:00Z'), 'MMM yy');
+                return { week: label, closed: cumulativeClosed, open: d.open, date: period };
             } catch { return null; }
         }).filter(Boolean);
-    }, [closedTrades, openTrades]);
+    }, [closedTrades, openTrades, periodMode]);
 
     // ── Win/Loss bar chart by month ──────────────────────────────────────────
     const winLossData = useMemo(() => {
