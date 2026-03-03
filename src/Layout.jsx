@@ -10,20 +10,21 @@ export default function Layout({ children, currentPageName }) {
 
     useEffect(() => {
         if (location.pathname === '/' || location.pathname === '') {
-            navigate('/Dashboards?view=weekly', { replace: true });
+            navigate('/Dashboards?view=time', { replace: true });
         }
     }, [location.pathname]);
     const navItems = [
+        { name: 'Home', icon: LayoutDashboard, path: 'Home' },
         { 
             name: 'Dashboards', 
             icon: LayoutDashboard, 
             path: 'Dashboards',
             isCollapsible: true,
             subItems: [
+                { name: 'Track Record', tab: 'time' },
                 { name: 'Streaks', tab: 'weekly' },
                 { name: 'Edge', tab: 'ticker' },
-                { name: 'Exposure', tab: 'open' },
-                { name: 'Track Record', tab: 'time' }
+                { name: 'Exposure', tab: 'open' }
             ]
         },
         { name: 'Summaries', icon: FileText, path: 'Summaries' },
