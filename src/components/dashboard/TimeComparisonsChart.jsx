@@ -173,17 +173,22 @@ export default function TimeComparisonsChart({ trades }) {
         return row;
     }, [closedTrades, openTrades]);
 
-    // ── Top 10 trades by profit (horizontal stacked) ─────────────────────────
+    // ── Top 10 tickers by total profit (horizontal stacked) ──────────────────
     const top10TradeData = useMemo(() => {
-        const sorted = [...closedTrades, ...openTrades].filter(t => (t.profit || 0) > 0).sort((a, b) => b.profit - a.profit);
+        const byTicker = {};
+        [...closedTrades, ...openTrades].forEach(t => {
+            if (!t.ticker) return;
+            byTicker[t.ticker] = (byTicker[t.ticker] || 0) + (t.profit || 0);
+        });
+        const sorted = Object.entries(byTicker)
+            .filter(([, v]) => v > 0)
+            .sort(([, a], [, b]) => b - a);
+        if (!sorted.length) return null;
         const top10 = sorted.slice(0, 10);
-        const rest = sorted.slice(10).reduce((s, t) => s + (t.profit || 0), 0);
-        const total = sorted.reduce((s, t) => s + (t.profit || 0), 0);
-        if (!total) return null;
+        const rest = sorted.slice(10).reduce((s, [, v]) => s + v, 0);
+        const total = sorted.reduce((s, [, v]) => s + v, 0);
         const row = { total };
-        top10.forEach((t, i) => { row[`t${i}`] = t.profit; row[`_label${i}`] = t.ticker; });
-        if (rest > 0) { row['rest'] = rest; }
-        row._top10 = top10;
+        row._top10 = top10.map(([ticker, profit]) => ({ ticker, profit }));
         row._rest = rest;
         row._total = total;
         return row;
