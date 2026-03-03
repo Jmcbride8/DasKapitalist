@@ -18,7 +18,7 @@ export default function Home() {
     const [priceData, setPriceData] = useState({}); // { ticker: { change_pct, price } }
     const [loadingPrices, setLoadingPrices] = useState(false);
     const [lastUpdated, setLastUpdated] = useState(null);
-    const [manualGains, setManualGains] = useState({}); // { ticker: number }
+    const [manualGains] = useState({});
 
     const { data: trades = [], isLoading } = useQuery({
         queryKey: ['trades'],
