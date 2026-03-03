@@ -121,35 +121,34 @@ export default function TimeComparisonsChart({ trades }) {
         }).filter(Boolean);
     }, [closedTrades, openTrades, periodMode]);
 
-    // ── Win/Loss bar chart by week or month ──────────────────────────────────
-    const winLossData = useMemo(() => {
+    // ── Top ticker stacked bar chart by period ──────────────────────────────
+    const tickerStackData = useMemo(() => {
         const byPeriod = {};
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
             const d = parseDate(dateStr);
-            if (!d) return;
+            if (!d || !t.ticker) return;
             const key = periodMode === 'weekly'
                 ? format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd')
                 : format(d, 'yyyy-MM');
-            if (!byPeriod[key]) byPeriod[key] = { wins: 0, losses: 0 };
-            if ((t.profit || 0) >= 0) byPeriod[key].wins += 1;
-            else byPeriod[key].losses += 1;
+            if (!byPeriod[key]) byPeriod[key] = {};
+            if (!byPeriod[key][t.ticker]) byPeriod[key][t.ticker] = 0;
+            byPeriod[key][t.ticker] += t.profit || 0;
         });
         return Object.entries(byPeriod)
             .sort(([a], [b]) => a.localeCompare(b))
-            .map(([period, d]) => {
+            .map(([period, tickers]) => {
                 try {
                     const label = periodMode === 'weekly'
                         ? format(parseISO(period), 'MMM dd')
                         : format(new Date(period + '-01T00:00:00Z'), 'MMM yy');
-                    const total = d.wins + d.losses;
-                    return {
-                        month: label,
-                        date: period,
-                        wins: d.wins,
-                        losses: -d.losses,
-                        lossesAbs: d.losses,
-                    };
+                    // Find top ticker by profit
+                    const topTicker = Object.entries(tickers).sort(([, a], [, b]) => b - a)[0];
+                    const topName = topTicker ? topTicker[0] : null;
+                    const topVal = topTicker ? Math.max(0, topTicker[1]) : 0;
+                    const rest = Object.entries(tickers).reduce((sum, [k, v]) => k !== topName ? sum + Math.max(0, v) : sum, 0);
+                    const total = topVal + rest;
+                    return { month: label, date: period, top: topVal, rest, topTicker: topName, total };
                 } catch { return null; }
             })
             .filter(Boolean);
