@@ -186,9 +186,9 @@ export default function Home() {
                                                         {fmtPct(changePct)}
                                                     </text>
                                                 )}
-                                                {height > 85 && price !== null && (
+                                                {height > 85 && price != null && (
                                                     <text x={x + width / 2} y={y + height / 2 + 32} textAnchor="middle" fill={text} fontSize={Math.min(10, width / 8)} opacity={0.7}>
-                                                        ${price.toFixed(2)}
+                                                        ${(price || 0).toFixed(2)}
                                                     </text>
                                                 )}
                                             </>
