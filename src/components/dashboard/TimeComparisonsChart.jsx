@@ -316,47 +316,7 @@ Return JSON: { "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5
                 </div>
             </div>
 
-            {/* Live Market Panel */}
-            {topTickers.length > 0 && (
-                <div className="rounded-xl border border-slate-200 bg-gradient-to-r from-slate-900 to-slate-800 p-4 text-white">
-                    <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                            <span className="text-sm font-semibold text-slate-200">Live Market — Your Top Holdings</span>
-                        </div>
-                        <button
-                            onClick={fetchLiveData}
-                            disabled={liveLoading}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition text-xs font-medium"
-                        >
-                            <RefreshCw className={`w-3 h-3 ${liveLoading ? 'animate-spin' : ''}`} />
-                            {liveLoading ? 'Fetching...' : 'Fetch Prices'}
-                        </button>
-                    </div>
-                    {liveError && <p className="text-rose-400 text-xs">{liveError}</p>}
-                    {!liveData && !liveLoading && (
-                        <p className="text-slate-400 text-xs">Click "Fetch Prices" to load live quotes for your most-traded tickers.</p>
-                    )}
-                    {liveData && (
-                        <>
-                            <div className="flex flex-wrap gap-3 mb-2">
-                                {liveData.stocks?.map(s => (
-                                    <div key={s.ticker} className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-2">
-                                        <span className="font-bold text-sm">{s.ticker}</span>
-                                        <span className="text-slate-300 text-sm">${s.price?.toFixed(2)}</span>
-                                        <span className={`text-xs font-semibold ${s.change_pct >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
-                                            {s.change_pct >= 0 ? '▲' : '▼'} {Math.abs(s.change_pct).toFixed(2)}%
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                            {liveData.sentiment && (
-                                <p className="text-slate-400 text-xs italic">"{liveData.sentiment}"</p>
-                            )}
-                        </>
-                    )}
-                </div>
-            )}
+
 
             {/* Ticker Matrix */}
             <div>
