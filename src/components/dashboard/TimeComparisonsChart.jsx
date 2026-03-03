@@ -80,26 +80,45 @@ export default function TimeComparisonsChart({ trades }) {
     const [liveError, setLiveError] = useState(null);
 
     const closedTrades = useMemo(() => trades.filter(t => t.status === 'Closed' && t.profit != null), [trades]);
+    const openTrades = useMemo(() => trades.filter(t => t.status === 'Open' && t.profit != null), [trades]);
 
-    // ── Cumulative P&L by week ───────────────────────────────────────────────
+    // ── Cumulative P&L by week (stacked: closed gray + open green/red) ────────
     const cumulativeData = useMemo(() => {
         const byWeek = {};
+
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
             const d = parseDate(dateStr);
             if (!d) return;
             const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
-            byWeek[key] = (byWeek[key] || 0) + (t.profit || 0);
+            if (!byWeek[key]) byWeek[key] = { closed: 0, open: 0 };
+            byWeek[key].closed += t.profit || 0;
         });
+
+        // Assign open trades to their open_date week
+        openTrades.forEach(t => {
+            const dateStr = t.open_date;
+            const d = parseDate(dateStr);
+            if (!d) return;
+            const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
+            if (!byWeek[key]) byWeek[key] = { closed: 0, open: 0 };
+            byWeek[key].open += t.profit || 0;
+        });
+
         const sorted = Object.entries(byWeek).sort(([a], [b]) => a.localeCompare(b));
-        let cumulative = 0;
-        return sorted.map(([week, profit]) => {
+        let cumulativeClosed = 0;
+        return sorted.map(([week, d]) => {
             try {
-                cumulative += profit;
-                return { week: format(parseISO(week), 'MMM dd'), profit, cumulative, date: week };
+                cumulativeClosed += d.closed;
+                return {
+                    week: format(parseISO(week), 'MMM dd'),
+                    closed: cumulativeClosed,
+                    open: d.open,
+                    date: week,
+                };
             } catch { return null; }
         }).filter(Boolean);
-    }, [closedTrades]);
+    }, [closedTrades, openTrades]);
 
     // ── Win/Loss bar chart by month ──────────────────────────────────────────
     const winLossData = useMemo(() => {
