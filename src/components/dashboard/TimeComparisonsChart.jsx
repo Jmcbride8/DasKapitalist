@@ -5,7 +5,7 @@ import {
     XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
     ReferenceLine, Cell, Legend
 } from 'recharts';
-import { format, parseISO, startOfWeek } from 'date-fns';
+import { format, parseISO, parse, startOfWeek, isValid } from 'date-fns';
 import { TrendingUp, Award, Activity, Target, RefreshCw, Zap } from 'lucide-react';
 
 const fmtFull = (v) => {
