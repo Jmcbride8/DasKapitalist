@@ -86,13 +86,10 @@ export default function TimeComparisonsChart({ trades }) {
         const byWeek = {};
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
-            if (!dateStr) return;
-            try {
-                const d = parseISO(dateStr);
-                if (isNaN(d.getTime())) return;
-                const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
-                byWeek[key] = (byWeek[key] || 0) + (t.profit || 0);
-            } catch { return; }
+            const d = parseDate(dateStr);
+            if (!d) return;
+            const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
+            byWeek[key] = (byWeek[key] || 0) + (t.profit || 0);
         });
         const sorted = Object.entries(byWeek).sort(([a], [b]) => a.localeCompare(b));
         let cumulative = 0;
@@ -109,15 +106,12 @@ export default function TimeComparisonsChart({ trades }) {
         const byMonth = {};
         closedTrades.forEach(t => {
             const dateStr = t.income_week || t.close_date || t.open_date;
-            if (!dateStr) return;
-            try {
-                const d = parseISO(dateStr);
-                if (isNaN(d.getTime())) return;
-                const key = format(d, 'yyyy-MM');
-                if (!byMonth[key]) byMonth[key] = { wins: 0, losses: 0 };
-                if ((t.profit || 0) >= 0) byMonth[key].wins += 1;
-                else byMonth[key].losses += 1;
-            } catch { return; }
+            const d = parseDate(dateStr);
+            if (!d) return;
+            const key = format(d, 'yyyy-MM');
+            if (!byMonth[key]) byMonth[key] = { wins: 0, losses: 0 };
+            if ((t.profit || 0) >= 0) byMonth[key].wins += 1;
+            else byMonth[key].losses += 1;
         });
         return Object.entries(byMonth)
             .sort(([a], [b]) => a.localeCompare(b))
@@ -176,9 +170,9 @@ export default function TimeComparisonsChart({ trades }) {
 
         // Best streak
         const sorted = [...closedTrades].sort((a, b) => {
-            const da = a.income_week || a.close_date || a.open_date || '';
-            const db = b.income_week || b.close_date || b.open_date || '';
-            return da.localeCompare(db);
+            const da = parseDate(a.income_week || a.close_date || a.open_date)?.getTime() || 0;
+            const db = parseDate(b.income_week || b.close_date || b.open_date)?.getTime() || 0;
+            return da - db;
         });
         let maxStreak = 0, streak = 0;
         sorted.forEach(t => {
