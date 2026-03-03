@@ -207,7 +207,7 @@ export default function Home() {
                                             <p className="font-bold text-slate-800">{d.name}</p>
                                             <p className="text-slate-500">Collateral: {fmtCurrency(d.collateral)}</p>
                                             {d.changePct !== null && <p className={d.changePct >= 0 ? 'text-emerald-600' : 'text-rose-600'}>Change: {fmtPct(d.changePct)}</p>}
-                                            {d.price !== null && <p className="text-slate-500">Price: ${d.price?.toFixed(2)}</p>}
+                                            {d.price != null && <p className="text-slate-500">Price: ${(d.price || 0).toFixed(2)}</p>}
                                         </div>
                                     );
                                 }}
