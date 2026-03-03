@@ -302,7 +302,7 @@ export default function TimeComparisonsChart({ trades }) {
                         <BarChart data={tickerStackData} margin={{ top: 24, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <YAxis tickFormatter={fmt} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
@@ -310,7 +310,7 @@ export default function TimeComparisonsChart({ trades }) {
                                     return (
                                         <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
                                             <p className="font-semibold text-slate-700 mb-1">{label}</p>
-                                            {d?.topTicker && <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">{d.topTicker}:</span><span className="font-bold text-emerald-600">{fmt(d.top)}</span></div>}
+                                            {d?.topTicker && <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-500" /><span className="text-slate-500">{d.topTicker}:</span><span className="font-bold text-slate-700">{fmt(d.top)}</span></div>}
                                             <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-300" /><span className="text-slate-500">Others:</span><span className="font-bold text-slate-600">{fmt(d?.rest)}</span></div>
                                             <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100"><span className="text-slate-500">Total:</span><span className="font-bold text-slate-800">{fmt(d?.total)}</span></div>
                                         </div>
@@ -319,7 +319,7 @@ export default function TimeComparisonsChart({ trades }) {
                             />
                             <Bar dataKey="rest" name="Others" stackId="a" radius={[0, 0, 3, 3]}>
                                 {tickerStackData.map((entry, index) => (
-                                    <Cell key={index} fill="#cbd5e1" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                    <Cell key={index} fill="#e2e8f0" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                             <Bar dataKey="top" name="Top Ticker" stackId="a" radius={[3, 3, 0, 0]}
@@ -327,14 +327,14 @@ export default function TimeComparisonsChart({ trades }) {
                                     const entry = tickerStackData[index];
                                     if (!entry?.topTicker || value === 0) return null;
                                     return (
-                                        <text x={x + width / 2} y={y - 6} textAnchor="middle" fontSize={9} fontWeight="600" fill="#059669">
+                                        <text x={x + width / 2} y={y - 6} textAnchor="middle" fontSize={9} fontWeight="600" fill="#475569">
                                             {entry.topTicker}
                                         </text>
                                     );
                                 }}
                             >
                                 {tickerStackData.map((entry, index) => (
-                                    <Cell key={index} fill="#10b981" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                    <Cell key={index} fill="#64748b" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                         </BarChart>
