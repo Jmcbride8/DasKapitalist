@@ -44,9 +44,10 @@ export default function Home() {
     const fetchPrices = useCallback(async () => {
         if (!tickers.length) return;
         setLoadingPrices(true);
+        const allTickers = [...tickers, 'SPY'];
         const result = {};
         await Promise.all(
-            tickers.map(async (ticker) => {
+            allTickers.map(async (ticker) => {
                 try {
                     const res = await base44.integrations.Core.InvokeLLM({
                         prompt: `Return today's price change percentage for stock ticker ${ticker}. Return only a JSON object with keys: price (current price as number), change_pct (percentage change today as number, e.g. 1.5 for +1.5%, -2.3 for -2.3%).`,
