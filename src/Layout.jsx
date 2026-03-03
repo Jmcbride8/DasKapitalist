@@ -10,7 +10,7 @@ export default function Layout({ children, currentPageName }) {
 
     useEffect(() => {
         if (location.pathname === '/' || location.pathname === '') {
-            navigate('/Dashboards?view=time', { replace: true });
+            navigate('/Home', { replace: true });
         }
     }, [location.pathname]);
     const navItems = [
