@@ -255,20 +255,31 @@ Return JSON: { "stocks": [{ "ticker": "AAPL", "price": 185.23, "change_pct": 0.5
                 <h2 className="text-base font-semibold text-slate-800 mb-3">Cumulative P&L</h2>
                 <div className="bg-white rounded-xl border border-slate-200 p-4">
                     <ResponsiveContainer width="100%" height={280}>
-                        <AreaChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
-                            <defs>
-                                <linearGradient id="cumulativeGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.25} />
-                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
-                                </linearGradient>
-                            </defs>
+                        <BarChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                             <YAxis tickFormatter={fmt} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <Tooltip content={<ChartTooltip />} />
+                            <Tooltip
+                                content={({ active, payload, label }) => {
+                                    if (!active || !payload?.length) return null;
+                                    const d = payload[0]?.payload;
+                                    return (
+                                        <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
+                                            <p className="font-semibold text-slate-700 mb-1">{label}</p>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-400" /><span className="text-slate-500">Closed:</span><span className="font-bold text-slate-700">{fmtFull(d?.closed)}</span></div>
+                                            {d?.open !== 0 && <div className="flex items-center gap-2"><span className={`w-2 h-2 rounded-full ${d?.open >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`} /><span className="text-slate-500">Open:</span><span className={`font-bold ${d?.open >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(d?.open)}</span></div>}
+                                        </div>
+                                    );
+                                }}
+                            />
                             <ReferenceLine y={0} stroke="#cbd5e1" strokeDasharray="3 3" />
-                            <Area type="monotone" dataKey="cumulative" name="Cumulative P&L" stroke="#10b981" strokeWidth={2} fill="url(#cumulativeGrad)" dot={false} />
-                        </AreaChart>
+                            <Bar dataKey="closed" name="Closed" stackId="a" fill="#94a3b8" radius={[0, 0, 0, 0]} />
+                            <Bar dataKey="open" name="Open" stackId="a" radius={[3, 3, 0, 0]}>
+                                {cumulativeData.map((entry, index) => (
+                                    <Cell key={index} fill={entry.open >= 0 ? '#10b981' : '#f43f5e'} />
+                                ))}
+                            </Bar>
+                        </BarChart>
                     </ResponsiveContainer>
                 </div>
             </div>
