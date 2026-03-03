@@ -80,7 +80,7 @@ export default function DashboardKPIs({ trades, view }) {
     return (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8">
             {kpiData.map((kpi, idx) => (
-                <div key={idx} className="border-b-2 border-slate-300 pb-4">
+                <div key={idx} className="border-l-4 border-slate-300 pl-4">
                     <div className="flex items-start justify-between">
                         <div>
                             <p className="text-xs text-slate-500 font-medium mb-1">{kpi.label}</p>
