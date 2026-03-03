@@ -307,8 +307,8 @@ export default function TimeComparisonsChart({ trades }) {
                                     );
                                 }}
                             />
-                            <Bar dataKey="wins" name="Wins" fill="#10b981" radius={[3, 3, 0, 0]} />
-                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[0, 0, 3, 3]} />
+                            <Bar dataKey="wins" name="Wins" fill="#10b981" radius={[3, 3, 0, 0]} barSize={16} />
+                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[0, 0, 3, 3]} barSize={16} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
