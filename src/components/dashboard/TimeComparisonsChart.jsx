@@ -95,9 +95,9 @@ export default function TimeComparisonsChart({ trades }) {
             byWeek[key].closed += t.profit || 0;
         });
 
-        // Assign open trades to their open_date week
+        // Assign open trades to their income_week
         openTrades.forEach(t => {
-            const dateStr = t.open_date;
+            const dateStr = t.income_week || t.open_date;
             const d = parseDate(dateStr);
             if (!d) return;
             const key = format(startOfWeek(d, { weekStartsOn: 1 }), 'yyyy-MM-dd');
