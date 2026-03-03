@@ -73,18 +73,6 @@ const ChartTooltip = ({ active, payload, label }) => {
     );
 };
 
-const WinLossBar = (props) => {
-    const { x, y, width, height, wins, losses } = props;
-    if (!wins && !losses) return null;
-    const barW = Math.max(width * 0.6, 4);
-    const bx = x + (width - barW) / 2;
-    return (
-        <g>
-            {wins > 0 && <rect x={bx} y={y} width={barW} height={Math.abs(height >= 0 ? 0 : height) || 0} fill="#10b981" rx={3} />}
-        </g>
-    );
-};
-
 export default function TimeComparisonsChart({ trades }) {
     const [activeTab, setActiveTab] = useState('tickers');
     const [periodMode, setPeriodMode] = useState('weekly');
