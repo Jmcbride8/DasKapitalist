@@ -289,16 +289,15 @@ export default function TimeComparisonsChart({ trades }) {
                 </div>
             </div>
 
-            {/* Win / Loss Chart */}
+            {/* Top Ticker Stacked Chart */}
             <div>
-                <h2 className="text-base font-semibold text-slate-800 mb-3">Win / Loss</h2>
+                <h2 className="text-base font-semibold text-slate-800 mb-3">Weekly P&L by Top Ticker</h2>
                 <div className="p-4">
-                    <ResponsiveContainer width="100%" height={220}>
-                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} barCategoryGap="20%" barGap={-30} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
+                    <ResponsiveContainer width="100%" height={240}>
+                        <BarChart data={tickerStackData} margin={{ top: 24, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <YAxis allowDecimals={false} tickFormatter={(v) => Math.abs(v)} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <ReferenceLine y={0} stroke="#cbd5e1" />
+                            <YAxis tickFormatter={fmt} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
@@ -306,20 +305,31 @@ export default function TimeComparisonsChart({ trades }) {
                                     return (
                                         <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
                                             <p className="font-semibold text-slate-700 mb-1">{label}</p>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">Wins:</span><span className="font-bold text-emerald-600">{d?.wins}</span></div>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /><span className="text-slate-500">Losses:</span><span className="font-bold text-rose-600">{d?.lossesAbs}</span></div>
+                                            {d?.topTicker && <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-400" /><span className="text-slate-500">{d.topTicker}:</span><span className="font-bold text-emerald-600">{fmt(d.top)}</span></div>}
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-300" /><span className="text-slate-500">Others:</span><span className="font-bold text-slate-600">{fmt(d?.rest)}</span></div>
+                                            <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100"><span className="text-slate-500">Total:</span><span className="font-bold text-slate-800">{fmt(d?.total)}</span></div>
                                         </div>
                                     );
                                 }}
                             />
-                            <Bar dataKey="wins" name="Wins" radius={[3, 3, 0, 0]}>
-                                {winLossData.map((entry, index) => (
-                                    <Cell key={index} fill="#10b981" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                            <Bar dataKey="rest" name="Others" stackId="a" radius={[0, 0, 3, 3]}>
+                                {tickerStackData.map((entry, index) => (
+                                    <Cell key={index} fill="#cbd5e1" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
-                            <Bar dataKey="losses" name="Losses" radius={[0, 0, 3, 3]}>
-                                {winLossData.map((entry, index) => (
-                                    <Cell key={index} fill="#f43f5e" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                            <Bar dataKey="top" name="Top Ticker" stackId="a" radius={[3, 3, 0, 0]}
+                                label={({ x, y, width, value, index }) => {
+                                    const entry = tickerStackData[index];
+                                    if (!entry?.topTicker || value === 0) return null;
+                                    return (
+                                        <text x={x + width / 2} y={y - 6} textAnchor="middle" fontSize={9} fontWeight="600" fill="#059669">
+                                            {entry.topTicker}
+                                        </text>
+                                    );
+                                }}
+                            >
+                                {tickerStackData.map((entry, index) => (
+                                    <Cell key={index} fill="#10b981" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                         </BarChart>
