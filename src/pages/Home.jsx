@@ -145,40 +145,77 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Heatmap */}
+                {/* Treemap */}
                 <div>
                     <h2 className="text-base font-semibold text-slate-800 mb-3">
-                        Position Heatmap <span className="text-xs font-normal text-slate-400">— size = collateral, color = today's price change</span>
+                        Position Treemap <span className="text-xs font-normal text-slate-400">— size = collateral, color = today's price change</span>
                     </h2>
                     {!lastUpdated && (
                         <p className="text-xs text-slate-400 mb-3 italic">Hit "Refresh Prices" to color by today's change. Tiles are sized by collateral.</p>
                     )}
-                    <div className="flex flex-wrap gap-2">
-                        {openPositions.map(pos => {
-                            const pd = priceData[pos.ticker];
-                            const changePct = pd?.change_pct ?? null;
-                            const { bg, text } = getColor(changePct);
-                            // Size: min 80px, scale with collateral share
-                            const share = totalCollateral > 0 ? pos.collateral / totalCollateral : 1 / openPositions.length;
-                            const size = Math.max(80, Math.min(220, Math.round(share * 1200)));
-                            return (
-                                <div
-                                    key={pos.ticker}
-                                    style={{ width: size, height: size, background: bg, color: text, transition: 'background 0.5s' }}
-                                    className="rounded-xl flex flex-col items-center justify-center p-2 shadow-sm border border-white/20"
-                                >
-                                    <span className="text-lg font-bold leading-tight">{pos.ticker}</span>
-                                    <span className="text-xs font-medium mt-0.5">{fmtCurrency(pos.collateral)}</span>
-                                    {changePct !== null ? (
-                                        <span className="text-xs font-semibold mt-1">{fmtPct(changePct)}</span>
-                                    ) : (
-                                        <span className="text-[10px] opacity-50 mt-1">no data</span>
-                                    )}
-                                    {pd?.price && <span className="text-[10px] opacity-70">${pd.price.toFixed(2)}</span>}
-                                </div>
-                            );
-                        })}
-                    </div>
+                    <ResponsiveContainer width="100%" height={420}>
+                        <Treemap
+                            data={openPositions.map(pos => {
+                                const pd = priceData[pos.ticker];
+                                const changePct = pd?.change_pct ?? null;
+                                return {
+                                    name: pos.ticker,
+                                    size: pos.collateral || 1,
+                                    collateral: pos.collateral,
+                                    changePct,
+                                    price: pd?.price ?? null,
+                                };
+                            })}
+                            dataKey="size"
+                            content={({ x, y, width, height, name, collateral, changePct, price }) => {
+                                const { bg, text } = getColor(changePct);
+                                if (width < 10 || height < 10) return null;
+                                return (
+                                    <g>
+                                        <rect x={x} y={y} width={width} height={height} fill={bg} stroke="#fff" strokeWidth={2} rx={6} />
+                                        {width > 50 && height > 40 && (
+                                            <>
+                                                <text x={x + width / 2} y={y + height / 2 - (height > 60 ? 14 : 6)} textAnchor="middle" fill={text} fontSize={Math.min(16, width / 5)} fontWeight="bold">
+                                                    {name}
+                                                </text>
+                                                {height > 55 && (
+                                                    <text x={x + width / 2} y={y + height / 2 + 4} textAnchor="middle" fill={text} fontSize={Math.min(11, width / 7)} opacity={0.85}>
+                                                        {fmtCurrency(collateral)}
+                                                    </text>
+                                                )}
+                                                {height > 70 && changePct !== null && (
+                                                    <text x={x + width / 2} y={y + height / 2 + 18} textAnchor="middle" fill={text} fontSize={Math.min(11, width / 7)} fontWeight="600">
+                                                        {fmtPct(changePct)}
+                                                    </text>
+                                                )}
+                                                {height > 85 && price !== null && (
+                                                    <text x={x + width / 2} y={y + height / 2 + 32} textAnchor="middle" fill={text} fontSize={Math.min(10, width / 8)} opacity={0.7}>
+                                                        ${price.toFixed(2)}
+                                                    </text>
+                                                )}
+                                            </>
+                                        )}
+                                    </g>
+                                );
+                            }}
+                        >
+                            <Tooltip
+                                content={({ active, payload }) => {
+                                    if (!active || !payload?.length) return null;
+                                    const d = payload[0]?.root || payload[0]?.payload;
+                                    if (!d?.name) return null;
+                                    return (
+                                        <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
+                                            <p className="font-bold text-slate-800">{d.name}</p>
+                                            <p className="text-slate-500">Collateral: {fmtCurrency(d.collateral)}</p>
+                                            {d.changePct !== null && <p className={d.changePct >= 0 ? 'text-emerald-600' : 'text-rose-600'}>Change: {fmtPct(d.changePct)}</p>}
+                                            {d.price !== null && <p className="text-slate-500">Price: ${d.price?.toFixed(2)}</p>}
+                                        </div>
+                                    );
+                                }}
+                            />
+                        </Treemap>
+                    </ResponsiveContainer>
                 </div>
 
 
