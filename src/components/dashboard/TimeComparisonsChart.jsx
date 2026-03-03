@@ -295,7 +295,7 @@ export default function TimeComparisonsChart({ trades }) {
                 <h2 className="text-base font-semibold text-slate-800 mb-3">Win / Loss</h2>
                 <div className="p-4">
                     <ResponsiveContainer width="100%" height={220}>
-                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
+                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} barCategoryGap="20%" barGap={-30} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <YAxis allowDecimals={false} tickFormatter={(v) => Math.abs(v)} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
