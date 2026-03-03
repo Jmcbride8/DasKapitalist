@@ -220,6 +220,30 @@ export default function TimeComparisonsChart({ trades }) {
     return (
         <div className="space-y-6">
 
+            {/* Period Toggle */}
+            <div className="flex gap-2 border-b border-slate-200">
+                <button
+                    onClick={() => setPeriodMode('weekly')}
+                    className={`px-4 py-3 text-sm font-medium border-b-2 transition-all ${
+                        periodMode === 'weekly'
+                            ? 'border-slate-900 text-slate-900'
+                            : 'border-transparent text-slate-500 hover:text-slate-700'
+                    }`}
+                >
+                    Weekly
+                </button>
+                <button
+                    onClick={() => setPeriodMode('monthly')}
+                    className={`px-4 py-3 text-sm font-medium border-b-2 transition-all ${
+                        periodMode === 'monthly'
+                            ? 'border-slate-900 text-slate-900'
+                            : 'border-transparent text-slate-500 hover:text-slate-700'
+                    }`}
+                >
+                    Monthly
+                </button>
+            </div>
+
             {/* KPI Strip */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="amber" icon={Target} />
