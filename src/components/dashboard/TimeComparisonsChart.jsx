@@ -218,9 +218,6 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* KPI Strip */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <Pill label="Total Realized" value={fmtFull(kpis.totalProfit)} sub={`${kpis.totalTrades} closed trades`} color={kpis.totalProfit >= 0 ? 'emerald' : 'rose'} icon={TrendingUp} />
-                <Pill label="Avg Weekly" value={fmt(kpis.avgWeekly)} sub="per income week" color="blue" icon={Activity} />
-                <Pill label="Annualized" value={fmt(kpis.annualized)} sub="projected at current pace" color="violet" icon={Zap} />
                 <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="amber" icon={Target} />
                 <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="avg win ÷ avg loss" color="slate" icon={Activity} />
                 <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
