@@ -173,29 +173,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Manual Day P&L Entry */}
-                <div>
-                    <h2 className="text-base font-semibold text-slate-800 mb-3">Manual Day P&L <span className="text-xs font-normal text-slate-400">— enter estimated gain/loss per ticker today</span></h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                        {openPositions.map(pos => (
-                            <div key={pos.ticker} className="rounded-lg border border-slate-200 bg-white p-3">
-                                <div className="text-xs font-bold text-slate-700 mb-1">{pos.ticker}</div>
-                                <input
-                                    type="number"
-                                    placeholder="$0"
-                                    value={manualGains[pos.ticker] ?? ''}
-                                    onChange={(e) => setManualGains(prev => ({ ...prev, [pos.ticker]: parseFloat(e.target.value) || 0 }))}
-                                    className="w-full text-sm border border-slate-200 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-slate-400"
-                                />
-                                {manualGains[pos.ticker] != null && manualGains[pos.ticker] !== 0 && (
-                                    <div className={`text-xs mt-1 font-semibold ${manualGains[pos.ticker] >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                                        {fmtCurrency(manualGains[pos.ticker])}
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+
             </div>
         </div>
     );
