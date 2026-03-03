@@ -256,7 +256,7 @@ export default function TimeComparisonsChart({ trades }) {
                 <h2 className="text-base font-semibold text-slate-800 mb-3">Cumulative P&L</h2>
                 <div className="p-4">
                     <ResponsiveContainer width="100%" height={280}>
-                        <BarChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+                        <BarChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                             <YAxis tickFormatter={fmt} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
@@ -274,10 +274,14 @@ export default function TimeComparisonsChart({ trades }) {
                                 }}
                             />
                             <ReferenceLine y={0} stroke="#cbd5e1" strokeDasharray="3 3" />
-                            <Bar dataKey="closed" name="Closed" stackId="a" fill="#94a3b8" radius={[0, 0, 0, 0]} />
+                            <Bar dataKey="closed" name="Closed" stackId="a" radius={[0, 0, 0, 0]}>
+                                {cumulativeData.map((entry, index) => (
+                                    <Cell key={index} fill="#94a3b8" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                ))}
+                            </Bar>
                             <Bar dataKey="open" name="Open" stackId="a" radius={[3, 3, 0, 0]}>
                                 {cumulativeData.map((entry, index) => (
-                                    <Cell key={index} fill={entry.open >= 0 ? '#10b981' : '#f43f5e'} />
+                                    <Cell key={index} fill={entry.open >= 0 ? '#10b981' : '#f43f5e'} opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                         </BarChart>
@@ -290,7 +294,7 @@ export default function TimeComparisonsChart({ trades }) {
                 <h2 className="text-base font-semibold text-slate-800 mb-3">Win / Loss</h2>
                 <div className="p-4">
                     <ResponsiveContainer width="100%" height={220}>
-                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} barCategoryGap="20%" barSize={16}>
+                        <BarChart data={winLossData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <YAxis allowDecimals={false} tickFormatter={(v) => Math.abs(v)} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
@@ -308,8 +312,16 @@ export default function TimeComparisonsChart({ trades }) {
                                     );
                                 }}
                             />
-                            <Bar dataKey="wins" name="Wins" fill="#10b981" radius={[3, 3, 0, 0]} barSize={16} />
-                            <Bar dataKey="losses" name="Losses" fill="#f43f5e" radius={[0, 0, 3, 3]} barSize={16} />
+                            <Bar dataKey="wins" name="Wins" radius={[3, 3, 0, 0]}>
+                                {winLossData.map((entry, index) => (
+                                    <Cell key={index} fill="#10b981" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                ))}
+                            </Bar>
+                            <Bar dataKey="losses" name="Losses" radius={[0, 0, 3, 3]}>
+                                {winLossData.map((entry, index) => (
+                                    <Cell key={index} fill="#f43f5e" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                ))}
+                            </Bar>
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
