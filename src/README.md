@@ -1,343 +1,319 @@
-# DasKapitalist - The Missing Link in Personal Trading Analytics
+# DasKapitalist - Personal Trading Analytics Platform
 
-## 🎯 The Problem We're Solving
+## About DasKapitalist
 
-**Every serious trader faces the same frustrating reality:**
+DasKapitalist is a web-based portfolio tracking and analytics platform designed for individual options traders who want deep insight into their trading performance.
 
-Your brokerage app shows you positions, but tells you nothing about *why* you're winning or losing. Platforms like TradingView give you charts, but zero insight into your actual performance patterns. Spreadsheets become unmanageable nightmares. You're flying blind on the metrics that actually matter:
-
-- Which tickers are your real edge vs. your ego?
-- Are you actually profitable, or just getting lucky in bull markets?
-- What's your win rate on covered calls vs. cash-secured puts?
-- When do you perform best—and when should you sit on your hands?
-- How concentrated is your risk, really?
-
-**The market gap is massive:**
-
-| Solution | What It Does | What It Misses |
-|----------|--------------|----------------|
-| **Brokerage Apps** (Thinkorswim, IBKR, Robinhood) | Execute trades, basic P&L | Zero performance analytics, terrible UX, no pattern recognition |
-| **Charting Platforms** (TradingView, TrendSpider) | Technical analysis, screeners | No personal trade tracking, no portfolio analytics |
-| **Trading Journals** (Tradervue, Edgewonk) | Manual trade logging, basic stats | Clunky UI, expensive ($50-100/mo), limited options support |
-| **Spreadsheets** | Complete control | Manual data entry, error-prone, no automation, no visualization |
-
-**The result?** Retail traders—especially options traders—have no clear way to understand their actual performance, identify their edge, or systematically improve. They're leaving money on the table because they can't see their patterns.
+Built on the Base44 platform, it provides traders with tools to track positions, analyze performance patterns, and understand where their actual edge lies—without the complexity of institutional systems or the limitations of brokerage apps.
 
 ---
 
-## 💡 Our Solution
+## The Problem
 
-**DasKapitalist is the first trading analytics platform built specifically for serious individual options traders who want institutional-grade portfolio intelligence without the institutional complexity.**
+Serious retail traders face a frustrating gap in available tools:
 
-We're not another journal. We're not another charting tool. We're a **performance operating system** for your trading business.
+- **Brokerage apps** (Thinkorswim, IBKR, Robinhood) show positions and basic P&L, but offer zero analytical insight into performance patterns
+- **Charting platforms** (TradingView) provide technical analysis but no personal trade tracking
+- **Trading journals** (Tradervue, Edgewonk) require manual entry, have clunky interfaces, and charge premium prices
+- **Spreadsheets** offer flexibility but become unmanageable and error-prone
 
-### What Makes Us Different
+The result: traders can't easily answer critical questions like:
+- Which tickers are actually profitable vs. which are drains?
+- What's my real win rate on covered calls vs. cash-secured puts?
+- When am I performing best—and when should I sit on my hands?
+- How concentrated is my portfolio risk?
 
-#### 1. **Options-First Architecture**
+---
+
+## The Solution
+
+DasKapitalist is built specifically for options traders who want institutional-grade portfolio intelligence without institutional complexity.
+
+### Core Capabilities
+
+#### Options-First Design
 Unlike generic trackers, DasKapitalist understands options strategies natively:
-- Covered Calls, Cash-Secured Puts, Long Calls/Puts, Naked Puts/Calls, Spreads
-- Automatic yield calculations, collateral tracking, assignment handling
-- Premium tracking (open/close), expiration management, rolling support
+- **Supported Strategies**: Covered Calls, Cash-Secured Puts, Long Calls/Puts, Naked Puts/Calls, and basic trades
+- **Automatic Calculations**: Yield, collateral, profit/loss, premium tracking
+- **Lifecycle Management**: Open → Update → Close with full audit trail
+- **Assignment Handling**: Track assignments, expirations, and rolls
 
-#### 2. **Actionable Analytics, Not Just Charts**
-We don't show you data—we show you *insights*:
+#### Performance Analytics
 
-**Track Record Dashboard** → See your cumulative P&L growth over time, identify which tickers actually make you money vs. which drain your account.
+**Track Record Dashboard**
+- Cumulative P&L growth over time
+- Ticker-specific performance breakdown
+- Win rate and profit factor by strategy
+- Trade type analysis
 
-**Streaks Dashboard** → Track winning/losing streaks by week. Know when you're hot—and when you're tilting.
+**Streaks Dashboard**
+- Weekly performance tracking
+- Winning/losing streak identification
+- Best and worst week analysis
+- Period-over-period comparisons
 
-**Edge Dashboard** → Conviction analysis by ticker. Filter by profit impact. See realized vs. unrealized gains. Answer: "Where do I actually have an edge?"
+**Edge Dashboard**
+- Conviction analysis by ticker
+- Realized vs. unrealized profit ratios
+- Profit impact filtering
+- Historical performance patterns
 
-**Exposure Dashboard** → Visual treemap of your portfolio. See concentration risk at a glance. Know what you're really exposed to.
+**Exposure Dashboard**
+- Open positions visualization
+- Collateral allocation by ticker
+- Unrealized P&L tracking
+- Portfolio concentration analysis
 
-#### 3. **Built for How Traders Actually Work**
-- **Quick Update Mode**: Bulk-edit open positions in seconds, not minutes
-- **Income Week Tracking**: Organize trades by weekly income periods (critical for income traders)
-- **Bulk Import/Export**: CSV/Excel upload for historical trades
-- **One-Click Close**: Close trades with automatic profit/loss calculation
-- **Real-Time Price Integration**: Fetch current prices to color-code your exposure
-
-#### 4. **Beautiful, Fast, Modern UI**
-While competitors look like Windows 95 software, DasKapitalist feels like a 2026 fintech app:
-- Clean, responsive design
-- Interactive charts that load instantly
-- Mobile-friendly (future mobile app ready)
-- Zero learning curve
-
----
-
-## 📊 The Market Opportunity
-
-### Target User: The Serious Retail Options Trader
-
-**Demographics:**
-- 35-55 years old
-- $100K-$500K trading account
-- Trades 5-20 positions per month
-- Uses covered calls, CSPs, or directional options strategies
-- Tech-savvy, values data-driven decisions
-- Currently using 2-3 tools (broker + spreadsheet + maybe TradingView)
-
-**Psychographics:**
-- Treats trading as a business, not gambling
-- Frustrated by lack of visibility into performance
-- Willing to pay for tools that provide edge
-- Values time—wants automation, not manual entry
-
-### Market Size
-
-**TAM (Total Addressable Market):**
-- 25M+ retail brokerage accounts in the US (2024)
-- ~8M active options traders (32% penetration)
-- ~2M "serious" traders (>$50K account, trade monthly)
-- **Our TAM: 2M traders × $30/mo = $720M ARR opportunity**
-
-**SAM (Serviceable Addressable Market):**
-- Focus on income traders (covered calls, CSPs)
-- ~500K traders
-- **SAM: 500K × $30/mo = $180M ARR**
-
-**SOM (Serviceable Obtainable Market):**
-- Year 3 goal: 0.5% market penetration
-- 2,500 paying users
-- **SOM: $900K ARR by Year 3**
-
-### Competitive Moat
-
-1. **Options-Specific Data Model**: Generic trackers can't replicate our strategy-aware analytics without rebuilding from scratch.
-
-2. **User Experience**: Our UI is years ahead of incumbents. Tradervue, Edgewonk, and broker platforms feel enterprise/legacy. We're fintech-native.
-
-3. **Workflow Integration**: We're not replacing the broker—we're augmenting it. Low friction to adopt, high value once embedded.
-
-4. **Data Network Effects** (Future): Aggregated, anonymized performance data could power benchmark reports ("Top 10% of traders have X% win rate on CSPs").
+#### Home Page - Today's Exposure
+- **Interactive Treemap**: Visual portfolio overview sized by collateral, colored by daily price movement
+- **Real-Time Pricing**: Market data integration for current prices
+- **Position Summary**: Quick view of positions up/down for the day
+- **Market Context**: S&P 500 (SPY) benchmark comparison
 
 ---
 
-## 🏗️ Technical Architecture
+## Who It's For
 
-### Platform Advantage: Built on Base44
+DasKapitalist is built for:
 
-DasKapitalist leverages Base44's modern full-stack platform, giving us:
+- **Income Traders**: Those running covered call or cash-secured put strategies who need to track weekly income
+- **Active Options Traders**: 5-20 positions per month, managing multiple strategies
+- **Data-Driven Traders**: Want to understand their actual performance, not just their P&L
+- **Self-Directed Investors**: Treat trading as a business, not gambling
 
-**Speed to Market:**
-- Backend-as-a-service (auth, database, APIs handled)
-- Deploy in days, not months
-- No DevOps overhead
+---
 
-**Scalability:**
-- React + TanStack Query for responsive frontend
-- Deno runtime for serverless backend functions
-- Built-in real-time subscriptions for live updates
+## How It Works
 
-**Cost Efficiency:**
-- No infrastructure management
-- Pay-per-use pricing scales with users
-- Lean team can operate at scale
+### Adding Trades
+1. Navigate to the **Trades** page
+2. Click **Add Trade**
+3. Enter trade details (ticker, type, dates, premium, collateral)
+4. System auto-calculates yield and expected returns
 
-### Tech Stack
-- **Frontend**: React 18, TypeScript, Tailwind CSS, Recharts
-- **Backend**: Base44 Platform (Deno, serverless functions)
-- **Database**: Base44 Entities (built-in, scalable)
-- **State**: TanStack Query (caching, background sync)
-- **UI**: Radix UI + custom design system
+### Managing Open Positions
+- **Quick Update Page**: Bulk-edit all open positions in one view
+- **Real-Time Status**: See current prices, unrealized P&L, days to expiration
+- **One-Click Close**: Close trades with automatic profit calculation
 
-### Current Capabilities
+### Analyzing Performance
+- Switch between dashboards based on what you want to understand
+- Filter data by ticker, strategy, date range, or account
+- Export reports for tax preparation or personal review
 
-✅ Full trade lifecycle management (open → update → close)  
-✅ Multi-strategy support (7+ options strategies)  
-✅ Four analytical dashboards (Track Record, Streaks, Edge, Exposure)  
-✅ Real-time price integration for exposure coloring  
-✅ Bulk import/export (CSV/Excel)  
-✅ Quick update interface for active traders  
-✅ Mobile-responsive design  
+### Bulk Operations
+- **Import**: Upload historical trades via CSV or Excel
+- **Export**: Download trade history for backup or analysis
+- **Templates**: Use pre-formatted templates for common strategies
 
-### Roadmap
+---
 
-**Phase 1 (Q3 2026):**
-- [ ] Automated broker sync (API integrations with IBKR, TD Ameritrade)
-- [ ] Email/SMS alerts for expirations, assignments
-- [ ] Performance benchmarking vs. SPY/QQQ
+## Technical Architecture
 
-**Phase 2 (Q4 2026):**
-- [ ] Mobile apps (iOS/Android)
-- [ ] Tax lot tracking, 8949 export
+### Platform
+DasKapitalist is built on **Base44**, a modern full-stack development platform that provides:
+- Backend-as-a-service (authentication, database, APIs)
+- Serverless backend functions (Deno runtime)
+- Real-time data subscriptions
+- Built-in security and compliance
+
+### Technology Stack
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **State Management**: TanStack Query (React Query)
+- **Visualization**: Recharts for interactive charts
+- **UI Components**: Radix UI with custom design system
+- **Backend**: Base44 Platform (Deno, serverless)
+- **Database**: Base44 Entities
+
+### Project Structure
+```
+├── pages/                      # Application pages
+│   ├── Home.jsx               # Portfolio overview with treemap
+│   ├── Dashboards.jsx         # Analytics hub (4 views)
+│   ├── Trades.jsx             # Trade list and management
+│   ├── QuickUpdate.jsx        # Fast position updates
+│   └── Summaries.jsx          # Summary reports
+├── components/
+│   ├── dashboard/             # Dashboard-specific components
+│   ├── trades/                # Trade management components
+│   └── ui/                    # Reusable UI components
+├── entities/
+│   └── Trade.json             # Core data schema
+├── functions/                 # Backend functions
+├── Layout.js                  # Navigation and layout
+└── App.jsx                    # Application router
+```
+
+### Data Model
+
+The **Trade** entity tracks all aspects of an options position:
+
+```json
+{
+  "status": "Open" | "Closed",
+  "account": string,
+  "type": "Trade" | "Covered Call" | "Cash Secured Put" | 
+          "Long Call" | "Long Put" | "Naked Put" | "Naked Call",
+  "ticker": string,
+  "open_date": date,
+  "expiration": date,
+  "strike_price": number,
+  "open_premium": number,
+  "collateral_start": number,
+  "potential_yield": number,
+  "close_premium": number,
+  "close_date": date,
+  "income_week": date,
+  "close_type": "Assigned" | "Bought to Close" | "Sold to Close" | 
+                "Rolled" | "Expired Worthless",
+  "collateral_gain": number,
+  "profit": number
+}
+```
+
+---
+
+## Key Features
+
+### Trade Management
+- ✅ Full lifecycle tracking (open → update → close)
+- ✅ Multi-strategy support (7+ options strategies)
+- ✅ Automatic yield and profit calculations
+- ✅ Income week attribution for weekly traders
+- ✅ Bulk import/export (CSV/Excel)
+- ✅ Quick update interface for active management
+
+### Analytics
+- ✅ Four specialized dashboards (Track Record, Streaks, Edge, Exposure)
+- ✅ Interactive charts with drill-down capability
+- ✅ Ticker-specific performance analysis
+- ✅ Win rate and profit factor calculations
+- ✅ Realized vs. unrealized gain tracking
+- ✅ Portfolio concentration visualization
+
+### User Experience
+- ✅ Clean, modern interface (not enterprise software)
+- ✅ Mobile-responsive design
+- ✅ Fast load times (<2 seconds)
+- ✅ Intuitive navigation
+- ✅ Zero learning curve
+
+### Data & Integration
+- ✅ Real-time price fetching for exposure coloring
+- ✅ Market data context (SPY benchmark)
+- ✅ Secure cloud storage (Base44 platform)
+- ✅ Role-based access control (admin/user)
+- ✅ Export capabilities for reporting
+
+---
+
+## Design Philosophy
+
+### Visual Identity
+- **Color System**: Emerald green for profits/gains, rose/red for losses, slate neutrals
+- **Typography**: Clean sans-serif with hierarchical sizing for data density
+- **Layout**: Card-based design with clear visual hierarchy
+- **Responsive**: Mobile-first, adapts to all screen sizes
+
+### User Experience Principles
+1. **Speed First**: Charts and data load instantly
+2. **Clarity Over Complexity**: Show insights, not just data
+3. **Workflow Integration**: Augment the broker, don't replace it
+4. **Progressive Disclosure**: Simple by default, powerful when needed
+
+---
+
+## Current Status
+
+### Production Features
+- Full trade lifecycle management
+- Four analytical dashboards
+- Real-time price integration
+- Bulk import/export
+- Quick update interface
+- Mobile-responsive design
+
+### Future Enhancements
+- [ ] Automated broker sync (IBKR, TD Ameritrade APIs)
+- [ ] Email/SMS alerts for expirations and assignments
+- [ ] Performance benchmarking vs. market indices
+- [ ] Mobile applications (iOS/Android)
+- [ ] Tax lot tracking and 8949 export
 - [ ] Multi-account support (IRA, Roth, taxable)
-
-**Phase 3 (Q1 2027):**
-- [ ] Community features (anonymous peer comparisons)
-- [ ] AI-powered insights ("You're 3x more profitable on tech tickers")
-- [ ] Paper trading integration
-
-**Phase 4 (Q2 2027+):**
 - [ ] Options chain visualization
 - [ ] Greeks tracking (delta, theta, IV)
-- [ ] Integration with TradingView for chart linking
 
 ---
 
-## 📈 Business Model
+## Security & Privacy
 
-### Pricing Strategy
-
-**Freemium → Premium → Pro**
-
-| Tier | Price | Features | Target User |
-|------|-------|----------|-------------|
-| **Free** | $0 | 50 trade history, 1 dashboard, basic export | Casual traders, trial users |
-| **Premium** | $29/mo | Unlimited trades, all dashboards, bulk import, email alerts | Serious retail traders |
-| **Pro** | $79/mo | Multi-account, automated broker sync, tax reports, priority support | Full-time traders, small funds |
-
-**Projected Conversion:**
-- Free → Premium: 8-12% (industry standard for fintech)
-- Premium → Pro: 15% (power users)
-
-**Unit Economics (at scale):**
-- CAC: ~$150 (content marketing, partnerships, referrals)
-- LTV: ~$1,200 (3.5-year avg retention × $29/mo)
-- LTV:CAC: 8:1 (healthy SaaS metrics)
+- **Authentication**: Handled by Base44 platform
+- **Data Storage**: Encrypted at rest and in transit
+- **Access Control**: Role-based permissions (admin/user)
+- **Compliance**: SOC 2 compliant infrastructure (via Base44)
+- **Privacy**: No data sharing with third parties
 
 ---
 
-## 🎨 Product Showcase
+## Getting Started
 
-### Home Page - Today's Exposure
-Interactive treemap showing your entire portfolio at a glance. Tile size = collateral at risk. Color = today's price movement. One view tells you where you're exposed and how the market is moving against/for you.
+### For New Users
+1. Sign up for an account
+2. Import historical trades via CSV/Excel (optional)
+3. Start adding new trades or use Quick Update for existing positions
+4. Explore dashboards to understand your performance patterns
 
-### Track Record Dashboard
-Cumulative P&L chart showing your growth over time. Toggle weekly/monthly. See which tickers contribute most to your profits. Know your win rate by strategy type.
+### For Developers
+This project is built on Base44. To run locally:
 
-### Streaks Dashboard
-Behavioral analytics for traders. Track winning/losing streaks. Identify when you're performing best—and when you should reduce size or sit out.
+```bash
+# Clone repository
+git clone <repository-url>
+cd DasKapitalist
 
-### Edge Dashboard
-Conviction analysis. Filter trades by minimum profit impact. See realized vs. unrealized gains by ticker. Answer: "Where do I actually have an edge?"
+# Install dependencies
+npm install
 
-### Exposure Dashboard
-Stacked bar chart of open positions. See collateral allocation and unrealized P&L by ticker. Identify concentration risk before it becomes a problem.
+# Start development server
+npm run dev
+```
 
----
-
-## 🚀 Go-to-Market Strategy
-
-### Phase 1: Community-Led Growth (Months 1-6)
-- **Reddit**: r/options, r/thetagang, r/stocks (value-first content, not spam)
-- **Twitter/X**: Build following with daily insights, performance tips
-- **Discord**: Partner with trading communities for early access
-- **Content**: YouTube tutorials, Substack newsletter on trading psychology
-
-### Phase 2: Partnerships (Months 6-12)
-- **Broker Integrations**: Co-marketing with IBKR, Webull, Moomoo
-- **Influencers**: Partner with trading educators (100K+ followers)
-- **Affiliate Program**: 30% recurring commission for referrals
-
-### Phase 3: Paid Acquisition (Months 12+)
-- **Google Ads**: "options trading tracker," "trade journal" keywords
-- **Social Ads**: Targeted to options traders (interest-based)
-- **Retargeting**: Convert free users, cart abandoners
+### Configuration
+- Base44 app credentials (configured in dashboard)
+- Optional: API keys for automated market data (future feature)
 
 ---
 
-## 👥 Team
+## Support & Resources
 
-**Founder/CEO**: [Your Name]
-- [Your background - trading, tech, or both]
-- Built DasKapitalist from personal frustration with existing tools
-- Deep understanding of target user (because I AM the target user)
+### Documentation
+- This README provides overview
+- In-app help available on each page
+- Component documentation in code comments
 
-**Advisors**:
-- [Trading industry advisor]
-- [SaaS/fintech advisor]
-- [Technical advisor]
-
-**Hiring Plan (Post-Funding):**
-- Senior React Developer (Q3 2026)
-- Head of Growth/Marketing (Q4 2026)
-- Customer Success Manager (Q1 2027)
+### Getting Help
+- Check this documentation first
+- Review in-app help sections
+- Contact application administrator for issues
 
 ---
 
-## 💰 Funding Ask
+## About the Build
 
-**Raising: $500K Pre-Seed**
+DasKapitalist was created to fill a genuine gap in the trading tools market. The founder, frustrated by the limitations of existing solutions (brokerage apps with poor analytics, expensive journals with outdated interfaces, spreadsheets that become unmanageable), built a platform that combines:
 
-**Use of Funds:**
-- 40% Product Development (2 developers, 12 months runway)
-- 30% Marketing & User Acquisition (content, ads, partnerships)
-- 20% Operations (legal, accounting, infrastructure)
-- 10% Contingency
+- The analytical depth of institutional tools
+- The user experience of modern fintech
+- The accessibility needed by individual traders
 
-**Milestones (18 months):**
-- 5,000 registered users
-- 500 paying subscribers ($15K MRR)
-- Broker API integrations live
-- Mobile apps launched
-- Path to $1M ARR clear
-
-**Exit Opportunities:**
-- Acquisition by brokerage (IBKR, TD Ameritrade, Robinhood)
-- Acquisition by fintech platform (TradingView, eToro)
-- Sustainable profitable business ($5-10M ARR, bootstrapped or lightly funded)
-
----
-
-## 🎯 Why Now?
-
-**Market Tailwinds:**
-
-1. **Retail Trading Boom**: Post-2020, retail trading is normalized. 25M+ brokerage accounts opened since 2020.
-
-2. **Options Mainstream**: Options volume up 5x since 2019. Covered calls, CSPs are now entry-level strategies.
-
-3. **Creator Economy**: Trading influencers (10M+ combined followers) are educating retail traders—our target market is growing daily.
-
-4. **Tool Fatigue**: Traders are tired of juggling 5+ apps. They want ONE platform that does it all.
-
-5. **AI/Automation Expectation**: 2026 users expect smart insights, not dumb spreadsheets. We deliver.
-
----
-
-## 📞 Contact
-
-**Ready to discuss the future of trading analytics?**
-
-[Your Name]  
-Founder, DasKapitalist  
-📧 [your.email@example.com]  
-📱 [Your Phone]  
-🌐 [Website URL]  
-💼 [Calendly Link]
-
----
-
-## 🔐 Appendix: Technical Details
-
-### Data Security
-- SOC 2 compliant infrastructure (via Base44)
-- End-to-end encryption for sensitive data
-- Role-based access control
-- Regular security audits
-
-### Performance Benchmarks
-- Page load: <2 seconds
-- Chart rendering: <500ms for 1000+ data points
-- Real-time updates: <100ms latency
-- Mobile performance: 95+ Lighthouse score
-
-### API Integrations (Current & Planned)
-- ✅ Base44 Core (LLM for price data, file upload)
-- 🔄 IBKR API (Q3 2026)
-- 🔄 TD Ameritrade API (Q3 2026)
-- 🔄 Alpaca API (Q4 2026)
-- 🔄 YFinance/AlphaVantage for market data
+The result is a focused, purpose-built platform that helps traders understand their actual performance—and improve it.
 
 ---
 
 **DasKapitalist - Know Your Edge. Track Your Edge. Scale Your Edge.**
 
-*Built for traders, by traders. No fluff. All signal.*
+*Built for traders, by traders.*
 
 ---
 
-*Last Updated: May 2026*  
-*Confidential - For Investor Review Only*
+*Last Updated: May 2026*
