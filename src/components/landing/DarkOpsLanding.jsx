@@ -67,28 +67,18 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== YOUR EDGE - Ticker Carousel ======== */}
-            <section
-                className="relative py-24 px-6"
-                style={{
-                    background: '#0a0a0a',
-                    backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/789e7508d_generated_image.png)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundAttachment: 'fixed',
-                }}
-            >
-                <div className="absolute inset-0 bg-black/85" />
-                <div className="max-w-6xl mx-auto relative z-10">
-                <div className="h-px w-16 bg-white/30 mx-auto mb-10" />
-                <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
-                    Your Edge
-                </h2>
-                <p className="text-sm text-white/40 text-center max-w-md mx-auto mb-16">
-                    The tickers that pay. The ones that don't. Every weapon in your arsenal.
-                </p>
+            <section className="relative py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #111 100%)' }}>
+                <div className="max-w-6xl mx-auto">
+                    <div className="h-px w-16 bg-white/30 mx-auto mb-10" />
+                    <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
+                        Your Edge
+                    </h2>
+                    <p className="text-sm text-white/40 text-center max-w-md mx-auto mb-16">
+                        The tickers that pay. The ones that don't. Every weapon in your arsenal.
+                    </p>
 
-                {/* Frosted glass cards row */}
-                <div className="flex gap-4 overflow-x-auto pb-4 justify-center flex-wrap">
+                    {/* Frosted glass cards row */}
+                    <div className="flex gap-4 overflow-x-auto pb-4 justify-center flex-wrap">
                         {[
                             { ticker: 'GLD', winRate: '83%', pnl: '+$14,200', color: 'from-amber-500/20 to-yellow-600/20' },
                             { ticker: 'QQQ', winRate: '71%', pnl: '+$11,840', color: 'from-blue-500/20 to-indigo-600/20' },
@@ -116,21 +106,13 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             {/* ======== TAKE CONTROL ======== */}
             <section
-                className="relative py-32 px-6 overflow-hidden"
-                style={{ background: '#000' }}
+                className="relative py-32 px-6"
+                style={{
+                    background: '#000',
+                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%)',
+                }}
             >
-                {/* Background image */}
-                <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b0513bc18_generated_image.png)',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                <div className="absolute inset-0 z-10 bg-gradient-to-r from-black via-black/80 to-black/70" />
-
-                <div className="max-w-4xl mx-auto text-center space-y-8 relative z-20">
+                <div className="max-w-4xl mx-auto text-center space-y-8">
                     <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.9] tracking-tight">
                         Take
                         <br />
@@ -188,23 +170,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== HOW IT WORKS ======== */}
-            <section
-                id="darkops-arsenal"
-                className="relative py-24 px-6 overflow-hidden"
-                style={{ background: '#111' }}
-            >
-                {/* Background image */}
-                <div
-                    className="absolute inset-0 z-0 opacity-25"
-                    style={{
-                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/96233bce9_generated_image.png)',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#111] via-[#111]/90 to-[#111]/70" />
-
-                <div className="max-w-4xl mx-auto relative z-20">
+            <section id="darkops-arsenal" className="py-24 px-6" style={{ background: '#111' }}>
+                <div className="max-w-4xl mx-auto">
                     <div className="h-px w-16 bg-white/30 mx-auto mb-16" />
                     <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
                         How It Works
