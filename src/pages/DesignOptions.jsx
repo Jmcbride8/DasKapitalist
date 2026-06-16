@@ -4,6 +4,10 @@ import { useAuth } from '@/lib/AuthContext';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, ShieldAlert } from 'lucide-react';
 import DarkOpsLanding from '@/components/landing/DarkOpsLanding';
+import DataTerminalLanding from '@/components/landing/DataTerminalLanding';
+import SwissMinimalLanding from '@/components/landing/SwissMinimalLanding';
+import GildedAgeLanding from '@/components/landing/GildedAgeLanding';
+import ConstructivistLanding from '@/components/landing/ConstructivistLanding';
 
 export default function DesignOptions() {
     const navigate = useNavigate();
@@ -36,30 +40,30 @@ export default function DesignOptions() {
                         <h1 className="text-2xl font-black text-black">Design Options</h1>
                         <p className="text-xs font-medium text-black/30 mt-1">Review and compare landing page designs</p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                         <span className="text-[10px] font-black text-black/20 uppercase tracking-wider mr-4">
                             Admin Only
                         </span>
-                        <button
-                            onClick={() => setSelectedDesign('01')}
-                            className={`px-4 py-1.5 text-xs font-black uppercase tracking-wider border transition-all ${
-                                selectedDesign === '01'
-                                    ? 'bg-black text-white border-black'
-                                    : 'bg-transparent text-black/40 border-black/20 hover:border-black/50'
-                            }`}
-                        >
-                            01 — Brutalist
-                        </button>
-                        <button
-                            onClick={() => setSelectedDesign('02')}
-                            className={`px-4 py-1.5 text-xs font-black uppercase tracking-wider border transition-all ${
-                                selectedDesign === '02'
-                                    ? 'bg-black text-white border-black'
-                                    : 'bg-transparent text-black/40 border-black/20 hover:border-black/50'
-                            }`}
-                        >
-                            02 — Dark Ops
-                        </button>
+                        {[
+                            { key: '01', label: '01 — Brutalist' },
+                            { key: '02', label: '02 — Dark Ops' },
+                            { key: '03', label: '03 — Terminal' },
+                            { key: '04', label: '04 — Swiss' },
+                            { key: '05', label: '05 — Gilded' },
+                            { key: '06', label: '06 — Construct' },
+                        ].map(({ key, label }) => (
+                            <button
+                                key={key}
+                                onClick={() => setSelectedDesign(key)}
+                                className={`px-4 py-1.5 text-xs font-black uppercase tracking-wider border transition-all ${
+                                    selectedDesign === key
+                                        ? 'bg-black text-white border-black'
+                                        : 'bg-transparent text-black/40 border-black/20 hover:border-black/50'
+                                }`}
+                            >
+                                {label}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -109,13 +113,89 @@ export default function DesignOptions() {
                 </div>
             )}
 
-            {/* Future designs placeholder */}
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
-                <div className="border border-dashed border-black/10 p-12 text-center">
-                    <p className="text-lg font-black text-black/15">More design options coming soon</p>
-                    <p className="text-xs font-medium text-black/10 mt-2">Additional landing page variants will appear here</p>
+            {/* Design 3: Data Terminal */}
+            {selectedDesign === '03' && (
+                <div>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-4">
+                        <div className="flex items-center gap-4">
+                            <div className="h-8 w-1 bg-black" />
+                            <div>
+                                <div className="flex items-center gap-3">
+                                    <h2 className="text-xl font-black text-black">03 — Data Terminal</h2>
+                                    <span className="text-[9px] font-bold text-white bg-black px-2 py-0.5 uppercase tracking-wider">Alternative</span>
+                                </div>
+                                <p className="text-xs font-medium text-black/30 mt-0.5">Green-on-black monospace, terminal aesthetic, "sysadmin for your portfolio"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-y border-black/10">
+                        <DataTerminalLanding navigate={navigate} openView={openView} />
+                    </div>
                 </div>
-            </div>
+            )}
+
+            {/* Design 4: Swiss Minimal */}
+            {selectedDesign === '04' && (
+                <div>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-4">
+                        <div className="flex items-center gap-4">
+                            <div className="h-8 w-1 bg-black" />
+                            <div>
+                                <div className="flex items-center gap-3">
+                                    <h2 className="text-xl font-black text-black">04 — Swiss Minimal</h2>
+                                    <span className="text-[9px] font-bold text-white bg-black px-2 py-0.5 uppercase tracking-wider">Alternative</span>
+                                </div>
+                                <p className="text-xs font-medium text-black/30 mt-0.5">Clean whitespace, Helvetica precision, grid-based, international style</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-y border-black/10">
+                        <SwissMinimalLanding navigate={navigate} openView={openView} />
+                    </div>
+                </div>
+            )}
+
+            {/* Design 5: Gilded Age */}
+            {selectedDesign === '05' && (
+                <div>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-4">
+                        <div className="flex items-center gap-4">
+                            <div className="h-8 w-1 bg-black" />
+                            <div>
+                                <div className="flex items-center gap-3">
+                                    <h2 className="text-xl font-black text-black">05 — Gilded Age</h2>
+                                    <span className="text-[9px] font-bold text-white bg-black px-2 py-0.5 uppercase tracking-wider">Alternative</span>
+                                </div>
+                                <p className="text-xs font-medium text-black/30 mt-0.5">Gold-on-navy, serif typography, old money, private wealth management</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-y border-black/10">
+                        <GildedAgeLanding navigate={navigate} openView={openView} />
+                    </div>
+                </div>
+            )}
+
+            {/* Design 6: Soviet Constructivism */}
+            {selectedDesign === '06' && (
+                <div>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-4">
+                        <div className="flex items-center gap-4">
+                            <div className="h-8 w-1 bg-black" />
+                            <div>
+                                <div className="flex items-center gap-3">
+                                    <h2 className="text-xl font-black text-black">06 — Soviet Constructivism</h2>
+                                    <span className="text-[9px] font-bold text-white bg-black px-2 py-0.5 uppercase tracking-wider">Alternative</span>
+                                </div>
+                                <p className="text-xs font-medium text-black/30 mt-0.5">Red/black/cream, bold geometry, propaganda poster energy, revolutionary</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-y border-black/10">
+                        <ConstructivistLanding navigate={navigate} openView={openView} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
