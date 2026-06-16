@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { TrendingUp, BarChart3, Zap, ArrowRight } from 'lucide-react';
+import { TrendingUp, Flame, Brain, Layers, ArrowRight, LineChart, Target } from 'lucide-react';
 
 export default function Landing() {
     const navigate = useNavigate();
@@ -120,38 +120,281 @@ export default function Landing() {
                 </div>
             </section>
 
-            {/* Features strip — ultra minimal */}
-            <section className="relative border-t border-white/[0.04] bg-[#0d0d0f]">
-                <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
-                    <div className="grid md:grid-cols-3 gap-2">
-                        {[
-                            {
-                                icon: TrendingUp,
-                                title: 'Track Everything',
-                                desc: 'Covered calls, CSPs, long options—7+ strategies with automatic P&L, yield, and collateral tracking.'
-                            },
-                            {
-                                icon: BarChart3,
-                                title: 'See Your Patterns',
-                                desc: 'Streaks, win rates, ticker edge, exposure concentration. Four dashboards that show what matters.'
-                            },
-                            {
-                                icon: Zap,
-                                title: 'Move Fast',
-                                desc: 'Bulk import, quick update mode, one-click close. Built for traders who value time.'
-                            }
-                        ].map((f, i) => {
-                            const Icon = f.icon;
-                            return (
-                                <div key={i} className="group relative p-8 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.02] transition-all">
-                                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-5 group-hover:bg-emerald-500/15 transition-all">
-                                        <Icon className="w-5 h-5 text-emerald-400" />
-                                    </div>
-                                    <h3 className="text-base font-semibold text-white mb-2">{f.title}</h3>
-                                    <p className="text-sm text-white/30 leading-relaxed">{f.desc}</p>
+            {/* Thesis */}
+            <section className="relative border-t border-white/[0.04] bg-[#0d0d0f] overflow-hidden">
+                <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-rose-500/5 rounded-full blur-[160px] -translate-y-1/2 translate-x-1/2" />
+                <div className="max-w-4xl mx-auto px-6 lg:px-8 py-28 relative">
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="w-12 h-12 rounded-2xl bg-rose-500/10 flex items-center justify-center">
+                            <Brain className="w-6 h-6 text-rose-400" />
+                        </div>
+                        <span className="text-xs font-medium text-rose-400/80 tracking-wider uppercase">The Problem</span>
+                    </div>
+
+                    <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight mb-6">
+                        Your reptile brain is<br />
+                        <span className="text-white/30">your worst enemy.</span>
+                    </h2>
+
+                    <div className="space-y-5 text-white/35 text-base lg:text-lg leading-relaxed max-w-3xl">
+                        <p>
+                            When you're staring at a red day, your amygdala—the same part of your brain
+                            that once kept you alive by spotting predators—takes over. Logic shuts down.
+                            You close positions too early. You let losers run. You revenge-trade. You break
+                            every rule you set for yourself.
+                        </p>
+                        <p>
+                            This isn't speculation. <span className="text-white/50">Studies consistently show that 80-90% of day traders
+                            lose money over time.</span> Not because they're stupid. Not because they don't understand
+                            the market. Because they can't regulate the emotional response to watching their
+                            money move in real-time.
+                        </p>
+                        <p>
+                            The traders who win aren't the ones who feel nothing. They're the ones who built a
+                            system that gives them <span className="text-white/50">perspective when their brain is screaming panic.</span>
+                        </p>
+                    </div>
+
+                    <div className="mt-10 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.01]">
+                        <p className="text-sm text-white/25 italic leading-relaxed">
+                            &ldquo;The market is a device for transferring money from the impatient to the patient.&rdquo;
+                            <span className="block mt-1 text-white/15 not-italic">— Warren Buffett</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Key Views */}
+            <section className="relative bg-[#0a0a0b] overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 lg:px-8 py-28">
+                    <div className="text-center mb-20">
+                        <span className="text-xs font-medium text-emerald-400/70 tracking-wider uppercase">The System</span>
+                        <h2 className="text-3xl lg:text-4xl font-bold text-white mt-3 mb-4">
+                            Four views. One truth.
+                        </h2>
+                        <p className="text-white/25 text-base max-w-lg mx-auto">
+                            Each dashboard is designed to answer one critical question your
+                            brokerage app never will.
+                        </p>
+                    </div>
+
+                    <div className="space-y-20">
+                        {/* Track Record */}
+                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                            <div className="space-y-5">
+                                <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center">
+                                    <LineChart className="w-5 h-5 text-sky-400" />
                                 </div>
-                            );
-                        })}
+                                <h3 className="text-2xl lg:text-3xl font-bold text-white">Track Record</h3>
+                                <div className="space-y-4 text-white/30 text-sm lg:text-base leading-relaxed">
+                                    <p>
+                                        Your cumulative P&L, broken down by ticker, strategy, and time. Not your
+                                        broker's sanitized &ldquo;total return&rdquo;—your actual performance history.
+                                    </p>
+                                    <p className="text-white/20">
+                                        <span className="text-white/40 font-medium">Why it matters emotionally:</span> When
+                                        you're down on the week and feel like quitting, the Track Record reminds you
+                                        that your long-term trend is up. When you're euphoric after a win streak, it
+                                        grounds you in the data. It replaces feelings with facts.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="relative rounded-2xl border border-white/[0.06] bg-[#0d0d0f] p-1 overflow-hidden">
+                                <div className="relative rounded-xl bg-gradient-to-br from-sky-950/40 to-[#0d0d0f] p-8 lg:p-12">
+                                    <div className="space-y-3">
+                                        <div className="flex items-end gap-2">
+                                            <div className="text-4xl font-bold text-white">+$47,280</div>
+                                            <div className="text-sm text-sky-400/70 pb-1">cumulative P&L</div>
+                                        </div>
+                                        <div className="h-2 bg-white/[0.04] rounded-full overflow-hidden">
+                                            <div className="h-full bg-gradient-to-r from-sky-500 to-sky-400 rounded-full" style={{ width: '72%' }} />
+                                        </div>
+                                        <div className="flex justify-between text-xs text-white/15">
+                                            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                                        </div>
+                                    </div>
+                                    <div className="mt-8 grid grid-cols-3 gap-4">
+                                        {['Win Rate', 'Profit Factor', 'Avg Trade'].map((label, i) => (
+                                            <div key={i} className="text-center">
+                                                <div className="text-lg font-bold text-white">
+                                                    {['62%', '1.8x', '+$342'][i]}
+                                                </div>
+                                                <div className="text-xs text-white/20 mt-1">{label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Streaks */}
+                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                            <div className="lg:order-2 space-y-5">
+                                <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                                    <Flame className="w-5 h-5 text-amber-400" />
+                                </div>
+                                <h3 className="text-2xl lg:text-3xl font-bold text-white">Streaks</h3>
+                                <div className="space-y-4 text-white/30 text-sm lg:text-base leading-relaxed">
+                                    <p>
+                                        Track your winning and losing streaks week by week. See the patterns
+                                        your brain conveniently forgets—and the ones it catastrophizes.
+                                    </p>
+                                    <p className="text-white/20">
+                                        <span className="text-white/40 font-medium">Why it matters emotionally:</span> Your
+                                        reptile brain treats every loss like a trend. Streaks show you that a red
+                                        week is almost always followed by a green one. It breaks the panic loop
+                                        by giving you the one thing emotion can't: <span className="text-white/35">historical context.</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="lg:order-1 relative rounded-2xl border border-white/[0.06] bg-[#0d0d0f] p-1 overflow-hidden">
+                                <div className="relative rounded-xl bg-gradient-to-bl from-amber-950/30 to-[#0d0d0f] p-8 lg:p-12">
+                                    <div className="flex gap-2 flex-wrap">
+                                        {['W', 'W', 'W', 'L', 'W', 'W', 'W', 'W', 'W', 'L', 'W', 'W'].map((r, i) => (
+                                            <div key={i} className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${r === 'W' ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/15'}`}>
+                                                {r}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-6 space-y-2">
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-white/25">Current streak</span>
+                                            <span className="text-emerald-400 font-medium">2 wins</span>
+                                        </div>
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-white/25">Best streak</span>
+                                            <span className="text-white/40 font-medium">9 wins</span>
+                                        </div>
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-white/25">Worst streak</span>
+                                            <span className="text-white/15 font-medium">1 loss</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Edge */}
+                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                            <div className="space-y-5">
+                                <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center">
+                                    <Target className="w-5 h-5 text-violet-400" />
+                                </div>
+                                <h3 className="text-2xl lg:text-3xl font-bold text-white">Edge</h3>
+                                <div className="space-y-4 text-white/30 text-sm lg:text-base leading-relaxed">
+                                    <p>
+                                        Conviction analysis by ticker. Which positions actually make you
+                                        money—and which are just expensive hobbies? Realized vs. unrealized
+                                        gains, filtered by your profit threshold.
+                                    </p>
+                                    <p className="text-white/20">
+                                        <span className="text-white/40 font-medium">Why it matters emotionally:</span> Every
+                                        trader has their &ldquo;pet ticker&rdquo;—the one they love trading even when the
+                                        data says stop. Edge exposes these blind spots. It doesn't argue with your
+                                        feelings. It just shows you the scoreboard.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="relative rounded-2xl border border-white/[0.06] bg-[#0d0d0f] p-1 overflow-hidden">
+                                <div className="relative rounded-xl bg-gradient-to-br from-violet-950/30 to-[#0d0d0f] p-8 lg:p-12">
+                                    <div className="space-y-4">
+                                        {[
+                                            { ticker: 'QQQ', pnl: '+$12,840', winRate: '71%', green: true },
+                                            { ticker: 'GLD', pnl: '+$9,230', winRate: '83%', green: true },
+                                            { ticker: 'SPY', pnl: '+$6,100', winRate: '64%', green: true },
+                                            { ticker: 'TSLA', pnl: '-$2,840', winRate: '38%', green: false },
+                                            { ticker: 'NVDA', pnl: '+$4,500', winRate: '55%', green: true }
+                                        ].map((t, i) => (
+                                            <div key={i} className="flex items-center justify-between py-2 border-b border-white/[0.03] last:border-0">
+                                                <div className="flex items-center gap-3">
+                                                    <div className={`w-1.5 h-1.5 rounded-full ${t.green ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+                                                    <span className="text-sm font-medium text-white/70">{t.ticker}</span>
+                                                    <span className="text-xs text-white/15">{t.winRate} WR</span>
+                                                </div>
+                                                <span className={`text-sm font-mono font-medium ${t.green ? 'text-emerald-400' : 'text-rose-400'}`}>{t.pnl}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Exposure */}
+                        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                            <div className="lg:order-2 space-y-5">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                                    <Layers className="w-5 h-5 text-emerald-400" />
+                                </div>
+                                <h3 className="text-2xl lg:text-3xl font-bold text-white">Exposure</h3>
+                                <div className="space-y-4 text-white/30 text-sm lg:text-base leading-relaxed">
+                                    <p>
+                                        A real-time treemap of your open positions. Size represents collateral
+                                        at risk. Color shows today's price movement. One glance tells you
+                                        exactly how concentrated your portfolio is.
+                                    </p>
+                                    <p className="text-white/20">
+                                        <span className="text-white/40 font-medium">Why it matters emotionally:</span> Diversification
+                                        isn't just math—it's emotional armor. When you can see that no single position
+                                        dominates your portfolio, a bad day in one ticker doesn't feel like the end of the
+                                        world. Exposure turns abstract risk into something you can actually see.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="lg:order-1 relative rounded-2xl border border-white/[0.06] bg-[#0d0d0f] p-1 overflow-hidden">
+                                <div className="relative rounded-xl bg-gradient-to-bl from-emerald-950/30 to-[#0d0d0f] p-8">
+                                    <div className="grid grid-cols-3 gap-1.5">
+                                        {[
+                                            { size: 3, label: 'GLD', color: 'bg-emerald-500/80' },
+                                            { size: 2, label: 'SPY', color: 'bg-emerald-500/50' },
+                                            { size: 1, label: 'QQQ', color: 'bg-emerald-500/30' },
+                                            { size: 2, label: 'NVDA', color: 'bg-amber-500/40' },
+                                            { size: 1, label: 'NEM', color: 'bg-amber-500/25' },
+                                            { size: 2, label: 'TSLA', color: 'bg-rose-500/30' },
+                                            { size: 1, label: 'CDE', color: 'bg-sky-500/25' },
+                                            { size: 1, label: 'SIL', color: 'bg-sky-500/15' },
+                                            { size: 1, label: 'HL', color: 'bg-violet-500/20' }
+                                        ].map((tile, i) => (
+                                            <div
+                                                key={i}
+                                                className={`${tile.color} rounded-lg flex items-center justify-center font-medium text-xs text-white/80`}
+                                                style={{
+                                                    gridRow: `span ${tile.size}`,
+                                                    minHeight: tile.size === 3 ? '96px' : tile.size === 2 ? '64px' : '32px'
+                                                }}
+                                            >
+                                                {tile.label}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-6 flex items-center justify-between text-xs">
+                                        <span className="text-white/20">14 open positions</span>
+                                        <span className="text-emerald-400/60">$386K at risk</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA */}
+            <section className="relative border-t border-white/[0.04] bg-[#0d0d0f]">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-transparent to-teal-500/5" />
+                <div className="max-w-3xl mx-auto px-6 lg:px-8 py-28 text-center relative">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                        Stop trading blind.
+                    </h2>
+                    <p className="text-white/25 text-base mb-10 max-w-md mx-auto">
+                        Your broker shows you positions. We show you who you are as a trader.
+                    </p>
+                    <div className="flex justify-center gap-4">
+                        <button
+                            onClick={() => navigate(createPageUrl('Trades'))}
+                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-black rounded-xl font-semibold text-sm hover:bg-white/90 transition-all hover:gap-3 group"
+                        >
+                            Get Started
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                        </button>
                     </div>
                 </div>
             </section>
