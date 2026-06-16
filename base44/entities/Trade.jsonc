@@ -1,0 +1,88 @@
+{
+  "name": "Trade",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Closed"
+      ],
+      "default": "Open"
+    },
+    "account": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Trade",
+        "Covered Call",
+        "Cash Secured Put",
+        "Long Call",
+        "Long Put",
+        "Naked Put",
+        "Naked Call"
+      ]
+    },
+    "ticker": {
+      "type": "string"
+    },
+    "open_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "expiration": {
+      "type": "string",
+      "format": "date"
+    },
+    "strike_price": {
+      "type": "number"
+    },
+    "open_premium": {
+      "type": "number",
+      "description": "Premium received when opening"
+    },
+    "collateral_start": {
+      "type": "number"
+    },
+    "potential_yield": {
+      "type": "number",
+      "description": "Percentage as decimal"
+    },
+    "close_premium": {
+      "type": "number",
+      "description": "Premium paid when closing"
+    },
+    "close_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "income_week": {
+      "type": "string",
+      "format": "date"
+    },
+    "close_type": {
+      "type": "string",
+      "enum": [
+        "Assigned",
+        "Bought to Close",
+        "Sold to Close",
+        "Rolled",
+        "Expired Worthless",
+        ""
+      ]
+    },
+    "collateral_gain": {
+      "type": "number"
+    },
+    "profit": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "ticker",
+    "type",
+    "open_date"
+  ]
+}
