@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, ShieldAlert } from 'lucide-react';
+import DarkOpsLanding from '@/components/landing/DarkOpsLanding';
 
 export default function DesignOptions() {
     const navigate = useNavigate();
@@ -62,6 +62,26 @@ export default function DesignOptions() {
                 {/* Landing page embed */}
                 <div className="border-y border-black/10">
                     <BrutalistLanding navigate={navigate} openView={openView} />
+                </div>
+            </div>
+
+            {/* Design 2: Dark Ops */}
+            <div>
+                <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-4">
+                    <div className="flex items-center gap-4">
+                        <div className="h-8 w-1 bg-black" />
+                        <div>
+                            <div className="flex items-center gap-3">
+                                <h2 className="text-xl font-black text-black">02 — Dark Ops</h2>
+                                <span className="text-[9px] font-bold text-white bg-black px-2 py-0.5 uppercase tracking-wider">Alternative</span>
+                            </div>
+                            <p className="text-xs font-medium text-black/30 mt-0.5">Dark cinematic, masculine, "be a rebel" energy — inspired by safedc.gov</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border-y border-black/10">
+                    <DarkOpsLanding navigate={navigate} openView={openView} />
                 </div>
             </div>
 
