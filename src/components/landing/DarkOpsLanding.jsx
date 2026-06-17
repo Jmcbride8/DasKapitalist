@@ -44,7 +44,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="h-1 w-2/3 bg-white" />
 
-                    <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed font-medium font-sans">
+                    <p className="text-base md:text-lg text-white/60 max-w-2xl leading-relaxed font-medium font-sans">
                         Most traders lose money — the stats don't lie. This is where you break that pattern. Track every trade, find your real edge, and build the discipline to compound your gains.
                     </p>
 
