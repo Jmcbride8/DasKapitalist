@@ -354,7 +354,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 <div
                     className="absolute inset-0 z-0"
                     style={{
-                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/370ef799f_generated_image.png)',
+                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e26d9fdd3_generated_image.png)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center top',
                     }}
