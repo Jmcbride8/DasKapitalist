@@ -225,11 +225,11 @@ export default function DesignOptions() {
                 {/* Thumbnail grid */}
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
                     {[
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/2f47a66a0_generated_image.png', label: 'Blue Hour Wall St' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/410610985_generated_image.png', label: 'NYSE Entrance' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/11426bc38_generated_image.png', label: 'Charging Bull' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/5226007f7_generated_image.png', label: 'Lower Manhattan' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e8b1c5f59_generated_image.png', label: 'Federal Hall' },
+                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b1f973162_generated_image.png', label: 'NYSE Walk' },
+                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/08db79d60_generated_image.png', label: 'Traders Dusk' },
+                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b16bdbcc5_generated_image.png', label: 'Charging Bull' },
+                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b8f74f486_generated_image.png', label: 'Lower Manhattan' },
+                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/843028e62_generated_image.png', label: 'Federal Hall' },
                     ].map((img, i) => (
                         <button
                             key={i}
@@ -249,11 +249,11 @@ export default function DesignOptions() {
                 {/* Live preview */}
                 {(() => {
                     const bgImages = [
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/2f47a66a0_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/410610985_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/11426bc38_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/5226007f7_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e8b1c5f59_generated_image.png',
+                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b1f973162_generated_image.png',
+                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/08db79d60_generated_image.png',
+                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b16bdbcc5_generated_image.png',
+                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b8f74f486_generated_image.png',
+                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/843028e62_generated_image.png',
                     ];
                     return (
                         <div className="relative min-h-[500px] rounded-2xl overflow-hidden flex items-center">
