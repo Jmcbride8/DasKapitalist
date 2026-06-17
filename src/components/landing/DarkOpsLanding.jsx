@@ -127,14 +127,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
                 <div className="max-w-[100rem]">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
-                        WHAT YOU'RE UP AGAINST
+                        EMOTIONS BEAT INTELLIGENCE
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <PriceTargetText>{`The market is\ndesigned to break\nyour mind.`}</PriceTargetText>
+                        <PriceTargetText>{`The math is easy.\nThe mindset is\nimpossible.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
-                        Day trading exploits your psychology. Fear, greed, and the illusion of control. Here's what you're up against — and how we fix it.
+                        The pros don't have secret formulas. They have systems, discipline, and data. Here's what's actually holding you back.
                     </p>
 
                     {/* Problem image cards */}
@@ -143,26 +143,26 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             {
                                 imageKey: 'problem_1',
                                 image: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=800&h=600&fit=crop',
-                                title: 'Emotional Decisions',
-                                desc: 'Fear and greed destroy more accounts than bad analysis. Your brain is wired to buy tops and sell bottoms.',
+                                title: 'Revenge Trading',
+                                desc: 'You take a loss, then immediately size up to get it back. Trading on tilt wrecks more accounts than bad picks ever do.',
                             },
                             {
                                 imageKey: 'problem_2',
                                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-                                title: 'No Performance Data',
-                                desc: 'Without tracking every trade, you can\'t improve what you can\'t measure. Most traders don\'t even know their win rate.',
+                                title: 'No Track Record',
+                                desc: 'Without logging every trade, you have no proof you\'re any good. You can\'t refine what you don\'t measure — and most traders measure nothing.',
                             },
                             {
                                 imageKey: 'problem_3',
                                 image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-                                title: 'Information Overload',
-                                desc: 'Too many indicators, no clarity. You drown in data but starve for insight on what actually makes you money.',
+                                title: 'Confirmation Bias',
+                                desc: 'You only see the setups that agree with your thesis. Your brain filters out contrary evidence, and your P&L pays the price.',
                             },
                             {
                                 imageKey: 'problem_4',
                                 image: 'https://images.unsplash.com/photo-1639322537228-f740dce6b4ab?w=800&h=600&fit=crop',
-                                title: 'No Edge Awareness',
-                                desc: 'Trading tickers without knowing your win rate per symbol. You keep trading losers and cutting winners too early.',
+                                title: 'Edge Blindness',
+                                desc: 'You don\'t know which tickers actually print for you. Without per-symbol analytics, you keep feeding losers and starving winners.',
                             },
                         ].map((card, i) => (
                             <div key={i} className="group relative overflow-hidden rounded-2xl border border-white/10 hover:border-white/30 transition-all bg-white/[0.02]">
