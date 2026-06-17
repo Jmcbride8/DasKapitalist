@@ -200,7 +200,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             <img
                                 src="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/d545f99c9_generated_image.png"
                                 alt="Greek theater masks — excitement, greed, fear, sadness"
-                                className="w-full rounded-2xl"
+                                className="w-full rounded-2xl scale-110"
                                 style={{ filter: 'brightness(0.9) contrast(1.1)' }}
                             />
                             <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ background: 'linear-gradient(135deg, transparent 60%, rgba(10,15,20,0.6) 100%)' }} />
@@ -216,7 +216,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <span style={{ color: '#ef4444' }}>temperament</span>,
                                     not intellect."
                                 </p>
-                                <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono" style={{ color: 'rgba(239,68,68,0.5)' }}>
+                                <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono text-white">
                                     — Warren Buffett
                                 </cite>
                             </blockquote>
