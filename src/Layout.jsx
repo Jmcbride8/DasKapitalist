@@ -43,8 +43,8 @@ export default function Layout({ children, currentPageName }) {
 
     const activeCls = 'bg-black text-white';
     const inactiveCls = 'text-black/40 hover:text-black hover:bg-black/5';
-    const subActiveCls = 'text-emerald-600 font-black';
-    const subInactiveCls = 'text-black/35 hover:text-black';
+    const subActiveCls = 'text-black bg-black/5';
+    const subInactiveCls = 'text-black/40 hover:text-black hover:bg-black/5';
 
     const NavItem = ({ item, onClick }) => {
         const Icon = item.icon;
@@ -64,7 +64,7 @@ export default function Layout({ children, currentPageName }) {
                                 key={subItem.tab || subItem.path}
                                 to={createPageUrl(subItem.tab ? `${item.path}?view=${subItem.tab}` : subItem.path)}
                                 onClick={onClick}
-                                className={`block py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors ${subActiveCls}`}
+                                className={`block px-2 py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors ${subInactiveCls}`}
                             >
                                 {subItem.name}
                             </Link>
