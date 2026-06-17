@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { useAuth } from '@/lib/AuthContext';
 import { RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Treemap, ResponsiveContainer, Tooltip } from 'recharts';
@@ -16,14 +17,16 @@ const fmtPct = (v) => {
 };
 
 export default function Home() {
+    const { user } = useAuth();
     const [priceData, setPriceData] = useState({}); // { ticker: { change_pct, price } }
     const [loadingPrices, setLoadingPrices] = useState(false);
     const [lastUpdated, setLastUpdated] = useState(null);
     const [manualGains] = useState({});
 
     const { data: trades = [], isLoading } = useQuery({
-        queryKey: ['trades'],
-        queryFn: () => base44.entities.Trade.list('-open_date')
+        queryKey: ['trades', user?.id],
+        queryFn: () => base44.entities.Trade.filter({ created_by_id: user?.id }, '-open_date'),
+        enabled: !!user?.id
     });
 
     // Aggregate open positions by ticker

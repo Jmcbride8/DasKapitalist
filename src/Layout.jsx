@@ -2,17 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, User } from 'lucide-react';
+import { useAuth } from '@/lib/AuthContext';
 
 export default function Layout({ children, currentPageName }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const { isAuthenticated, isLoadingAuth, navigateToLogin } = useAuth();
 
     useEffect(() => {
         if (location.pathname === '/' || location.pathname === '') {
             navigate('/Home', { replace: true });
         }
     }, [location.pathname]);
+
+    useEffect(() => {
+        if (!isLoadingAuth && !isAuthenticated) {
+            navigateToLogin();
+        }
+    }, [isLoadingAuth, isAuthenticated]);
+
+    if (isLoadingAuth) {
+        return (
+            <div className="fixed inset-0 flex items-center justify-center bg-white">
+                <div className="w-8 h-8 border-4 border-slate-200 border-t-black rounded-full animate-spin" />
+            </div>
+        );
+    }
+
+    if (!isAuthenticated) return null;
 
     const navItems = [
         {

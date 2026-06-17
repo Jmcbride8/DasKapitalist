@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useAuth } from '@/lib/AuthContext';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -12,6 +13,7 @@ import BulkUpload from '@/components/trades/BulkUpload';
 import TradeLegendModal from '@/components/trades/TradeLegendModal';
 
 export default function Trades() {
+    const { user } = useAuth();
     const [showForm, setShowForm] = useState(false);
     const [editingTrade, setEditingTrade] = useState(null);
     const [showCloseModal, setShowCloseModal] = useState(false);
@@ -25,8 +27,9 @@ export default function Trades() {
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
 
     const { data: trades = [], isLoading } = useQuery({
-        queryKey: ['trades'],
-        queryFn: () => base44.entities.Trade.list('-open_date')
+        queryKey: ['trades', user?.id],
+        queryFn: () => base44.entities.Trade.filter({ created_by_id: user?.id }, '-open_date'),
+        enabled: !!user?.id
     });
 
     const createMutation = useMutation({

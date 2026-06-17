@@ -50,7 +50,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
                         <button
-                            onClick={() => navigate(createPageUrl('Trades'))}
+                            onClick={() => { import('@/api/base44Client').then(({ base44 }) => base44.auth.redirectToLogin('/Home')); }}
                             className="inline-flex items-center justify-center gap-3 px-10 py-4 font-black text-sm tracking-wider uppercase transition-all group"
                             style={{ backgroundColor: '#10b981', color: '#000' }}
                             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
@@ -500,7 +500,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button
-                                    onClick={() => navigate(createPageUrl('Trades'))}
+                                    onClick={() => { import('@/api/base44Client').then(({ base44 }) => base44.auth.redirectToLogin('/Home')); }}
                                     className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group rounded-md"
                                     style={{ backgroundColor: '#10b981', color: '#000' }}
                                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}

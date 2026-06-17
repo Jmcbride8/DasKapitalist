@@ -1,16 +1,19 @@
 import React, { useState, useMemo } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { useAuth } from '@/lib/AuthContext';
 import SummaryTable from '@/components/trades/SummaryTable';
 import KPICards from '@/components/trades/KPICards';
 
 export default function Summaries() {
+    const { user } = useAuth();
     const [selectedTypes, setSelectedTypes] = useState([]);
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
     const { data: trades = [] } = useQuery({
-        queryKey: ['trades'],
-        queryFn: () => base44.entities.Trade.list('-open_date')
+        queryKey: ['trades', user?.id],
+        queryFn: () => base44.entities.Trade.filter({ created_by_id: user?.id }, '-open_date'),
+        enabled: !!user?.id
     });
 
     const filteredTrades = useMemo(() => {

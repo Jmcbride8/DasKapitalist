@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useAuth } from '@/lib/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -69,6 +70,7 @@ const getNextFriday = () => {
 };
 
 export default function QuickUpdate() {
+    const { user } = useAuth();
     const queryClient = useQueryClient();
     const [editingId, setEditingId] = useState(null);
     const [formData, setFormData] = useState({});
@@ -79,8 +81,9 @@ export default function QuickUpdate() {
     const [showTradeForm, setShowTradeForm] = useState(false);
 
     const { data: trades = [] } = useQuery({
-        queryKey: ['trades'],
-        queryFn: () => base44.entities.Trade.list(),
+        queryKey: ['trades', user?.id],
+        queryFn: () => base44.entities.Trade.filter({ created_by_id: user?.id }),
+        enabled: !!user?.id
     });
 
     const updateMutation = useMutation({

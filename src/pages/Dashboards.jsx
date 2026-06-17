@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { useAuth } from '@/lib/AuthContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DashboardKPIs from '@/components/dashboard/DashboardKPIs';
 import WeeklyTotalsChart from '@/components/dashboard/WeeklyTotalsChart';
@@ -12,6 +13,7 @@ import TickerTradesTable from '@/components/dashboard/TickerTradesTable';
 import OpenPositionsTable from '@/components/dashboard/OpenPositionsTable';
 
 export default function Dashboards() {
+    const { user } = useAuth();
     const [searchParams] = useSearchParams();
     const view = searchParams.get('view') || 'weekly';
     const [selectedYear, setSelectedYear] = useState('all');
@@ -21,8 +23,9 @@ export default function Dashboards() {
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
     const { data: trades = [], isLoading } = useQuery({
-        queryKey: ['trades'],
-        queryFn: () => base44.entities.Trade.list('-open_date')
+        queryKey: ['trades', user?.id],
+        queryFn: () => base44.entities.Trade.filter({ created_by_id: user?.id }, '-open_date'),
+        enabled: !!user?.id
     });
 
     const years = useMemo(() => {
