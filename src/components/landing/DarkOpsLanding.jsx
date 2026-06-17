@@ -439,7 +439,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 {/* Wall Street background */}
                 <div
                     className="absolute inset-0 z-0"
-                    style={{ backgroundImage: `url('https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/9a42ffd54_generated_image.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    style={{ backgroundImage: `url('https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/336e3a9e3_generated_image.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 />
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(10,15,20,0.30) 50%, rgba(0,0,0,0.50) 100%)' }} />
 
