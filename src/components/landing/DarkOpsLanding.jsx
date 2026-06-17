@@ -83,7 +83,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 font-mono">
-                        Don't be average
+                        Trade with an edge
                     </p>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
@@ -91,7 +91,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </h1>
 
                     <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed font-medium font-sans">
-                        Most traders lose money — the stats don't lie. This is the platform to build psychological immunity: the tools to track your performance, manage your psychology, and win.
+                        Most traders lose money — the stats don't lie. This is where you break that pattern. Track every trade, find your real edge, and build the discipline to compound your gains.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -110,7 +110,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             className="inline-flex items-center justify-center gap-3 px-10 py-4 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group"
                             style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}
                         >
-                            The weapons to win
+                            See how it works
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
                     </div>
@@ -343,14 +343,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
-                        THE ARSENAL
+                        THE TOOLS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <PriceTargetText>{`Four weapons.\nZero excuses.`}</PriceTargetText>
+                        <PriceTargetText>{`Four dashboards.\nTotal clarity.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
-                        The tools to master your mind. Every dashboard built to answer one question: are you winning or not?
+                        The tools to own your numbers. Every dashboard answers one question: are your trades actually working?
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -473,10 +473,10 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <div className="flex flex-col justify-between min-h-[400px]">
                             <div className="space-y-6">
                                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
-                                    <PriceTargetText>{`Start Your\nMission`}</PriceTargetText>
+                                    <PriceTargetText>{`Build Your\nEdge`}</PriceTargetText>
                                 </h2>
                                 <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed font-medium font-sans">
-                                    Your path to trading mastery starts here. Log your trades, find your edge, and build the discipline to beat the market consistently.
+                                    Every trade logged. Every edge tracked. Every dollar accounted for. This is how you stop guessing and start knowing.
                                 </p>
                             </div>
                             <button
