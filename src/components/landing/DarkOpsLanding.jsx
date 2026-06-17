@@ -148,7 +148,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             {
                                 imageKey: 'problem_1',
                                 image: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=800&h=600&fit=crop',
-                                title: 'Revenge Trading',
+                                title: '⬇ Revenge Trading',
                                 desc: 'You take a loss, then immediately size up to get it back. Trading on tilt wrecks more accounts than bad picks ever do.',
                             },
                             {
@@ -182,7 +182,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent pointer-events-none" />
                                 </div>
                                 <div className="p-8">
-                                    <h3 className="text-xl font-black text-white mb-3 uppercase tracking-tight">{card.title}</h3>
+                                    <h3 className={`text-xl font-black mb-3 uppercase tracking-tight ${card.title.startsWith('⬇') ? 'text-red-400' : 'text-white'}`}>{card.title.replace('⬇ ', '')}</h3>
                                     <p className="text-sm text-white/50 leading-relaxed font-sans">{card.desc}</p>
                                 </div>
                             </div>
@@ -231,7 +231,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Investor */}
-                        <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02] flex flex-col">
+                        <div className="border rounded-2xl overflow-hidden bg-white/[0.02] flex flex-col" style={{ borderColor: 'rgba(239,68,68,0.2)' }}>
                             <div className="relative h-96 overflow-hidden">
                                 <AdminImage
                                     imageKey="investor_card"
@@ -305,20 +305,20 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <section className="py-40 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d1a12 50%, #0a0f14 100%)' }}>
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="mb-10 flex justify-center">
-                        <div className="h-px w-16 bg-emerald-500/60" />
+                        <div className="h-px w-16 bg-red-500/60" />
                     </div>
                     <blockquote>
                         <p className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-white mb-10">
                             "The most important quality for an investor is{' '}
-                            <span style={{ color: '#10b981' }}>temperament</span>,
+                            <span style={{ color: '#ef4444' }}>temperament</span>,
                             not intellect."
                         </p>
-                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono" style={{ color: 'rgba(16,185,129,0.5)' }}>
+                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono" style={{ color: 'rgba(239,68,68,0.5)' }}>
                             — Warren Buffett
                         </cite>
                     </blockquote>
                     <div className="mt-10 flex justify-center">
-                        <div className="h-px w-16 bg-emerald-500/60" />
+                        <div className="h-px w-16 bg-red-500/60" />
                     </div>
                 </div>
             </section>
@@ -341,13 +341,19 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         {[
                             { step: '01', title: 'Log Your Trades', desc: 'Enter ticker, premium, collateral, and expiration. Takes 15 seconds. Bulk imports supported for the spreadsheet crowd.' },
                             { step: '02', title: 'Let the Dashboards Work', desc: 'Track Record, Streaks, Edge, and Exposure update instantly. No formulas. No manual P&L calculations. Ever.' },
-                            { step: '03', title: 'Find Your Edge & Execute', desc: 'See which tickers print and which bleed. Double down on winners. Cut losers. Build a track record that proves you know what you\'re doing.' },
+                            { step: '03', title: 'Find Your Edge & Execute', desc: null },
                         ].map((item, i) => (
                             <div key={i} className="flex items-start gap-6 py-8 border-t border-white/10 first:border-t-0">
                                 <span className="text-5xl font-black text-white/10 leading-none">{item.step}</span>
                                 <div>
                                     <h3 className="text-lg font-black text-white uppercase tracking-tight mb-2">{item.title}</h3>
-                                    <p className="text-sm text-white/50 leading-relaxed font-sans">{item.desc}</p>
+                                    {item.desc ? (
+                                        <p className="text-sm text-white/50 leading-relaxed font-sans">{item.desc}</p>
+                                    ) : (
+                                        <p className="text-sm text-white/50 leading-relaxed font-sans">
+                                            See which tickers print and which <span style={{ color: '#ef4444' }}>bleed</span>. Double down on winners. <span style={{ color: '#ef4444' }}>Cut losers</span>. Build a track record that proves you know what you're doing.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         ))}
