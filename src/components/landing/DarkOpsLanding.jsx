@@ -524,7 +524,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== PRICING ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
                 <div className="max-w-5xl mx-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase mb-8 font-mono text-center" style={{ color: '#10b981' }}>
                         PRICING
