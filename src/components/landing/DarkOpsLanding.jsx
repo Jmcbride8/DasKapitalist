@@ -191,6 +191,28 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
+            {/* ======== BUFFETT QUOTE ======== */}
+            <section className="py-40 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d1a12 50%, #0a0f14 100%)' }}>
+                <div className="max-w-4xl mx-auto text-center">
+                    <div className="mb-10 flex justify-center">
+                        <div className="h-px w-16 bg-red-500/60" />
+                    </div>
+                    <blockquote>
+                        <p className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-white mb-10">
+                            "The most important quality for an investor is{' '}
+                            <span style={{ color: '#ef4444' }}>temperament</span>,
+                            not intellect."
+                        </p>
+                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono" style={{ color: 'rgba(239,68,68,0.5)' }}>
+                            — Warren Buffett
+                        </cite>
+                    </blockquote>
+                    <div className="mt-10 flex justify-center">
+                        <div className="h-px w-16 bg-red-500/60" />
+                    </div>
+                </div>
+            </section>
+
             {/* ======== TAKE CONTROL ======== */}
             <section className="relative py-32 px-6 lg:px-20 overflow-hidden">
                 {/* Background image */}
@@ -298,28 +320,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </div>
 
 
-                </div>
-            </section>
-
-            {/* ======== BUFFETT QUOTE ======== */}
-            <section className="py-40 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d1a12 50%, #0a0f14 100%)' }}>
-                <div className="max-w-4xl mx-auto text-center">
-                    <div className="mb-10 flex justify-center">
-                        <div className="h-px w-16 bg-red-500/60" />
-                    </div>
-                    <blockquote>
-                        <p className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-white mb-10">
-                            "The most important quality for an investor is{' '}
-                            <span style={{ color: '#ef4444' }}>temperament</span>,
-                            not intellect."
-                        </p>
-                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono" style={{ color: 'rgba(239,68,68,0.5)' }}>
-                            — Warren Buffett
-                        </cite>
-                    </blockquote>
-                    <div className="mt-10 flex justify-center">
-                        <div className="h-px w-16 bg-red-500/60" />
-                    </div>
                 </div>
             </section>
 
