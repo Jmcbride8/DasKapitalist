@@ -445,14 +445,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(10,15,20,0.15) 50%, rgba(0,0,0,0.35) 100%)' }} />
 
                 <div className="relative z-20 w-full max-w-7xl mx-auto">
-                    <div className="mx-auto max-w-2xl text-center">
+                    <div className="mx-auto max-w-2xl text-center bg-black/50 backdrop-blur-md rounded-2xl p-10 lg:p-14 border border-white/10">
                         {/* Mission headline + CTA */}
                         <div className="flex flex-col justify-between min-h-[400px]">
                             <div className="space-y-6">
                                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
                                     <PriceTargetText>{`Build Your\nEdge`}</PriceTargetText>
                                 </h2>
-                                <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed font-medium font-sans">
+                                <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed font-medium font-sans">
                                     Every trade logged. Every edge tracked. Every dollar accounted for. This is how you stop guessing and start knowing.
                                 </p>
                             </div>
