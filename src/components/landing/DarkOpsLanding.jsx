@@ -135,7 +135,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         EMOTIONS BEAT INTELLIGENCE
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <PriceTargetText>{`The math is easy.\nThe mindset isn't.`}</PriceTargetText>
+                        <PriceTargetText>{`The math is easy.\nEmotional mastery isn't.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans mb-16">
