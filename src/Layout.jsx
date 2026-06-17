@@ -11,7 +11,7 @@ export default function Layout({ children, currentPageName }) {
     const { isAuthenticated, isLoadingAuth, navigateToLogin } = useAuth();
 
     useEffect(() => {
-        if (location.pathname === '/' || location.pathname === '') {
+        if (location.pathname === '/') {
             navigate('/Home', { replace: true });
         }
     }, [location.pathname]);
