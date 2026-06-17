@@ -27,7 +27,6 @@ export default function DesignOptions() {
     const navigate = useNavigate();
     const { user } = useAuth();
     const [selectedDesign, setSelectedDesign] = useState('01');
-    const [selectedCTABg, setSelectedCTABg] = useState(0);
 
     const openView = (view) => {
         navigate(createPageUrl(`Dashboards?view=${view}`));
@@ -211,94 +210,6 @@ export default function DesignOptions() {
                     </div>
                 </div>
             )}
-
-            {/* ======== CTA BACKGROUND IMAGE PICKER ======== */}
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
-                <div className="flex items-center gap-4 mb-10">
-                    <div className="h-8 w-1 bg-black" />
-                    <div>
-                        <h2 className="text-xl font-black text-black">CTA Background Images</h2>
-                        <p className="text-xs font-medium text-black/30 mt-0.5">Bokeh, bright, epic Wall Street — select a CTA section background</p>
-                    </div>
-                </div>
-
-                {/* Thumbnail grid */}
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
-                    {[
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b1f973162_generated_image.png', label: 'NYSE Walk' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/08db79d60_generated_image.png', label: 'Traders Dusk' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b16bdbcc5_generated_image.png', label: 'Charging Bull' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b8f74f486_generated_image.png', label: 'Lower Manhattan' },
-                        { url: 'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/843028e62_generated_image.png', label: 'Federal Hall' },
-                    ].map((img, i) => (
-                        <button
-                            key={i}
-                            onClick={() => setSelectedCTABg(i)}
-                            className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-                                selectedCTABg === i ? 'border-black ring-2 ring-black/20' : 'border-black/10 hover:border-black/30'
-                            }`}
-                        >
-                            <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/70 px-2 py-1">
-                                <span className="text-[9px] font-bold text-white uppercase tracking-wider">{img.label}</span>
-                            </div>
-                        </button>
-                    ))}
-                </div>
-
-                {/* Live preview */}
-                {(() => {
-                    const bgImages = [
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b1f973162_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/08db79d60_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b16bdbcc5_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/b8f74f486_generated_image.png',
-                        'https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/843028e62_generated_image.png',
-                    ];
-                    return (
-                        <div className="relative min-h-[500px] rounded-2xl overflow-hidden flex items-center">
-                            <img
-                                src={bgImages[selectedCTABg]}
-                                alt="CTA background preview"
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(10,15,20,0.30) 50%, rgba(0,0,0,0.50) 100%)' }} />
-                            <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-20 py-16">
-                                <div className="grid lg:grid-cols-2 gap-16 items-end">
-                                    <div className="space-y-6">
-                                        <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 font-mono">How It Works</p>
-                                        <div className="space-y-8">
-                                            {[
-                                                { step: '01', title: 'Log your trades', desc: 'Under 15 seconds per trade.' },
-                                                { step: '02', title: 'Find your edge', desc: 'Dashboards auto-calculate your real numbers.' },
-                                                { step: '03', title: 'Execute with confidence', desc: 'Double down on winners. Cut what bleeds.' },
-                                            ].map((item) => (
-                                                <div key={item.step} className="flex gap-4">
-                                                    <span className="text-sm font-black text-white/15">{item.step}</span>
-                                                    <div>
-                                                        <h3 className="text-lg font-black text-white uppercase tracking-tight">{item.title}</h3>
-                                                        <p className="text-sm text-white/50 leading-relaxed mt-1 font-sans">{item.desc}</p>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col justify-between min-h-[300px]">
-                                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
-                                            Start Trading<br />Smarter
-                                        </h2>
-                                        <button className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group self-start rounded-md mt-6"
-                                            style={{ backgroundColor: '#F7D147', color: '#000' }}>
-                                            Log In
-                                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })()}
-            </div>
 
             {/* ======== TEXT ANIMATION COMPARISON ======== */}
             <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">

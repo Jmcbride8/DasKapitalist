@@ -437,9 +437,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== FINAL CTA — Wall Street ======== */}
             <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
                 {/* Wall Street background */}
-                <div
+                <AdminImage
+                    imageKey="cta_bg"
+                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e26d9fdd3_generated_image.png"
                     className="absolute inset-0 z-0"
-                    style={{ backgroundImage: `url('https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/336e3a9e3_generated_image.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
                 />
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(10,15,20,0.30) 50%, rgba(0,0,0,0.50) 100%)' }} />
 
