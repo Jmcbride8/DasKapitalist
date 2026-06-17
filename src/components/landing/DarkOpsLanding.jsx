@@ -536,9 +536,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         {/* Solo */}
-                        <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '560px' }}>
+                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 0 0 1px rgba(255,255,255,0.04), 0 8px 40px rgba(0,0,0,0.6)' }}>
                             {/* Background image */}
-                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/229ce43f9_Solo.png)' }} />
+                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-110" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/229ce43f9_Solo.png)' }} />
                             {/* Dark gradient overlay — heavier at bottom for text legibility */}
                             <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 100%)' }} />
                             {/* Content */}
@@ -560,9 +560,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         </div>
 
                         {/* AI Enabled */}
-                        <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '560px' }}>
+                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(16,185,129,0.25)', boxShadow: '0 0 0 1px rgba(16,185,129,0.06), 0 8px 40px rgba(0,0,0,0.6)' }}>
                             {/* Background image */}
-                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/2752af7a8_Sage.png)' }} />
+                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-110" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/2752af7a8_Sage.png)' }} />
                             {/* Dark gradient overlay with green tint at bottom */}
                             <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(2,20,12,0.95) 100%)' }} />
                             {/* Best value badge */}
