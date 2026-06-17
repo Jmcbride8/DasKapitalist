@@ -348,35 +348,67 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
-            {/* ======== FINAL CTA ======== */}
-            <section
-                className="relative py-40 px-6"
-                style={{
-                    background: '#0a0f14',
-                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(196,154,44,0.06) 0%, transparent 70%)',
-                }}
-            >
-                <div className="max-w-3xl mx-auto text-center space-y-8">
-                    <div className="h-px w-16 mx-auto" style={{ backgroundColor: 'rgba(196,154,44,0.4)' }} />
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.9] tracking-tight">
-                        Start
-                        <br />
-                        Your Mission
-                    </h2>
-                    <p className="text-lg text-white/50 max-w-xl mx-auto">
-                        Your path to beating the market starts here. Stop being a statistic. Start being the trader who knows exactly what their edge is worth.
-                    </p>
-                    <button
-                        onClick={() => navigate(createPageUrl('Trades'))}
-                        className="inline-flex items-center justify-center gap-3 px-12 py-5 font-black text-sm tracking-wider uppercase transition-all group"
-                        style={{ backgroundColor: '#c49a2c', color: '#000' }}
-                        onMouseEnter={(e) => e.target.style.backgroundColor = '#d4aa3c'}
-                        onMouseLeave={(e) => e.target.style.backgroundColor = '#c49a2c'}
-                    >
-                        Enter the Command Center
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </button>
-                    <div className="h-px w-16 mx-auto" style={{ backgroundColor: 'rgba(196,154,44,0.4)' }} />
+            {/* ======== FINAL CTA — Wall Street ======== */}
+            <section className="relative min-h-[90vh] flex items-center px-6 lg:px-20 overflow-hidden">
+                {/* Wall Street background */}
+                <div
+                    className="absolute inset-0 z-0"
+                    style={{
+                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/da50dfc81_generated_image.png)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                />
+                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(10,15,20,0.70) 50%, rgba(0,0,0,0.80) 100%)' }} />
+
+                <div className="relative z-20 w-full max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-end">
+                        {/* LEFT: How It Works */}
+                        <div className="space-y-8">
+                            <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/50 font-mono">
+                                How It Works
+                            </p>
+                            <div className="space-y-10">
+                                {[
+                                    { step: '01', title: 'Log your trades', desc: 'Enter ticker, premium, collateral, and expiration. Under 15 seconds per trade. Bulk imports for the spreadsheet crowd.' },
+                                    { step: '02', title: 'Find your edge', desc: 'Dashboards auto-calculate your real win rate, profit factor, and P&L broken down by ticker. No formulas. No spreadsheets.' },
+                                    { step: '03', title: 'Execute with confidence', desc: 'Double down on what works. Cut what bleeds. Trade with a track record that proves you know exactly what you\'re doing.' },
+                                ].map((item) => (
+                                    <div key={item.step} className="flex gap-5">
+                                        <span className="text-sm font-black text-white/15 leading-none pt-0.5">{item.step}</span>
+                                        <div>
+                                            <h3 className="text-lg font-black text-white uppercase tracking-tight">{item.title}</h3>
+                                            <p className="text-sm text-white/50 leading-relaxed mt-1 font-sans">{item.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* RIGHT: Mission headline + CTA */}
+                        <div className="flex flex-col justify-between min-h-[400px]">
+                            <div className="space-y-6">
+                                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter text-white">
+                                    Start Your
+                                    <br />
+                                    Mission
+                                </h2>
+                                <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed font-sans">
+                                    Your path to trading mastery starts here. Log your trades, find your edge, and build the discipline to beat the market consistently.
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => navigate(createPageUrl('Trades'))}
+                                className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group self-start rounded-md"
+                                style={{ backgroundColor: '#F7D147', color: '#000' }}
+                                onMouseEnter={(e) => e.target.style.backgroundColor = '#FDE68A'}
+                                onMouseLeave={(e) => e.target.style.backgroundColor = '#F7D147'}
+                            >
+                                Log In
+                                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
