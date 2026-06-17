@@ -53,10 +53,18 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             onClick={() => navigate(createPageUrl('Trades'))}
                             className="inline-flex items-center justify-center gap-3 px-10 py-4 font-black text-sm tracking-wider uppercase transition-all group"
                             style={{ backgroundColor: '#10b981', color: '#000' }}
-                            onMouseEnter={(e) => e.target.style.backgroundColor = '#34d399'}
-                            onMouseLeave={(e) => e.target.style.backgroundColor = '#10b981'}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
                         >
                             Log In
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </button>
+                        <button
+                            onClick={() => navigate('/Dashboards?view=time')}
+                            className="inline-flex items-center justify-center gap-3 px-10 py-4 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group"
+                            style={{ borderColor: 'rgba(16,185,129,0.4)', color: '#10b981' }}
+                        >
+                            Try it — live data
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
                         <button
@@ -455,16 +463,26 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     Every trade logged. Every edge tracked. Every dollar accounted for. This is how you stop guessing and start knowing.
                                 </p>
                             </div>
-                            <button
-                                onClick={() => navigate(createPageUrl('Trades'))}
-                                className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group mx-auto rounded-md"
-                                style={{ backgroundColor: '#10b981', color: '#000' }}
-                                onMouseEnter={(e) => e.target.style.backgroundColor = '#34d399'}
-                                onMouseLeave={(e) => e.target.style.backgroundColor = '#10b981'}
-                            >
-                                Log In
-                                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                            </button>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button
+                                    onClick={() => navigate(createPageUrl('Trades'))}
+                                    className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group rounded-md"
+                                    style={{ backgroundColor: '#10b981', color: '#000' }}
+                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
+                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
+                                >
+                                    Log In
+                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                </button>
+                                <button
+                                    onClick={() => navigate('/Dashboards?view=time')}
+                                    className="inline-flex items-center justify-center gap-3 px-10 py-5 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group rounded-md"
+                                    style={{ borderColor: 'rgba(16,185,129,0.4)', color: '#10b981' }}
+                                >
+                                    Try it — live data
+                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
