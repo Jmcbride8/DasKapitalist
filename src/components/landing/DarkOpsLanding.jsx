@@ -226,15 +226,15 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Investor */}
                         <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02] flex flex-col">
-                            <div className="relative h-64 overflow-hidden">
+                            <div className="relative h-96 overflow-hidden">
                                 <AdminImage
                                     imageKey="investor_card"
                                     defaultSrc="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=500&fit=crop"
-                                    className="w-full h-full opacity-60"
+                                    className="w-full h-full opacity-90"
                                     style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Investing — long-term wealth"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/40 to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
                                 <div className="absolute bottom-6 left-6 pointer-events-none">
                                     <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/30 font-mono">Phase Two</span>
                                 </div>
@@ -265,15 +265,15 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     This Platform
                                 </span>
                             </div>
-                            <div className="relative h-64 overflow-hidden">
+                            <div className="relative h-96 overflow-hidden">
                                 <AdminImage
                                     imageKey="trader_card"
                                     defaultSrc="https://images.unsplash.com/photo-1598886221035-4b1e41547d04?w=800&h=500&fit=crop"
-                                    className="w-full h-full opacity-70"
+                                    className="w-full h-full opacity-90"
                                     style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Trading — the casino floor"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/30 to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(196,154,44,0.1)' }}>
