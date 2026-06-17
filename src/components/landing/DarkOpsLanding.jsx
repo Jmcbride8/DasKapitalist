@@ -1,65 +1,95 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, Shield, Zap, TrendingUp } from 'lucide-react';
 
 export default function DarkOpsLanding({ navigate, openView }) {
+    const [time, setTime] = useState('');
+
+    useEffect(() => {
+        const update = () => {
+            const now = new Date();
+            setTime(now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/New_York' }) + ' ET');
+        };
+        update();
+        const interval = setInterval(update, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <div className="text-white bg-black min-h-screen font-sans">
+        <div className="text-white min-h-screen font-mono tracking-tight" style={{ backgroundColor: '#0a0f14' }}>
+            {/* ======== TOP GOVERNMENT BAR ======== */}
+            <div className="w-full bg-black border-b border-white/10">
+                <div className="max-w-7xl mx-auto px-4 lg:px-12 py-1.5 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <svg className="w-4 h-3" viewBox="0 0 24 16" fill="none">
+                            <rect width="24" height="2" fill="white" opacity="0.8"/>
+                            <rect y="3" width="24" height="2" fill="white" opacity="0.8"/>
+                            <rect y="6" width="24" height="2" fill="white" opacity="0.8"/>
+                            <rect y="9" width="24" height="2" fill="white" opacity="0.8"/>
+                            <rect y="12" width="24" height="2" fill="white" opacity="0.8"/>
+                            <rect y="3" width="10" height="8" fill="#0a2463"/>
+                        </svg>
+                        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/60">An Official Platform of the Options Trader</span>
+                    </div>
+                    <span className="text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase font-mono">{time}</span>
+                </div>
+            </div>
+
             {/* ======== HERO ======== */}
-            <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden">
+            <section className="relative min-h-screen flex flex-col justify-center items-start px-6 lg:px-20 overflow-hidden">
                 {/* Background image */}
                 <div
                     className="absolute inset-0 z-0"
                     style={{
-                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/3178d59a0_generated_image.png)',
+                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/4fa027ffb_generated_image.png)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
                 />
-                {/* Dark overlay */}
-                <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/70 via-black/50 to-black/90" />
+                {/* Dark overlay with blue undertone */}
+                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(5,12,20,0.75) 50%, rgba(10,15,20,0.9) 100%)' }} />
 
                 {/* Content */}
-                <div className="relative z-20 max-w-4xl mx-auto space-y-8">
-                    <div className="h-px w-24 bg-white/40 mx-auto" />
-
-                    <p className="text-sm font-bold tracking-[0.3em] uppercase text-white/80">
-                        The 90% lose. You won't.
+                <div className="relative z-20 max-w-4xl space-y-6">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50">
+                        We Salute You
                     </p>
 
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tight">
-                        Be a Rebel.
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
+                        Join the
                         <br />
-                        Beat the Odds.
+                        Market Rebellion
                     </h1>
 
-                    <div className="h-px w-24 bg-white/40 mx-auto" />
-
-                    <p className="text-lg md:text-xl text-white/60 max-w-xl mx-auto leading-relaxed font-medium">
-                        Most traders hand their money to Wall Street. You're different. You track every trade, know your edge, and refuse to be a statistic.
+                    <p className="text-base md:text-lg text-white/50 max-w-xl leading-relaxed font-medium font-sans">
+                        Join the multi-agency trading force dedicated to tracking every position, exposing your real edge, and keeping your portfolio strong.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                    <div className="flex flex-col sm:flex-row gap-4 pt-4">
                         <button
                             onClick={() => navigate(createPageUrl('Trades'))}
-                            className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-white/90 transition-all group"
+                            className="inline-flex items-center justify-center gap-3 px-10 py-4 font-black text-sm tracking-wider uppercase transition-all group"
+                            style={{ backgroundColor: '#c49a2c', color: '#000' }}
+                            onMouseEnter={(e) => e.target.style.backgroundColor = '#d4aa3c'}
+                            onMouseLeave={(e) => e.target.style.backgroundColor = '#c49a2c'}
                         >
-                            Start your mission
+                            Apply Now
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
                         <button
                             onClick={() => document.getElementById('darkops-arsenal').scrollIntoView({ behavior: 'smooth' })}
-                            className="inline-flex items-center justify-center gap-2 px-10 py-4 border border-white/30 text-white font-black text-sm tracking-wider uppercase hover:bg-white/10 transition-all group"
+                            className="inline-flex items-center justify-center gap-3 px-10 py-4 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group"
+                            style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}
                         >
-                            See the arsenal
+                            See the Arsenal
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
                     </div>
                 </div>
 
                 {/* Scroll indicator */}
-                <div className="absolute bottom-8 z-20">
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
                     <div className="w-6 h-10 border-2 border-white/20 rounded-full flex items-start justify-center p-1.5">
                         <div className="w-1.5 h-3 bg-white/60 rounded-full animate-bounce" />
                     </div>
@@ -67,7 +97,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== YOUR EDGE - Ticker Carousel ======== */}
-            <section className="relative py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #111 100%)' }}>
+            <section className="relative py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
                 <div className="max-w-6xl mx-auto">
                     <div className="h-px w-16 bg-white/30 mx-auto mb-10" />
                     <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
@@ -108,8 +138,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <section
                 className="relative py-32 px-6"
                 style={{
-                    background: '#000',
-                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%)',
+                    background: '#0a0f14',
+                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(196,154,44,0.04) 0%, transparent 70%)',
                 }}
             >
                 <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -125,7 +155,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== THREE PATHS ======== */}
-            <section className="py-24 px-6" style={{ background: '#0a0a0a' }}>
+            <section className="py-24 px-6" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl mx-auto">
                     <div className="h-px w-16 bg-white/30 mx-auto mb-16" />
 
@@ -170,7 +200,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== HOW IT WORKS ======== */}
-            <section id="darkops-arsenal" className="py-24 px-6" style={{ background: '#111' }}>
+            <section id="darkops-arsenal" className="py-24 px-6" style={{ background: '#0d131a' }}>
                 <div className="max-w-4xl mx-auto">
                     <div className="h-px w-16 bg-white/30 mx-auto mb-16" />
                     <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
@@ -199,7 +229,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== ARSENAL ======== */}
-            <section className="py-24 px-6" style={{ background: '#0a0a0a' }}>
+            <section className="py-24 px-6" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl mx-auto">
                     <div className="h-px w-16 bg-white/30 mx-auto mb-16" />
                     <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
@@ -276,12 +306,12 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <section
                 className="relative py-40 px-6"
                 style={{
-                    background: '#000',
-                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%)',
+                    background: '#0a0f14',
+                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(196,154,44,0.06) 0%, transparent 70%)',
                 }}
             >
                 <div className="max-w-3xl mx-auto text-center space-y-8">
-                    <div className="h-px w-16 bg-white/40 mx-auto" />
+                    <div className="h-px w-16 mx-auto" style={{ backgroundColor: 'rgba(196,154,44,0.4)' }} />
                     <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.9] tracking-tight">
                         Start
                         <br />
@@ -292,17 +322,20 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </p>
                     <button
                         onClick={() => navigate(createPageUrl('Trades'))}
-                        className="inline-flex items-center justify-center gap-2 px-12 py-5 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-white/90 transition-all group"
+                        className="inline-flex items-center justify-center gap-3 px-12 py-5 font-black text-sm tracking-wider uppercase transition-all group"
+                        style={{ backgroundColor: '#c49a2c', color: '#000' }}
+                        onMouseEnter={(e) => e.target.style.backgroundColor = '#d4aa3c'}
+                        onMouseLeave={(e) => e.target.style.backgroundColor = '#c49a2c'}
                     >
-                        Enter the command center
+                        Enter the Command Center
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </button>
-                    <div className="h-px w-16 bg-white/40 mx-auto" />
+                    <div className="h-px w-16 mx-auto" style={{ backgroundColor: 'rgba(196,154,44,0.4)' }} />
                 </div>
             </section>
 
             {/* ======== FAQ ======== */}
-            <section className="py-24 px-6" style={{ background: '#0a0a0a' }}>
+            <section className="py-24 px-6" style={{ background: '#0d131a' }}>
                 <div className="max-w-3xl mx-auto">
                     <h2 className="text-3xl font-black uppercase text-center tracking-tight mb-16">FAQ</h2>
                     <div className="space-y-1">
@@ -325,7 +358,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== FOOTER ======== */}
-            <footer className="py-12 px-6 border-t border-white/10" style={{ background: '#000' }}>
+            <footer className="py-12 px-6 border-t border-white/10" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                     <span className="text-xs font-black text-white/20 uppercase tracking-wider">DasKapitalist</span>
                     <span className="text-xs font-bold text-white/10 uppercase tracking-wider">Built for traders who refuse to lose.</span>
