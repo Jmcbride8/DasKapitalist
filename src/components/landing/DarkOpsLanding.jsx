@@ -209,36 +209,36 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
-            {/* ======== THREE PATHS ======== */}
+            {/* ======== OWN THE MEANS OF PRODUCTION ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
-                        BUILT FOR EVERY OPERATOR
+                        OWN THE MEANS OF PRODUCTION
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <DecipherText>{`One trader.\nMany paths.`}</DecipherText>
+                        <DecipherText>{`The capitalist.\nNot the worker.`}</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
-                        Whether you're grinding weekly premiums or running a multi-account operation — our dashboards adapt to how you trade.
+                        Marx wrote the book. We rewrote the ending. The means of production aren't seized — they're earned. Every tool here puts you in the owner's seat. Master your emotions, and the capital follows.
                     </p>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
                                 icon: Zap,
-                                title: 'Premium Sellers',
-                                desc: 'Theta gang. Weekly cash flow. Track every CSP and covered call like a P&L machine. Know exactly what you make per week.',
+                                title: 'The Industrialist',
+                                desc: 'Your premium-selling operation is a factory. Every CSP, every covered call — a production line spitting out weekly cash flow. Own it.',
                             },
                             {
                                 icon: Shield,
-                                title: 'Portfolio Managers',
-                                desc: 'Multiple accounts. Complex positions. One dashboard that shows your total exposure in a single glance. No spreadsheets.',
+                                title: 'The Magnate',
+                                desc: 'Multiple accounts. Complex positions. One command center. The bourgeoisie diversify — you see total exposure in a single glance.',
                             },
                             {
                                 icon: TrendingUp,
-                                title: 'Edge Hunters',
-                                desc: 'You know your win rate on SPY. But what about TSLA vs GLD? Drill into ticker-level performance and stop trading what doesn\'t work.',
+                                title: 'The Bourgeoisie',
+                                desc: 'You don\'t trade hope. You trade data. Ticker-level win rates. Profit factors. Stop gambling on losers and double down on what prints.',
                             },
                         ].map((path, i) => {
                             const Icon = path.icon;
