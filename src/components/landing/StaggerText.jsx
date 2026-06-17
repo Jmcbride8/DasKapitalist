@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { RefreshCw } from 'lucide-react';
 
 export default function StaggerText({ children, className = '', ...props }) {
   const [triggered, setTriggered] = useState(false);
+  const [retrigger, setRetrigger] = useState(0);
   const ref = useRef(null);
   const text = typeof children === 'string' ? children : '';
 
@@ -16,13 +18,21 @@ export default function StaggerText({ children, className = '', ...props }) {
     return () => observer.disconnect();
   }, [text, triggered]);
 
-  // Split text into words, preserving line breaks
+  useEffect(() => {
+    if (!triggered) return;
+    // Force re-trigger: briefly reset triggered, wait for observer to fire again
+    if (retrigger > 0) {
+      const t = setTimeout(() => setTriggered(false), 50);
+      return () => clearTimeout(t);
+    }
+  }, [retrigger]);
+
   const lines = text.split('\n');
 
   if (!text) return <span ref={ref} className={className} {...props}>{children}</span>;
 
   return (
-    <span ref={ref} className={className} {...props}>
+    <span ref={ref} className={className} {...props} style={{ position: 'relative', display: 'inline-block' }}>
       {lines.map((line, li) => (
         <React.Fragment key={li}>
           <span className="inline-block overflow-hidden align-top">
@@ -33,8 +43,8 @@ export default function StaggerText({ children, className = '', ...props }) {
                 style={{
                   transform: triggered ? 'translateY(0)' : 'translateY(110%)',
                   opacity: triggered ? 1 : 0,
-                  transition: `transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.4s ease`,
-                  transitionDelay: triggered ? `${wi * 0.06}s` : '0s',
+                  transition: `transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.8s ease`,
+                  transitionDelay: triggered ? `${wi * 0.12}s` : '0s',
                   marginRight: '0.25em',
                 }}
               >
@@ -45,6 +55,13 @@ export default function StaggerText({ children, className = '', ...props }) {
           {li < lines.length - 1 && <br />}
         </React.Fragment>
       ))}
+      <button
+        onClick={(e) => { e.stopPropagation(); setRetrigger((n) => n + 1); }}
+        className="absolute -top-8 right-0 p-1 rounded hover:bg-white/10 transition-colors text-white/40 hover:text-white"
+        title="Replay animation"
+      >
+        <RefreshCw className="w-3.5 h-3.5" />
+      </button>
     </span>
   );
 }

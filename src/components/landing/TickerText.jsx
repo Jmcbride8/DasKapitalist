@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { RefreshCw } from 'lucide-react';
 
 export default function TickerText({ children, className = '', ...props }) {
   const [display, setDisplay] = useState('');
   const [triggered, setTriggered] = useState(false);
+  const [retrigger, setRetrigger] = useState(0);
   const ref = useRef(null);
   const text = typeof children === 'string' ? children : '';
 
@@ -23,34 +25,42 @@ export default function TickerText({ children, className = '', ...props }) {
     let revealed = Array(chars.length).fill(false);
     setDisplay(chars.map((ch) => (ch === ' ' || ch === '\n' ? ch : '\u00A0')).join(''));
 
-    const duration = 600;
+    const duration = 1200; // doubled from 600
     const delay = duration / chars.length;
 
+    const timeouts = [];
     chars.forEach((ch, i) => {
-      const timeout = delay * i;
-      setTimeout(() => {
+      const t = setTimeout(() => {
         revealed[i] = true;
         setDisplay(chars.map((c, j) => {
           if (c === ' ' || c === '\n') return c;
           return revealed[j] ? c : '\u00A0';
         }).join(''));
-      }, timeout);
+      }, delay * i);
+      timeouts.push(t);
     });
 
-    return () => {};
-  }, [triggered, text]);
+    return () => timeouts.forEach(clearTimeout);
+  }, [triggered, text, retrigger]);
 
   if (!text) return <span ref={ref} className={className} {...props}>{children}</span>;
 
   const lines = display.split('\n');
   return (
-    <span ref={ref} className={className} {...props}>
+    <span ref={ref} className={className} {...props} style={{ position: 'relative', display: 'inline-block' }}>
       {lines.map((line, i) => (
         <React.Fragment key={i}>
           <span className="inline-block" style={{ borderRight: !display || display.replace(/\u00A0/g, '').length < text.replace(/\s/g, '').length ? '2px solid currentColor' : '2px solid transparent', animation: !display ? 'blink 0.8s step-end infinite' : 'none' }}>{line}</span>
           {i < lines.length - 1 && <br />}
         </React.Fragment>
       ))}
+      <button
+        onClick={(e) => { e.stopPropagation(); setRetrigger((n) => n + 1); }}
+        className="absolute -top-8 right-0 p-1 rounded hover:bg-white/10 transition-colors text-white/40 hover:text-white"
+        title="Replay animation"
+      >
+        <RefreshCw className="w-3.5 h-3.5" />
+      </button>
     </span>
   );
 }

@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { RefreshCw } from 'lucide-react';
 
 export default function GlitchText({ children, className = '', ...props }) {
   const [display, setDisplay] = useState('');
   const [triggered, setTriggered] = useState(false);
+  const [retrigger, setRetrigger] = useState(0);
   const ref = useRef(null);
   const text = typeof children === 'string' ? children : '';
 
@@ -21,12 +23,12 @@ export default function GlitchText({ children, className = '', ...props }) {
     if (!triggered || !text) return;
     const chars = text.split('');
 
-    // Phase 1: Brief glitch bursts (200ms)
+    // Glitch bursts — timings doubled from original
     const glitchPhases = [
-      { at: 0, duration: 60 },
-      { at: 100, duration: 80 },
-      { at: 220, duration: 50 },
-      { at: 320, duration: 70 },
+      { at: 0, duration: 120 },
+      { at: 200, duration: 160 },
+      { at: 440, duration: 100 },
+      { at: 640, duration: 140 },
     ];
 
     const timeouts = [];
@@ -36,7 +38,6 @@ export default function GlitchText({ children, className = '', ...props }) {
         const scrambled = chars.map((ch) => {
           if (ch === ' ' || ch === '\n') return ch;
           if (Math.random() > 0.5) return ch;
-          // Shift to a random nearby character
           const offset = Math.floor(Math.random() * 5) - 2;
           return String.fromCharCode(Math.max(32, ch.charCodeAt(0) + offset));
         });
@@ -49,12 +50,11 @@ export default function GlitchText({ children, className = '', ...props }) {
       timeouts.push(t);
     });
 
-    // Final resolve after all glitches
-    const finalTimeout = setTimeout(() => setDisplay(text), 420);
+    const finalTimeout = setTimeout(() => setDisplay(text), 840); // doubled from 420
     timeouts.push(finalTimeout);
 
     return () => timeouts.forEach(clearTimeout);
-  }, [triggered, text]);
+  }, [triggered, text, retrigger]);
 
   if (!text) return <span ref={ref} className={className} {...props}>{children}</span>;
 
@@ -70,6 +70,13 @@ export default function GlitchText({ children, className = '', ...props }) {
           {i < lines.length - 1 && <br />}
         </React.Fragment>
       ))}
+      <button
+        onClick={(e) => { e.stopPropagation(); setRetrigger((n) => n + 1); }}
+        className="absolute -top-8 right-0 p-1 rounded hover:bg-white/10 transition-colors text-white/40 hover:text-white"
+        title="Replay animation"
+      >
+        <RefreshCw className="w-3.5 h-3.5" />
+      </button>
     </span>
   );
 }

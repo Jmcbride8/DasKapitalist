@@ -251,7 +251,7 @@ export default function DesignOptions() {
                                 <span className="text-[10px] font-black text-black/30 uppercase tracking-wider">{label}</span>
                                 <span className="text-[9px] font-medium text-black/20">{desc}</span>
                             </div>
-                            <div className="p-8 rounded-2xl" style={{ backgroundColor: '#0a0f14' }}>
+                            <div className="pt-10 pb-8 px-8 rounded-2xl" style={{ backgroundColor: '#0a0f14' }}>
                                 <Component className="text-5xl md:text-6xl font-black text-white uppercase leading-[1.1] tracking-tighter">
                                     {'Beat the odds.\nOwn the board.'}
                                 </Component>
