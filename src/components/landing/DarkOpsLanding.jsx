@@ -22,7 +22,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <div className="w-full bg-black border-b border-white/10 overflow-hidden">
                 <div className="flex items-center">
                     {/* Flag + time fixed left */}
-                    <div className="flex-shrink-0 flex items-center gap-2 px-4 py-1.5 bg-black z-10 border-r border-white/10">
+                    <div className="flex-shrink-0 flex items-center gap-2 px-4 py-3 bg-black z-10 border-r border-white/10">
                         <svg className="w-4 h-3" viewBox="0 0 24 16" fill="none">
                             <rect width="24" height="2" fill="white" opacity="0.8"/>
                             <rect y="3" width="24" height="2" fill="white" opacity="0.8"/>
@@ -34,7 +34,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <span className="text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase font-mono whitespace-nowrap">{time}</span>
                     </div>
                     {/* Scrolling ticker */}
-                    <div className="flex-1 overflow-hidden relative h-7 flex items-center">
+                    <div className="flex-1 overflow-hidden relative h-14 flex items-center">
                         <div className="flex gap-10 whitespace-nowrap animate-ticker">
                             {(() => {
                                 const stocks = [
