@@ -227,10 +227,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         {/* Investor */}
                         <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02] flex flex-col">
                             <div className="relative h-64 overflow-hidden">
-                                <img
-                                    src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=500&fit=crop"
-                                    alt="Investing — long-term wealth"
+                                <AdminImage
+                                    imageKey="investor_card"
+                                    defaultSrc="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=500&fit=crop"
                                     className="w-full h-full object-cover opacity-60"
+                                    alt="Investing — long-term wealth"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/40 to-transparent" />
                                 <div className="absolute bottom-6 left-6">
@@ -264,10 +265,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 </span>
                             </div>
                             <div className="relative h-64 overflow-hidden">
-                                <img
-                                    src="https://images.unsplash.com/photo-1598886221035-4b1e41547d04?w=800&h=500&fit=crop"
-                                    alt="Trading — the casino floor"
+                                <AdminImage
+                                    imageKey="trader_card"
+                                    defaultSrc="https://images.unsplash.com/photo-1598886221035-4b1e41547d04?w=800&h=500&fit=crop"
                                     className="w-full h-full object-cover opacity-70"
+                                    alt="Trading — the casino floor"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/30 to-transparent" />
                             </div>
