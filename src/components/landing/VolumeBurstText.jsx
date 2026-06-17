@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { RefreshCw } from 'lucide-react';
-
 export default function VolumeBurstText({ children, className = '', ...props }) {
   const [triggered, setTriggered] = useState(false);
   const [retrigger, setRetrigger] = useState(0);
@@ -54,13 +52,6 @@ export default function VolumeBurstText({ children, className = '', ...props }) 
           {li < lines.length - 1 && <br />}
         </React.Fragment>
       ))}
-      <button
-        onClick={(e) => { e.stopPropagation(); setRetrigger((n) => n + 1); }}
-        className="absolute -top-8 right-0 p-1 rounded hover:bg-white/10 transition-colors text-white/40 hover:text-white"
-        title="Replay animation"
-      >
-        <RefreshCw className="w-3.5 h-3.5" />
-      </button>
     </span>
   );
 }
