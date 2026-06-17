@@ -8,6 +8,12 @@ import AndurilLanding from '@/components/landing/AndurilLanding';
 import SwissMinimalLanding from '@/components/landing/SwissMinimalLanding';
 import GildedAgeLanding from '@/components/landing/GildedAgeLanding';
 import ConstructivistLanding from '@/components/landing/ConstructivistLanding';
+import DecipherText from '@/components/landing/DecipherText';
+import TickerText from '@/components/landing/TickerText';
+import OdometerText from '@/components/landing/OdometerText';
+import SplitFlapText from '@/components/landing/SplitFlapText';
+import GlitchText from '@/components/landing/GlitchText';
+import StaggerText from '@/components/landing/StaggerText';
 
 export default function DesignOptions() {
     const navigate = useNavigate();
@@ -196,6 +202,64 @@ export default function DesignOptions() {
                     </div>
                 </div>
             )}
+
+            {/* ======== TEXT ANIMATION COMPARISON ======== */}
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+                <div className="flex items-center gap-4 mb-10">
+                    <div className="h-8 w-1 bg-black" />
+                    <div>
+                        <h2 className="text-xl font-black text-black">Text Animation Options</h2>
+                        <p className="text-xs font-medium text-black/30 mt-0.5">Scroll down to trigger each animation — compare side by side</p>
+                    </div>
+                </div>
+
+                <div className="space-y-16" style={{ minHeight: '180vh' }}>
+                    {[
+                        {
+                            label: '01 — DecipherText (Current)',
+                            desc: 'Characters scramble through random symbols, then resolve to final text. Spy/encryption aesthetic.',
+                            Component: DecipherText,
+                        },
+                        {
+                            label: '02 — TickerText',
+                            desc: 'Characters fade in left-to-right with a blinking cursor, like a stock ticker resolving.',
+                            Component: TickerText,
+                        },
+                        {
+                            label: '03 — OdometerText',
+                            desc: 'Characters roll upward through the alphabet like a slot machine or price counter.',
+                            Component: OdometerText,
+                        },
+                        {
+                            label: '04 — SplitFlapText',
+                            desc: 'Characters flip rapidly through random glyphs in a staggered wave — like an old departure board.',
+                            Component: SplitFlapText,
+                        },
+                        {
+                            label: '05 — GlitchText',
+                            desc: 'Brief digital distortion bursts with a red ghost offset, then snaps to clarity.',
+                            Component: GlitchText,
+                        },
+                        {
+                            label: '06 — StaggerText',
+                            desc: 'Words slide up from below with staggered delays. Understated, clean, premium.',
+                            Component: StaggerText,
+                        },
+                    ].map(({ label, desc, Component }) => (
+                        <div key={label} className="min-h-[200px]">
+                            <div className="flex items-center gap-3 mb-3">
+                                <span className="text-[10px] font-black text-black/30 uppercase tracking-wider">{label}</span>
+                                <span className="text-[9px] font-medium text-black/20">{desc}</span>
+                            </div>
+                            <div className="p-8 rounded-2xl" style={{ backgroundColor: '#0a0f14' }}>
+                                <Component className="text-5xl md:text-6xl font-black text-white uppercase leading-[1.1] tracking-tighter">
+                                    {'Beat the odds.\nOwn the board.'}
+                                </Component>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
