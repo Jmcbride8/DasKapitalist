@@ -143,35 +143,35 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </p>
 
                     {/* Problem image cards */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
                             {
                                 imageKey: 'problem_1',
-                                image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop',
+                                image: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=800&h=600&fit=crop',
                                 title: 'Emotional Decisions',
                                 desc: 'Fear and greed destroy more accounts than bad analysis. Your brain is wired to buy tops and sell bottoms.',
                             },
                             {
                                 imageKey: 'problem_2',
-                                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
                                 title: 'No Performance Data',
                                 desc: 'Without tracking every trade, you can\'t improve what you can\'t measure. Most traders don\'t even know their win rate.',
                             },
                             {
                                 imageKey: 'problem_3',
-                                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
                                 title: 'Information Overload',
                                 desc: 'Too many indicators, no clarity. You drown in data but starve for insight on what actually makes you money.',
                             },
                             {
                                 imageKey: 'problem_4',
-                                image: 'https://images.unsplash.com/photo-1633158829585-23ba4f03a014?w=600&h=400&fit=crop',
+                                image: 'https://images.unsplash.com/photo-1639322537228-f740dce6b4ab?w=800&h=600&fit=crop',
                                 title: 'No Edge Awareness',
                                 desc: 'Trading tickers without knowing your win rate per symbol. You keep trading losers and cutting winners too early.',
                             },
                         ].map((card, i) => (
                             <div key={i} className="group relative overflow-hidden rounded-2xl border border-white/10 hover:border-white/30 transition-all bg-white/[0.02]">
-                                <div className="relative h-48 overflow-hidden">
+                                <div className="relative h-80 overflow-hidden">
                                     <AdminImage
                                         imageKey={card.imageKey}
                                         defaultSrc={card.image}
@@ -181,9 +181,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent pointer-events-none" />
                                 </div>
-                                <div className="p-6">
-                                    <h3 className="text-base font-black text-white mb-2 uppercase tracking-tight">{card.title}</h3>
-                                    <p className="text-xs text-white/40 leading-relaxed">{card.desc}</p>
+                                <div className="p-8">
+                                    <h3 className="text-xl font-black text-white mb-3 uppercase tracking-tight">{card.title}</h3>
+                                    <p className="text-sm text-white/40 leading-relaxed">{card.desc}</p>
                                 </div>
                             </div>
                         ))}
