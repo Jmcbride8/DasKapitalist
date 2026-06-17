@@ -4,7 +4,7 @@ import { createPageUrl } from '@/utils';
 import { ArrowRight, Shield, Zap, TrendingUp } from 'lucide-react';
 import AdminImage from '@/components/landing/AdminImage';
 import HeroImagePicker from '@/components/landing/HeroImagePicker';
-import DecipherText from '@/components/landing/DecipherText';
+import PriceTargetText from '@/components/landing/PriceTargetText';
 
 export default function DarkOpsLanding({ navigate, openView }) {
     const [time, setTime] = useState('');
@@ -87,7 +87,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </p>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
-                        <DecipherText>{`Be a rebel.\nBeat the odds.`}</DecipherText>
+                        <PriceTargetText>{`Be a rebel.\nBeat the odds.`}</PriceTargetText>
                     </h1>
 
                     <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed font-medium font-sans">
@@ -131,7 +131,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         WHAT YOU'RE UP AGAINST
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <DecipherText>{`The market is\ndesigned to break\nyour mind.`}</DecipherText>
+                        <PriceTargetText>{`The market is\ndesigned to break\nyour mind.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
@@ -200,7 +200,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         THE SOLUTION
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        <DecipherText>{`Take\nControl.`}</DecipherText>
+                        <PriceTargetText>{`Take\nControl.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right">
@@ -216,7 +216,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         KNOW YOUR LANE
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <DecipherText>{`Trading. Investing.\nSame casino, different game.`}</DecipherText>
+                        <PriceTargetText>{`Trading. Investing.\nSame casino, different game.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
@@ -314,7 +314,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         THE PROCESS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        <DecipherText>{`Three steps.\nNo fluff.`}</DecipherText>
+                        <PriceTargetText>{`Three steps.\nNo fluff.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
@@ -346,7 +346,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         THE ARSENAL
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <DecipherText>{`Four weapons.\nZero excuses.`}</DecipherText>
+                        <PriceTargetText>{`Four weapons.\nZero excuses.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
@@ -473,7 +473,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <div className="flex flex-col justify-between min-h-[400px]">
                             <div className="space-y-6">
                                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
-                                    <DecipherText>{`Start Your\nMission`}</DecipherText>
+                                    <PriceTargetText>{`Start Your\nMission`}</PriceTargetText>
                                 </h2>
                                 <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed font-medium font-sans">
                                     Your path to trading mastery starts here. Log your trades, find your edge, and build the discipline to beat the market consistently.
@@ -501,7 +501,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         QUESTIONS & ANSWERS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        <DecipherText>FAQ</DecipherText>
+                        <PriceTargetText>FAQ</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-16" />
                     <div className="space-y-1">
