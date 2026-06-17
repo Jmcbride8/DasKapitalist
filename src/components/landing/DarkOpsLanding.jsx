@@ -549,7 +549,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <span className="text-6xl font-black text-white">$50</span>
                                     <span className="text-white/40 font-mono text-sm ml-2">/mo</span>
                                 </div>
-                                <p className="text-white/70 font-sans text-sm mb-6 max-w-xs">Track every trade. Trust the data. Build your edge alone.</p>
+                                <p className="text-white font-sans text-sm mb-6 max-w-xs">Track every trade. Trust the data. Build your edge alone.</p>
                                 <button
                                     onClick={() => navigate('/Trades')}
                                     className="w-full py-3.5 border border-white/30 text-white font-black text-sm tracking-wider uppercase hover:bg-white/10 transition-all rounded-md"
@@ -579,7 +579,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <span className="text-6xl font-black text-white">$100</span>
                                     <span className="font-mono text-sm ml-2" style={{ color: 'rgba(16,185,129,0.6)' }}>/mo</span>
                                 </div>
-                                <p className="text-white/70 font-sans text-sm mb-6 max-w-xs">Pattern recognition. Behavioral bias detection. An AI co-pilot that's ruthlessly objective.</p>
+                                <p className="text-white font-sans text-sm mb-6">AI co-pilot. Pattern recognition. Ruthlessly objective.</p>
                                 <button
                                     onClick={() => navigate('/Trades')}
                                     className="w-full py-3.5 font-black text-sm tracking-wider uppercase transition-all rounded-md text-black"
