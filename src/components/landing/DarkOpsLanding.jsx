@@ -198,7 +198,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         {/* Image */}
                         <div className="relative">
                             <img
-                                src="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/9c652d587_generated_image.png"
+                                src="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/d545f99c9_generated_image.png"
                                 alt="Greek theater masks — excitement, greed, fear, sadness"
                                 className="w-full rounded-2xl"
                                 style={{ filter: 'brightness(0.9) contrast(1.1)' }}
