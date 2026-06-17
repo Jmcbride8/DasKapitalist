@@ -14,6 +14,9 @@ import OdometerText from '@/components/landing/OdometerText';
 import SplitFlapText from '@/components/landing/SplitFlapText';
 import GlitchText from '@/components/landing/GlitchText';
 import StaggerText from '@/components/landing/StaggerText';
+import TypewriterText from '@/components/landing/TypewriterText';
+import ScanLineText from '@/components/landing/ScanLineText';
+import PulseText from '@/components/landing/PulseText';
 
 export default function DesignOptions() {
     const navigate = useNavigate();
@@ -244,6 +247,21 @@ export default function DesignOptions() {
                             label: '06 — StaggerText',
                             desc: 'Words slide up from below with staggered delays. Understated, clean, premium.',
                             Component: StaggerText,
+                        },
+                        {
+                            label: '07 — TypewriterText',
+                            desc: 'Mechanical character-by-character typing with a blinking cursor. Deliberate, analyst-grade precision.',
+                            Component: TypewriterText,
+                        },
+                        {
+                            label: '08 — ScanLineText',
+                            desc: 'A horizontal scan sweeps down revealing each line. Feels like a terminal monitor refreshing live data.',
+                            Component: ScanLineText,
+                        },
+                        {
+                            label: '09 — PulseText',
+                            desc: 'Words burst from a blurry speck into sharp focus. High energy, feels like a live price alert.',
+                            Component: PulseText,
                         },
                     ].map(({ label, desc, Component }) => (
                         <div key={label} className="min-h-[200px]">
