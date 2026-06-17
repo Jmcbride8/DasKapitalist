@@ -230,7 +230,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <AdminImage
                                     imageKey="investor_card"
                                     defaultSrc="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=500&fit=crop"
-                                    className="w-full h-full object-cover opacity-60"
+                                    className="w-full h-full opacity-60"
+                                    style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Investing — long-term wealth"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/40 to-transparent pointer-events-none" />
@@ -268,7 +269,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <AdminImage
                                     imageKey="trader_card"
                                     defaultSrc="https://images.unsplash.com/photo-1598886221035-4b1e41547d04?w=800&h=500&fit=crop"
-                                    className="w-full h-full object-cover opacity-70"
+                                    className="w-full h-full opacity-70"
+                                    style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Trading — the casino floor"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/30 to-transparent pointer-events-none" />
