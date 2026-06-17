@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowRight, Shield, Zap, TrendingUp } from 'lucide-react';
+import { ArrowRight, CandlestickChart, TrendingUp, TrendingDown } from 'lucide-react';
 import AdminImage from '@/components/landing/AdminImage';
 import HeroImagePicker from '@/components/landing/HeroImagePicker';
 import PriceTargetText from '@/components/landing/PriceTargetText';
@@ -241,7 +240,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
                                 <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
-                                    <Shield className="w-6 h-6 text-white/50" />
+                                    <CandlestickChart className="w-6 h-6 text-white/50" />
                                 </div>
                                 <h3 className="text-2xl font-black text-white/60 uppercase tracking-tight mb-3">The Investor</h3>
                                 <p className="text-lg font-black text-white/25 uppercase tracking-tight mb-5 font-mono">Time is your edge. Patience is your weapon.</p>
@@ -277,7 +276,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(16,185,129,0.1)' }}>
-                                    <Zap className="w-6 h-6" style={{ color: '#10b981' }} />
+                                    <TrendingUp className="w-6 h-6" style={{ color: '#10b981' }} />
                                 </div>
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Trader</h3>
                                 <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#10b981' }}>Momentum is your edge. Discipline is your weapon.</p>
@@ -362,9 +361,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 imageKey: 'weapon_1',
                                 image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=500&fit=crop',
                                 stats: [
-                                    { label: 'Win Rate', value: '62%' },
-                                    { label: 'Profit Factor', value: '1.8×' },
-                                    { label: 'Total P&L', value: '+$47,280' },
+                                    { label: 'Win Rate', value: '62%', up: true },
+                                    { label: 'Profit Factor', value: '1.8×', up: true },
+                                    { label: 'Total P&L', value: '+$47,280', up: true },
                                 ],
                             },
                             {
@@ -374,9 +373,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 imageKey: 'weapon_2',
                                 image: 'https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=800&h=500&fit=crop',
                                 stats: [
-                                    { label: 'Current', value: '3 wins' },
-                                    { label: 'Best Ever', value: '11 wins' },
-                                    { label: 'Worst', value: '1 loss' },
+                                    { label: 'Current', value: '3 wins', up: true },
+                                    { label: 'Best Ever', value: '11 wins', up: true },
+                                    { label: 'Worst', value: '1 loss', up: false },
                                 ],
                             },
                             {
@@ -386,9 +385,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 imageKey: 'weapon_3',
                                 image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop',
                                 stats: [
-                                    { label: 'Top Ticker', value: 'GLD (+$14K)' },
-                                    { label: 'Worst Ticker', value: 'TSLA (-$5K)' },
-                                    { label: 'Total Tickers', value: '12' },
+                                    { label: 'Top Ticker', value: 'GLD (+$14K)', up: true },
+                                    { label: 'Worst Ticker', value: 'TSLA (-$5K)', up: false },
+                                    { label: 'Total Tickers', value: '12', up: null },
                                 ],
                             },
                             {
@@ -398,9 +397,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 imageKey: 'weapon_4',
                                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
                                 stats: [
-                                    { label: 'Open Positions', value: '14' },
-                                    { label: 'At Risk', value: '$386K' },
-                                    { label: 'Up Today', value: '9' },
+                                    { label: 'Open Positions', value: '14', up: null },
+                                    { label: 'At Risk', value: '$386K', up: null },
+                                    { label: 'Up Today', value: '9', up: true },
                                 ],
                             },
                         ].map((item) => (
@@ -422,7 +421,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <div className="flex gap-4 pt-4 border-t border-white/10">
                                         {item.stats.map((s) => (
                                             <div key={s.label}>
-                                                <div className="text-lg font-black text-white">{s.value}</div>
+                                                <div className="flex items-center gap-1 text-lg font-black text-white">
+                                                    {s.value}
+                                                    {s.up === true && <TrendingUp className="w-4 h-4 text-emerald-400" />}
+                                                    {s.up === false && <TrendingDown className="w-4 h-4 text-red-400" />}
+                                                </div>
                                                 <div className="text-[9px] font-bold text-white/25 uppercase tracking-wider mt-0.5">{s.label}</div>
                                             </div>
                                         ))}
