@@ -209,49 +209,96 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
-            {/* ======== OWN THE MEANS OF PRODUCTION ======== */}
+            {/* ======== KNOW YOUR LANE ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
-                        OWN THE MEANS OF PRODUCTION
+                        KNOW YOUR LANE
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <DecipherText>{`The capitalist.\nNot the worker.`}</DecipherText>
+                        <DecipherText>{`Trading. Investing.\nSame casino, different game.`}</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
-                        Marx wrote the book. We rewrote the ending. The means of production aren't seized — they're earned. Every tool here puts you in the owner's seat. Master your emotions, and the capital follows.
+                        Both can win. Both can bleed. The difference isn't the strategy — it's the honesty. Investors buy and hold, compound over decades, ignore the noise. Traders play the odds daily, grind edges, and build psychological armor. This platform is for the latter. Investors, we'll see you in Phase Two.
                     </p>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                icon: Zap,
-                                title: 'The Industrialist',
-                                desc: 'Your premium-selling operation is a factory. Every CSP, every covered call — a production line spitting out weekly cash flow. Own it.',
-                            },
-                            {
-                                icon: Shield,
-                                title: 'The Magnate',
-                                desc: 'Multiple accounts. Complex positions. One command center. The bourgeoisie diversify — you see total exposure in a single glance.',
-                            },
-                            {
-                                icon: TrendingUp,
-                                title: 'The Bourgeoisie',
-                                desc: 'You don\'t trade hope. You trade data. Ticker-level win rates. Profit factors. Stop gambling on losers and double down on what prints.',
-                            },
-                        ].map((path, i) => {
-                            const Icon = path.icon;
-                            return (
-                                <div key={i} className="border border-white/10 rounded-2xl p-8 hover:border-white/30 transition-all bg-white/[0.02]">
-                                    <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
-                                        <Icon className="w-6 h-6 text-white/80" />
-                                    </div>
-                                    <h3 className="text-xl font-black text-white uppercase tracking-tight mb-3">{path.title}</h3>
-                                    <p className="text-sm text-white/50 leading-relaxed font-sans">{path.desc}</p>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {/* Investor */}
+                        <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02] flex flex-col">
+                            <div className="relative h-64 overflow-hidden">
+                                <img
+                                    src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=500&fit=crop"
+                                    alt="Investing — long-term wealth"
+                                    className="w-full h-full object-cover opacity-60"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/40 to-transparent" />
+                                <div className="absolute bottom-6 left-6">
+                                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/30 font-mono">Phase Two</span>
                                 </div>
-                            );
-                        })}
+                            </div>
+                            <div className="p-8 flex-1 flex flex-col">
+                                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
+                                    <Shield className="w-6 h-6 text-white/50" />
+                                </div>
+                                <h3 className="text-2xl font-black text-white/60 uppercase tracking-tight mb-3">The Investor</h3>
+                                <p className="text-lg font-black text-white/25 uppercase tracking-tight mb-5 font-mono">Time is your edge. Patience is your weapon.</p>
+                                <p className="text-sm text-white/40 leading-relaxed font-sans mb-6">
+                                    You buy quality. You wait. You compound. Decades do the heavy lifting. The casino works in your favor — if you never leave the table.
+                                </p>
+                                <div className="mt-auto flex flex-wrap gap-2">
+                                    {['Compound Growth', 'Buy & Hold', 'Low Touch', 'Index Tracking'].map((tag) => (
+                                        <span key={tag} className="text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border border-white/5 text-white/25">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Trader */}
+                        <div className="border border-white/20 rounded-2xl overflow-hidden bg-white/[0.03] flex flex-col relative" style={{ borderColor: 'rgba(196,154,44,0.3)' }}>
+                            <div className="absolute top-4 right-4 z-10">
+                                <span className="text-[9px] font-black tracking-[0.25em] uppercase px-3 py-1.5 rounded-full text-black" style={{ backgroundColor: '#c49a2c' }}>
+                                    This Platform
+                                </span>
+                            </div>
+                            <div className="relative h-64 overflow-hidden">
+                                <img
+                                    src="https://images.unsplash.com/photo-1598886221035-4b1e41547d04?w=800&h=500&fit=crop"
+                                    alt="Trading — the casino floor"
+                                    className="w-full h-full object-cover opacity-70"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/30 to-transparent" />
+                            </div>
+                            <div className="p-8 flex-1 flex flex-col">
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(196,154,44,0.1)' }}>
+                                    <Zap className="w-6 h-6" style={{ color: '#c49a2c' }} />
+                                </div>
+                                <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Trader</h3>
+                                <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#c49a2c' }}>Probability is your edge. Discipline is your weapon.</p>
+                                <p className="text-sm text-white/50 leading-relaxed font-sans mb-6">
+                                    You enter. You exit. You repeat. The casino is your arena — and the house only wins when you tilt. Know your numbers. Build your systems. <span className="text-white/70 font-semibold">Master your mind.</span>
+                                </p>
+                                <div className="mt-auto flex flex-wrap gap-2">
+                                    {['Win Rate Tracking', 'Risk Management', 'Emotional Mastery', 'Edge by Ticker'].map((tag) => (
+                                        <span key={tag} className="text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border text-white/40" style={{ borderColor: 'rgba(196,154,44,0.2)' }}>
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Gambling honesty block */}
+                    <div className="mt-12 border-t border-white/10 pt-12">
+                        <blockquote className="max-w-2xl mx-auto text-center">
+                            <p className="text-lg md:text-xl text-white/70 italic leading-relaxed font-medium font-sans mb-4">
+                                "Yes, we're gambling. So is every investor who thinks they're not. The difference? <span className="text-white font-semibold">We know it</span> — and we track every bet. The house wins on tilt. We win on discipline."
+                            </p>
+                            <cite className="text-xs font-bold tracking-[0.3em] uppercase text-white/25 not-italic font-mono">— The DasKapitalist Philosophy</cite>
+                        </blockquote>
                     </div>
                 </div>
             </section>
