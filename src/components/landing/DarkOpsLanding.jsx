@@ -537,6 +537,103 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
+            {/* ======== PRICING ======== */}
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
+                <div className="max-w-5xl mx-auto">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase mb-8 font-mono text-center" style={{ color: '#10b981' }}>
+                        PRICING
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-4 text-center text-white">
+                        Own the numbers.
+                    </h2>
+                    <p className="text-center text-white font-sans mb-16 text-base">No trials. No fluff. Pick your weapon.</p>
+
+                    <div className="grid md:grid-cols-2 gap-6 items-stretch">
+                        {/* Solo */}
+                        <div className="border border-white/15 rounded-2xl p-10 flex flex-col bg-white/[0.02] hover:border-white/30 transition-all">
+                            <div className="mb-8">
+                                <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/40 font-mono mb-3">TIER 01</p>
+                                <h3 className="text-4xl font-black uppercase text-white tracking-tight mb-2">Solo</h3>
+                                <p className="text-white font-sans text-sm">For the lone wolf who tracks every trade and trusts the data.</p>
+                            </div>
+                            <div className="mb-10">
+                                <span className="text-7xl font-black text-white">$50</span>
+                                <span className="text-white/40 font-mono text-sm ml-2">/mo</span>
+                            </div>
+                            <ul className="space-y-4 mb-10 flex-1">
+                                {[
+                                    'Unlimited trade logging',
+                                    'Track Record dashboard',
+                                    'Streaks & win rate tracking',
+                                    'Edge by ticker analytics',
+                                    'Live exposure treemap',
+                                    'Multi-account support',
+                                ].map((feature) => (
+                                    <li key={feature} className="flex items-center gap-3 text-sm text-white font-sans">
+                                        <span className="w-5 h-5 flex-shrink-0 rounded-full border border-white/20 flex items-center justify-center">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
+                                        </span>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                            <button
+                                onClick={() => navigate('/Trades')}
+                                className="w-full py-4 border border-white/20 text-white font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all rounded-md"
+                            >
+                                Get Started
+                            </button>
+                        </div>
+
+                        {/* AI Enabled */}
+                        <div className="rounded-2xl p-10 flex flex-col relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0d2010 0%, #0a1a0d 100%)', border: '1px solid rgba(16,185,129,0.4)' }}>
+                            {/* Glow */}
+                            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top right, rgba(16,185,129,0.08) 0%, transparent 70%)' }} />
+                            <div className="absolute top-6 right-6">
+                                <span className="text-[9px] font-black tracking-[0.25em] uppercase px-3 py-1.5 rounded-full text-black" style={{ backgroundColor: '#10b981' }}>
+                                    BEST VALUE
+                                </span>
+                            </div>
+                            <div className="mb-8 relative z-10">
+                                <p className="text-xs font-bold tracking-[0.3em] uppercase font-mono mb-3" style={{ color: 'rgba(16,185,129,0.5)' }}>TIER 02</p>
+                                <h3 className="text-4xl font-black uppercase text-white tracking-tight mb-2">AI Enabled</h3>
+                                <p className="text-white font-sans text-sm">Bring an AI co-pilot to the table. Pattern recognition. Trade insights. Ruthless objectivity.</p>
+                            </div>
+                            <div className="mb-10 relative z-10">
+                                <span className="text-7xl font-black text-white">$100</span>
+                                <span className="font-mono text-sm ml-2" style={{ color: 'rgba(16,185,129,0.5)' }}>/mo</span>
+                            </div>
+                            <ul className="space-y-4 mb-10 flex-1 relative z-10">
+                                {[
+                                    'Everything in Solo',
+                                    'AI trade pattern analysis',
+                                    'Behavioral bias detection',
+                                    'Weekly AI performance debrief',
+                                    'Natural language trade search',
+                                    'Priority support',
+                                ].map((feature, i) => (
+                                    <li key={feature} className="flex items-center gap-3 text-sm text-white font-sans">
+                                        <span className="w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center" style={{ border: '1px solid rgba(16,185,129,0.4)' }}>
+                                            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#10b981' }} />
+                                        </span>
+                                        {i === 0 ? <span className="font-bold">{feature}</span> : feature}
+                                    </li>
+                                ))}
+                            </ul>
+                            <button
+                                onClick={() => navigate('/Trades')}
+                                className="w-full py-4 font-black text-sm tracking-wider uppercase transition-all rounded-md relative z-10 text-black"
+                                style={{ backgroundColor: '#10b981' }}
+                                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
+                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
+                            >
+                                Go AI
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* ======== FOOTER ======== */}
             <footer className="py-12 px-6 border-t border-white/10" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
