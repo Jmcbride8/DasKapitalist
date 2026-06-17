@@ -211,7 +211,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             {/* ======== KNOW YOUR LANE ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
-                <div className="max-w-6xl">
+                <div className="max-w-6xl mx-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
                         KNOW YOUR LANE
                     </p>
