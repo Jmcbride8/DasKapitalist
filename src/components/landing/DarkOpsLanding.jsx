@@ -354,12 +354,12 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 <div
                     className="absolute inset-0 z-0"
                     style={{
-                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/da50dfc81_generated_image.png)',
+                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/370ef799f_generated_image.png)',
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'center top',
                     }}
                 />
-                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(10,15,20,0.70) 50%, rgba(0,0,0,0.80) 100%)' }} />
+                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(10,15,20,0.30) 50%, rgba(0,0,0,0.50) 100%)' }} />
 
                 <div className="relative z-20 w-full max-w-7xl mx-auto">
                     <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-end">
