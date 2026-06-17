@@ -4,7 +4,7 @@ import { useAuth } from '@/lib/AuthContext';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, ShieldAlert } from 'lucide-react';
 import DarkOpsLanding from '@/components/landing/DarkOpsLanding';
-import DataTerminalLanding from '@/components/landing/DataTerminalLanding';
+import AndurilLanding from '@/components/landing/AndurilLanding';
 import SwissMinimalLanding from '@/components/landing/SwissMinimalLanding';
 import GildedAgeLanding from '@/components/landing/GildedAgeLanding';
 import ConstructivistLanding from '@/components/landing/ConstructivistLanding';
@@ -47,7 +47,7 @@ export default function DesignOptions() {
                         {[
                             { key: '01', label: '01 — Brutalist' },
                             { key: '02', label: '02 — Dark Ops' },
-                            { key: '03', label: '03 — Terminal' },
+                            { key: '03', label: '03 — Anduril' },
                             { key: '04', label: '04 — Swiss' },
                             { key: '05', label: '05 — Gilded' },
                             { key: '06', label: '06 — Construct' },
@@ -113,7 +113,7 @@ export default function DesignOptions() {
                 </div>
             )}
 
-            {/* Design 3: Data Terminal */}
+            {/* Design 3: Anduril-Inspired */}
             {selectedDesign === '03' && (
                 <div>
                     <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-4">
@@ -121,15 +121,15 @@ export default function DesignOptions() {
                             <div className="h-8 w-1 bg-black" />
                             <div>
                                 <div className="flex items-center gap-3">
-                                    <h2 className="text-xl font-black text-black">03 — Data Terminal</h2>
+                                    <h2 className="text-xl font-black text-black">03 — Anduril</h2>
                                     <span className="text-[9px] font-bold text-white bg-black px-2 py-0.5 uppercase tracking-wider">Alternative</span>
                                 </div>
-                                <p className="text-xs font-medium text-black/30 mt-0.5">Green-on-black monospace, terminal aesthetic, "sysadmin for your portfolio"</p>
+                                <p className="text-xs font-medium text-black/30 mt-0.5">Pure black, atmospheric imagery, white-on-black precision, defense-tech aesthetic</p>
                             </div>
                         </div>
                     </div>
                     <div className="border-y border-black/10">
-                        <DataTerminalLanding navigate={navigate} openView={openView} />
+                        <AndurilLanding navigate={navigate} openView={openView} />
                     </div>
                 </div>
             )}
