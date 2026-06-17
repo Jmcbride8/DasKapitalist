@@ -297,15 +297,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         </div>
                     </div>
 
-                    {/* Gambling honesty block */}
-                    <div className="mt-12 border-t border-white/10 pt-12">
-                        <blockquote className="max-w-2xl mx-auto text-center">
-                            <p className="text-lg md:text-xl text-white/70 italic leading-relaxed font-medium font-sans mb-4">
-                                "The most important rule of trading is to play <span className="text-white font-semibold">great defense</span>, not great offense."
-                            </p>
-                            <cite className="text-xs font-bold tracking-[0.3em] uppercase text-white/25 not-italic font-mono">— Paul Tudor Jones</cite>
-                        </blockquote>
-                    </div>
+
                 </div>
             </section>
 
