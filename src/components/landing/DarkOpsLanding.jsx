@@ -349,7 +349,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== FINAL CTA — Wall Street ======== */}
-            <section className="relative min-h-[90vh] flex items-center px-6 lg:px-20 overflow-hidden">
+            <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
                 {/* Wall Street background */}
                 <div
                     className="absolute inset-0 z-0"
