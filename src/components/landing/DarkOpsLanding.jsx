@@ -42,6 +42,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <PriceTargetText>{`Be a rebel.\nBeat the odds.`}</PriceTargetText>
                     </h1>
 
+                    <div className="h-1 w-20 bg-white" />
+
                     <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed font-medium font-sans">
                         Most traders lose money — the stats don't lie. This is where you break that pattern. Track every trade, find your real edge, and build the discipline to compound your gains.
                     </p>
@@ -68,8 +70,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </div>
                 </div>
 
-                {/* Stock ticker at bottom of hero */}
-                <div className="absolute bottom-16 left-0 right-0 z-20">
+                {/* Stock ticker at absolute bottom of hero */}
+                <div className="absolute bottom-0 left-0 right-0 z-20">
                     <div className="w-full overflow-hidden border-t border-b border-white/10 bg-black/40 backdrop-blur-sm">
                         <div className="flex items-center">
                             <div className="flex-shrink-0 flex items-center gap-2 px-4 py-3 bg-black/60 z-10 border-r border-white/10">
@@ -115,12 +117,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </div>
                 </div>
 
-                {/* Scroll indicator */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-                    <div className="w-6 h-10 border-2 border-white/20 rounded-full flex items-start justify-center p-1.5">
-                        <div className="w-1.5 h-3 bg-white/60 rounded-full animate-bounce" />
-                    </div>
-                </div>
+
             </section>
 
             {/* ======== THE PROBLEM ======== */}
