@@ -34,7 +34,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 font-mono">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white font-mono">
                         Trade with an edge
                     </p>
 
@@ -44,7 +44,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="h-1 w-2/3 bg-white" />
 
-                    <p className="text-base md:text-lg text-white/60 max-w-2xl leading-relaxed font-medium font-sans">
+                    <p className="text-base md:text-lg text-white max-w-2xl leading-relaxed font-medium font-sans">
                         Most traders lose money — the stats don't lie. This is where you break that pattern. Track every trade, find your real edge, and build the discipline to compound your gains.
                     </p>
 
@@ -113,8 +113,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                         const doubled = [...stocks, ...stocks];
                                         return doubled.map((stock, i) => (
                                             <div key={i} className="flex items-center gap-2 text-[10px] font-bold font-mono">
-                                                <span className="text-white/80 tracking-wider">{stock.symbol}</span>
-                                                <span className="text-white/60">{stock.price}</span>
+                                                <span className="text-white tracking-wider">{stock.symbol}</span>
+                                                <span className="text-white">{stock.price}</span>
                                                 <span className={`tracking-wider ${stock.up ? 'text-emerald-400' : 'text-red-400'}`}>{stock.change}</span>
                                             </div>
                                         ));
@@ -131,14 +131,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== THE PROBLEM ======== */}
             <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
                 <div className="max-w-[100rem]">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
                         EMOTIONS BEAT INTELLIGENCE
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
                         <PriceTargetText>{`The math is easy.\nThe mindset isn't.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
+                    <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans mb-16">
                         The pros don't have secret formulas. They have systems, discipline, and data. Here's what's actually holding you back.
                     </p>
 
@@ -183,7 +183,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 </div>
                                 <div className="p-8">
                                     <h3 className={`text-xl font-black mb-3 uppercase tracking-tight ${card.title.startsWith('⬇') ? 'text-red-400' : 'text-white'}`}>{card.title.replace('⬇ ', '')}</h3>
-                                    <p className="text-sm text-white/50 leading-relaxed font-sans">{card.desc}</p>
+                                    <p className="text-sm text-white leading-relaxed font-sans">{card.desc}</p>
                                 </div>
                             </div>
                         ))}
@@ -202,14 +202,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 />
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(10,15,20,0.90) 0%, rgba(10,15,20,0.75) 40%, rgba(10,15,20,0.90) 100%)' }} />
                 <div className="relative z-20 max-w-4xl ml-auto">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono text-right">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         THE SOLUTION
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
                         <PriceTargetText>{`Master\nyour Mind.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right">
+                    <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans ml-auto text-right">
                         Your broker feeds you numbers. We give you a command center. Real-time exposure. Streak tracking. Edge by ticker. Everything you need to stop being the mark and start being the hunter.
                     </p>
                 </div>
@@ -218,14 +218,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== KNOW YOUR LANE ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl mx-auto">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
                         KNOW THYSELF
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
                         <PriceTargetText>{`Trading. Investing.\nSame casino, different game.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
+                    <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans mb-16">
                         Both can win. Both can bleed. The difference isn't the strategy — it's the honesty. Investors buy and hold, compound over decades, ignore the noise. Traders play the odds daily, grind edges, and build psychological armor. This platform is for the latter. Investors, we'll see you in Phase Two.
                     </p>
 
@@ -247,9 +247,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
 
-                                <h3 className="text-2xl font-black text-white/60 uppercase tracking-tight mb-3">The Investor</h3>
+                                <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Investor</h3>
                                 <p className="text-lg font-black text-white/25 uppercase tracking-tight mb-5 font-mono">Time is your edge. Patience is your weapon.</p>
-                                <p className="text-sm text-white/40 leading-relaxed font-sans mb-6">
+                                <p className="text-sm text-white leading-relaxed font-sans mb-6">
                                     You buy quality. You wait. You compound. Decades do the heavy lifting. The casino works in your favor — if you never leave the table.
                                 </p>
                                 <div className="mt-auto flex flex-wrap gap-2">
@@ -283,7 +283,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Trader</h3>
                                 <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#10b981' }}>Momentum is your edge. Discipline is your weapon.</p>
-                                <p className="text-sm text-white/50 leading-relaxed font-sans mb-6">
+                                <p className="text-sm text-white leading-relaxed font-sans mb-6">
                                     You enter. You exit. You repeat. The casino is your arena — and the house only wins when you tilt. Know your numbers. Build your systems. <span className="text-white/70 font-semibold">Master your mind.</span>
                                 </p>
                                 <div className="mt-auto flex flex-wrap gap-2">
@@ -326,14 +326,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== HOW IT WORKS ======== */}
             <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
                 <div className="max-w-4xl ml-auto">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono text-right">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         THE PROCESS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
                         <PriceTargetText>{`Three steps.\nNo fluff.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
+                    <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
                         From logging your first trade to finding your edge — here's how it works.
                     </p>
 
@@ -348,9 +348,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <div>
                                     <h3 className="text-lg font-black text-white uppercase tracking-tight mb-2">{item.title}</h3>
                                     {item.desc ? (
-                                        <p className="text-sm text-white/50 leading-relaxed font-sans">{item.desc}</p>
+                                        <p className="text-sm text-white leading-relaxed font-sans">{item.desc}</p>
                                     ) : (
-                                        <p className="text-sm text-white/50 leading-relaxed font-sans">
+                                        <p className="text-sm text-white leading-relaxed font-sans">
                                             See which tickers print and which <span style={{ color: '#ef4444' }}>bleed</span>. Double down on winners. <span style={{ color: '#ef4444' }}>Cut losers</span>. Build a track record that proves you know what you're doing.
                                         </p>
                                     )}
@@ -364,14 +364,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== ARSENAL ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
                         THE TOOLS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
                         <PriceTargetText>{`Four dashboards.\nTotal clarity.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
+                    <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans mb-16">
                         The tools to own your numbers. Every dashboard answers one question: are your trades actually working?
                     </p>
 
@@ -440,7 +440,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 </div>
                                 <div className="p-8">
                                     <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">{item.title}</h3>
-                                    <p className="text-sm text-white/50 leading-relaxed font-sans mb-6">{item.desc}</p>
+                                    <p className="text-sm text-white leading-relaxed font-sans mb-6">{item.desc}</p>
                                     <div className="flex gap-4 pt-4 border-t border-white/10">
                                         {item.stats.map((s) => (
                                             <div key={s.label}>
@@ -479,7 +479,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
                                     <PriceTargetText>{`Build Your\nEdge`}</PriceTargetText>
                                 </h2>
-                                <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed font-medium font-sans">
+                                <p className="text-base md:text-lg text-white max-w-md mx-auto leading-relaxed font-medium font-sans">
                                     Every trade logged. Every edge tracked. Every dollar accounted for. This is how you stop guessing and start knowing.
                                 </p>
                             </div>
@@ -511,7 +511,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== FAQ ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
                 <div className="max-w-3xl ml-auto">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono text-right">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         QUESTIONS & ANSWERS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
@@ -530,7 +530,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <span className="text-sm font-black text-white uppercase tracking-wider">{item.q}</span>
                                     <span className="text-white/30 text-lg transition-transform group-open:rotate-45">+</span>
                                 </summary>
-                                <p className="text-sm text-white/50 leading-relaxed pb-5 font-sans">{item.a}</p>
+                                <p className="text-sm text-white leading-relaxed pb-5 font-sans">{item.a}</p>
                             </details>
                         ))}
                     </div>
