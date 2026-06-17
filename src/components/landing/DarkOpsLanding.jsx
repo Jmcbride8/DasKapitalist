@@ -76,8 +76,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         backgroundPosition: 'center',
                     }}
                 />
-                {/* Dark overlay with blue undertone */}
-                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(5,12,20,0.75) 50%, rgba(10,15,20,0.9) 100%)' }} />
+                {/* Dark overlay — subtle fade */}
+                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(5,12,20,0.50) 50%, rgba(10,15,20,0.75) 100%)' }} />
 
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
@@ -86,13 +86,13 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </p>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
-                        Join the
+                        Be a rebel.
                         <br />
-                        Market Rebellion
+                        Beat the odds.
                     </h1>
 
                     <p className="text-base md:text-lg text-white/50 max-w-xl leading-relaxed font-medium font-sans">
-                        Join the multi-agency trading force dedicated to tracking every position, exposing your real edge, and keeping your portfolio strong.
+                        Most traders lose money — the stats don't lie. This is the platform to build psychological immunity: the tools to track your performance, manage your psychology, and win.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
