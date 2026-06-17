@@ -336,7 +336,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             {/* ======== ARSENAL ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
-                <div className="max-w-6xl">
+                <div className="">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
                         THE TOOLS
                     </p>
@@ -348,7 +348,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         The tools to own your numbers. Every dashboard answers one question: are your trades actually working?
                     </p>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
                             {
                                 num: '01',
