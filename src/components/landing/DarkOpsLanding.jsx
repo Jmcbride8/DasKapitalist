@@ -184,14 +184,16 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== TAKE CONTROL ======== */}
-            <section
-                className="relative py-32 px-6 lg:px-20"
-                style={{
-                    background: '#0a0f14',
-                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(16,185,129,0.04) 0%, transparent 70%)',
-                }}
-            >
-                <div className="max-w-4xl ml-auto">
+            <section className="relative py-32 px-6 lg:px-20 overflow-hidden">
+                {/* Background image */}
+                <AdminImage
+                    imageKey="solution_bg"
+                    defaultSrc="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+                    className="absolute inset-0 z-0"
+                    style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
+                />
+                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(10,15,20,0.90) 0%, rgba(10,15,20,0.75) 40%, rgba(10,15,20,0.90) 100%)' }} />
+                <div className="relative z-20 max-w-4xl ml-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono text-right">
                         THE SOLUTION
                     </p>
