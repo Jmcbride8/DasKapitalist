@@ -523,35 +523,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
-            {/* ======== FAQ ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
-                <div className="max-w-3xl ml-auto">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
-                        QUESTIONS & ANSWERS
-                    </p>
-                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        <PriceTargetText>FAQ</PriceTargetText>
-                    </h2>
-                    <div className="h-px w-full bg-white/10 mb-16" />
-                    <div className="space-y-1">
-                        {[
-                            { q: 'What is DasKapitalist?', a: 'A precision-built options trading dashboard for traders who refuse to be part of the 90% that lose money. Track every trade, see your real edge, and build a track record that proves your skill.' },
-                            { q: 'How is this different from my broker?', a: 'Your broker shows you positions. We show you who you are as a trader. Win rates by ticker. Weekly streaks. Cumulative P&L. Exposure heatmaps. Your broker doesn\'t do any of this.' },
-                            { q: 'What kind of traders use this?', a: 'Options sellers running the wheel, CSP grinders, covered call farmers, and anyone managing multiple positions across multiple accounts who needs a single source of truth for performance.' },
-                            { q: 'Is my data safe?', a: 'Yes. Your trade data is private to your account. We don\'t sell data, we don\'t share data. You control everything.' },
-                        ].map((item, i) => (
-                            <details key={i} className="group border-t border-white/10 last:border-b">
-                                <summary className="flex items-center justify-between py-5 cursor-pointer">
-                                    <span className="text-sm font-black text-white uppercase tracking-wider">{item.q}</span>
-                                    <span className="text-white/30 text-lg transition-transform group-open:rotate-45">+</span>
-                                </summary>
-                                <p className="text-sm text-white leading-relaxed pb-5 font-sans">{item.a}</p>
-                            </details>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* ======== PRICING ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-5xl mx-auto">
@@ -645,6 +616,35 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 Go AI
                             </button>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ======== FAQ ======== */}
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
+                <div className="max-w-3xl ml-auto">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
+                        QUESTIONS & ANSWERS
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
+                        <PriceTargetText>FAQ</PriceTargetText>
+                    </h2>
+                    <div className="h-px w-full bg-white/10 mb-16" />
+                    <div className="space-y-1">
+                        {[
+                            { q: 'What is DasKapitalist?', a: 'A precision-built options trading dashboard for traders who refuse to be part of the 90% that lose money. Track every trade, see your real edge, and build a track record that proves your skill.' },
+                            { q: 'How is this different from my broker?', a: 'Your broker shows you positions. We show you who you are as a trader. Win rates by ticker. Weekly streaks. Cumulative P&L. Exposure heatmaps. Your broker doesn\'t do any of this.' },
+                            { q: 'What kind of traders use this?', a: 'Options sellers running the wheel, CSP grinders, covered call farmers, and anyone managing multiple positions across multiple accounts who needs a single source of truth for performance.' },
+                            { q: 'Is my data safe?', a: 'Yes. Your trade data is private to your account. We don\'t sell data, we don\'t share data. You control everything.' },
+                        ].map((item, i) => (
+                            <details key={i} className="group border-t border-white/10 last:border-b">
+                                <summary className="flex items-center justify-between py-5 cursor-pointer">
+                                    <span className="text-sm font-black text-white uppercase tracking-wider">{item.q}</span>
+                                    <span className="text-white/30 text-lg transition-transform group-open:rotate-45">+</span>
+                                </summary>
+                                <p className="text-sm text-white leading-relaxed pb-5 font-sans">{item.a}</p>
+                            </details>
+                        ))}
                     </div>
                 </div>
             </section>
