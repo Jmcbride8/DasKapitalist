@@ -17,6 +17,11 @@ import StaggerText from '@/components/landing/StaggerText';
 import TypewriterText from '@/components/landing/TypewriterText';
 import ScanLineText from '@/components/landing/ScanLineText';
 import PulseText from '@/components/landing/PulseText';
+import PriceTargetText from '@/components/landing/PriceTargetText';
+import CandlestickText from '@/components/landing/CandlestickText';
+import VolumeBurstText from '@/components/landing/VolumeBurstText';
+import SpreadText from '@/components/landing/SpreadText';
+import CircuitBreakText from '@/components/landing/CircuitBreakText';
 
 export default function DesignOptions() {
     const navigate = useNavigate();
@@ -262,6 +267,31 @@ export default function DesignOptions() {
                             label: '09 — PulseText',
                             desc: 'Words burst from a blurry speck into sharp focus. High energy, feels like a live price alert.',
                             Component: PulseText,
+                        },
+                        {
+                            label: '10 — PriceTargetText',
+                            desc: 'Digits cycle like a price target filling, letters snap-lock left to right. Feels like a limit order hitting.',
+                            Component: PriceTargetText,
+                        },
+                        {
+                            label: '11 — CandlestickText',
+                            desc: 'Wick appears, then body snaps in — pairs form like candle patterns on a chart. Rhythmic and deliberate.',
+                            Component: CandlestickText,
+                        },
+                        {
+                            label: '12 — VolumeBurstText',
+                            desc: 'Words burst in oversized then sharply snap to size, like volume bars spiking then settling.',
+                            Component: VolumeBurstText,
+                        },
+                        {
+                            label: '13 — SpreadText',
+                            desc: 'Reveals from center outward like a bid-ask spread narrowing. Tightens into focus.',
+                            Component: SpreadText,
+                        },
+                        {
+                            label: '14 — CircuitBreakText',
+                            desc: 'Text flashes on, briefly halts (vanishes), then resumes. Simulates a trading circuit breaker trip.',
+                            Component: CircuitBreakText,
                         },
                     ].map(({ label, desc, Component }) => (
                         <div key={label} className="min-h-[200px]">
