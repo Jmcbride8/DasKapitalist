@@ -276,7 +276,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <Zap className="w-6 h-6" style={{ color: '#c49a2c' }} />
                                 </div>
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Trader</h3>
-                                <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#c49a2c' }}>Probability is your edge. Discipline is your weapon.</p>
+                                <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#c49a2c' }}>Momentum is your edge. Discipline is your weapon.</p>
                                 <p className="text-sm text-white/50 leading-relaxed font-sans mb-6">
                                     You enter. You exit. You repeat. The casino is your arena — and the house only wins when you tilt. Know your numbers. Build your systems. <span className="text-white/70 font-semibold">Master your mind.</span>
                                 </p>
