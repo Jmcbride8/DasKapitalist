@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, Shield, Zap, TrendingUp } from 'lucide-react';
 import AdminImage from '@/components/landing/AdminImage';
+import HeroImagePicker from '@/components/landing/HeroImagePicker';
 
 export default function DarkOpsLanding({ navigate, openView }) {
     const [time, setTime] = useState('');
+    const [heroSrc, setHeroSrc] = useState('https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/bb8f8b7f9_generated_image.png');
 
     useEffect(() => {
         const update = () => {
@@ -69,12 +71,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== HERO ======== */}
             <section className="relative min-h-screen flex flex-col justify-center items-start px-6 lg:px-20 overflow-hidden">
                 {/* Background image */}
-                <AdminImage
-                    imageKey="hero_bg"
-                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/bb8f8b7f9_generated_image.png"
+                <div
                     className="absolute inset-0 z-0"
-                    style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    style={{ backgroundImage: `url(${heroSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 />
+                <HeroImagePicker onSelect={setHeroSrc} />
                 {/* Dark overlay — subtle fade */}
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(5,12,20,0.50) 50%, rgba(10,15,20,0.75) 100%)' }} />
 
