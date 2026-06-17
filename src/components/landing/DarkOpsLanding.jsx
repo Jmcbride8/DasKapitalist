@@ -71,7 +71,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 {/* Background image */}
                 <AdminImage
                     imageKey="hero_bg"
-                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/4fa027ffb_generated_image.png"
+                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/6e6f892b6_generated_image.png"
                     className="absolute inset-0 z-0"
                     style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                 />
