@@ -81,7 +81,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/80">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 font-mono">
                         Don't be average
                     </p>
 
@@ -91,7 +91,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         Beat the odds.
                     </h1>
 
-                    <p className="text-base md:text-lg text-white max-w-xl leading-relaxed font-medium font-sans">
+                    <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed font-medium font-sans">
                         Most traders lose money — the stats don't lie. This is the platform to build psychological immunity: the tools to track your performance, manage your psychology, and win.
                     </p>
 
@@ -128,7 +128,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== THE PROBLEM ======== */}
             <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
                 <div className="max-w-[100rem]">
-                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
                         WHAT YOU'RE UP AGAINST
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
@@ -139,7 +139,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         your mind.
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans mb-16">
+                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
                         Day trading exploits your psychology. Fear, greed, and the illusion of control. Here's what you're up against — and how we fix it.
                     </p>
 
@@ -184,7 +184,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 </div>
                                 <div className="p-8">
                                     <h3 className="text-xl font-black text-white mb-3 uppercase tracking-tight">{card.title}</h3>
-                                    <p className="text-sm text-white/40 leading-relaxed">{card.desc}</p>
+                                    <p className="text-sm text-white/50 leading-relaxed font-sans">{card.desc}</p>
                                 </div>
                             </div>
                         ))}
@@ -201,7 +201,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 }}
             >
                 <div className="max-w-4xl ml-auto">
-                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono text-right">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono text-right">
                         THE SOLUTION
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
@@ -210,7 +210,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         Control.
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans ml-auto text-right">
+                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right">
                         Your broker feeds you numbers. We give you a command center. Real-time exposure. Streak tracking. Edge by ticker. Everything you need to stop being the mark and start being the hunter.
                     </p>
                 </div>
@@ -219,7 +219,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== THREE PATHS ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl">
-                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
                         BUILT FOR EVERY OPERATOR
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
@@ -228,7 +228,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         Many paths.
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans mb-16">
+                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
                         Whether you're grinding weekly premiums or running a multi-account operation — our dashboards adapt to how you trade.
                     </p>
 
@@ -256,8 +256,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
                                         <Icon className="w-6 h-6 text-white/80" />
                                     </div>
-                                    <h3 className="text-xl font-black text-white mb-3">{path.title}</h3>
-                                    <p className="text-sm text-white/40 leading-relaxed">{path.desc}</p>
+                                    <h3 className="text-xl font-black text-white uppercase tracking-tight mb-3">{path.title}</h3>
+                                    <p className="text-sm text-white/50 leading-relaxed font-sans">{path.desc}</p>
                                 </div>
                             );
                         })}
@@ -268,7 +268,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== HOW IT WORKS ======== */}
             <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
                 <div className="max-w-4xl ml-auto">
-                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono text-right">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono text-right">
                         THE PROCESS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
@@ -277,7 +277,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         No fluff.
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans ml-auto text-right mb-16">
+                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
                         From logging your first trade to finding your edge — here's how it works.
                     </p>
 
@@ -290,8 +290,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             <div key={i} className="flex items-start gap-6 py-8 border-t border-white/10 first:border-t-0">
                                 <span className="text-5xl font-black text-white/10 leading-none">{item.step}</span>
                                 <div>
-                                    <h3 className="text-lg font-black text-white mb-2">{item.title}</h3>
-                                    <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
+                                    <h3 className="text-lg font-black text-white uppercase tracking-tight mb-2">{item.title}</h3>
+                                    <p className="text-sm text-white/50 leading-relaxed font-sans">{item.desc}</p>
                                 </div>
                             </div>
                         ))}
@@ -302,7 +302,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== ARSENAL ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl">
-                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono">
                         THE ARSENAL
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
@@ -311,7 +311,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         Zero excuses.
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans mb-16">
+                    <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
                         The tools to master your mind. Every dashboard built to answer one question: are you winning or not?
                     </p>
 
@@ -379,8 +379,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <div className="absolute top-4 left-4 text-5xl font-black text-white/10 leading-none">{item.num}</div>
                                 </div>
                                 <div className="p-8">
-                                    <h3 className="text-2xl font-black text-white mb-3">{item.title}</h3>
-                                    <p className="text-sm text-white/40 leading-relaxed mb-6">{item.desc}</p>
+                                    <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">{item.title}</h3>
+                                    <p className="text-sm text-white/50 leading-relaxed font-sans mb-6">{item.desc}</p>
                                     <div className="flex gap-4 pt-4 border-t border-white/10">
                                         {item.stats.map((s) => (
                                             <div key={s.label}>
@@ -411,7 +411,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-end">
                         {/* LEFT: How It Works */}
                         <div className="space-y-8">
-                            <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/50 font-mono">
+                            <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 font-mono">
                                 How It Works
                             </p>
                             <div className="space-y-10">
@@ -434,12 +434,12 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         {/* RIGHT: Mission headline + CTA */}
                         <div className="flex flex-col justify-between min-h-[400px]">
                             <div className="space-y-6">
-                                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter text-white">
+                                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
                                     Start Your
                                     <br />
                                     Mission
                                 </h2>
-                                <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed font-sans">
+                                <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed font-medium font-sans">
                                     Your path to trading mastery starts here. Log your trades, find your edge, and build the discipline to beat the market consistently.
                                 </p>
                             </div>
@@ -461,7 +461,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== FAQ ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
                 <div className="max-w-3xl ml-auto">
-                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono text-right">
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 mb-8 font-mono text-right">
                         QUESTIONS & ANSWERS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
@@ -480,7 +480,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <span className="text-sm font-black text-white uppercase tracking-wider">{item.q}</span>
                                     <span className="text-white/30 text-lg transition-transform group-open:rotate-45">+</span>
                                 </summary>
-                                <p className="text-sm text-white/40 leading-relaxed pb-5">{item.a}</p>
+                                <p className="text-sm text-white/50 leading-relaxed pb-5 font-sans">{item.a}</p>
                             </details>
                         ))}
                     </div>
