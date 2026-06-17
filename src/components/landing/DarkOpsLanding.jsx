@@ -45,7 +45,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="h-1 w-2/3 bg-white" />
 
                     <p className="text-base md:text-lg text-white max-w-2xl leading-relaxed font-medium font-sans">
-                        90% of traders blow up their accounts. The other 10% have systems, data, and zero tolerance for excuses. This is where you cross the line.
+                        90% of traders lose. The edge isn't a hot tip — it's emotional mastery and cold, hard data. This platform gives you both: the tools to track your psychology and the insights to beat the odds.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
