@@ -103,7 +103,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             onMouseEnter={(e) => e.target.style.backgroundColor = '#d4aa3c'}
                             onMouseLeave={(e) => e.target.style.backgroundColor = '#c49a2c'}
                         >
-                            Apply Now
+                            Log In
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
                         <button
@@ -111,7 +111,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             className="inline-flex items-center justify-center gap-3 px-10 py-4 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group"
                             style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}
                         >
-                            See the Arsenal
+                            The weapons to win
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
                     </div>
