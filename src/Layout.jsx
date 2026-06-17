@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, User } from 'lucide-react';
+import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, User, Home as HomeIcon } from 'lucide-react';
 import { useAuth } from '@/lib/AuthContext';
 
 export default function Layout({ children, currentPageName }) {
@@ -33,6 +33,7 @@ export default function Layout({ children, currentPageName }) {
     if (!isAuthenticated) return null;
 
     const navItems = [
+        { name: 'Home', icon: HomeIcon, path: 'Home' },
         {
             name: 'Dashboards',
             icon: LayoutDashboard,
