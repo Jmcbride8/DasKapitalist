@@ -126,14 +126,21 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== THE PROBLEM ======== */}
-            <section className="relative py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
-                <div className="max-w-6xl mx-auto">
-                    <div className="h-px w-16 bg-white/30 mx-auto mb-10" />
-                    <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
-                        The Problem
+            <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
+                <div className="max-w-6xl">
+                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono">
+                        WHAT YOU'RE UP AGAINST
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
+                        The market is
+                        <br />
+                        designed to break
+                        <br />
+                        your mind.
                     </h2>
-                    <p className="text-sm text-white/40 text-center max-w-md mx-auto mb-16">
-                        Day trading is designed to break you. Here's what you're up against — and how we fix it.
+                    <div className="h-px w-full bg-white/10 mb-8" />
+                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans mb-16">
+                        Day trading exploits your psychology. Fear, greed, and the illusion of control. Here's what you're up against — and how we fix it.
                     </p>
 
                     {/* Problem image cards */}
@@ -182,33 +189,41 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             {/* ======== TAKE CONTROL ======== */}
             <section
-                className="relative py-32 px-6"
+                className="relative py-32 px-6 lg:px-20"
                 style={{
                     background: '#0a0f14',
                     backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(196,154,44,0.04) 0%, transparent 70%)',
                 }}
             >
-                <div className="max-w-4xl mx-auto text-center space-y-8">
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.9] tracking-tight">
+                <div className="max-w-4xl ml-auto">
+                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono text-right">
+                        THE SOLUTION
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
                         Take
                         <br />
                         Control.
                     </h2>
-                    <p className="text-lg text-white/50 max-w-xl mx-auto">
+                    <div className="h-px w-full bg-white/10 mb-8" />
+                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans ml-auto text-right">
                         Your broker feeds you numbers. We give you a command center. Real-time exposure. Streak tracking. Edge by ticker. Everything you need to stop being the mark and start being the hunter.
                     </p>
                 </div>
             </section>
 
             {/* ======== THREE PATHS ======== */}
-            <section className="py-24 px-6" style={{ background: '#0a0f14' }}>
-                <div className="max-w-6xl mx-auto">
-                    <div className="h-px w-16 bg-white/30 mx-auto mb-16" />
-
-                    <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
-                        Every Trader Has a Path
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
+                <div className="max-w-6xl">
+                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono">
+                        BUILT FOR EVERY OPERATOR
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
+                        One trader.
+                        <br />
+                        Many paths.
                     </h2>
-                    <p className="text-sm text-white/40 text-center max-w-lg mx-auto mb-16">
+                    <div className="h-px w-full bg-white/10 mb-8" />
+                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans mb-16">
                         Whether you're grinding weekly premiums or running a multi-account operation — our dashboards adapt to how you trade.
                     </p>
 
@@ -246,14 +261,19 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== HOW IT WORKS ======== */}
-            <section id="darkops-arsenal" className="py-24 px-6" style={{ background: '#0d131a' }}>
-                <div className="max-w-4xl mx-auto">
-                    <div className="h-px w-16 bg-white/30 mx-auto mb-16" />
-                    <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
-                        How It Works
+            <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
+                <div className="max-w-4xl ml-auto">
+                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono text-right">
+                        THE PROCESS
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
+                        Three steps.
+                        <br />
+                        No fluff.
                     </h2>
-                    <p className="text-sm text-white/40 text-center max-w-md mx-auto mb-16">
-                        Three steps. No fluff. Just results.
+                    <div className="h-px w-full bg-white/10 mb-8" />
+                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans ml-auto text-right mb-16">
+                        From logging your first trade to finding your edge — here's how it works.
                     </p>
 
                     <div className="space-y-2">
@@ -275,16 +295,19 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== ARSENAL ======== */}
-            <section className="py-24 px-6" style={{ background: '#0a0f14' }}>
-                <div className="max-w-6xl mx-auto">
-                    <div className="h-px w-16 bg-white/30 mx-auto mb-16" />
-                    <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
-                        Four Weapons.
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
+                <div className="max-w-6xl">
+                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono">
+                        THE ARSENAL
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
+                        Four weapons.
                         <br />
-                        Zero Excuses.
+                        Zero excuses.
                     </h2>
-                    <p className="text-sm text-white/40 text-center max-w-md mx-auto mb-16">
-                        The tools to master your mind.
+                    <div className="h-px w-full bg-white/10 mb-8" />
+                    <p className="text-base text-white/40 max-w-xl leading-relaxed font-sans mb-16">
+                        The tools to master your mind. Every dashboard built to answer one question: are you winning or not?
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -427,9 +450,15 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== FAQ ======== */}
-            <section className="py-24 px-6" style={{ background: '#0d131a' }}>
-                <div className="max-w-3xl mx-auto">
-                    <h2 className="text-3xl font-black uppercase text-center tracking-tight mb-16">FAQ</h2>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
+                <div className="max-w-3xl ml-auto">
+                    <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono text-right">
+                        QUESTIONS & ANSWERS
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
+                        FAQ
+                    </h2>
+                    <div className="h-px w-full bg-white/10 mb-16" />
                     <div className="space-y-1">
                         {[
                             { q: 'What is DasKapitalist?', a: 'A precision-built options trading dashboard for traders who refuse to be part of the 90% that lose money. Track every trade, see your real edge, and build a track record that proves your skill.' },
