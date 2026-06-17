@@ -7,7 +7,7 @@ import PriceTargetText from '@/components/landing/PriceTargetText';
 
 export default function DarkOpsLanding({ navigate, openView }) {
     const [time, setTime] = useState('');
-    const [heroSrc, setHeroSrc] = useState('https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/bb8f8b7f9_generated_image.png');
+    const [heroSrc, setHeroSrc] = useState('https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/d4300ec33_ChatGPTImageJun17202602_54_08PM.png');
 
     useEffect(() => {
         const update = () => {
