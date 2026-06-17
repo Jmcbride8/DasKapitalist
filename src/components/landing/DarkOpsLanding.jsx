@@ -45,7 +45,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="h-1 w-2/3 bg-white" />
 
                     <p className="text-base md:text-lg text-white max-w-2xl leading-relaxed font-medium font-sans">
-                        Most traders lose money — the stats don't lie. This is where you break that pattern. Track every trade, find your real edge, and build the discipline to compound your gains.
+                        90% of traders blow up their accounts. The other 10% have systems, data, and zero tolerance for excuses. This is where you cross the line.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
