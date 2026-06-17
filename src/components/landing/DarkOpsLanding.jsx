@@ -126,7 +126,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             {/* ======== THE PROBLEM ======== */}
             <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
-                <div className="max-w-6xl">
+                <div className="max-w-[100rem]">
                     <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-white/40 mb-8 font-mono">
                         WHAT YOU'RE UP AGAINST
                     </p>
