@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, Shield, Zap, TrendingUp } from 'lucide-react';
+import AdminImage from '@/components/landing/AdminImage';
 
 export default function DarkOpsLanding({ navigate, openView }) {
     const [time, setTime] = useState('');
@@ -68,13 +69,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== HERO ======== */}
             <section className="relative min-h-screen flex flex-col justify-center items-start px-6 lg:px-20 overflow-hidden">
                 {/* Background image */}
-                <div
+                <AdminImage
+                    imageKey="hero_bg"
+                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/4fa027ffb_generated_image.png"
                     className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/4fa027ffb_generated_image.png)',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
+                    style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                 />
                 {/* Dark overlay — subtle fade */}
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(5,12,20,0.50) 50%, rgba(10,15,20,0.75) 100%)' }} />
@@ -147,21 +146,25 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
                             {
+                                imageKey: 'problem_1',
                                 image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop',
                                 title: 'Emotional Decisions',
                                 desc: 'Fear and greed destroy more accounts than bad analysis. Your brain is wired to buy tops and sell bottoms.',
                             },
                             {
+                                imageKey: 'problem_2',
                                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
                                 title: 'No Performance Data',
                                 desc: 'Without tracking every trade, you can\'t improve what you can\'t measure. Most traders don\'t even know their win rate.',
                             },
                             {
+                                imageKey: 'problem_3',
                                 image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
                                 title: 'Information Overload',
                                 desc: 'Too many indicators, no clarity. You drown in data but starve for insight on what actually makes you money.',
                             },
                             {
+                                imageKey: 'problem_4',
                                 image: 'https://images.unsplash.com/photo-1633158829585-23ba4f03a014?w=600&h=400&fit=crop',
                                 title: 'No Edge Awareness',
                                 desc: 'Trading tickers without knowing your win rate per symbol. You keep trading losers and cutting winners too early.',
@@ -169,13 +172,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         ].map((card, i) => (
                             <div key={i} className="group relative overflow-hidden rounded-2xl border border-white/10 hover:border-white/30 transition-all bg-white/[0.02]">
                                 <div className="relative h-48 overflow-hidden">
-                                    <img
-                                        src={card.image}
+                                    <AdminImage
+                                        imageKey={card.imageKey}
+                                        defaultSrc={card.image}
+                                        className="w-full h-full"
+                                        style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                         alt={card.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                        style={{ filter: 'grayscale(100%) brightness(0.6)' }}
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent pointer-events-none" />
                                 </div>
                                 <div className="p-6">
                                     <h3 className="text-base font-black text-white mb-2 uppercase tracking-tight">{card.title}</h3>
@@ -316,6 +320,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '01',
                                 title: 'Track Record',
                                 desc: 'Cumulative P&L chart. Weekly and monthly views. Win rate, profit factor, average trade. Your career as a trader — quantified.',
+                                imageKey: 'weapon_1',
                                 image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Win Rate', value: '62%' },
@@ -327,6 +332,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '02',
                                 title: 'Streaks',
                                 desc: 'Every week, a W or an L. Patterns your brain would miss. Current streak, best streak, worst slump — all tracked cold.',
+                                imageKey: 'weapon_2',
                                 image: 'https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Current', value: '3 wins' },
@@ -338,6 +344,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '03',
                                 title: 'Edge',
                                 desc: 'Your P&L broken down by ticker. Stop guessing which names make you money. See the data. Cut the losers. Ride the winners.',
+                                imageKey: 'weapon_3',
                                 image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Top Ticker', value: 'GLD (+$14K)' },
@@ -349,6 +356,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '04',
                                 title: 'Exposure',
                                 desc: 'Live treemap of every open position. Size equals collateral at risk. Color by today\'s price action. One look, total clarity.',
+                                imageKey: 'weapon_4',
                                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Open Positions', value: '14' },
@@ -359,12 +367,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         ].map((item) => (
                             <div key={item.num} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 transition-all bg-white/[0.02]">
                                 <div className="relative h-72 overflow-hidden">
-                                    <img
-                                        src={item.image}
+                                    <AdminImage
+                                        imageKey={item.imageKey}
+                                        defaultSrc={item.image}
+                                        className="w-full h-full transition-transform duration-700 group-hover:scale-105"
+                                        style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                         alt={item.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/60 via-transparent to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/60 via-transparent to-transparent pointer-events-none" />
                                     <div className="absolute top-4 left-4 text-5xl font-black text-white/10 leading-none">{item.num}</div>
                                 </div>
                                 <div className="p-8">
@@ -388,13 +398,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== FINAL CTA — Wall Street ======== */}
             <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
                 {/* Wall Street background */}
-                <div
+                <AdminImage
+                    imageKey="cta_bg"
+                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e26d9fdd3_generated_image.png"
                     className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e26d9fdd3_generated_image.png)',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center top',
-                    }}
+                    style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
                 />
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(10,15,20,0.30) 50%, rgba(0,0,0,0.50) 100%)' }} />
 

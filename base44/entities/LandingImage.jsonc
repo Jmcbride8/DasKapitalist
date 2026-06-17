@@ -1,0 +1,18 @@
+{
+  "name": "LandingImage",
+  "type": "object",
+  "properties": {
+    "image_key": {
+      "type": "string",
+      "description": "Unique key identifying which image slot this is"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL of the uploaded image"
+    }
+  },
+  "required": [
+    "image_key",
+    "image_url"
+  ]
+}
