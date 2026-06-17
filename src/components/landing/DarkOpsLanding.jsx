@@ -562,7 +562,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         {/* AI Enabled */}
                         <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(16,185,129,0.25)', boxShadow: '0 0 0 1px rgba(16,185,129,0.06), 0 8px 40px rgba(0,0,0,0.6)' }}>
                             {/* Background image */}
-                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-110" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/2752af7a8_Sage.png)' }} />
+                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-110" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/51af6d8d3_Sage2.png)' }} />
                             {/* Dark gradient overlay with green tint at bottom */}
                             <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(2,20,12,0.95) 100%)' }} />
                             {/* Best value badge */}
