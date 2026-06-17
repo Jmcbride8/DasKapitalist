@@ -22,7 +22,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
     return (
         <div className="text-white min-h-screen font-mono tracking-tight" style={{ backgroundColor: '#0a0f14' }}>
             {/* ======== HERO ======== */}
-            <section className="relative min-h-screen flex flex-col justify-center items-start px-6 lg:px-20 overflow-hidden">
+            <section className="relative min-h-screen flex flex-col justify-end items-start px-6 lg:px-20 overflow-hidden pb-28">
                 {/* Background image */}
                 <div
                     className="absolute inset-0 z-0"
@@ -42,7 +42,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <PriceTargetText>{`Be a rebel.\nBeat the odds.`}</PriceTargetText>
                     </h1>
 
-                    <div className="h-1 w-20 bg-white" />
+                    <div className="h-1 w-2/3 bg-white" />
 
                     <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed font-medium font-sans">
                         Most traders lose money — the stats don't lie. This is where you break that pattern. Track every trade, find your real edge, and build the discipline to compound your gains.
