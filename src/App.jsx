@@ -3,14 +3,21 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import NavigationTracker from '@/lib/NavigationTracker'
 import { pagesConfig } from './pages.config'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Landing from './pages/Landing';
 import DesignOptions from './pages/DesignOptions';
+import DarkOpsLanding from '@/components/landing/DarkOpsLanding';
 
 const { Pages, Layout } = pagesConfig;
+
+const DarkOpsWrapper = () => {
+  const navigate = useNavigate();
+  const openView = (view) => navigate(`/Dashboards?view=${view}`);
+  return <DarkOpsLanding navigate={navigate} openView={openView} />;
+};
 
 const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}>{children}</Layout>
@@ -42,7 +49,7 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={<DarkOpsWrapper />} />
       <Route path="/DesignOptions" element={<LayoutWrapper currentPageName="DesignOptions"><DesignOptions /></LayoutWrapper>} />
       {Object.entries(Pages).map(([path, Page]) => (
         <Route
