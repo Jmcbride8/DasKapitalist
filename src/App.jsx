@@ -8,7 +8,6 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Landing from './pages/Landing';
-import DesignOptions from './pages/DesignOptions';
 import DarkOpsLanding from '@/components/landing/DarkOpsLanding';
 
 const { Pages, Layout } = pagesConfig;
@@ -50,7 +49,6 @@ const AuthenticatedApp = () => {
   return (
     <Routes>
       <Route path="/" element={<DarkOpsWrapper />} />
-      <Route path="/DesignOptions" element={<LayoutWrapper currentPageName="DesignOptions"><DesignOptions /></LayoutWrapper>} />
       {Object.entries(Pages).map(([path, Page]) => (
         <Route
           key={path}

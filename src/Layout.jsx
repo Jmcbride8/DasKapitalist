@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, Home as HomeIcon, Palette } from 'lucide-react';
+import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, Home as HomeIcon } from 'lucide-react';
 
 export default function Layout({ children, currentPageName }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,7 +28,6 @@ export default function Layout({ children, currentPageName }) {
             ]
         },
         { name: 'Summaries', icon: FileText, path: 'Summaries' },
-        { name: 'Design Options', icon: Palette, path: 'DesignOptions' },
         { 
             name: 'Trades', 
             icon: TrendingUp, 
