@@ -192,7 +192,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== BUFFETT QUOTE ======== */}
-            <section className="py-40 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d1a12 50%, #0a0f14 100%)' }}>
+            <section className="py-40 px-6 lg:px-20" style={{ background: '#000' }}>
                 <div className="max-w-6xl mx-auto">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         {/* Image */}
