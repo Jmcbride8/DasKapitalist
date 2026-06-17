@@ -233,8 +233,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     className="w-full h-full object-cover opacity-60"
                                     alt="Investing — long-term wealth"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/40 to-transparent" />
-                                <div className="absolute bottom-6 left-6">
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/40 to-transparent pointer-events-none" />
+                                <div className="absolute bottom-6 left-6 pointer-events-none">
                                     <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/30 font-mono">Phase Two</span>
                                 </div>
                             </div>
@@ -271,7 +271,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     className="w-full h-full object-cover opacity-70"
                                     alt="Trading — the casino floor"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/30 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/30 to-transparent pointer-events-none" />
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(196,154,44,0.1)' }}>
