@@ -18,10 +18,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
     return (
         <div className="text-white min-h-screen font-mono tracking-tight" style={{ backgroundColor: '#0a0f14' }}>
-            {/* ======== TOP GOVERNMENT BAR ======== */}
-            <div className="w-full bg-black border-b border-white/10">
-                <div className="max-w-7xl mx-auto px-4 lg:px-12 py-1.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+            {/* ======== TOP TICKER BAR ======== */}
+            <div className="w-full bg-black border-b border-white/10 overflow-hidden">
+                <div className="flex items-center">
+                    {/* Flag + time fixed left */}
+                    <div className="flex-shrink-0 flex items-center gap-2 px-4 py-1.5 bg-black z-10 border-r border-white/10">
                         <svg className="w-4 h-3" viewBox="0 0 24 16" fill="none">
                             <rect width="24" height="2" fill="white" opacity="0.8"/>
                             <rect y="3" width="24" height="2" fill="white" opacity="0.8"/>
@@ -30,9 +31,37 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             <rect y="12" width="24" height="2" fill="white" opacity="0.8"/>
                             <rect y="3" width="10" height="8" fill="#0a2463"/>
                         </svg>
-                        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/60">An Official Platform of the Options Trader</span>
+                        <span className="text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase font-mono whitespace-nowrap">{time}</span>
                     </div>
-                    <span className="text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase font-mono">{time}</span>
+                    {/* Scrolling ticker */}
+                    <div className="flex-1 overflow-hidden relative h-7 flex items-center">
+                        <div className="flex gap-10 whitespace-nowrap animate-ticker">
+                            {(() => {
+                                const stocks = [
+                                    { symbol: 'SPX', price: '5,472.30', change: '+0.84%', up: true },
+                                    { symbol: 'NDX', price: '19,756.12', change: '+1.12%', up: true },
+                                    { symbol: 'DJI', price: '38,647.50', change: '-0.23%', up: false },
+                                    { symbol: 'VIX', price: '14.82', change: '-2.18%', up: true },
+                                    { symbol: 'GLD', price: '218.45', change: '+0.67%', up: true },
+                                    { symbol: 'SPY', price: '547.10', change: '+0.81%', up: true },
+                                    { symbol: 'QQQ', price: '482.33', change: '+1.08%', up: true },
+                                    { symbol: 'NVDA', price: '128.44', change: '+2.31%', up: true },
+                                    { symbol: 'TSLA', price: '187.62', change: '-1.45%', up: false },
+                                    { symbol: 'IWM', price: '209.87', change: '-0.56%', up: false },
+                                    { symbol: 'TLT', price: '92.14', change: '+0.18%', up: true },
+                                    { symbol: 'USO', price: '72.40', change: '+1.93%', up: true },
+                                ];
+                                const doubled = [...stocks, ...stocks];
+                                return doubled.map((stock, i) => (
+                                    <div key={i} className="flex items-center gap-2 text-[10px] font-bold font-mono">
+                                        <span className="text-white/80 tracking-wider">{stock.symbol}</span>
+                                        <span className="text-white/60">{stock.price}</span>
+                                        <span className={`tracking-wider ${stock.up ? 'text-emerald-400' : 'text-red-400'}`}>{stock.change}</span>
+                                    </div>
+                                ));
+                            })()}
+                        </div>
+                    </div>
                 </div>
             </div>
 
