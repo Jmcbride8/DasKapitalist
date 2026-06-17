@@ -125,37 +125,54 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
-            {/* ======== YOUR EDGE - Ticker Carousel ======== */}
+            {/* ======== THE PROBLEM ======== */}
             <section className="relative py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
                 <div className="max-w-6xl mx-auto">
                     <div className="h-px w-16 bg-white/30 mx-auto mb-10" />
                     <h2 className="text-3xl md:text-4xl font-black uppercase text-center tracking-tight mb-4">
-                        Your Edge
+                        The Problem
                     </h2>
                     <p className="text-sm text-white/40 text-center max-w-md mx-auto mb-16">
-                        The tickers that pay. The ones that don't. Every weapon in your arsenal.
+                        Day trading is designed to break you. Here's what you're up against — and how we fix it.
                     </p>
 
-                    {/* Frosted glass cards row */}
-                    <div className="flex gap-4 overflow-x-auto pb-4 justify-center flex-wrap">
+                    {/* Problem image cards */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
-                            { ticker: 'GLD', winRate: '83%', pnl: '+$14,200', color: 'from-amber-500/20 to-yellow-600/20' },
-                            { ticker: 'QQQ', winRate: '71%', pnl: '+$11,840', color: 'from-blue-500/20 to-indigo-600/20' },
-                            { ticker: 'SPY', winRate: '64%', pnl: '+$8,300', color: 'from-green-500/20 to-emerald-600/20' },
-                            { ticker: 'NVDA', winRate: '55%', pnl: '+$3,100', color: 'from-purple-500/20 to-violet-600/20' },
-                            { ticker: 'XLF', winRate: '52%', pnl: '+$900', color: 'from-slate-500/20 to-gray-600/20' },
-                            { ticker: 'TSLA', winRate: '38%', pnl: '-$4,920', color: 'from-red-500/20 to-rose-600/20' },
-                        ].map((t) => (
-                            <div
-                                key={t.ticker}
-                                className={`relative flex-shrink-0 w-40 h-40 rounded-2xl border border-white/10 bg-gradient-to-br ${t.color} backdrop-blur-md p-5 flex flex-col justify-between hover:border-white/30 transition-all`}
-                            >
-                                <div>
-                                    <div className="text-lg font-black text-white">{t.ticker}</div>
-                                    <div className="text-[10px] font-bold text-white/40 uppercase tracking-wider mt-0.5">{t.winRate} WR</div>
+                            {
+                                image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop',
+                                title: 'Emotional Decisions',
+                                desc: 'Fear and greed destroy more accounts than bad analysis. Your brain is wired to buy tops and sell bottoms.',
+                            },
+                            {
+                                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                                title: 'No Performance Data',
+                                desc: 'Without tracking every trade, you can\'t improve what you can\'t measure. Most traders don\'t even know their win rate.',
+                            },
+                            {
+                                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                                title: 'Information Overload',
+                                desc: 'Too many indicators, no clarity. You drown in data but starve for insight on what actually makes you money.',
+                            },
+                            {
+                                image: 'https://images.unsplash.com/photo-1633158829585-23ba4f03a014?w=600&h=400&fit=crop',
+                                title: 'No Edge Awareness',
+                                desc: 'Trading tickers without knowing your win rate per symbol. You keep trading losers and cutting winners too early.',
+                            },
+                        ].map((card, i) => (
+                            <div key={i} className="group relative overflow-hidden rounded-2xl border border-white/10 hover:border-white/30 transition-all bg-white/[0.02]">
+                                <div className="relative h-48 overflow-hidden">
+                                    <img
+                                        src={card.image}
+                                        alt={card.title}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        style={{ filter: 'grayscale(100%) brightness(0.6)' }}
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent" />
                                 </div>
-                                <div className={`text-xl font-black font-mono ${t.pnl.startsWith('+') ? 'text-white' : 'text-red-400'}`}>
-                                    {t.pnl}
+                                <div className="p-6">
+                                    <h3 className="text-base font-black text-white mb-2 uppercase tracking-tight">{card.title}</h3>
+                                    <p className="text-xs text-white/40 leading-relaxed">{card.desc}</p>
                                 </div>
                             </div>
                         ))}
