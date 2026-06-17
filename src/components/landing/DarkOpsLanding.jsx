@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPageUrl } from '@/utils';
-import { ArrowRight, CandlestickChart, TrendingUp, TrendingDown } from 'lucide-react';
+import { ArrowRight, TrendingUp, TrendingDown } from 'lucide-react';
 import AdminImage from '@/components/landing/AdminImage';
 import HeroImagePicker from '@/components/landing/HeroImagePicker';
 import PriceTargetText from '@/components/landing/PriceTargetText';
@@ -239,9 +239,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 </div>
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
-                                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
-                                    <CandlestickChart className="w-6 h-6 text-white/50" />
-                                </div>
+
                                 <h3 className="text-2xl font-black text-white/60 uppercase tracking-tight mb-3">The Investor</h3>
                                 <p className="text-lg font-black text-white/25 uppercase tracking-tight mb-5 font-mono">Time is your edge. Patience is your weapon.</p>
                                 <p className="text-sm text-white/40 leading-relaxed font-sans mb-6">
@@ -275,9 +273,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(16,185,129,0.1)' }}>
-                                    <TrendingUp className="w-6 h-6" style={{ color: '#10b981' }} />
-                                </div>
+
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Trader</h3>
                                 <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#10b981' }}>Momentum is your edge. Discipline is your weapon.</p>
                                 <p className="text-sm text-white/50 leading-relaxed font-sans mb-6">
