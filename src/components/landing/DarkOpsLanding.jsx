@@ -445,30 +445,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(10,15,20,0.15) 50%, rgba(0,0,0,0.35) 100%)' }} />
 
                 <div className="relative z-20 w-full max-w-7xl mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-end">
-                        {/* LEFT: How It Works */}
-                        <div className="space-y-8">
-                            <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50 font-mono">
-                                How It Works
-                            </p>
-                            <div className="space-y-10">
-                                {[
-                                    { step: '01', title: 'Log your trades', desc: 'Enter ticker, premium, collateral, and expiration. Under 15 seconds per trade. Bulk imports for the spreadsheet crowd.' },
-                                    { step: '02', title: 'Find your edge', desc: 'Dashboards auto-calculate your real win rate, profit factor, and P&L broken down by ticker. No formulas. No spreadsheets.' },
-                                    { step: '03', title: 'Execute with confidence', desc: 'Double down on what works. Cut what bleeds. Trade with a track record that proves you know exactly what you\'re doing.' },
-                                ].map((item) => (
-                                    <div key={item.step} className="flex gap-5">
-                                        <span className="text-sm font-black text-white/15 leading-none pt-0.5">{item.step}</span>
-                                        <div>
-                                            <h3 className="text-lg font-black text-white uppercase tracking-tight">{item.title}</h3>
-                                            <p className="text-sm text-white/50 leading-relaxed mt-1 font-sans">{item.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* RIGHT: Mission headline + CTA */}
+                    <div className="mx-auto max-w-2xl text-center">
+                        {/* Mission headline + CTA */}
                         <div className="flex flex-col justify-between min-h-[400px]">
                             <div className="space-y-6">
                                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
@@ -480,7 +458,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             </div>
                             <button
                                 onClick={() => navigate(createPageUrl('Trades'))}
-                                className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group self-start rounded-md"
+                                className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group mx-auto rounded-md"
                                 style={{ backgroundColor: '#10b981', color: '#000' }}
                                 onMouseEnter={(e) => e.target.style.backgroundColor = '#34d399'}
                                 onMouseLeave={(e) => e.target.style.backgroundColor = '#10b981'}
