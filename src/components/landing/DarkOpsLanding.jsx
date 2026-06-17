@@ -81,8 +81,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/50">
-                        We Salute You
+                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white/80">
+                        Don't be average
                     </p>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
@@ -91,7 +91,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         Beat the odds.
                     </h1>
 
-                    <p className="text-base md:text-lg text-white/50 max-w-xl leading-relaxed font-medium font-sans">
+                    <p className="text-base md:text-lg text-white max-w-xl leading-relaxed font-medium font-sans">
                         Most traders lose money — the stats don't lie. This is the platform to build psychological immunity: the tools to track your performance, manage your psychology, and win.
                     </p>
 
