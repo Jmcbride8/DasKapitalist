@@ -98,9 +98,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <button
                             onClick={() => navigate(createPageUrl('Trades'))}
                             className="inline-flex items-center justify-center gap-3 px-10 py-4 font-black text-sm tracking-wider uppercase transition-all group"
-                            style={{ backgroundColor: '#c49a2c', color: '#000' }}
-                            onMouseEnter={(e) => e.target.style.backgroundColor = '#d4aa3c'}
-                            onMouseLeave={(e) => e.target.style.backgroundColor = '#c49a2c'}
+                            style={{ backgroundColor: '#10b981', color: '#000' }}
+                            onMouseEnter={(e) => e.target.style.backgroundColor = '#34d399'}
+                            onMouseLeave={(e) => e.target.style.backgroundColor = '#10b981'}
                         >
                             Log In
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -192,7 +192,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 className="relative py-32 px-6 lg:px-20"
                 style={{
                     background: '#0a0f14',
-                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(196,154,44,0.04) 0%, transparent 70%)',
+                    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(16,185,129,0.04) 0%, transparent 70%)',
                 }}
             >
                 <div className="max-w-4xl ml-auto">
@@ -259,9 +259,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         </div>
 
                         {/* Trader */}
-                        <div className="border border-white/20 rounded-2xl overflow-hidden bg-white/[0.03] flex flex-col relative" style={{ borderColor: 'rgba(196,154,44,0.3)' }}>
+                        <div className="border border-white/20 rounded-2xl overflow-hidden bg-white/[0.03] flex flex-col relative" style={{ borderColor: 'rgba(16,185,129,0.3)' }}>
                             <div className="absolute top-4 right-4 z-10">
-                                <span className="text-[9px] font-black tracking-[0.25em] uppercase px-3 py-1.5 rounded-full text-black" style={{ backgroundColor: '#c49a2c' }}>
+                                <span className="text-[9px] font-black tracking-[0.25em] uppercase px-3 py-1.5 rounded-full text-black" style={{ backgroundColor: '#10b981' }}>
                                     This Platform
                                 </span>
                             </div>
@@ -276,17 +276,17 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(196,154,44,0.1)' }}>
-                                    <Zap className="w-6 h-6" style={{ color: '#c49a2c' }} />
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(16,185,129,0.1)' }}>
+                                    <Zap className="w-6 h-6" style={{ color: '#10b981' }} />
                                 </div>
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Trader</h3>
-                                <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#c49a2c' }}>Momentum is your edge. Discipline is your weapon.</p>
+                                <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#10b981' }}>Momentum is your edge. Discipline is your weapon.</p>
                                 <p className="text-sm text-white/50 leading-relaxed font-sans mb-6">
                                     You enter. You exit. You repeat. The casino is your arena — and the house only wins when you tilt. Know your numbers. Build your systems. <span className="text-white/70 font-semibold">Master your mind.</span>
                                 </p>
                                 <div className="mt-auto flex flex-wrap gap-2">
                                     {['Win Rate Tracking', 'Risk Management', 'Emotional Mastery', 'Edge by Ticker'].map((tag) => (
-                                        <span key={tag} className="text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border text-white/40" style={{ borderColor: 'rgba(196,154,44,0.2)' }}>
+                                        <span key={tag} className="text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border text-white/40" style={{ borderColor: 'rgba(16,185,129,0.2)' }}>
                                             {tag}
                                         </span>
                                     ))}
@@ -482,9 +482,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             <button
                                 onClick={() => navigate(createPageUrl('Trades'))}
                                 className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group self-start rounded-md"
-                                style={{ backgroundColor: '#F7D147', color: '#000' }}
-                                onMouseEnter={(e) => e.target.style.backgroundColor = '#FDE68A'}
-                                onMouseLeave={(e) => e.target.style.backgroundColor = '#F7D147'}
+                                style={{ backgroundColor: '#10b981', color: '#000' }}
+                                onMouseEnter={(e) => e.target.style.backgroundColor = '#34d399'}
+                                onMouseLeave={(e) => e.target.style.backgroundColor = '#10b981'}
                             >
                                 Log In
                                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
