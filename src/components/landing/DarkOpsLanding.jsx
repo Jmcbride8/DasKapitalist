@@ -536,85 +536,60 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         {/* Solo */}
-                        <div className="border border-white/15 rounded-2xl p-10 flex flex-col bg-white/[0.02] hover:border-white/30 transition-all">
-                            <div className="mb-8">
-                                <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/40 font-mono mb-3">TIER 01</p>
-                                <h3 className="text-4xl font-black uppercase text-white tracking-tight mb-2">Solo</h3>
-                                <p className="text-white font-sans text-sm">For the lone wolf who tracks every trade and trusts the data.</p>
+                        <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '560px' }}>
+                            {/* Background image */}
+                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/229ce43f9_Solo.png)' }} />
+                            {/* Dark gradient overlay — heavier at bottom for text legibility */}
+                            <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 100%)' }} />
+                            {/* Content */}
+                            <div className="relative z-10 flex flex-col justify-end h-full p-8" style={{ minHeight: '560px' }}>
+                                <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/50 font-mono mb-2">TIER 01</p>
+                                <h3 className="text-5xl font-black uppercase text-white tracking-tight mb-1">Solo</h3>
+                                <div className="mb-5">
+                                    <span className="text-6xl font-black text-white">$50</span>
+                                    <span className="text-white/40 font-mono text-sm ml-2">/mo</span>
+                                </div>
+                                <p className="text-white/70 font-sans text-sm mb-6 max-w-xs">Track every trade. Trust the data. Build your edge alone.</p>
+                                <button
+                                    onClick={() => navigate('/Trades')}
+                                    className="w-full py-3.5 border border-white/30 text-white font-black text-sm tracking-wider uppercase hover:bg-white/10 transition-all rounded-md"
+                                >
+                                    Get Started
+                                </button>
                             </div>
-                            <div className="mb-10">
-                                <span className="text-7xl font-black text-white">$50</span>
-                                <span className="text-white/40 font-mono text-sm ml-2">/mo</span>
-                            </div>
-                            <ul className="space-y-4 mb-10 flex-1">
-                                {[
-                                    'Unlimited trade logging',
-                                    'Track Record dashboard',
-                                    'Streaks & win rate tracking',
-                                    'Edge by ticker analytics',
-                                    'Live exposure treemap',
-                                    'Multi-account support',
-                                ].map((feature) => (
-                                    <li key={feature} className="flex items-center gap-3 text-sm text-white font-sans">
-                                        <span className="w-5 h-5 flex-shrink-0 rounded-full border border-white/20 flex items-center justify-center">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
-                                        </span>
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-                            <button
-                                onClick={() => navigate('/Trades')}
-                                className="w-full py-4 border border-white/20 text-white font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all rounded-md"
-                            >
-                                Get Started
-                            </button>
                         </div>
 
                         {/* AI Enabled */}
-                        <div className="rounded-2xl p-10 flex flex-col relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0d2010 0%, #0a1a0d 100%)', border: '1px solid rgba(16,185,129,0.4)' }}>
-                            {/* Glow */}
-                            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top right, rgba(16,185,129,0.08) 0%, transparent 70%)' }} />
-                            <div className="absolute top-6 right-6">
+                        <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '560px' }}>
+                            {/* Background image */}
+                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/2752af7a8_Sage.png)' }} />
+                            {/* Dark gradient overlay with green tint at bottom */}
+                            <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(2,20,12,0.95) 100%)' }} />
+                            {/* Best value badge */}
+                            <div className="absolute top-6 right-6 z-10">
                                 <span className="text-[9px] font-black tracking-[0.25em] uppercase px-3 py-1.5 rounded-full text-black" style={{ backgroundColor: '#10b981' }}>
                                     BEST VALUE
                                 </span>
                             </div>
-                            <div className="mb-8 relative z-10">
-                                <p className="text-xs font-bold tracking-[0.3em] uppercase font-mono mb-3" style={{ color: 'rgba(16,185,129,0.5)' }}>TIER 02</p>
-                                <h3 className="text-4xl font-black uppercase text-white tracking-tight mb-2">AI Enabled</h3>
-                                <p className="text-white font-sans text-sm">Bring an AI co-pilot to the table. Pattern recognition. Trade insights. Ruthless objectivity.</p>
+                            {/* Content */}
+                            <div className="relative z-10 flex flex-col justify-end h-full p-8" style={{ minHeight: '560px' }}>
+                                <p className="text-xs font-bold tracking-[0.3em] uppercase font-mono mb-2" style={{ color: 'rgba(16,185,129,0.7)' }}>TIER 02</p>
+                                <h3 className="text-5xl font-black uppercase text-white tracking-tight mb-1">AI Enabled</h3>
+                                <div className="mb-5">
+                                    <span className="text-6xl font-black text-white">$100</span>
+                                    <span className="font-mono text-sm ml-2" style={{ color: 'rgba(16,185,129,0.6)' }}>/mo</span>
+                                </div>
+                                <p className="text-white/70 font-sans text-sm mb-6 max-w-xs">Pattern recognition. Behavioral bias detection. An AI co-pilot that's ruthlessly objective.</p>
+                                <button
+                                    onClick={() => navigate('/Trades')}
+                                    className="w-full py-3.5 font-black text-sm tracking-wider uppercase transition-all rounded-md text-black"
+                                    style={{ backgroundColor: '#10b981' }}
+                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
+                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
+                                >
+                                    Go AI
+                                </button>
                             </div>
-                            <div className="mb-10 relative z-10">
-                                <span className="text-7xl font-black text-white">$100</span>
-                                <span className="font-mono text-sm ml-2" style={{ color: 'rgba(16,185,129,0.5)' }}>/mo</span>
-                            </div>
-                            <ul className="space-y-4 mb-10 flex-1 relative z-10">
-                                {[
-                                    'Everything in Solo',
-                                    'AI trade pattern analysis',
-                                    'Behavioral bias detection',
-                                    'Weekly AI performance debrief',
-                                    'Natural language trade search',
-                                    'Priority support',
-                                ].map((feature, i) => (
-                                    <li key={feature} className="flex items-center gap-3 text-sm text-white font-sans">
-                                        <span className="w-5 h-5 flex-shrink-0 rounded-full flex items-center justify-center" style={{ border: '1px solid rgba(16,185,129,0.4)' }}>
-                                            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#10b981' }} />
-                                        </span>
-                                        {i === 0 ? <span className="font-bold">{feature}</span> : feature}
-                                    </li>
-                                ))}
-                            </ul>
-                            <button
-                                onClick={() => navigate('/Trades')}
-                                className="w-full py-4 font-black text-sm tracking-wider uppercase transition-all rounded-md relative z-10 text-black"
-                                style={{ backgroundColor: '#10b981' }}
-                                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
-                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
-                            >
-                                Go AI
-                            </button>
                         </div>
                     </div>
                 </div>
