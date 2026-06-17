@@ -284,7 +284,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         Zero Excuses.
                     </h2>
                     <p className="text-sm text-white/40 text-center max-w-md mx-auto mb-16">
-                        Every dashboard is built to answer one question: are you making money or not?
+                        The tools to master your mind.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -293,6 +293,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '01',
                                 title: 'Track Record',
                                 desc: 'Cumulative P&L chart. Weekly and monthly views. Win rate, profit factor, average trade. Your career as a trader — quantified.',
+                                image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Win Rate', value: '62%' },
                                     { label: 'Profit Factor', value: '1.8×' },
@@ -303,6 +304,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '02',
                                 title: 'Streaks',
                                 desc: 'Every week, a W or an L. Patterns your brain would miss. Current streak, best streak, worst slump — all tracked cold.',
+                                image: 'https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Current', value: '3 wins' },
                                     { label: 'Best Ever', value: '11 wins' },
@@ -313,6 +315,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '03',
                                 title: 'Edge',
                                 desc: 'Your P&L broken down by ticker. Stop guessing which names make you money. See the data. Cut the losers. Ride the winners.',
+                                image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Top Ticker', value: 'GLD (+$14K)' },
                                     { label: 'Worst Ticker', value: 'TSLA (-$5K)' },
@@ -323,6 +326,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 num: '04',
                                 title: 'Exposure',
                                 desc: 'Live treemap of every open position. Size equals collateral at risk. Color by today\'s price action. One look, total clarity.',
+                                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
                                 stats: [
                                     { label: 'Open Positions', value: '14' },
                                     { label: 'At Risk', value: '$386K' },
@@ -330,17 +334,28 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 ],
                             },
                         ].map((item) => (
-                            <div key={item.num} className="border border-white/10 rounded-2xl p-8 hover:border-white/30 transition-all bg-white/[0.02]">
-                                <div className="text-6xl font-black text-white/5 leading-none mb-4">{item.num}</div>
-                                <h3 className="text-2xl font-black text-white mb-3">{item.title}</h3>
-                                <p className="text-sm text-white/40 leading-relaxed mb-6">{item.desc}</p>
-                                <div className="flex gap-4 pt-4 border-t border-white/10">
-                                    {item.stats.map((s) => (
-                                        <div key={s.label}>
-                                            <div className="text-lg font-black text-white">{s.value}</div>
-                                            <div className="text-[9px] font-bold text-white/25 uppercase tracking-wider mt-0.5">{s.label}</div>
-                                        </div>
-                                    ))}
+                            <div key={item.num} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 transition-all bg-white/[0.02]">
+                                <div className="relative h-48 overflow-hidden">
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        style={{ filter: 'grayscale(100%) brightness(0.5)' }}
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent" />
+                                    <div className="absolute top-4 left-4 text-5xl font-black text-white/10 leading-none">{item.num}</div>
+                                </div>
+                                <div className="p-8">
+                                    <h3 className="text-2xl font-black text-white mb-3">{item.title}</h3>
+                                    <p className="text-sm text-white/40 leading-relaxed mb-6">{item.desc}</p>
+                                    <div className="flex gap-4 pt-4 border-t border-white/10">
+                                        {item.stats.map((s) => (
+                                            <div key={s.label}>
+                                                <div className="text-lg font-black text-white">{s.value}</div>
+                                                <div className="text-[9px] font-bold text-white/25 uppercase tracking-wider mt-0.5">{s.label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         ))}
