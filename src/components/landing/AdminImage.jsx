@@ -61,7 +61,6 @@ export default function AdminImage({ imageKey, defaultSrc, className, style, alt
             className={className}
             style={{
                 ...style,
-                position: 'relative',
                 ...(rest.onLoad || rest.onError ? {} : { backgroundImage: `url(${displayUrl})` }),
             }}
             onMouseEnter={() => isAdmin && setShowUpload(true)}
