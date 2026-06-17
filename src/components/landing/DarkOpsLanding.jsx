@@ -4,6 +4,7 @@ import { createPageUrl } from '@/utils';
 import { ArrowRight, Shield, Zap, TrendingUp } from 'lucide-react';
 import AdminImage from '@/components/landing/AdminImage';
 import HeroImagePicker from '@/components/landing/HeroImagePicker';
+import DecipherText from '@/components/landing/DecipherText';
 
 export default function DarkOpsLanding({ navigate, openView }) {
     const [time, setTime] = useState('');
@@ -86,9 +87,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </p>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
-                        Be a rebel.
-                        <br />
-                        Beat the odds.
+                        <DecipherText>{`Be a rebel.\nBeat the odds.`}</DecipherText>
                     </h1>
 
                     <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed font-medium font-sans">
@@ -132,11 +131,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         WHAT YOU'RE UP AGAINST
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        The market is
-                        <br />
-                        designed to break
-                        <br />
-                        your mind.
+                        <DecipherText>{`The market is\ndesigned to break\nyour mind.`}</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
@@ -205,9 +200,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         THE SOLUTION
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        Take
-                        <br />
-                        Control.
+                        <DecipherText>{`Take\nControl.`}</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right">
@@ -223,9 +216,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         BUILT FOR EVERY OPERATOR
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        One trader.
-                        <br />
-                        Many paths.
+                        <DecipherText>{`One trader.\nMany paths.`}</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
@@ -272,9 +263,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         THE PROCESS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        Three steps.
-                        <br />
-                        No fluff.
+                        <DecipherText>{`Three steps.\nNo fluff.`}</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
@@ -306,9 +295,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         THE ARSENAL
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        Four weapons.
-                        <br />
-                        Zero excuses.
+                        <DecipherText>{`Four weapons.\nZero excuses.`}</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white/60 max-w-xl leading-relaxed font-medium font-sans mb-16">
@@ -435,9 +422,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <div className="flex flex-col justify-between min-h-[400px]">
                             <div className="space-y-6">
                                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
-                                    Start Your
-                                    <br />
-                                    Mission
+                                    <DecipherText>{`Start Your\nMission`}</DecipherText>
                                 </h2>
                                 <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed font-medium font-sans">
                                     Your path to trading mastery starts here. Log your trades, find your edge, and build the discipline to beat the market consistently.
@@ -465,7 +450,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         QUESTIONS & ANSWERS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        FAQ
+                        <DecipherText>FAQ</DecipherText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-16" />
                     <div className="space-y-1">
