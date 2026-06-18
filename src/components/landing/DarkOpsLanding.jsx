@@ -160,7 +160,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             {
                                 imageKey: 'problem_3',
                                 image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-                                title: 'Confirmation Bias',
+                                title: 'Panic',
                                 desc: 'You only see the setups that agree with your thesis. Your brain filters out contrary evidence, and your P&L pays the price.',
                             },
                             {
