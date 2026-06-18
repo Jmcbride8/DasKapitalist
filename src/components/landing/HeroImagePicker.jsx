@@ -21,11 +21,23 @@ export default function HeroImagePicker({ onSelect }) {
                 if (user?.role === 'admin') setIsAdmin(true);
             } catch {}
             try {
-                const saved = await base44.entities.LandingImage.filter({ image_key: 'hero_bg_selected' });
-                if (saved.length > 0) {
-                    setSelectedKey(saved[0].image_url);
-                    const variant = HERO_VARIANTS.find(v => v.key === saved[0].image_url);
-                    if (variant) onSelect(variant.src);
+                // Load all landing images so we can use uploaded URLs for presets
+                const allImages = await base44.entities.LandingImage.list();
+                const imageMap = {};
+                allImages.forEach(r => { imageMap[r.image_key] = r.image_url; });
+
+                const savedKey = imageMap['hero_bg_selected'];
+                if (savedKey) {
+                    setSelectedKey(savedKey);
+                    // Use uploaded URL if exists, otherwise fall back to variant default
+                    const uploadedUrl = imageMap[savedKey];
+                    const variant = HERO_VARIANTS.find(v => v.key === savedKey);
+                    onSelect(uploadedUrl || variant?.src || HERO_VARIANTS[0].src);
+                } else {
+                    // No saved selection — use uploaded URL for default variant if any
+                    const firstKey = HERO_VARIANTS[0].key;
+                    const uploadedUrl = imageMap[firstKey];
+                    onSelect(uploadedUrl || HERO_VARIANTS[0].src);
                 }
             } catch {}
             setLoading(false);
@@ -34,8 +46,16 @@ export default function HeroImagePicker({ onSelect }) {
 
     const handleSelect = async (key) => {
         setSelectedKey(key);
-        const variant = HERO_VARIANTS.find(v => v.key === key);
-        if (variant) onSelect(variant.src);
+        // Check if there's an uploaded image for this key, else use the default
+        try {
+            const records = await base44.entities.LandingImage.filter({ image_key: key });
+            const uploadedUrl = records?.[0]?.image_url;
+            const variant = HERO_VARIANTS.find(v => v.key === key);
+            onSelect(uploadedUrl || variant?.src);
+        } catch {
+            const variant = HERO_VARIANTS.find(v => v.key === key);
+            if (variant) onSelect(variant.src);
+        }
 
         try {
             const existing = await base44.entities.LandingImage.filter({ image_key: 'hero_bg_selected' });
