@@ -176,7 +176,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                         imageKey={card.imageKey}
                                         defaultSrc={card.image}
                                         className="w-full h-full"
-                                        style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
+                                        style={{ backgroundSize: 'cover', backgroundPosition: 'center', transform: i % 2 === 1 ? 'scaleX(-1)' : 'none' }}
                                         alt={card.title}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent pointer-events-none" />
