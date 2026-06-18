@@ -154,13 +154,13 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             {
                                 imageKey: 'problem_2',
                                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-                                title: 'Impatient',
+                                title: 'Overtrading',
                                 desc: 'You exit winners too early and hold losers too long. You chase entries. You break your own rules. Discipline isn\'t sexy — but it\'s the only thing that compounds.',
                             },
                             {
                                 imageKey: 'problem_3',
                                 image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-                                title: 'Panic',
+                                title: 'Capitulation',
                                 desc: 'One bad week and you abandon your strategy. Fear turns a manageable drawdown into a blown account. The data would have told you to hold — if you\'d been tracking it.',
                             },
                             {
