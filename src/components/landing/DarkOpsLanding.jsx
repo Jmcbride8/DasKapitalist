@@ -270,26 +270,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
 
 
-            {/* ======== POGO QUOTE ======== */}
-            <section className="py-24 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
-                <div className="max-w-4xl mx-auto text-center">
-                    <div className="mb-8 flex justify-center">
-                        <div className="h-px w-16 bg-red-500/60" />
-                    </div>
-                    <blockquote>
-                        <p className="text-4xl md:text-5xl font-black uppercase leading-[1.05] tracking-tight text-white mb-8">
-                            "We have met the <span style={{ color: '#ef4444' }}>enemy</span>. It is us."
-                        </p>
-                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono text-white/50">
-                            — Pogo, Walt Kelly
-                        </cite>
-                    </blockquote>
-                    <div className="mt-8 flex justify-center">
-                        <div className="h-px w-16 bg-red-500/60" />
-                    </div>
-                </div>
-            </section>
-
             {/* ======== KNOW YOUR LANE ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-6xl mx-auto">
