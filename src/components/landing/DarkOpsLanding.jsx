@@ -59,14 +59,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             Log In
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
-                        <button
-                            onClick={() => navigate('/Dashboards?view=time')}
+                        <a
+                            href="/Dashboards?view=time"
                             className="inline-flex items-center justify-center gap-3 px-10 py-4 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group"
                             style={{ borderColor: 'rgba(16,185,129,0.4)', color: '#10b981' }}
                         >
                             Try the Demo
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </button>
+                        </a>
                         <button
                             onClick={() => document.getElementById('darkops-arsenal').scrollIntoView({ behavior: 'smooth' })}
                             className="inline-flex items-center justify-center gap-3 px-10 py-4 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group"
@@ -509,14 +509,14 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     Log In
                                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                 </button>
-                                <button
-                                    onClick={() => navigate('/Dashboards?view=time')}
+                                <a
+                                    href="/Dashboards?view=time"
                                     className="inline-flex items-center justify-center gap-3 px-10 py-5 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group rounded-md"
                                     style={{ borderColor: 'rgba(16,185,129,0.4)', color: '#10b981' }}
                                 >
                                     Try the Demo
                                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

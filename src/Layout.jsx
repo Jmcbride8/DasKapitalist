@@ -17,10 +17,11 @@ export default function Layout({ children, currentPageName }) {
     }, [location.pathname]);
 
     useEffect(() => {
-        if (!isLoadingAuth && !isAuthenticated) {
+        // Skip auth redirect for demo pages (Dashboards)
+        if (!isLoadingAuth && !isAuthenticated && !location.pathname.startsWith('/Dashboards')) {
             navigateToLogin();
         }
-    }, [isLoadingAuth, isAuthenticated]);
+    }, [isLoadingAuth, isAuthenticated, location.pathname]);
 
     if (isLoadingAuth) {
         return (
@@ -30,7 +31,8 @@ export default function Layout({ children, currentPageName }) {
         );
     }
 
-    if (!isAuthenticated) return null;
+    // Allow unauthenticated access to Dashboards (demo mode)
+    if (!isAuthenticated && !location.pathname.startsWith('/Dashboards')) return null;
 
     const navItems = [
         { name: 'Home', icon: HomeIcon, path: 'Home' },

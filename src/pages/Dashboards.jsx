@@ -13,7 +13,7 @@ import TickerTradesTable from '@/components/dashboard/TickerTradesTable';
 import OpenPositionsTable from '@/components/dashboard/OpenPositionsTable';
 
 export default function Dashboards() {
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
     const [searchParams] = useSearchParams();
     const view = searchParams.get('view') || 'weekly';
     const [selectedYear, setSelectedYear] = useState('all');
@@ -22,10 +22,18 @@ export default function Dashboards() {
     const [selectedChartTicker, setSelectedChartTicker] = useState(null);
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
+    // Demo mode: show all trades (public sample data) when not authenticated
     const { data: trades = [], isLoading } = useQuery({
-        queryKey: ['trades', user?.id],
-        queryFn: () => base44.entities.Trade.filter({ created_by_id: user?.id }, '-open_date'),
-        enabled: !!user?.id
+        queryKey: ['trades', user?.id, isAuthenticated],
+        queryFn: () => {
+            if (isAuthenticated) {
+                return base44.entities.Trade.filter({ created_by_id: user?.id }, '-open_date');
+            } else {
+                // Demo mode: fetch all trades (sample data)
+                return base44.entities.Trade.filter({}, '-open_date', 50);
+            }
+        },
+        enabled: isAuthenticated || true // Always enabled for demo
     });
 
     const years = useMemo(() => {
