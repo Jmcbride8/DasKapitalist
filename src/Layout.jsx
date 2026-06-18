@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, User, Home as HomeIcon } from 'lucide-react';
+import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, User, Home as HomeIcon, Settings } from 'lucide-react';
 import { useAuth } from '@/lib/AuthContext';
 
 export default function Layout({ children, currentPageName }) {
@@ -124,8 +124,8 @@ export default function Layout({ children, currentPageName }) {
                     ))}
                 </nav>
 
-                {/* Profile link at bottom */}
-                <div className="px-3 py-3 border-t border-black/10">
+                {/* Profile + Admin links at bottom */}
+                <div className="px-3 py-3 border-t border-black/10 space-y-0.5">
                     <Link
                         to={createPageUrl('Profile')}
                         className={`flex items-center gap-3 px-3 py-2.5 transition-all font-black text-xs tracking-[0.15em] uppercase font-mono ${currentPageName === 'Profile' ? activeCls : inactiveCls}`}
@@ -133,6 +133,15 @@ export default function Layout({ children, currentPageName }) {
                         <User className="w-4 h-4 flex-shrink-0" />
                         Profile
                     </Link>
+                    {isAuthenticated && (
+                        <Link
+                            to={createPageUrl('Admin')}
+                            className={`flex items-center gap-3 px-3 py-2.5 transition-all font-black text-xs tracking-[0.15em] uppercase font-mono ${currentPageName === 'Admin' ? activeCls : inactiveCls}`}
+                        >
+                            <Settings className="w-4 h-4 flex-shrink-0" />
+                            Admin
+                        </Link>
+                    )}
                 </div>
             </div>
 
@@ -167,6 +176,16 @@ export default function Layout({ children, currentPageName }) {
                             <User className="w-4 h-4 flex-shrink-0" />
                             Profile
                         </Link>
+                        {isAuthenticated && (
+                            <Link
+                                to={createPageUrl('Admin')}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={`flex items-center gap-3 px-3 py-2.5 transition-all font-black text-xs tracking-[0.15em] uppercase font-mono ${currentPageName === 'Admin' ? activeCls : inactiveCls}`}
+                            >
+                                <Settings className="w-4 h-4 flex-shrink-0" />
+                                Admin
+                            </Link>
+                        )}
                     </div>
                 )}
 
