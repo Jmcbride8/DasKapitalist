@@ -65,9 +65,11 @@ const HERO_SELECTED_KEY = 'hero_bg_selected';
 function ImageSlotCard({ slot, record, onUploaded, isHeroSelected, onSelectHero }) {
     const fileRef = useRef(null);
     const [uploading, setUploading] = useState(false);
-    const [localUrl, setLocalUrl] = useState(record?.image_url || null);
 
-    const displayUrl = localUrl || slot.defaultSrc;
+    // Always derive display URL directly from the record prop (kept fresh by parent)
+    // so any upload or external update is reflected immediately
+    const imageUrl = record?.image_url || null;
+    const displayUrl = imageUrl || slot.defaultSrc;
 
     const handleUpload = async (e) => {
         const file = e.target.files?.[0];
@@ -80,7 +82,6 @@ function ImageSlotCard({ slot, record, onUploaded, isHeroSelected, onSelectHero 
             } else {
                 await base44.entities.LandingImage.create({ image_key: slot.key, image_url: file_url });
             }
-            setLocalUrl(file_url);
             onUploaded(slot.key, file_url);
         } finally {
             setUploading(false);
@@ -102,7 +103,7 @@ function ImageSlotCard({ slot, record, onUploaded, isHeroSelected, onSelectHero 
                         </span>
                     </div>
                 )}
-                {localUrl && (
+                {imageUrl && (
                     <div className="absolute top-2 right-2">
                         <span className="text-[9px] font-black tracking-wider uppercase px-2 py-1 rounded-full bg-emerald-500 text-white font-mono">Custom</span>
                     </div>
