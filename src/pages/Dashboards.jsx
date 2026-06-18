@@ -22,18 +22,18 @@ export default function Dashboards() {
     const [selectedChartTicker, setSelectedChartTicker] = useState(null);
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
-    // Demo mode: show all trades (public sample data) when not authenticated
+    // Demo mode: show your actual trades when not authenticated
     const { data: trades = [], isLoading } = useQuery({
         queryKey: ['trades', user?.id, isAuthenticated],
         queryFn: () => {
             if (isAuthenticated) {
                 return base44.entities.Trade.filter({ created_by_id: user?.id }, '-open_date');
             } else {
-                // Demo mode: fetch all trades (sample data)
-                return base44.entities.Trade.filter({}, '-open_date', 50);
+                // Demo mode: fetch your actual trades (by your user ID)
+                return base44.entities.Trade.filter({ created_by_id: '694b97feaa431cbfcfc8fd45' }, '-open_date', 50);
             }
         },
-        enabled: isAuthenticated || true // Always enabled for demo
+        enabled: true // Always enabled for demo
     });
 
     const years = useMemo(() => {
