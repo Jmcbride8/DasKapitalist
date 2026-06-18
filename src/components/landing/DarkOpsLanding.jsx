@@ -355,7 +355,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="space-y-2">
                         {[
                             { step: '01', title: 'Log Your Trades', desc: 'Enter ticker, premium, collateral, and expiration. Takes 15 seconds. Bulk imports supported for the spreadsheet crowd.' },
-                            { step: '02', title: 'Let the Dashboards Work', desc: 'Track Record, Streaks, Edge, and Exposure update instantly. No formulas. No manual P&L calculations. Ever.' },
+                            { step: '02', title: 'Reflect', desc: 'Track Record, Streaks, Edge, and Exposure update instantly. No formulas. No manual P&L calculations. Ever.' },
                             { step: '03', title: 'Find Your Edge & Execute', desc: null },
                         ].map((item, i) => (
                             <div key={i} className="flex items-start gap-6 py-8 border-t border-white/10 first:border-t-0">
