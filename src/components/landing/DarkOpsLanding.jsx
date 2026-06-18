@@ -149,25 +149,25 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 imageKey: 'problem_1',
                                 image: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=800&h=600&fit=crop',
                                 title: '⬇ Revenge Trading',
-                                desc: 'You take a loss, then immediately size up to get it back. Trading on tilt wrecks more accounts than bad picks ever do.',
+                                desc: 'You take a loss and immediately double down to get it back. The market doesn\'t care about your feelings — and neither does your account balance.',
                             },
                             {
                                 imageKey: 'problem_2',
                                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
                                 title: 'Impatient',
-                                desc: 'Without logging every trade, you have no proof you\'re any good. You can\'t refine what you don\'t measure — and most traders measure nothing.',
+                                desc: 'You exit winners too early and hold losers too long. You chase entries. You break your own rules. Discipline isn\'t sexy — but it\'s the only thing that compounds.',
                             },
                             {
                                 imageKey: 'problem_3',
                                 image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
                                 title: 'Panic',
-                                desc: 'You only see the setups that agree with your thesis. Your brain filters out contrary evidence, and your P&L pays the price.',
+                                desc: 'One bad week and you abandon your strategy. Fear turns a manageable drawdown into a blown account. The data would have told you to hold — if you\'d been tracking it.',
                             },
                             {
                                 imageKey: 'problem_4',
                                 image: 'https://images.unsplash.com/photo-1639322537228-f740dce6b4ab?w=800&h=600&fit=crop',
                                 title: 'Edge Blindness',
-                                desc: 'You don\'t know which tickers actually print for you. Without per-symbol analytics, you keep feeding losers and starving winners.',
+                                desc: 'You don\'t know which tickers actually print for you. Without per-symbol analytics, you keep feeding the losers and starving the winners.',
                             },
                         ].map((card, i) => (
                             <div key={i} className="group relative overflow-hidden rounded-2xl border border-white/10 hover:border-white/30 transition-all bg-white/[0.02]">
