@@ -228,29 +228,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
-            {/* ======== TAKE CONTROL ======== */}
-            <section className="relative py-32 px-6 lg:px-20 overflow-hidden">
-                {/* Background image */}
-                <AdminImage
-                    imageKey="solution_bg"
-                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/5fcd8a80e_clarity.jpg"
-                    className="absolute inset-0 z-0"
-                    style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
-                />
-                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(10,15,20,0.90) 0%, rgba(10,15,20,0.75) 40%, rgba(10,15,20,0.90) 100%)' }} />
-                <div className="relative z-20 max-w-4xl ml-auto">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
-                        THE SOLUTION
-                    </p>
-                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        <PriceTargetText>{`Master\nyour Mind.`}</PriceTargetText>
-                    </h2>
-                    <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans ml-auto text-right">
-                        Your broker feeds you numbers. We give you a command center. Real-time exposure. Streak tracking. Edge by ticker. Everything you need to stop being the mark and start being the hunter.
-                    </p>
-                </div>
-            </section>
+
 
             {/* ======== KNOW YOUR LANE ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
