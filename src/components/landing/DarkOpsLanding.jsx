@@ -128,6 +128,26 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             </section>
 
+            {/* ======== FDR QUOTE ======== */}
+            <section className="py-24 px-6 lg:px-20" style={{ background: '#000' }}>
+                <div className="max-w-4xl mx-auto text-center">
+                    <div className="mb-8 flex justify-center">
+                        <div className="h-px w-16 bg-white/20" />
+                    </div>
+                    <blockquote>
+                        <p className="text-4xl md:text-5xl font-black uppercase leading-[1.05] tracking-tight text-white mb-8">
+                            "We have nothing to <span style={{ color: '#ef4444' }}>fear</span> but fear itself."
+                        </p>
+                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono text-white/50">
+                            — Franklin D. Roosevelt
+                        </cite>
+                    </blockquote>
+                    <div className="mt-8 flex justify-center">
+                        <div className="h-px w-16 bg-white/20" />
+                    </div>
+                </div>
+            </section>
+
             {/* ======== POGO QUOTE ======== */}
             <section className="py-24 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
                 <div className="max-w-4xl mx-auto text-center">
@@ -207,26 +227,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ======== FDR QUOTE ======== */}
-            <section className="py-24 px-6 lg:px-20" style={{ background: '#000' }}>
-                <div className="max-w-4xl mx-auto text-center">
-                    <div className="mb-8 flex justify-center">
-                        <div className="h-px w-16 bg-white/20" />
-                    </div>
-                    <blockquote>
-                        <p className="text-4xl md:text-5xl font-black uppercase leading-[1.05] tracking-tight text-white mb-8">
-                            "We have nothing to <span style={{ color: '#ef4444' }}>fear</span> but fear itself."
-                        </p>
-                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono text-white/50">
-                            — Franklin D. Roosevelt
-                        </cite>
-                    </blockquote>
-                    <div className="mt-8 flex justify-center">
-                        <div className="h-px w-16 bg-white/20" />
                     </div>
                 </div>
             </section>
