@@ -182,7 +182,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent pointer-events-none" />
                                 </div>
                                 <div className="p-8">
-                                    <h3 className={`text-xl font-black mb-3 uppercase tracking-tight ${card.title.startsWith('⬇') ? 'text-red-400' : 'text-white'}`}>{card.title.replace('⬇ ', '')}</h3>
+                                    <h3 className="text-xl font-black mb-3 uppercase tracking-tight text-red-400">{card.title.replace('⬇ ', '')}</h3>
                                     <p className="text-sm text-white leading-relaxed font-sans">{card.desc}</p>
                                 </div>
                             </div>
