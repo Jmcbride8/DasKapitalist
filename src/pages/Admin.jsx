@@ -77,12 +77,13 @@ function ImageSlotCard({ slot, record, onUploaded, isHeroSelected, onSelectHero 
         setUploading(true);
         try {
             const { file_url } = await base44.integrations.Core.UploadFile({ file });
-            if (record) {
-                await base44.entities.LandingImage.update(record.id, { image_url: file_url });
+            if (record?.id) {
+                const updated = await base44.entities.LandingImage.update(record.id, { image_url: file_url });
+                onUploaded(slot.key, file_url, updated);
             } else {
-                await base44.entities.LandingImage.create({ image_key: slot.key, image_url: file_url });
+                const created = await base44.entities.LandingImage.create({ image_key: slot.key, image_url: file_url });
+                onUploaded(slot.key, file_url, created);
             }
-            onUploaded(slot.key, file_url);
         } finally {
             setUploading(false);
         }
@@ -172,10 +173,10 @@ export default function Admin() {
         })();
     }, []);
 
-    const handleUploaded = (key, url) => {
+    const handleUploaded = (key, url, record) => {
         setRecords(prev => ({
             ...prev,
-            [key]: { ...(prev[key] || {}), image_key: key, image_url: url }
+            [key]: record || { ...(prev[key] || {}), image_key: key, image_url: url }
         }));
     };
 
