@@ -154,7 +154,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             {
                                 imageKey: 'problem_2',
                                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-                                title: 'No Track Record',
+                                title: 'Impatient',
                                 desc: 'Without logging every trade, you have no proof you\'re any good. You can\'t refine what you don\'t measure — and most traders measure nothing.',
                             },
                             {
