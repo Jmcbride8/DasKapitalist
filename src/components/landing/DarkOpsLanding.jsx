@@ -254,7 +254,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <section className="py-32 px-6 lg:px-20" style={{ background: '#000000' }}>
                 <div className="max-w-6xl mx-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
-                        KNOW THYSELF
+                        KNOW THE GAME
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
                         <PriceTargetText>{`Trading. Investing.\nSame casino, different game.`}</PriceTargetText>
