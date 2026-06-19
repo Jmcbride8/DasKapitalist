@@ -94,9 +94,9 @@ export default function Layout({ children, currentPageName }) {
                                     key={subItem.tab || subItem.path}
                                     to={createPageUrl(subItem.tab ? `${item.path}?view=${subItem.tab}` : subItem.path)}
                                     onClick={onClick}
-                                    className={`block px-2 py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors flex items-center gap-2 ${isSubActive ? 'text-black dark:text-[#10b981] bg-black/5 dark:bg-transparent' : subInactiveCls}`}
+                                    className={`block px-2 py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors flex items-center gap-2 ${isSubActive ? 'text-[#10b981] dark:text-[#10b981] bg-black/5 dark:bg-transparent' : subInactiveCls}`}
                                 >
-                                    {isSubActive && <span className="hidden dark:inline-block w-1.5 h-1.5 rounded-full bg-[#10b981] flex-shrink-0" />}
+                                    {isSubActive && <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#10b981] flex-shrink-0" />}
                                     {subItem.name}
                                 </Link>
                             );
