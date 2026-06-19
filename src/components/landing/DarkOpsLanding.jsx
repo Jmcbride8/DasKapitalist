@@ -331,7 +331,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== HOW IT WORKS ======== */}
-            <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
+            <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#050505' }}>
                 <div className="max-w-4xl ml-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         THE PROCESS
@@ -392,7 +392,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== PRICING ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#050505' }}>
                 <div className="max-w-5xl mx-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase mb-8 font-mono text-center" style={{ color: '#10b981' }}>
                         PRICING
@@ -510,7 +510,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== FAQ ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#050505' }}>
                 <div className="max-w-3xl ml-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         QUESTIONS & ANSWERS
