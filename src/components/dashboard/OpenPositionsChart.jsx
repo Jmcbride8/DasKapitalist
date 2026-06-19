@@ -55,9 +55,9 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
         if (active && payload && payload.length) {
             const data = payload[0].payload;
             return (
-                <div className="bg-white p-3 border border-slate-200 rounded shadow-lg">
-                    <p className="text-sm font-medium text-slate-900">{data.ticker}</p>
-                    <p className="text-sm text-slate-600">Open: {formatCurrency(data.open)}</p>
+                <div className="bg-white dark:bg-zinc-800 p-3 border border-slate-200 dark:border-zinc-600 rounded shadow-lg">
+                    <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{data.ticker}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Open: {formatCurrency(data.open)}</p>
                     <p className="text-sm" style={{ color: data.unrealized >= 0 ? '#10b981' : '#ef4444' }}>
                         Unrealized: {formatCurrency(data.unrealized)}
                     </p>
@@ -85,9 +85,9 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
 
     if (chartData.length === 0) {
         return (
-            <Card className="border-0 shadow-none bg-white">
+            <Card className="border-0 shadow-none bg-transparent">
                 <CardContent className="pt-6">
-                    <div className="h-96 flex items-center justify-center text-slate-400">
+                    <div className="h-96 flex items-center justify-center text-slate-400 dark:text-slate-500">
                         No open positions
                     </div>
                 </CardContent>
@@ -96,11 +96,11 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
     }
 
     return (
-        <Card className="border-0 shadow-none bg-white -mx-4 md:mx-0">
+        <Card className="border-0 shadow-none bg-transparent -mx-4 md:mx-0">
             <CardContent className="pt-6 px-0">
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 0 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
                         <XAxis dataKey="ticker" stroke="#64748b" className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block" />
                         <YAxis 
                             tickFormatter={formatCurrency}

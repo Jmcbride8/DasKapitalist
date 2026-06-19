@@ -56,20 +56,20 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
     const pctColor = pct >= 0 ? 'text-emerald-600' : 'text-red-500';
 
     return (
-        <Card className="border-0 shadow-none bg-white">
+        <Card className="border-0 shadow-none bg-transparent">
             <CardContent className="pt-6">
                 <div className="relative">
                     {/* Min Impact input */}
                     <div className="mb-4 flex items-center gap-2">
-                        <label className="text-sm text-slate-500">Min Impact:</label>
-                        <div className="flex items-center border-b border-slate-400 focus-within:border-slate-700 transition-colors">
-                            <span className="text-slate-500 text-sm pr-0.5">$</span>
+                        <label className="text-sm text-slate-500 dark:text-slate-400">Min Impact:</label>
+                        <div className="flex items-center border-b border-slate-400 dark:border-slate-500 focus-within:border-slate-700 dark:focus-within:border-slate-300 transition-colors">
+                            <span className="text-slate-500 dark:text-slate-400 text-sm pr-0.5">$</span>
                             <input
                                 type="text"
                                 value={inputDisplay}
                                 onChange={handleInputChange}
                                 onBlur={handleBlur}
-                                className="w-24 text-sm bg-transparent outline-none py-0.5 text-slate-700 text-center"
+                                className="w-24 text-sm bg-transparent outline-none py-0.5 text-slate-700 dark:text-slate-200 text-center"
                             />
                         </div>
                     </div>
@@ -77,7 +77,7 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
                     <ProfitChart trades={filteredTrades} selectedTicker={selectedTicker} onTickerSelect={handleTickerClick} />
 
                     {/* Donut chart overlay - rendered after chart so it sits on top */}
-                    <div className="absolute top-0 right-0 flex flex-col items-center bg-white rounded-lg p-1" style={{ width: 120, zIndex: 20 }}>
+                    <div className="absolute top-0 right-0 flex flex-col items-center bg-white dark:bg-zinc-800 rounded-lg p-1" style={{ width: 120, zIndex: 20 }}>
                         <div className="relative" style={{ width: 100, height: 100 }}>
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
@@ -105,7 +105,7 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
                                 </span>
                             </div>
                         </div>
-                        <p className="text-xs text-slate-500 text-center leading-tight mt-1">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 text-center leading-tight mt-1">
                             Unrealized<br />vs Realized
                         </p>
                     </div>

@@ -36,12 +36,12 @@ const fmt = (v) => {
 
 const Pill = ({ label, value, sub, color = 'emerald', icon: Icon }) => {
     const colors = {
-        emerald: 'from-emerald-50 to-emerald-100/50 border-emerald-200 text-emerald-700',
-        blue: 'from-blue-50 to-blue-100/50 border-blue-200 text-blue-700',
-        amber: 'from-amber-50 to-amber-100/50 border-amber-200 text-amber-700',
-        rose: 'from-rose-50 to-rose-100/50 border-rose-200 text-rose-700',
-        violet: 'from-violet-50 to-violet-100/50 border-violet-200 text-violet-700',
-        slate: 'from-slate-50 to-slate-100/50 border-slate-200 text-slate-700',
+        emerald: 'from-emerald-50/80 to-emerald-100/30 dark:from-emerald-900/30 dark:to-emerald-800/20 border-emerald-200 dark:border-emerald-700/50 text-emerald-700 dark:text-emerald-400',
+        blue: 'from-blue-50/80 to-blue-100/30 dark:from-blue-900/30 dark:to-blue-800/20 border-blue-200 dark:border-blue-700/50 text-blue-700 dark:text-blue-400',
+        amber: 'from-amber-50/80 to-amber-100/30 dark:from-amber-900/30 dark:to-amber-800/20 border-amber-200 dark:border-amber-700/50 text-amber-700 dark:text-amber-400',
+        rose: 'from-rose-50/80 to-rose-100/30 dark:from-rose-900/30 dark:to-rose-800/20 border-rose-200 dark:border-rose-700/50 text-rose-700 dark:text-rose-400',
+        violet: 'from-violet-50/80 to-violet-100/30 dark:from-violet-900/30 dark:to-violet-800/20 border-violet-200 dark:border-violet-700/50 text-violet-700 dark:text-violet-400',
+        slate: 'from-slate-50/80 to-slate-100/30 dark:from-slate-800/50 dark:to-slate-700/20 border-slate-200 dark:border-slate-600/50 text-slate-700 dark:text-slate-300',
     };
     return (
         <div className={`rounded-xl border bg-gradient-to-br p-4 flex flex-col gap-1 ${colors[color]}`}>
@@ -58,12 +58,12 @@ const Pill = ({ label, value, sub, color = 'emerald', icon: Icon }) => {
 const ChartTooltip = ({ active, payload, label }) => {
     if (!active || !payload?.length) return null;
     return (
-        <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
-            <p className="font-semibold text-slate-700 mb-1">{label}</p>
+        <div className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3 text-xs">
+            <p className="font-semibold text-slate-700 dark:text-slate-200 mb-1">{label}</p>
             {payload.map((p, i) => (
                 <div key={i} className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full" style={{ background: p.color }} />
-                    <span className="text-slate-500">{p.name}:</span>
+                    <span className="text-slate-500 dark:text-slate-400">{p.name}:</span>
                     <span className="font-bold" style={{ color: p.value >= 0 ? '#059669' : '#e11d48' }}>
                         {fmtFull(p.value)}
                     </span>
@@ -271,13 +271,13 @@ export default function TimeComparisonsChart({ trades }) {
             </div>
 
             {/* Period Toggle */}
-            <div className="flex gap-2 border-b border-slate-200">
+            <div className="flex gap-2 border-b border-slate-200 dark:border-zinc-700">
                 <button
                     onClick={() => setPeriodMode('weekly')}
                     className={`px-4 py-3 text-sm font-medium border-b-2 transition-all ${
                         periodMode === 'weekly'
-                            ? 'border-slate-900 text-slate-900'
-                            : 'border-transparent text-slate-500 hover:text-slate-700'
+                            ? 'border-slate-900 dark:border-white text-slate-900 dark:text-white'
+                            : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                     }`}
                 >
                     Weekly
@@ -286,8 +286,8 @@ export default function TimeComparisonsChart({ trades }) {
                     onClick={() => setPeriodMode('monthly')}
                     className={`px-4 py-3 text-sm font-medium border-b-2 transition-all ${
                         periodMode === 'monthly'
-                            ? 'border-slate-900 text-slate-900'
-                            : 'border-transparent text-slate-500 hover:text-slate-700'
+                            ? 'border-slate-900 dark:border-white text-slate-900 dark:text-white'
+                            : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                     }`}
                 >
                     Monthly
@@ -296,11 +296,11 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* Cumulative P&L Chart */}
             <div>
-                <h2 className="text-base font-semibold text-slate-800 mb-3">Cumulative P&L</h2>
+                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">Cumulative P&L</h2>
                 <div className="p-4">
                     <ResponsiveContainer width="100%" height={280}>
                         <BarChart data={cumulativeData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
                             <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                             <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
@@ -308,10 +308,10 @@ export default function TimeComparisonsChart({ trades }) {
                                     if (!active || !payload?.length) return null;
                                     const d = payload[0]?.payload;
                                     return (
-                                        <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
-                                            <p className="font-semibold text-slate-700 mb-1">{label}</p>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-400" /><span className="text-slate-500">Closed:</span><span className="font-bold text-slate-700">{fmtFull(d?.closed)}</span></div>
-                                            {d?.open !== 0 && <div className="flex items-center gap-2"><span className={`w-2 h-2 rounded-full ${d?.open >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`} /><span className="text-slate-500">Open:</span><span className={`font-bold ${d?.open >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(d?.open)}</span></div>}
+                                        <div className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3 text-xs">
+                                            <p className="font-semibold text-slate-700 dark:text-slate-200 mb-1">{label}</p>
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-400" /><span className="text-slate-500 dark:text-slate-400">Closed:</span><span className="font-bold text-slate-700 dark:text-slate-200">{fmtFull(d?.closed)}</span></div>
+                                            {d?.open !== 0 && <div className="flex items-center gap-2"><span className={`w-2 h-2 rounded-full ${d?.open >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`} /><span className="text-slate-500 dark:text-slate-400">Open:</span><span className={`font-bold ${d?.open >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(d?.open)}</span></div>}
                                         </div>
                                     );
                                 }}
@@ -335,7 +335,7 @@ export default function TimeComparisonsChart({ trades }) {
             {/* Profit by Trade Type — horizontal stacked */}
             {tradeTypeData && (
                 <div>
-                    <h2 className="text-base font-semibold text-slate-800 mb-2">Profit by Trade Type</h2>
+                    <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-2">Profit by Trade Type</h2>
                     <div className="flex h-8 rounded-lg overflow-hidden w-full">
                         {tradeTypeData._keys.map((k, i) => {
                             const pct = (tradeTypeData[k] / tradeTypeData._total) * 100;
@@ -360,7 +360,7 @@ export default function TimeComparisonsChart({ trades }) {
                     </div>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
                         {tradeTypeData._keys.map((k, i) => (
-                            <div key={k} className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                            <div key={k} className="flex items-center gap-1.5 text-[10px] text-slate-500 dark:text-slate-400">
                                 <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: GRAYS[i % GRAYS.length] }} />
                                 {k} — {fmtFull(tradeTypeData[k])}
                             </div>
@@ -372,7 +372,7 @@ export default function TimeComparisonsChart({ trades }) {
             {/* Top 10 Trades by Profit — horizontal stacked */}
             {top10TradeData && (
                 <div>
-                    <h2 className="text-base font-semibold text-slate-800 mb-2">Top 10 Trades by Profit</h2>
+                    <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-2">Top 10 Trades by Profit</h2>
                     <div className="flex h-8 rounded-lg overflow-hidden w-full">
                         {top10TradeData._top10.map((t, i) => {
                             const pct = (t.profit / top10TradeData._total) * 100;
@@ -416,13 +416,13 @@ export default function TimeComparisonsChart({ trades }) {
                     </div>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
                         {top10TradeData._top10.map((t, i) => (
-                            <div key={i} className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                            <div key={i} className="flex items-center gap-1.5 text-[10px] text-slate-500 dark:text-slate-400">
                                 <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: GRAYS[i % GRAYS.length] }} />
                                 {t.ticker} — {fmtFull(t.profit)}
                             </div>
                         ))}
                         {top10TradeData._rest > 0 && (
-                            <div className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                            <div className="flex items-center gap-1.5 text-[10px] text-slate-500 dark:text-slate-400">
                                 <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: GRAYS[GRAYS.length - 1] }} />
                                 Others — {fmtFull(top10TradeData._rest)}
                             </div>
@@ -433,11 +433,11 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* P&L by Top Ticker */}
             <div>
-                <h2 className="text-base font-semibold text-slate-800 mb-3">P&L by Top Ticker</h2>
+                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">P&L by Top Ticker</h2>
                 <div className="p-4">
                     <ResponsiveContainer width="100%" height={240}>
                         <BarChart data={tickerStackData} margin={{ top: 24, right: 10, left: 10, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
@@ -445,11 +445,11 @@ export default function TimeComparisonsChart({ trades }) {
                                     if (!active || !payload?.length) return null;
                                     const d = payload[0]?.payload;
                                     return (
-                                        <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 text-xs">
-                                            <p className="font-semibold text-slate-700 mb-1">{label}</p>
-                                            {d?.topTicker && <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-500" /><span className="text-slate-500">{d.topTicker}:</span><span className="font-bold text-slate-700">{fmt(d.top)}</span></div>}
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-300" /><span className="text-slate-500">Others:</span><span className="font-bold text-slate-600">{fmt(d?.rest)}</span></div>
-                                            <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100"><span className="text-slate-500">Total:</span><span className="font-bold text-slate-800">{fmt(d?.total)}</span></div>
+                                        <div className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3 text-xs">
+                                            <p className="font-semibold text-slate-700 dark:text-slate-200 mb-1">{label}</p>
+                                            {d?.topTicker && <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-500" /><span className="text-slate-500 dark:text-slate-400">{d.topTicker}:</span><span className="font-bold text-slate-700 dark:text-slate-200">{fmt(d.top)}</span></div>}
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-300" /><span className="text-slate-500 dark:text-slate-400">Others:</span><span className="font-bold text-slate-600 dark:text-slate-300">{fmt(d?.rest)}</span></div>
+                                            <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100 dark:border-zinc-600"><span className="text-slate-500 dark:text-slate-400">Total:</span><span className="font-bold text-slate-800 dark:text-white">{fmt(d?.total)}</span></div>
                                         </div>
                                     );
                                 }}
@@ -483,35 +483,34 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* Ticker Matrix */}
             <div>
-                <h2 className="text-base font-semibold text-slate-800 mb-3">Ticker Matrix</h2>
-                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">Ticker Matrix</h2>
+                <div className="bg-transparent rounded-xl border border-slate-200 dark:border-zinc-700 overflow-hidden">
                     <table className="w-full text-xs">
-                        <thead className="bg-slate-50">
+                        <thead className="bg-slate-50 dark:bg-zinc-800/60">
                             <tr>
                                 {['Ticker', 'Total P&L', 'Trades', 'W / L', 'Win Rate', 'Avg/Trade'].map(h => (
-                                    <th key={h} className="text-left px-4 py-3 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">{h}</th>
+                                    <th key={h} className="text-left px-4 py-3 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider text-[10px]">{h}</th>
                                 ))}
                             </tr>
                         </thead>
                         <tbody>
                             {tickerMatrix.map((row) => {
-                                const maxProfit = Math.max(...tickerMatrix.map(r => Math.abs(r.profit)));
                                 return (
-                                    <tr key={row.ticker} className="border-t border-slate-50 hover:bg-slate-50 transition-colors">
-                                        <td className="px-4 py-3 font-bold text-slate-800">{row.ticker}</td>
+                                    <tr key={row.ticker} className="border-t border-slate-50 dark:border-zinc-700/50 hover:bg-slate-50 dark:hover:bg-zinc-800/40 transition-colors">
+                                        <td className="px-4 py-3 font-bold text-slate-800 dark:text-slate-200">{row.ticker}</td>
                                         <td className={`px-4 py-3 font-bold ${row.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.profit)}</td>
-                                        <td className="px-4 py-3 text-slate-500">{row.trades}</td>
+                                        <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{row.trades}</td>
                                         <td className="px-4 py-3">
                                             <span className="text-emerald-600 font-semibold">{row.wins}W</span>
-                                            <span className="text-slate-300 mx-1">/</span>
+                                            <span className="text-slate-300 dark:text-slate-600 mx-1">/</span>
                                             <span className="text-rose-500 font-semibold">{row.losses}L</span>
                                         </td>
                                         <td className="px-4 py-3">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                                <div className="w-16 h-1.5 bg-slate-100 dark:bg-zinc-700 rounded-full overflow-hidden">
                                                     <div className="h-full rounded-full bg-indigo-400" style={{ width: `${row.winRate}%` }} />
                                                 </div>
-                                                <span className="text-slate-600">{row.winRate.toFixed(0)}%</span>
+                                                <span className="text-slate-600 dark:text-slate-300">{row.winRate.toFixed(0)}%</span>
                                             </div>
                                         </td>
                                         <td className={`px-4 py-3 font-medium ${row.avgProfit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.avgProfit)}</td>
