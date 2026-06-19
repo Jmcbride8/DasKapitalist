@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, DollarSign, Activity, TrendingDown, Calendar } from 'lucide-react';
 
 const formatCurrency = (value) => {
     if (value === null || value === undefined || isNaN(value)) return '$0';
@@ -77,21 +77,39 @@ export default function DashboardKPIs({ trades, view }) {
             : { label: 'Profit Annualized', value: kpis.avgAnnualizedProfit, color: kpis.avgAnnualizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600', format: 'currency' }
     ];
 
+    const icons = [DollarSign, Activity, TrendingUp, Calendar];
+    const pillColors = ['emerald', 'slate', 'emerald', 'slate'];
+
+    const getColor = (kpi) => {
+        if (kpi.color.includes('emerald')) return 'emerald';
+        if (kpi.color.includes('red')) return 'rose';
+        return 'slate';
+    };
+
     return (
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8">
-            {kpiData.map((kpi, idx) => (
-                <div key={idx} className="border-l-4 border-slate-300 dark:border-slate-600 pl-4">
-                    <div className="flex items-start justify-between">
-                        <div>
-                            <p className="text-xs text-slate-500 font-medium mb-1">{kpi.label}</p>
-                            <p className={`text-lg font-bold ${kpi.color}`}>
-                                {kpi.format === 'percent' ? `${kpi.value >= 0 ? '+' : ''}${kpi.value.toFixed(1)}%` : formatCurrency(kpi.value)}
-                            </p>
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+            {kpiData.map((kpi, idx) => {
+                const color = getColor(kpi);
+                const Icon = icons[idx];
+                const colorMap = {
+                    emerald: 'from-emerald-50/80 to-emerald-100/30 dark:from-emerald-900/30 dark:to-emerald-800/20 border-emerald-200 dark:border-emerald-700/50 text-emerald-700 dark:text-emerald-400',
+                    rose: 'from-rose-50/80 to-rose-100/30 dark:from-rose-900/30 dark:to-rose-800/20 border-rose-200 dark:border-rose-700/50 text-rose-700 dark:text-rose-400',
+                    slate: 'from-slate-50/80 to-slate-100/30 dark:from-slate-800/50 dark:to-slate-700/20 border-slate-200 dark:border-slate-600/50 text-slate-700 dark:text-slate-300',
+                };
+                return (
+                    <div key={idx} className={`rounded-xl border bg-gradient-to-br p-4 flex flex-col gap-1 ${colorMap[color]}`}>
+                        <div className="flex items-center justify-between">
+                            <span className="text-xs font-semibold uppercase tracking-wider opacity-70">{kpi.label}</span>
+                            {Icon && <Icon className="w-4 h-4 opacity-60" />}
                         </div>
-                        <TrendingUp className="h-5 w-5 text-emerald-500 mt-1" />
+                        <div className="text-2xl font-bold">
+                            {kpi.format === 'percent'
+                                ? `${kpi.value >= 0 ? '+' : ''}${kpi.value.toFixed(1)}%`
+                                : formatCurrency(kpi.value)}
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 }
