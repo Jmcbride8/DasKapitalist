@@ -12,9 +12,6 @@ export default function WeeklyTotalsChart({ trades }) {
 
     return (
         <div className="space-y-2">
-            <p className="text-sm text-slate-500 italic mb-8">
-                Discipline lives in the data. Track your streaks — winning and losing — so you stay grounded, not greedy. Know when to press your edge, and know when the market is telling you to step back, breathe, and reassess.
-            </p>
             <div className="flex gap-2 border-b border-slate-200 mb-4">
                 <button
                     onClick={() => setPeriodMode('weekly')}

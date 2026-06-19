@@ -71,10 +71,10 @@ export default function Dashboards() {
     }, [trades, selectedYear, selectedTicker, selectedTypes]);
 
     const dashboardMap = {
-        weekly: { title: 'Streaks', component: <WeeklyTotalsChart trades={filteredTrades} /> },
-        ticker: { title: 'Edge', component: <><TickerHistoryChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><TickerTradesTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
-        open: { title: 'Exposure', component: <><OpenPositionsChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><OpenPositionsTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
-        time: { title: 'Track Record', component: <TimeComparisonsChart trades={filteredTrades} /> }
+        weekly: { title: 'Streaks', desc: 'Discipline lives in the data. Track your streaks — winning and losing — so you stay grounded, not greedy. Know when to press your edge, and know when the market is telling you to step back, breathe, and reassess.', component: <WeeklyTotalsChart trades={filteredTrades} /> },
+        ticker: { title: 'Edge', desc: 'Every ticker tells a story. Identify where you have a genuine edge and let your winners run — but be honest about where the data says cut your losses and move on. Conviction without evidence is just hope.', component: <><TickerHistoryChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><TickerTradesTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
+        open: { title: 'Exposure', desc: 'Know your exposure at all times. Your wins create margin — but margin creates temptation. Monitor where you\'re concentrated, where unrealized gains are masking real risk, and never let excitement cloud the one question that matters: what\'s the most I can lose right now?', component: <><OpenPositionsChart trades={filteredTrades} onTickerSelect={setSelectedChartTicker} /><OpenPositionsTable trades={filteredTrades} selectedTicker={selectedChartTicker} /></> },
+        time: { title: 'Track Record', desc: 'Track record tells the truth. See how your P&L compounds over time, and which tickers are carrying the week.', component: <TimeComparisonsChart trades={filteredTrades} /> }
     };
 
     const dashboard = dashboardMap[view] || dashboardMap.weekly;
@@ -83,7 +83,10 @@ export default function Dashboards() {
         <div className="min-h-screen bg-white p-4 md:p-8">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-                    <h1 className="text-3xl font-bold text-slate-900">{dashboard.title}</h1>
+                    <div>
+                        <h1 className="text-3xl font-bold text-slate-900">{dashboard.title}</h1>
+                        <p className="text-sm text-slate-500 italic mt-1">{dashboard.desc}</p>
+                    </div>
                     <div className="flex gap-4 items-center">
                         <div className="w-40">
                             <Select value={selectedYear} onValueChange={setSelectedYear}>
