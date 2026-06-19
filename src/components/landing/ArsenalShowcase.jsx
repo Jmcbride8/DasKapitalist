@@ -149,7 +149,7 @@ export default function ArsenalShowcase() {
                             className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center"
                         >
                             {/* Apple-style MacBook mockup — 2/3 width */}
-                            <div className="relative flex flex-col items-center w-full lg:w-2/3 shrink-0" style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.9))' }}>
+                            <div className="relative flex flex-col items-center w-full lg:w-[55%] shrink-0" style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.9))' }}>
                                 {/* Lid / screen */}
                                 <div
                                     className="relative w-full overflow-hidden"
