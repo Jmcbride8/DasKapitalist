@@ -132,9 +132,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             </section>
 
-            {/* ======== ARSENAL ======== */}
-            <ArsenalShowcase />
-
             {/* ======== KENNY ROGERS QUOTE ======== */}
             <section className="py-24 px-6 lg:px-20" style={{ background: '#000000' }}>
                 <div className="max-w-4xl mx-auto text-center">
@@ -154,6 +151,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </div>
                 </div>
             </section>
+
+            {/* ======== ARSENAL ======== */}
+            <ArsenalShowcase />
 
             {/* ======== POGO QUOTE ======== */}
             <section className="py-24 px-6 lg:px-20" style={{ background: '#000' }}>
