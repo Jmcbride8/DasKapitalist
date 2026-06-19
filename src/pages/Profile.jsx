@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { User, CreditCard, Bell, Shield, LogOut, Save, Check } from 'lucide-react';
+import { User, CreditCard, Bell, Shield, LogOut, Save, Check, Sun, Moon, Monitor } from 'lucide-react';
+import { useTheme } from '@/lib/ThemeContext';
 
 const PLANS = [
     {
@@ -27,6 +28,7 @@ export default function Profile() {
     const [activeTab, setActiveTab] = useState('account');
     const [form, setForm] = useState({ full_name: '', email: '' });
     const [saved, setSaved] = useState(false);
+    const { themePreference, setPreference } = useTheme();
 
     useEffect(() => {
         base44.auth.me().then((u) => {
@@ -136,6 +138,48 @@ export default function Profile() {
                                     <span className="inline-block px-3 py-1 bg-black text-white text-[9px] font-black tracking-[0.25em] uppercase">
                                         {user?.role || 'user'}
                                     </span>
+                                </div>
+
+                                <div>
+                                    <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-3">Theme Preference</label>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        <button
+                                            onClick={() => setPreference('light')}
+                                            className={`flex flex-col items-center gap-2 p-3 border transition-all ${
+                                                themePreference === 'light'
+                                                    ? 'border-black dark:border-white bg-black dark:bg-white text-white dark:text-black'
+                                                    : 'border-black/20 dark:border-white/20 text-black/50 dark:text-white/50 hover:border-black/40 dark:hover:border-white/40'
+                                            }`}
+                                        >
+                                            <Sun className="w-5 h-5" />
+                                            <span className="text-[9px] font-black tracking-[0.2em] uppercase">Light</span>
+                                        </button>
+                                        <button
+                                            onClick={() => setPreference('dark')}
+                                            className={`flex flex-col items-center gap-2 p-3 border transition-all ${
+                                                themePreference === 'dark'
+                                                    ? 'border-black dark:border-white bg-black dark:bg-white text-white dark:text-black'
+                                                    : 'border-black/20 dark:border-white/20 text-black/50 dark:text-white/50 hover:border-black/40 dark:hover:border-white/40'
+                                            }`}
+                                        >
+                                            <Moon className="w-5 h-5" />
+                                            <span className="text-[9px] font-black tracking-[0.2em] uppercase">Dark</span>
+                                        </button>
+                                        <button
+                                            onClick={() => setPreference('system')}
+                                            className={`flex flex-col items-center gap-2 p-3 border transition-all ${
+                                                themePreference === 'system'
+                                                    ? 'border-black dark:border-white bg-black dark:bg-white text-white dark:text-black'
+                                                    : 'border-black/20 dark:border-white/20 text-black/50 dark:text-white/50 hover:border-black/40 dark:hover:border-white/40'
+                                            }`}
+                                        >
+                                            <Monitor className="w-5 h-5" />
+                                            <span className="text-[9px] font-black tracking-[0.2em] uppercase">System</span>
+                                        </button>
+                                    </div>
+                                    <p className="text-[9px] text-black/30 dark:text-white/30 mt-2 uppercase tracking-wider">
+                                        {themePreference === 'system' ? 'Automatically adjusts based on your device settings' : themePreference === 'dark' ? 'Always use dark mode' : 'Always use light mode'}
+                                    </p>
                                 </div>
 
                                 <button
