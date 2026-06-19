@@ -83,7 +83,7 @@ export default function KPICards({ trades }) {
     return (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
             {kpis.map((kpi, idx) => (
-                <div key={idx} className="bg-white dark:bg-zinc-900 p-3 border-l-4 border-slate-200 dark:border-zinc-700 pl-4">
+                <div key={idx} className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{kpi.label}</p>

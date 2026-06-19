@@ -292,8 +292,9 @@ export default function QuickUpdate() {
     };
 
     return (
-        <div className="p-6 max-w-[1400px] mx-auto">
-            <div className="mb-6 flex items-start justify-between">
+        <div className="min-h-screen bg-white dark:bg-zinc-950">
+        <div className="max-w-6xl mx-auto p-6 lg:p-8">
+            <div className="mb-8 flex items-start justify-between">
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Open Trades</h1>
                     <p className="text-slate-500 dark:text-slate-400 mt-2">Update open positions: Status, Current Value, Close Date, Income Week, Close Type</p>
@@ -475,6 +476,7 @@ export default function QuickUpdate() {
                 trade={null}
                 accounts={uniqueAccounts}
             />
+        </div>
         </div>
     );
 }

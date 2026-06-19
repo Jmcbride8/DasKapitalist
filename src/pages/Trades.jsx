@@ -113,8 +113,8 @@ export default function Trades() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950">
-            <div className="max-w-[1800px] mx-auto p-6 lg:p-8">
+        <div className="min-h-screen bg-white dark:bg-zinc-950">
+            <div className="max-w-6xl mx-auto p-6 lg:p-8">
                 {/* Header with Actions */}
                 <div className="flex justify-between items-start mb-8">
                     <div>
