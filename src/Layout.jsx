@@ -71,7 +71,12 @@ export default function Layout({ children, currentPageName }) {
         if (item.isCollapsible) {
             return (
                 <details className="group" open>
-                    <summary className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-all font-black text-xs tracking-[0.15em] uppercase font-mono select-none ${isActive ? activeCls : inactiveCls}`}>
+                    <summary className={`relative flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-all font-black text-xs tracking-[0.15em] uppercase font-mono select-none ${isActive ? activeCls : inactiveCls}`}>
+                        {item.subItems?.some(sub => {
+                            const subPath = sub.tab ? `/${item.path}` : `/${sub.path}`;
+                            const currentView = new URLSearchParams(location.search).get('view');
+                            return sub.tab ? location.pathname === subPath && currentView === sub.tab : location.pathname === subPath;
+                        }) && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 rounded-full bg-[#10b981]" />}
                         <Icon className="w-4 h-4 flex-shrink-0" />
                         {item.name}
                         <ChevronDown className="w-3.5 h-3.5 ml-auto transition-transform group-open:rotate-180" />
