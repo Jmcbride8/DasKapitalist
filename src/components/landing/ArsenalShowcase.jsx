@@ -148,106 +148,43 @@ export default function ArsenalShowcase() {
                             transition={TRANSITION}
                             className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center"
                         >
-                            {/* Laptop mockup — inline SVG frame with screenshot inset */}
-                            <div className="relative w-full">
-                                <svg
-                                    viewBox="0 0 800 520"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-full drop-shadow-2xl"
+                            {/* Laptop mockup */}
+                            <div className="relative flex flex-col items-center">
+                                {/* Screen */}
+                                <div
+                                    className="relative w-full rounded-t-xl overflow-hidden border-4 border-b-0"
+                                    style={{
+                                        borderColor: '#2a2a2a',
+                                        borderRadius: '12px 12px 0 0',
+                                        background: '#111',
+                                        boxShadow: '0 0 0 1px rgba(255,255,255,0.06)',
+                                    }}
                                 >
-                                    <defs>
-                                        <clipPath id={`screen-clip-${activeIndex}`}>
-                                            <rect x="92" y="22" width="616" height="378" rx="3" ry="3" />
-                                        </clipPath>
-                                        <linearGradient id="lid-grad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#4a4a4c" />
-                                            <stop offset="100%" stopColor="#1e1e20" />
-                                        </linearGradient>
-                                        <linearGradient id="base-grad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#3a3a3c" />
-                                            <stop offset="100%" stopColor="#1a1a1c" />
-                                        </linearGradient>
-                                        <linearGradient id="hinge-grad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#111" />
-                                            <stop offset="50%" stopColor="#2a2a2c" />
-                                            <stop offset="100%" stopColor="#111" />
-                                        </linearGradient>
-                                    </defs>
-
-                                    {/* ── LID ── */}
-                                    <rect x="66" y="4" width="668" height="416" rx="12" ry="12" fill="url(#lid-grad)" />
-                                    {/* lid inner shadow top */}
-                                    <rect x="66" y="4" width="668" height="6" rx="6" fill="rgba(255,255,255,0.07)" />
-                                    {/* Camera notch */}
-                                    <rect x="88" y="4" width="624" height="18" rx="0" fill="#1a1a1c" />
-                                    <circle cx="400" cy="13" r="3.5" fill="#2a2a2c" />
-                                    <circle cx="400" cy="13" r="1.5" fill="#333" />
-
-                                    {/* ── SCREEN BEZEL ── */}
-                                    <rect x="88" y="20" width="624" height="384" rx="4" ry="4" fill="#0a0a0a" />
-
-                                    {/* ── SCREENSHOT (clipped inside screen) ── */}
-                                    <foreignObject
-                                        x="92" y="22"
-                                        width="616" height="378"
-                                        clipPath={`url(#screen-clip-${activeIndex})`}
-                                    >
-                                        <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-                                            <AdminImage
-                                                imageKey={item.imageKey}
-                                                defaultSrc={item.image}
-                                                className="w-full h-full"
-                                                style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
-                                                alt={item.title}
-                                            />
+                                    {/* Notch bar */}
+                                    <div className="flex items-center justify-between px-3 py-1.5" style={{ background: '#1a1a1a' }}>
+                                        <div className="flex gap-1.5">
+                                            <div className="w-2 h-2 rounded-full bg-red-500/70" />
+                                            <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
+                                            <div className="w-2 h-2 rounded-full bg-green-500/70" />
                                         </div>
-                                    </foreignObject>
-
-                                    {/* Screen glare */}
-                                    <rect x="92" y="22" width="616" height="378" rx="2" fill="url(#glare)" opacity="0.04" />
-                                    <defs>
-                                        <linearGradient id="glare" x1="0" y1="0" x2="1" y2="1">
-                                            <stop offset="0%" stopColor="white" stopOpacity="1" />
-                                            <stop offset="50%" stopColor="white" stopOpacity="0" />
-                                        </linearGradient>
-                                    </defs>
-
-                                    {/* ── HINGE ── */}
-                                    <rect x="66" y="418" width="668" height="7" fill="url(#hinge-grad)" />
-
-                                    {/* ── BASE ── */}
-                                    <rect x="56" y="425" width="688" height="58" rx="4" ry="4" fill="url(#base-grad)" />
-                                    {/* base top highlight */}
-                                    <rect x="56" y="425" width="688" height="3" fill="rgba(255,255,255,0.06)" />
-
-                                    {/* Keyboard area (simplified rows) */}
-                                    {[0,1,2,3].map(row => (
-                                        Array.from({ length: 13 }).map((_, k) => (
-                                            <rect
-                                                key={`${row}-${k}`}
-                                                x={76 + k * 49}
-                                                y={431 + row * 10}
-                                                width="44"
-                                                height="8"
-                                                rx="1.5"
-                                                fill="#2e2e30"
-                                                stroke="rgba(0,0,0,0.4)"
-                                                strokeWidth="0.5"
-                                            />
-                                        ))
-                                    ))}
-                                    {/* Spacebar */}
-                                    <rect x="240" y="471" width="320" height="8" rx="2" fill="#2e2e30" stroke="rgba(0,0,0,0.4)" strokeWidth="0.5" />
-
-                                    {/* Trackpad */}
-                                    <rect x="320" y="482" width="160" height="0" rx="3" fill="#252527" />
-
-                                    {/* Bottom foot shadow */}
-                                    <ellipse cx="400" cy="488" rx="200" ry="6" fill="rgba(0,0,0,0.5)" />
-
-                                    {/* Bottom edge rounded foot */}
-                                    <rect x="56" y="479" width="688" height="4" rx="2" fill="#111" />
-                                </svg>
+                                        <div className="w-24 h-1.5 rounded-full bg-white/5" />
+                                        <div className="w-8" />
+                                    </div>
+                                    {/* Screenshot */}
+                                    <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                                        <AdminImage
+                                            imageKey={item.imageKey}
+                                            defaultSrc={item.image}
+                                            className="w-full h-full"
+                                            style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
+                                            alt={item.title}
+                                        />
+                                    </div>
+                                </div>
+                                {/* Base / stand */}
+                                <div className="w-full h-3 rounded-b-sm" style={{ background: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)' }} />
+                                <div className="w-1/3 h-2 rounded-b-lg" style={{ background: 'linear-gradient(180deg, #1a1a1a 0%, #111 100%)' }} />
+                                <div className="w-1/2 h-1.5 rounded-b-xl" style={{ background: '#0d0d0d', boxShadow: '0 4px 20px rgba(0,0,0,0.8)' }} />
                             </div>
 
                             {/* Text */}
