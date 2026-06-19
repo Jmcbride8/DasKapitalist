@@ -168,25 +168,21 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         {[
                             {
                                 imageKey: 'problem_1',
-                                image: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=800&h=600&fit=crop',
                                 title: '⬇ Revenge Trading',
                                 desc: 'You take a loss and immediately double down to get it back. The market doesn\'t care about your feelings — and neither does your account balance.',
                             },
                             {
                                 imageKey: 'problem_2',
-                                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
                                 title: 'Overtrading',
                                 desc: 'You exit winners too early and hold losers too long. You chase entries. You break your own rules. Discipline isn\'t sexy — but it\'s the only thing that compounds.',
                             },
                             {
                                 imageKey: 'problem_3',
-                                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
                                 title: 'Capitulation',
                                 desc: 'One bad week and you abandon your strategy. Fear turns a manageable drawdown into a blown account. The data would have told you to hold — if you\'d been tracking it.',
                             },
                             {
                                 imageKey: 'problem_4',
-                                image: 'https://images.unsplash.com/photo-1639322537228-f740dce6b4ab?w=800&h=600&fit=crop',
                                 title: 'Edge Blindness',
                                 desc: 'You don\'t know which tickers actually print for you. Without per-symbol analytics, you keep feeding the losers and starving the winners.',
                             },
@@ -195,7 +191,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <div className="relative h-80 overflow-hidden">
                                     <AdminImage
                                         imageKey={card.imageKey}
-                                        defaultSrc={card.image}
+    
                                         className="w-full h-full"
                                         style={{ backgroundSize: 'cover', backgroundPosition: 'center', transform: i % 2 === 1 ? 'scaleX(-1)' : 'none' }}
                                         alt={card.title}
@@ -271,7 +267,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             <div className="relative h-96 overflow-hidden">
                                 <AdminImage
                                     imageKey="investor_card"
-                                    defaultSrc="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=500&fit=crop"
+                                    
                                     className="w-full h-full opacity-90"
                                     style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Investing — long-term wealth"
@@ -308,7 +304,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             <div className="relative h-96 overflow-hidden">
                                 <AdminImage
                                     imageKey="trader_card"
-                                    defaultSrc="https://images.unsplash.com/photo-1598886221035-4b1e41547d04?w=800&h=500&fit=crop"
+                                    
                                     className="w-full h-full opacity-90"
                                     style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Trading — the casino floor"
@@ -403,7 +399,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 {/* Wall Street background */}
                 <AdminImage
                     imageKey="cta_bg"
-                    defaultSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop"
+                    
                     className="absolute inset-0 z-0"
                     style={{ backgroundSize: 'cover', backgroundPosition: 'center 30%' }}
                 />

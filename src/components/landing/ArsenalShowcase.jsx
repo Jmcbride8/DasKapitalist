@@ -10,7 +10,7 @@ const items = [
         title: 'Track Record',
         desc: 'Cumulative P&L chart. Weekly and monthly views. Win rate, profit factor, average trade. Your career as a trader — quantified.',
         imageKey: 'weapon_1',
-        image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=500&fit=crop',
+        image: null,
         stats: [
             { label: 'Win Rate', value: '62%', up: true },
             { label: 'Profit Factor', value: '1.8×', up: true },
@@ -22,7 +22,7 @@ const items = [
         title: 'Streaks',
         desc: 'Every week, a W or an L. Patterns your brain would miss. Current streak, best streak, worst slump — all tracked cold.',
         imageKey: 'weapon_2',
-        image: 'https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=800&h=500&fit=crop',
+        image: null,
         stats: [
             { label: 'Current', value: '3 wins', up: true },
             { label: 'Best Ever', value: '11 wins', up: true },
@@ -34,7 +34,7 @@ const items = [
         title: 'Edge',
         desc: 'Your P&L broken down by ticker. Stop guessing which names make you money. See the data. Cut the losers. Ride the winners.',
         imageKey: 'weapon_3',
-        image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop',
+        image: null,
         stats: [
             { label: 'Top Ticker', value: 'GLD (+$14K)', up: true },
             { label: 'Worst Ticker', value: 'TSLA (-$5K)', up: false },
@@ -46,7 +46,7 @@ const items = [
         title: 'Exposure',
         desc: "Live treemap of every open position. Size equals collateral at risk. Color by today's price action. One look, total clarity.",
         imageKey: 'weapon_4',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+        image: null,
         stats: [
             { label: 'Open Positions', value: '14', up: null },
             { label: 'At Risk', value: '$386K', up: null },
@@ -174,7 +174,6 @@ export default function ArsenalShowcase() {
                                     <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
                                         <AdminImage
                                             imageKey={item.imageKey}
-                                            defaultSrc={item.image}
                                             className="w-full h-full"
                                             style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
                                             alt={item.title}
