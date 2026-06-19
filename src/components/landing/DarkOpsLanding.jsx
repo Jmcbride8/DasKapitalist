@@ -35,17 +35,17 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white font-mono">
-                        Trade with an edge
+                        Beat the odds
                     </p>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
-                        <PriceTargetText>{`Know thyself.\nBeat the odds.`}</PriceTargetText>
+                        <PriceTargetText>{`Know thyself.\nBuild your Edge.`}</PriceTargetText>
                     </h1>
 
                     <div className="h-1 w-2/3 bg-white" />
 
                     <p className="text-base md:text-lg text-white max-w-2xl leading-relaxed font-medium font-sans">
-                        90% of traders lose. The edge isn't a hot tip — it's emotional mastery and cold, hard data. This platform gives you both: the tools to track your psychology and the insights to beat the odds.
+                        The professional's edge isn't a hot tip—it's emotional mastery and cold, hard data. We bring enterprise-grade trading analytics to everyone. Track your trades, master your mindset, and discover what actually makes you money.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
