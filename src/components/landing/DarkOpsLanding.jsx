@@ -402,7 +402,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 {/* Wall Street background */}
                 <AdminImage
                     imageKey="cta_bg"
-                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/9dcbd0421_ChatGPTImageJun17202603_05_42PM.png"
+                    defaultSrc="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/7ffa0b9e2_generated_image.png"
                     className="absolute inset-0 z-0"
                     style={{ backgroundSize: 'cover', backgroundPosition: 'center 30%' }}
                 />
