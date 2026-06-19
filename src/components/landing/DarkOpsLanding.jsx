@@ -548,9 +548,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         PRICING
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-4 text-center text-white">
-                        Own the numbers.
+                        Get Serious.
                     </h2>
-                    <p className="text-center text-white font-sans mb-16 text-base">No trials. No fluff. Pick your weapon.</p>
+                    <p className="text-center text-white font-sans mb-16 text-base">Find Your Edge. Fight Unfair.</p>
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         {/* Solo */}
