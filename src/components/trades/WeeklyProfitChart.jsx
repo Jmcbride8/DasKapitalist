@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ComposedChart, Bar, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { ComposedChart, Bar, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = 'weekly' }) {
     const [selectedWeek, setSelectedWeek] = useState(null);
@@ -103,7 +103,6 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis
                         dataKey="period"
                         tickFormatter={formatPeriod}

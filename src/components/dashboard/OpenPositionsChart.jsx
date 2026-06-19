@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function OpenPositionsChart({ trades, onTickerSelect }) {
@@ -100,7 +100,6 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
             <CardContent className="pt-6 px-0">
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 0 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
                         <XAxis dataKey="ticker" stroke="#64748b" className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block" />
                         <YAxis 
                             tickFormatter={formatCurrency}

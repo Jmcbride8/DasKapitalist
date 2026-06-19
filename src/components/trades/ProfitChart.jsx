@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ReferenceLine, LabelList } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts';
 
 export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) {
     const chartData = useMemo(() => {
@@ -100,7 +100,6 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 50, right: 30, left: 20, bottom: 60 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis 
                         dataKey="ticker" 
                         tick={{ fontSize: 11, fill: '#64748b' }}
