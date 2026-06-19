@@ -118,7 +118,7 @@ export default function ArsenalShowcase() {
             ref={sectionRef}
             className="relative"
             style={{
-                height: `calc(100vh + ${(items.length - 1) * 100}vh)`,
+                height: `calc(100vh * ${items.length + 0.5})`,
                 background: '#000000',
             }}
         >
@@ -136,7 +136,7 @@ export default function ArsenalShowcase() {
                 </div>
 
                 {/* Animated card */}
-                <div className="relative overflow-hidden" style={{ minHeight: '340px' }}>
+                <div className="relative overflow-hidden" style={{ minHeight: '380px' }}>
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={activeIndex}
