@@ -78,16 +78,24 @@ export default function Layout({ children, currentPageName }) {
                         <ChevronDown className="w-3.5 h-3.5 ml-auto transition-transform group-open:rotate-180" />
                     </summary>
                     <div className="pl-2 space-y-0.5 mt-0.5 border-l border-black/10 ml-5">
-                        {item.subItems.map((subItem) => (
-                            <Link
-                                key={subItem.tab || subItem.path}
-                                to={createPageUrl(subItem.tab ? `${item.path}?view=${subItem.tab}` : subItem.path)}
-                                onClick={onClick}
-                                className={`block px-2 py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors ${subInactiveCls}`}
-                            >
-                                {subItem.name}
-                            </Link>
-                        ))}
+                        {item.subItems.map((subItem) => {
+                            const subPath = subItem.tab ? `/${item.path}` : `/${subItem.path}`;
+                            const subView = subItem.tab || null;
+                            const currentView = new URLSearchParams(location.search).get('view');
+                            const isSubActive = subItem.tab
+                                ? location.pathname === subPath && currentView === subView
+                                : location.pathname === subPath;
+                            return (
+                                <Link
+                                    key={subItem.tab || subItem.path}
+                                    to={createPageUrl(subItem.tab ? `${item.path}?view=${subItem.tab}` : subItem.path)}
+                                    onClick={onClick}
+                                    className={`block px-2 py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors ${isSubActive ? 'text-black bg-black/8' : subInactiveCls}`}
+                                >
+                                    {subItem.name}
+                                </Link>
+                            );
+                        })}
                     </div>
                 </details>
             );
