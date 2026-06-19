@@ -233,7 +233,7 @@ export default function QuickUpdate() {
             }
             return (
                 <TableCell 
-                    className="text-slate-600 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                    className="text-slate-600 dark:text-slate-400 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-800 hover:text-slate-900 dark:hover:text-white transition-colors"
                     onClick={() => startEdit(trade)}
                 >
                     {displayValue}
@@ -295,8 +295,8 @@ export default function QuickUpdate() {
         <div className="p-6 max-w-[1400px] mx-auto">
             <div className="mb-6 flex items-start justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900">Open Trades</h1>
-                    <p className="text-slate-500 mt-2">Update open positions: Status, Current Value, Close Date, Income Week, Close Type</p>
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Open Trades</h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-2">Update open positions: Status, Current Value, Close Date, Income Week, Close Type</p>
                 </div>
                 <Button
                     onClick={() => setShowTradeForm(true)}
@@ -310,55 +310,55 @@ export default function QuickUpdate() {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 my-4">
-                <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs text-slate-500 font-medium">Open P&L</p>
-                            <p className={`text-lg font-bold mt-0.5 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Open P&L</p>
+                            <p className={`text-lg font-bold mt-0.5 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
                                 ${stats.totalProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                             </p>
                         </div>
-                        <div className={`p-2 rounded-lg ${stats.totalProfit >= 0 ? 'bg-emerald-100' : 'bg-red-100'}`}>
-                            <DollarSign className={`w-4 h-4 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`} />
+                        <div className={`p-2 rounded-lg ${stats.totalProfit >= 0 ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}>
+                            <DollarSign className={`w-4 h-4 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-500'}`} />
                         </div>
                     </div>
                 </div>
-                <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs text-slate-500 font-medium">Current Value</p>
-                            <p className={`text-lg font-bold mt-0.5 ${stats.closePremium >= 0 ? 'text-slate-600' : 'text-red-600'}`}>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Current Value</p>
+                            <p className={`text-lg font-bold mt-0.5 ${stats.closePremium >= 0 ? 'text-slate-600 dark:text-slate-200' : 'text-red-500'}`}>
                                 ${stats.closePremium.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                             </p>
                         </div>
-                        <div className="p-2 rounded-lg bg-slate-100">
-                            <TrendingDown className="w-4 h-4 text-slate-500" />
+                        <div className="p-2 rounded-lg bg-slate-100 dark:bg-zinc-800">
+                            <TrendingDown className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                         </div>
                     </div>
                 </div>
-                <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs text-slate-500 font-medium">Expiring This Week</p>
-                            <p className={`text-lg font-bold mt-0.5 ${stats.expiringThisWeek > 0 ? 'text-amber-600' : 'text-slate-900'}`}>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Expiring This Week</p>
+                            <p className={`text-lg font-bold mt-0.5 ${stats.expiringThisWeek > 0 ? 'text-amber-600' : 'text-slate-900 dark:text-white'}`}>
                                 {stats.expiringThisWeek} <span className="text-xs font-normal text-slate-400">trades</span>
                             </p>
                         </div>
-                        <div className={`p-2 rounded-lg ${stats.expiringThisWeek > 0 ? 'bg-amber-100' : 'bg-slate-100'}`}>
-                            <Clock className={`w-4 h-4 ${stats.expiringThisWeek > 0 ? 'text-amber-600' : 'text-slate-500'}`} />
+                        <div className={`p-2 rounded-lg ${stats.expiringThisWeek > 0 ? 'bg-amber-100 dark:bg-amber-900/30' : 'bg-slate-100 dark:bg-zinc-800'}`}>
+                            <Clock className={`w-4 h-4 ${stats.expiringThisWeek > 0 ? 'text-amber-600' : 'text-slate-500 dark:text-slate-400'}`} />
                         </div>
                     </div>
                 </div>
-                <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs text-slate-500 font-medium">Open Positions</p>
-                            <p className="text-lg font-bold mt-0.5 text-slate-900">
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Open Positions</p>
+                            <p className="text-lg font-bold mt-0.5 text-slate-900 dark:text-white">
                                 {stats.openTrades} <span className="text-xs font-normal text-slate-400">positions</span>
                             </p>
                         </div>
-                        <div className="p-2 rounded-lg bg-blue-100">
-                            <BarChart3 className="w-4 h-4 text-blue-600" />
+                        <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
+                            <BarChart3 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                         </div>
                     </div>
                 </div>
@@ -393,23 +393,23 @@ export default function QuickUpdate() {
                     </CardContent>
                 </Card>
             ) : (
-                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                <div className="bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-700 overflow-hidden shadow-sm">
                     <Table>
                         <TableHeader>
-                            <TableRow className="bg-slate-50 border-b border-slate-200">
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3 text-center border-r border-slate-300">#</TableHead>
-                                <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 text-center">DTE<SortIcon field="expiration" /></TableHead>
-                                <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Account<SortIcon field="account" /></TableHead>
-                                <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Ticker<SortIcon field="ticker" /></TableHead>
-                                <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Type<SortIcon field="type" /></TableHead>
-                                <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Status<SortIcon field="status" /></TableHead>
-                                <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Current Value<SortIcon field="close_premium" /></TableHead>
-                                <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Close Date<SortIcon field="close_date" /></TableHead>
-                                <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Expiry Date<SortIcon field="expiration" /></TableHead>
-                                <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Income Week<SortIcon field="income_week" /></TableHead>
-                                <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100">Close Type<SortIcon field="close_type" /></TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3">Profit</TableHead>
-                                <TableHead className="font-semibold text-slate-700 text-xs py-3 px-3 text-center">Actions</TableHead>
+                            <TableRow className="bg-slate-50 dark:bg-zinc-800 border-b border-slate-200 dark:border-zinc-700">
+                                <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 text-center border-r border-slate-300 dark:border-zinc-600">#</TableHead>
+                                <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700 text-center">DTE<SortIcon field="expiration" /></TableHead>
+                                <TableHead onClick={() => handleSort('account')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Account<SortIcon field="account" /></TableHead>
+                                <TableHead onClick={() => handleSort('ticker')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Ticker<SortIcon field="ticker" /></TableHead>
+                                <TableHead onClick={() => handleSort('type')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Type<SortIcon field="type" /></TableHead>
+                                <TableHead onClick={() => handleSort('status')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Status<SortIcon field="status" /></TableHead>
+                                <TableHead onClick={() => handleSort('close_premium')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Current Value<SortIcon field="close_premium" /></TableHead>
+                                <TableHead onClick={() => handleSort('close_date')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Close Date<SortIcon field="close_date" /></TableHead>
+                                <TableHead onClick={() => handleSort('expiration')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Expiry Date<SortIcon field="expiration" /></TableHead>
+                                <TableHead onClick={() => handleSort('income_week')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Income Week<SortIcon field="income_week" /></TableHead>
+                                <TableHead onClick={() => handleSort('close_type')} className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-zinc-700">Close Type<SortIcon field="close_type" /></TableHead>
+                                <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3">Profit</TableHead>
+                                <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-3 px-3 text-center">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -419,18 +419,18 @@ export default function QuickUpdate() {
                                 const dteStyle = getDaysToExpiryStyle(dte);
 
                                 return (
-                                    <TableRow key={trade.id} className="hover:bg-slate-50/50 border-b border-slate-100">
-                                        <TableCell className="text-slate-500 text-xs py-3 px-3 text-center border-r border-slate-200">{index + 1}</TableCell>
+                                    <TableRow key={trade.id} className="hover:bg-slate-50/50 dark:hover:bg-zinc-800/50 border-b border-slate-100 dark:border-zinc-700/50">
+                                        <TableCell className="text-slate-500 dark:text-slate-500 text-xs py-3 px-3 text-center border-r border-slate-200 dark:border-zinc-700">{index + 1}</TableCell>
                                         <TableCell className="text-xs py-3 px-3 text-center" style={dte !== null ? dteStyle : {}}>
                                             {dte !== null ? dte : '-'}
                                         </TableCell>
-                                        <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.account || '-'}</TableCell>
-                                        <TableCell className="text-slate-900 font-semibold text-sm py-3 px-3">{trade.ticker}</TableCell>
-                                        <TableCell className="text-slate-600 text-xs py-3 px-3">{trade.type}</TableCell>
+                                        <TableCell className="text-slate-600 dark:text-slate-400 text-xs py-3 px-3">{trade.account || '-'}</TableCell>
+                                        <TableCell className="text-slate-900 dark:text-white font-semibold text-sm py-3 px-3">{trade.ticker}</TableCell>
+                                        <TableCell className="text-slate-600 dark:text-slate-400 text-xs py-3 px-3">{trade.type}</TableCell>
                                         {renderCell(trade, "status", "select")}
                                         {renderCell(trade, "close_premium", "number")}
                                         {renderCell(trade, "close_date", "date")}
-                                        <TableCell className="text-slate-600 text-xs py-3 px-3">
+                                        <TableCell className="text-slate-600 dark:text-slate-400 text-xs py-3 px-3">
                                             {trade.expiration ? formatDate(trade.expiration) : '-'}
                                         </TableCell>
                                         {renderCell(trade, "income_week", "date")}
@@ -458,7 +458,7 @@ export default function QuickUpdate() {
                                                     </Button>
                                                 </div>
                                             ) : (
-                                                <span className="text-xs text-slate-400">Click to edit</span>
+                                                <span className="text-xs text-slate-400 dark:text-slate-500">Click to edit</span>
                                             )}
                                         </TableCell>
                                     </TableRow>

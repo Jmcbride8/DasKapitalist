@@ -83,16 +83,16 @@ export default function KPICards({ trades }) {
     return (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
             {kpis.map((kpi, idx) => (
-                <div key={idx} className="bg-white p-3 border-l-4 border-slate-200 pl-4">
+                <div key={idx} className="bg-white dark:bg-zinc-900 p-3 border-l-4 border-slate-200 dark:border-zinc-700 pl-4">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs text-slate-500 font-medium">{kpi.label}</p>
-                            <p className={`text-lg font-bold mt-0.5 ${kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-600' : 'text-slate-900'}`}>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{kpi.label}</p>
+                            <p className={`text-lg font-bold mt-0.5 ${kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-500' : 'text-slate-900 dark:text-white'}`}>
                                 {formatCurrency(kpi.value)}
                             </p>
                         </div>
-                        <div className={`p-2 rounded-lg ${kpi.value > 0 ? 'bg-emerald-100' : kpi.value < 0 ? 'bg-red-100' : 'bg-slate-100'}`}>
-                            <TrendingUp className={`w-4 h-4 ${kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-600' : 'text-slate-400'}`} />
+                        <div className={`p-2 rounded-lg ${kpi.value > 0 ? 'bg-emerald-100 dark:bg-emerald-900/30' : kpi.value < 0 ? 'bg-red-100 dark:bg-red-900/30' : 'bg-slate-100 dark:bg-zinc-800'}`}>
+                            <TrendingUp className={`w-4 h-4 ${kpi.value > 0 ? 'text-emerald-600' : kpi.value < 0 ? 'text-red-500' : 'text-slate-400 dark:text-slate-500'}`} />
                         </div>
                     </div>
                 </div>

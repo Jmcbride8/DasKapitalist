@@ -140,37 +140,37 @@ export default function SummaryTable({ trades }) {
     };
 
     return (
-        <div className="border rounded-xl overflow-hidden bg-white shadow-sm">
+        <div className="border border-slate-200 dark:border-zinc-700 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm">
             <Table>
-                <TableHeader className="bg-slate-50 border-b border-slate-200">
+                <TableHeader className="bg-slate-50 dark:bg-zinc-800 border-b border-slate-200 dark:border-zinc-700">
                      <TableRow>
-                         <TableHead className="font-semibold text-slate-700 text-xs py-2">Status</TableHead>
-                         <TableHead className="font-semibold text-slate-700 text-xs py-2">Month</TableHead>
-                         <TableHead className="font-semibold text-slate-700 text-xs py-2">Income Week</TableHead>
-                         <TableHead className="font-semibold text-slate-700 text-xs py-2 text-center">Trades</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Collateral</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Profit</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Cumulative Profit</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Cumulative Weekly Profit</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Weekly Profit</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-xs py-2 text-right">Avg Yield</TableHead>
+                         <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2">Status</TableHead>
+                         <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2">Month</TableHead>
+                         <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2">Income Week</TableHead>
+                         <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2 text-center">Trades</TableHead>
+                        <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2 text-right">Collateral</TableHead>
+                        <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2 text-right">Profit</TableHead>
+                        <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2 text-right">Cumulative Profit</TableHead>
+                        <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2 text-right">Cumulative Weekly Profit</TableHead>
+                        <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2 text-right">Weekly Profit</TableHead>
+                        <TableHead className="font-semibold text-slate-700 dark:text-slate-300 text-xs py-2 text-right">Avg Yield</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                      {weeklySummaries.map((summary, idx) => {
                          const showMonth = idx === 0 || weeklySummaries[idx - 1].month !== summary.month;
                          return (
-                         <TableRow key={`${summary.status}-${summary.week}`} className="hover:bg-slate-50/50 transition-colors border-b border-slate-200">
-                             <TableCell className="text-slate-600 text-xs py-2">
+                         <TableRow key={`${summary.status}-${summary.week}`} className="hover:bg-slate-50/50 dark:hover:bg-zinc-800/50 transition-colors border-b border-slate-200 dark:border-zinc-700/50">
+                             <TableCell className="text-slate-600 dark:text-slate-400 text-xs py-2">
                                  <Badge variant={summary.status === 'Closed' ? 'secondary' : 'default'} 
-                                        className={`text-xs ${summary.status === 'Closed' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-700'}`}>
+                                        className={`text-xs ${summary.status === 'Closed' ? 'bg-slate-100 dark:bg-zinc-700 text-slate-600 dark:text-slate-300' : 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400'}`}>
                                      {summary.status}
                                  </Badge>
                              </TableCell>
-                             <TableCell className="text-slate-600 text-xs py-2">{showMonth ? summary.month : ''}</TableCell>
-                             <TableCell className="text-slate-600 text-xs py-2">{formatDate(summary.week)}</TableCell>
-                            <TableCell className="text-slate-600 text-xs py-2 text-center">{summary.count}</TableCell>
-                            <TableCell className={`text-right font-mono text-xs py-2`}>{formatCurrency(summary.totalCollateral)}</TableCell>
+                             <TableCell className="text-slate-600 dark:text-slate-400 text-xs py-2">{showMonth ? summary.month : ''}</TableCell>
+                             <TableCell className="text-slate-600 dark:text-slate-400 text-xs py-2">{formatDate(summary.week)}</TableCell>
+                            <TableCell className="text-slate-600 dark:text-slate-400 text-xs py-2 text-center">{summary.count}</TableCell>
+                            <TableCell className={`text-right font-mono text-xs py-2 text-slate-600 dark:text-slate-400`}>{formatCurrency(summary.totalCollateral)}</TableCell>
                             <TableCell className={`text-right font-mono text-xs py-2 ${summary.totalProfit > 0 ? 'text-emerald-600' : summary.totalProfit < 0 ? 'text-red-600' : 'text-slate-700'}`}>
                                 {formatCurrency(summary.totalProfit)}
                             </TableCell>
@@ -187,25 +187,25 @@ export default function SummaryTable({ trades }) {
                             </TableRow>
                             );
                             })}
-                            <TableRow className="bg-yellow-50 border-t-2 border-slate-300 font-semibold">
-                            <TableCell className="text-slate-900 text-xs py-2">Grand Total</TableCell>
+                            <TableRow className="bg-yellow-50 dark:bg-zinc-800 border-t-2 border-slate-300 dark:border-zinc-600 font-semibold">
+                            <TableCell className="text-slate-900 dark:text-white text-xs py-2">Grand Total</TableCell>
                             <TableCell></TableCell>
                             <TableCell></TableCell>
-                        <TableCell className="text-slate-900 text-xs py-2 text-center">{grandTotals.count}</TableCell>
-                        <TableCell className="text-right font-mono text-xs py-2 text-slate-900">{formatCurrency(grandTotals.totalCollateral)}</TableCell>
-                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.totalProfit > 0 ? 'text-emerald-700' : grandTotals.totalProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
+                        <TableCell className="text-slate-900 dark:text-white text-xs py-2 text-center">{grandTotals.count}</TableCell>
+                        <TableCell className="text-right font-mono text-xs py-2 text-slate-900 dark:text-slate-200">{formatCurrency(grandTotals.totalCollateral)}</TableCell>
+                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.totalProfit > 0 ? 'text-emerald-600' : grandTotals.totalProfit < 0 ? 'text-red-500' : 'text-slate-900 dark:text-white'}`}>
                             {formatCurrency(grandTotals.totalProfit)}
                         </TableCell>
-                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-700' : grandTotals.weeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
+                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-600' : grandTotals.weeklyProfit < 0 ? 'text-red-500' : 'text-slate-900 dark:text-white'}`}>
                             {formatCurrency(grandTotals.weeklyProfit)}
                         </TableCell>
-                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.avgWeeklyProfit > 0 ? 'text-emerald-700' : grandTotals.avgWeeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
+                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.avgWeeklyProfit > 0 ? 'text-emerald-600' : grandTotals.avgWeeklyProfit < 0 ? 'text-red-500' : 'text-slate-900 dark:text-white'}`}>
                             {formatCurrency(grandTotals.avgWeeklyProfit)}
                         </TableCell>
-                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-700' : grandTotals.weeklyProfit < 0 ? 'text-red-700' : 'text-slate-900'}`}>
+                        <TableCell className={`text-right font-mono text-xs py-2 ${grandTotals.weeklyProfit > 0 ? 'text-emerald-600' : grandTotals.weeklyProfit < 0 ? 'text-red-500' : 'text-slate-900 dark:text-white'}`}>
                             {formatCurrency(grandTotals.weeklyProfit)}
                         </TableCell>
-                        <TableCell className="text-right font-mono text-xs py-2 text-slate-900">{formatPercent(grandTotals.avgYield)}</TableCell>
+                        <TableCell className="text-right font-mono text-xs py-2 text-slate-900 dark:text-slate-200">{formatPercent(grandTotals.avgYield)}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
