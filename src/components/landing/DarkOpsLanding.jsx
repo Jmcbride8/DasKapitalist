@@ -49,7 +49,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="h-1 w-2/3 bg-white" />
 
                     <p className="text-base md:text-lg text-white max-w-2xl leading-relaxed font-medium font-sans">
-                        The professional's edge isn't a hot tip—it's emotional mastery and cold, hard data. We bring enterprise-grade trading analytics to everyone. Track your trades, master your mindset, and discover what actually makes you money.
+                        The professional's edge isn't a hot tip—it's emotional mastery and cold, hard data. Discover enterprise-grade analytics to track your trades, master your mindset and discover where you actually win.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
