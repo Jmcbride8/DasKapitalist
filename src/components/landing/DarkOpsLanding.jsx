@@ -400,11 +400,11 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== FINAL CTA — Wall Street ======== */}
             <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
                 {/* Wall Street background */}
-                <AdminImage
-                    imageKey="cta_bg"
-                    defaultSrc="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1800&q=80"
-                    className="absolute inset-0 z-0"
-                    style={{ backgroundSize: 'cover', backgroundPosition: 'center 30%' }}
+                <img
+                    src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1800&q=80"
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover z-0"
+                    style={{ objectPosition: 'center 30%' }}
                 />
                 <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(10,15,20,0.15) 50%, rgba(0,0,0,0.35) 100%)' }} />
 
