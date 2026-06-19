@@ -136,7 +136,7 @@ export default function ArsenalShowcase() {
                 </div>
 
                 {/* Animated card */}
-                <div className="relative overflow-hidden" style={{ minHeight: '380px' }}>
+                <div className="relative overflow-hidden" style={{ minHeight: '520px' }}>
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={activeIndex}
@@ -146,57 +146,92 @@ export default function ArsenalShowcase() {
                             animate="center"
                             exit="exit"
                             transition={TRANSITION}
-                            className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center"
+                            className="flex flex-col gap-6"
                         >
-                            {/* Laptop mockup */}
-                            <div className="relative flex flex-col items-center">
-                                {/* Screen */}
+                            {/* Apple-style MacBook mockup */}
+                            <div className="relative flex flex-col items-center w-full" style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.9))' }}>
+                                {/* Lid / screen */}
                                 <div
-                                    className="relative w-full rounded-t-xl overflow-hidden border-4 border-b-0"
+                                    className="relative w-full overflow-hidden"
                                     style={{
-                                        borderColor: '#2a2a2a',
-                                        borderRadius: '12px 12px 0 0',
-                                        background: '#111',
-                                        boxShadow: '0 0 0 1px rgba(255,255,255,0.06)',
+                                        borderRadius: '16px 16px 0 0',
+                                        background: 'linear-gradient(160deg, #4a4a4a 0%, #2c2c2c 40%, #1e1e1e 100%)',
+                                        padding: '3px',
+                                        paddingBottom: '0',
+                                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.5)',
                                     }}
                                 >
-                                    {/* Notch bar */}
-                                    <div className="flex items-center justify-between px-3 py-1.5" style={{ background: '#1a1a1a' }}>
-                                        <div className="flex gap-1.5">
-                                            <div className="w-2 h-2 rounded-full bg-red-500/70" />
-                                            <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
-                                            <div className="w-2 h-2 rounded-full bg-green-500/70" />
+                                    {/* Inner bezel */}
+                                    <div
+                                        className="relative overflow-hidden"
+                                        style={{
+                                            borderRadius: '14px 14px 0 0',
+                                            background: '#0a0a0a',
+                                            padding: '8px 8px 0',
+                                        }}
+                                    >
+                                        {/* Camera notch */}
+                                        <div className="flex justify-center mb-1.5">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                                         </div>
-                                        <div className="w-24 h-1.5 rounded-full bg-white/5" />
-                                        <div className="w-8" />
-                                    </div>
-                                    {/* Screenshot */}
-                                    <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                                        <AdminImage
-                                            imageKey={item.imageKey}
-                                            className="w-full h-full"
-                                            style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
-                                            alt={item.title}
-                                        />
+                                        {/* Screen content */}
+                                        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', borderRadius: '4px 4px 0 0' }}>
+                                            <AdminImage
+                                                imageKey={item.imageKey}
+                                                className="w-full h-full"
+                                                style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
+                                                alt={item.title}
+                                            />
+                                            {/* Subtle screen glare */}
+                                            <div
+                                                className="absolute inset-0 pointer-events-none"
+                                                style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%)' }}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                                {/* Base / stand */}
-                                <div className="w-full h-3 rounded-b-sm" style={{ background: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)' }} />
-                                <div className="w-1/3 h-2 rounded-b-lg" style={{ background: 'linear-gradient(180deg, #1a1a1a 0%, #111 100%)' }} />
-                                <div className="w-1/2 h-1.5 rounded-b-xl" style={{ background: '#0d0d0d', boxShadow: '0 4px 20px rgba(0,0,0,0.8)' }} />
+
+                                {/* Hinge line */}
+                                <div
+                                    className="w-full h-[3px]"
+                                    style={{ background: 'linear-gradient(180deg, #111 0%, #222 50%, #111 100%)' }}
+                                />
+
+                                {/* Base / keyboard deck */}
+                                <div
+                                    className="w-full h-5"
+                                    style={{
+                                        background: 'linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 40%, #222 100%)',
+                                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1)',
+                                        borderRadius: '0 0 4px 4px',
+                                    }}
+                                >
+                                    {/* Trackpad hint */}
+                                    <div className="flex justify-center items-center h-full">
+                                        <div className="w-16 h-2.5 rounded-sm" style={{ background: 'rgba(0,0,0,0.25)', border: '1px solid rgba(255,255,255,0.06)' }} />
+                                    </div>
+                                </div>
+
+                                {/* Foot / desk reflection */}
+                                <div
+                                    className="w-4/5 h-[3px] rounded-b-full"
+                                    style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }}
+                                />
                             </div>
 
-                            {/* Text */}
-                            <div>
-                                <div className="flex items-baseline gap-4 mb-4">
-                                    <span className="text-5xl font-black text-white/10 leading-none select-none">{item.num}</span>
-                                    <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">{item.title}</h3>
+                            {/* Text row below */}
+                            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pt-2">
+                                <div>
+                                    <div className="flex items-baseline gap-3 mb-2">
+                                        <span className="text-4xl font-black text-white/10 leading-none select-none">{item.num}</span>
+                                        <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">{item.title}</h3>
+                                    </div>
+                                    <p className="text-sm text-white/60 leading-relaxed font-sans max-w-2xl">{item.desc}</p>
                                 </div>
-                                <p className="text-base text-white/70 leading-relaxed font-sans mb-8">{item.desc}</p>
-                                <div className="flex gap-8 pt-6 border-t border-white/10">
+                                <div className="flex gap-8 shrink-0 border-l border-white/10 pl-8">
                                     {item.stats.map((s) => (
                                         <div key={s.label}>
-                                            <div className="flex items-center gap-1.5 text-base font-black text-white">
+                                            <div className="flex items-center gap-1.5 text-base font-black text-white whitespace-nowrap">
                                                 {s.value}
                                                 {s.up === true && <TrendingUp className="w-4 h-4 text-emerald-400" />}
                                                 {s.up === false && <TrendingDown className="w-4 h-4 text-red-400" />}

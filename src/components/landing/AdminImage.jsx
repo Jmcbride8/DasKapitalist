@@ -54,21 +54,17 @@ export default function AdminImage({ imageKey, defaultSrc, className, style, alt
     }, [imageKey]);
 
     const displayUrl = imageUrl || defaultSrc;
-    if (!displayUrl) return null;
 
     return (
         <div
-            className={className}
+            className={`relative ${className || ''}`}
             style={{
                 ...style,
-                ...(rest.onLoad || rest.onError ? {} : { backgroundImage: `url(${displayUrl})` }),
+                ...(displayUrl ? { backgroundImage: `url(${displayUrl})` } : {}),
             }}
             onMouseEnter={() => isAdmin && setShowUpload(true)}
             onMouseLeave={() => setShowUpload(false)}
         >
-            {rest.onLoad || rest.onError ? (
-                <img src={displayUrl} alt={alt || ''} {...rest} />
-            ) : null}
             {isAdmin && showUpload && (
                 <button
                     onClick={() => fileRef.current?.click()}
