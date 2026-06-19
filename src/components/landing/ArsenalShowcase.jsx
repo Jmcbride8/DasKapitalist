@@ -146,10 +146,10 @@ export default function ArsenalShowcase() {
                             animate="center"
                             exit="exit"
                             transition={TRANSITION}
-                            className="flex flex-col gap-6"
+                            className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center"
                         >
-                            {/* Apple-style MacBook mockup */}
-                            <div className="relative flex flex-col items-center w-full" style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.9))' }}>
+                            {/* Apple-style MacBook mockup — 2/3 width */}
+                            <div className="relative flex flex-col items-center w-full lg:w-2/3 shrink-0" style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.9))' }}>
                                 {/* Lid / screen */}
                                 <div
                                     className="relative w-full overflow-hidden"
@@ -219,19 +219,19 @@ export default function ArsenalShowcase() {
                                 />
                             </div>
 
-                            {/* Text row below */}
-                            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pt-2">
+                            {/* Text column — 1/3 width */}
+                            <div className="flex flex-col justify-center gap-8 flex-1 min-w-0">
                                 <div>
-                                    <div className="flex items-baseline gap-3 mb-2">
-                                        <span className="text-4xl font-black text-white/10 leading-none select-none">{item.num}</span>
-                                        <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">{item.title}</h3>
+                                    <div className="flex items-baseline gap-3 mb-3">
+                                        <span className="text-5xl font-black text-white/10 leading-none select-none">{item.num}</span>
+                                        <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight leading-tight">{item.title}</h3>
                                     </div>
-                                    <p className="text-sm text-white/60 leading-relaxed font-sans max-w-2xl">{item.desc}</p>
+                                    <p className="text-sm text-white/60 leading-relaxed font-sans">{item.desc}</p>
                                 </div>
-                                <div className="flex gap-8 shrink-0 border-l border-white/10 pl-8">
+                                <div className="flex flex-col gap-5 pt-6 border-t border-white/10">
                                     {item.stats.map((s) => (
                                         <div key={s.label}>
-                                            <div className="flex items-center gap-1.5 text-base font-black text-white whitespace-nowrap">
+                                            <div className="flex items-center gap-1.5 text-lg font-black text-white">
                                                 {s.value}
                                                 {s.up === true && <TrendingUp className="w-4 h-4 text-emerald-400" />}
                                                 {s.up === false && <TrendingDown className="w-4 h-4 text-red-400" />}
