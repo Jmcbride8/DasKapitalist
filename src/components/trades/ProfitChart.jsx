@@ -5,7 +5,9 @@ import { useTheme } from '@/lib/ThemeContext';
 export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) {
     const { theme } = useTheme();
     const isDark = theme === 'dark';
-    const realizedFill = isDark ? '#94a3b8' : '#d1d5db';
+    const realizedFill = isDark ? '#475569' : '#d1d5db';
+    const axisColor = isDark ? '#64748b' : '#64748b';
+    const axisLineColor = isDark ? '#334155' : '#e2e8f0';
     const chartData = useMemo(() => {
         const tickerMap = {};
         
@@ -106,9 +108,9 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
                 <BarChart data={chartData} margin={{ top: 50, right: 30, left: 20, bottom: 60 }}>
                     <XAxis 
                         dataKey="ticker" 
-                        tick={{ fontSize: 11, fill: '#64748b' }}
+                        tick={{ fontSize: 11, fill: axisColor }}
                         tickLine={false}
-                        axisLine={{ stroke: '#e2e8f0' }}
+                        axisLine={{ stroke: axisLineColor }}
                         angle={-45}
                         textAnchor="end"
                         height={60}
@@ -116,13 +118,21 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
                     />
                     <YAxis 
                         tickFormatter={formatCurrency}
-                        tick={{ fontSize: 11, fill: '#64748b' }}
+                        tick={{ fontSize: 11, fill: axisColor }}
                         tickLine={false}
                         axisLine={false}
                     />
                     <Tooltip content={<CustomTooltip />} />
-                    <ReferenceLine y={0} stroke="#94a3b8" strokeWidth={1} />
-                    <Bar dataKey="realized" stackId="a" fill={realizedFill} radius={[0, 0, 0, 0]} opacity={selectedTicker ? (selectedTicker === chartData[0]?.ticker ? 1 : 0.3) : 1} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)} />
+                    <ReferenceLine y={0} stroke={isDark ? '#475569' : '#94a3b8'} strokeWidth={1} />
+                    <Bar dataKey="realized" stackId="a" fill={realizedFill} radius={[0, 0, 0, 0]} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)}>
+                        {chartData.map((entry, index) => (
+                            <Cell
+                                key={`realized-${index}`}
+                                fill={realizedFill}
+                                opacity={selectedTicker ? (selectedTicker === entry.ticker ? 1 : 0.3) : 1}
+                            />
+                        ))}
+                    </Bar>
                     <Bar dataKey="unrealized" stackId="a" radius={[0, 0, 0, 0]} label={<CustomLabel />} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)}>
                         {chartData.map((entry, index) => {
                             const isSelected = selectedTicker === entry.ticker;
