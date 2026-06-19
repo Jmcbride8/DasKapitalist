@@ -44,7 +44,7 @@ const items = [
     {
         num: '04',
         title: 'Exposure',
-        desc: "Stacked bar chart of every open position. Each bar shows capital deployed with unrealized gain or loss on top — color-coded green or red. See at a glance where you're overextended and what's working.",
+        desc: "See your risk. Know your edge. Every open position laid bare — capital deployed, gains and losses stacked on top. Green means you're right. Red means you're bleeding. Cut it fast.",
         imageKey: 'weapon_4',
         image: null,
         stats: [
