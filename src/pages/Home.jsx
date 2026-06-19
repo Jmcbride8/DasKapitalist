@@ -92,21 +92,21 @@ export default function Home() {
 
 
     if (isLoading) {
-        return <div className="flex items-center justify-center h-64 text-slate-400">Loading positions...</div>;
+        return <div className="flex items-center justify-center h-64 text-slate-400 dark:bg-zinc-950 w-full">Loading positions...</div>;
     }
 
     if (!openPositions.length) {
-        return <div className="flex items-center justify-center h-64 text-slate-400">No open positions.</div>;
+        return <div className="flex items-center justify-center h-64 text-slate-400 dark:bg-zinc-950 w-full">No open positions.</div>;
     }
 
     return (
-        <div className="min-h-screen bg-white p-4 md:p-8">
+        <div className="min-h-screen bg-white dark:bg-zinc-950 p-4 md:p-8">
             <div className="max-w-7xl mx-auto space-y-6">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900">Today's Exposure</h1>
-                        <p className="text-sm text-slate-500 mt-1">
+                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Today's Exposure</h1>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                             {openPositions.length} open positions · {fmtCurrency(totalCollateral)} collateral at risk
                             {lastUpdated && <span className="ml-2 text-slate-400">· Updated {lastUpdated.toLocaleTimeString()}</span>}
                         </p>
@@ -119,8 +119,8 @@ export default function Home() {
 
                 {/* Summary Cards */}
                 <div className="grid grid-cols-3 gap-4">
-                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                        <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">S&P 500 (SPY)</div>
+                    <div className="rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-900 p-4">
+                        <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider mb-1">S&P 500 (SPY)</div>
                         {priceData['SPY'] ? (
                             <>
                                 <div className={`text-2xl font-bold ${priceData['SPY'].change_pct >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
@@ -132,14 +132,14 @@ export default function Home() {
                             <div className="text-2xl font-bold text-slate-300">—</div>
                         )}
                     </div>
-                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                        <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Positions Up</div>
+                    <div className="rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-900 p-4">
+                        <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider mb-1">Positions Up</div>
                         <div className="text-2xl font-bold text-emerald-600">
                             {openPositions.filter(p => (priceData[p.ticker]?.change_pct ?? null) >= 0 && priceData[p.ticker] !== null && priceData[p.ticker] !== undefined).length}
                         </div>
                     </div>
-                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                        <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Positions Down</div>
+                    <div className="rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-900 p-4">
+                        <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider mb-1">Positions Down</div>
                         <div className="text-2xl font-bold text-rose-600">
                             {openPositions.filter(p => (priceData[p.ticker]?.change_pct ?? null) < 0).length}
                         </div>
@@ -148,7 +148,7 @@ export default function Home() {
 
                 {/* Treemap */}
                 <div>
-                    <h2 className="text-base font-semibold text-slate-800 mb-3">
+                    <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
                         Position Treemap <span className="text-xs font-normal text-slate-400">— size = collateral, color = today's price change</span>
                     </h2>
                     {!lastUpdated && (

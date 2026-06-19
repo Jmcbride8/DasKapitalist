@@ -113,13 +113,13 @@ export default function Trades() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950">
             <div className="max-w-[1800px] mx-auto p-6 lg:p-8">
                 {/* Header with Actions */}
                 <div className="flex justify-between items-start mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">All Trades</h1>
-                        <p className="text-slate-500 mt-1">Track and analyze your trading positions</p>
+                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">All Trades</h1>
+                        <p className="text-slate-500 dark:text-slate-400 mt-1">Track and analyze your trading positions</p>
                     </div>
                     <div className="flex gap-2 items-center">
                         <TradeLegendModal />
@@ -147,10 +147,10 @@ export default function Trades() {
                 <div>
                         {/* Stats Cards */}
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 my-4">
-                            <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                            <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="text-xs text-slate-500 font-medium">Total Profit</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Profit</p>
                                         <p className={`text-lg font-bold mt-0.5 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
                                             ${stats.totalProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                                         </p>
@@ -160,10 +160,10 @@ export default function Trades() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                            <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="text-xs text-slate-500 font-medium">Realized</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Realized</p>
                                         <p className={`text-lg font-bold mt-0.5 ${stats.realizedProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
                                             ${stats.realizedProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                                         </p>
@@ -173,10 +173,10 @@ export default function Trades() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                            <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="text-xs text-slate-500 font-medium">Unrealized</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Unrealized</p>
                                         <p className={`text-lg font-bold mt-0.5 ${stats.unrealizedProfit >= 0 ? 'text-slate-600' : 'text-red-600'}`}>
                                             ${stats.unrealizedProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                                         </p>
@@ -186,11 +186,11 @@ export default function Trades() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+                            <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg p-3 border border-slate-200 dark:border-zinc-700">
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="text-xs text-slate-500 font-medium">Trades</p>
-                                        <p className="text-lg font-bold mt-0.5 text-slate-900">
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Trades</p>
+                                        <p className="text-lg font-bold mt-0.5 text-slate-900 dark:text-white">
                                             {stats.openTrades} <span className="text-xs font-normal text-slate-400">open</span> / {stats.closedTrades} <span className="text-xs font-normal text-slate-400">closed</span>
                                         </p>
                                     </div>

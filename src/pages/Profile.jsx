@@ -49,11 +49,11 @@ export default function Profile() {
     ];
 
     return (
-        <div className="min-h-screen bg-stone-50 font-mono">
+        <div className="min-h-screen bg-stone-50 dark:bg-zinc-950 font-mono">
             {/* Header */}
-            <div className="bg-white border-b border-black/10 px-6 py-8">
-                <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-black/30 mb-2">Settings</p>
-                <h1 className="text-2xl font-black uppercase tracking-tight text-black">Profile</h1>
+            <div className="bg-white dark:bg-zinc-900 border-b border-black/10 dark:border-white/10 px-6 py-8">
+                <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-black/30 dark:text-white/30 mb-2">Settings</p>
+                <h1 className="text-2xl font-black uppercase tracking-tight text-black dark:text-white">Profile</h1>
             </div>
 
             <div className="max-w-4xl mx-auto px-6 py-8">
@@ -66,7 +66,7 @@ export default function Profile() {
                                     key={key}
                                     onClick={() => setActiveTab(key)}
                                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-left transition-all font-black text-xs tracking-[0.15em] uppercase font-mono ${
-                                        activeTab === key ? 'bg-black text-white' : 'text-black/40 hover:text-black hover:bg-black/5'
+                                        activeTab === key ? 'bg-black text-white dark:bg-white dark:text-black' : 'text-black/40 hover:text-black hover:bg-black/5 dark:text-white/40 dark:hover:text-white dark:hover:bg-white/5'
                                     }`}
                                 >
                                     <Icon className="w-4 h-4 flex-shrink-0" />
@@ -86,13 +86,13 @@ export default function Profile() {
                     </div>
 
                     {/* Content panel */}
-                    <div className="flex-1 bg-white border border-black/10 p-6">
+                    <div className="flex-1 bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 p-6">
 
                         {/* ACCOUNT TAB */}
                         {activeTab === 'account' && (
                             <div className="space-y-6">
                                 <div>
-                                    <h2 className="text-base font-black uppercase tracking-tight text-black mb-1">Account Info</h2>
+                                    <h2 className="text-base font-black uppercase tracking-tight text-black dark:text-white mb-1">Account Info</h2>
                                     <div className="h-px w-8 bg-emerald-500 mb-6" />
                                 </div>
 
@@ -104,35 +104,35 @@ export default function Profile() {
                                         </span>
                                     </div>
                                     <div>
-                                        <p className="text-sm font-black text-black">{form.full_name || '—'}</p>
-                                        <p className="text-[10px] font-bold tracking-wider uppercase text-black/30">{form.email}</p>
+                                        <p className="text-sm font-black text-black dark:text-white">{form.full_name || '—'}</p>
+                                        <p className="text-[10px] font-bold tracking-wider uppercase text-black/30 dark:text-white/30">{form.email}</p>
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
                                     <div>
-                                        <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 mb-1.5">Full Name</label>
+                                        <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-1.5">Full Name</label>
                                         <input
                                             type="text"
                                             value={form.full_name}
                                             onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-                                            className="w-full border border-black/20 px-3 py-2.5 text-sm font-mono text-black bg-white focus:outline-none focus:border-black transition-colors"
+                                            className="w-full border border-black/20 dark:border-white/20 px-3 py-2.5 text-sm font-mono text-black dark:text-white bg-white dark:bg-zinc-800 focus:outline-none focus:border-black dark:focus:border-white transition-colors"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 mb-1.5">Email</label>
+                                        <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-1.5">Email</label>
                                         <input
                                             type="email"
                                             value={form.email}
                                             disabled
-                                            className="w-full border border-black/10 px-3 py-2.5 text-sm font-mono text-black/30 bg-stone-50 cursor-not-allowed"
+                                            className="w-full border border-black/10 dark:border-white/10 px-3 py-2.5 text-sm font-mono text-black/30 dark:text-white/30 bg-stone-50 dark:bg-zinc-800 cursor-not-allowed"
                                         />
                                         <p className="text-[9px] text-black/20 mt-1 uppercase tracking-wider">Email cannot be changed</p>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 mb-1.5">Role</label>
+                                    <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-1.5">Role</label>
                                     <span className="inline-block px-3 py-1 bg-black text-white text-[9px] font-black tracking-[0.25em] uppercase">
                                         {user?.role || 'user'}
                                     </span>

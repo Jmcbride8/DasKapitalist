@@ -207,13 +207,13 @@ export default function Admin() {
     if (user?.role !== 'admin') return null;
 
     return (
-        <div className="min-h-screen bg-stone-50 font-mono">
+        <div className="min-h-screen bg-stone-50 dark:bg-zinc-950 font-mono">
             <div className="max-w-7xl mx-auto px-6 py-10">
                 {/* Header */}
                 <div className="mb-10">
-                    <p className="text-[10px] font-black tracking-[0.3em] uppercase text-black/30 mb-2">Admin</p>
-                    <h1 className="text-4xl font-black uppercase tracking-tight text-black">Landing Page Images</h1>
-                    <p className="text-sm text-black/40 mt-2 font-sans">Upload and manage all images on the landing page. Changes take effect immediately.</p>
+                    <p className="text-[10px] font-black tracking-[0.3em] uppercase text-black/30 dark:text-white/30 mb-2">Admin</p>
+                    <h1 className="text-4xl font-black uppercase tracking-tight text-black dark:text-white">Landing Page Images</h1>
+                    <p className="text-sm text-black/40 dark:text-white/40 mt-2 font-sans">Upload and manage all images on the landing page. Changes take effect immediately.</p>
                 </div>
 
                 {IMAGE_SLOTS.map((section) => (

@@ -80,11 +80,11 @@ export default function Dashboards() {
     const dashboard = dashboardMap[view] || dashboardMap.weekly;
 
     return (
-        <div className="min-h-screen bg-white p-4 md:p-8">
+        <div className="min-h-screen bg-white dark:bg-zinc-950 p-4 md:p-8">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-8">
                     <div className="flex items-center justify-between gap-4">
-                        <h1 className="text-3xl font-bold text-slate-900">{dashboard.title}</h1>
+                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{dashboard.title}</h1>
                         <div className="flex gap-3 items-center">
                             <div className="w-36">
                                 <Select value={selectedYear} onValueChange={setSelectedYear}>
@@ -114,7 +114,7 @@ export default function Dashboards() {
                             </div>
                         </div>
                     </div>
-                    <p className="text-sm text-slate-500 italic mt-3">{dashboard.desc}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 italic mt-3">{dashboard.desc}</p>
                 </div>
 
                 <div className="hidden md:flex mb-6 flex-wrap gap-2">
@@ -126,8 +126,8 @@ export default function Dashboards() {
                             )}
                             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                                 selectedTypes.includes(type)
-                                    ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
-                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+                                    ? 'bg-emerald-100 text-emerald-700 border border-emerald-300 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-emerald-700'
+                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 dark:bg-zinc-800 dark:text-slate-300 dark:border-zinc-700 dark:hover:bg-zinc-700'
                             }`}
                         >
                             {type}
@@ -136,7 +136,7 @@ export default function Dashboards() {
                 </div>
                 
                 {isLoading ? (
-                    <div className="text-center text-slate-400 py-12">Loading...</div>
+                    <div className="text-center text-slate-400 dark:text-slate-500 py-12">Loading...</div>
                 ) : (
                     <>
                         {view !== 'time' && <DashboardKPIs trades={filteredTrades} view={view} />}

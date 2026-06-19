@@ -22,9 +22,9 @@ export default function Summaries() {
     }, [trades, selectedTypes]);
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white dark:bg-zinc-950">
             <div className="max-w-6xl mx-auto p-6 lg:p-8">
-                <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-8">Weekly Summary</h1>
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-8">Weekly Summary</h1>
                 
                 <div className="mb-6 flex flex-wrap gap-2">
                     {tradeTypes.map(type => (
@@ -35,8 +35,8 @@ export default function Summaries() {
                             )}
                             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                                 selectedTypes.includes(type)
-                                    ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
-                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+                                    ? 'bg-emerald-100 text-emerald-700 border border-emerald-300 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-emerald-700'
+                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 dark:bg-zinc-800 dark:text-slate-300 dark:border-zinc-700 dark:hover:bg-zinc-700'
                             }`}
                         >
                             {type}
