@@ -40,18 +40,18 @@ export default function OpenPositionsTable({ trades, selectedTicker }) {
         <div className="space-y-4">
             {/* Summary Cards */}
             <div className="grid grid-cols-3 gap-3">
-                <div className="rounded-lg border border-slate-200 bg-white p-3">
-                    <div className="text-xs text-slate-500 mb-1">Open Capital</div>
-                    <div className="text-lg font-bold text-slate-900">{fmtCurrency(kpis.totalOpen)}</div>
+                <div className="rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">Open Capital</div>
+                    <div className="text-lg font-bold text-slate-900 dark:text-white">{fmtCurrency(kpis.totalOpen)}</div>
                 </div>
-                <div className="rounded-lg border border-slate-200 bg-white p-3">
-                    <div className="text-xs text-slate-500 mb-1">Unrealized P&L</div>
+                <div className="rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">Unrealized P&L</div>
                     <div className={`text-lg font-bold ${kpis.totalUnrealized >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                         {fmtCurrency(kpis.totalUnrealized)}
                     </div>
                 </div>
-                <div className="rounded-lg border border-slate-200 bg-white p-3">
-                    <div className="text-xs text-slate-500 mb-1">Return %</div>
+                <div className="rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">Return %</div>
                     <div className={`text-lg font-bold ${kpis.gainPct >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                         {kpis.gainPct >= 0 ? '+' : ''}{kpis.gainPct.toFixed(1)}%
                     </div>
@@ -59,17 +59,17 @@ export default function OpenPositionsTable({ trades, selectedTicker }) {
             </div>
 
             {/* Positions Table */}
-            <div className="rounded-lg border border-slate-200 bg-white overflow-hidden">
+            <div className="rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
                 <Table>
                     <TableHeader>
-                        <TableRow className="bg-slate-50 border-b border-slate-200">
-                            <TableHead className="text-xs text-slate-500 font-semibold">Account</TableHead>
-                            <TableHead className="text-xs text-slate-500 font-semibold">Type</TableHead>
-                            <TableHead className="text-xs text-slate-500 font-semibold">Open Date</TableHead>
-                            <TableHead className="text-xs text-slate-500 font-semibold">Expiration</TableHead>
-                            <TableHead className="text-xs text-slate-500 font-semibold text-right">Open Capital</TableHead>
-                            <TableHead className="text-xs text-slate-500 font-semibold text-right">Unrealized</TableHead>
-                            <TableHead className="text-xs text-slate-500 font-semibold text-right">Return %</TableHead>
+                        <TableRow className="bg-slate-50 dark:bg-zinc-800 border-b border-slate-200 dark:border-zinc-700">
+                            <TableHead className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Account</TableHead>
+                            <TableHead className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Type</TableHead>
+                            <TableHead className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Open Date</TableHead>
+                            <TableHead className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Expiration</TableHead>
+                            <TableHead className="text-xs text-slate-500 dark:text-slate-400 font-semibold text-right">Open Capital</TableHead>
+                            <TableHead className="text-xs text-slate-500 dark:text-slate-400 font-semibold text-right">Unrealized</TableHead>
+                            <TableHead className="text-xs text-slate-500 dark:text-slate-400 font-semibold text-right">Return %</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -78,12 +78,12 @@ export default function OpenPositionsTable({ trades, selectedTicker }) {
                             const unrealized = trade.profit || 0;
                             const returnPct = openCap > 0 ? (unrealized / openCap) * 100 : 0;
                             return (
-                                <TableRow key={trade.id} className="border-b border-slate-100 hover:bg-slate-50">
-                                    <TableCell className="text-sm font-medium text-slate-900">{trade.account || '-'}</TableCell>
-                                    <TableCell className="text-sm font-medium text-slate-900">{trade.type}</TableCell>
-                                    <TableCell className="text-sm text-slate-600">{fmtDate(trade.open_date)}</TableCell>
-                                    <TableCell className="text-sm text-slate-600">{fmtDate(trade.expiration)}</TableCell>
-                                    <TableCell className="text-sm text-right font-semibold text-slate-900">
+                                <TableRow key={trade.id} className="border-b border-slate-100 dark:border-zinc-700/50 hover:bg-slate-50 dark:hover:bg-zinc-800/50">
+                                    <TableCell className="text-sm font-medium text-slate-900 dark:text-white">{trade.account || '-'}</TableCell>
+                                    <TableCell className="text-sm font-medium text-slate-900 dark:text-white">{trade.type}</TableCell>
+                                    <TableCell className="text-sm text-slate-600 dark:text-slate-400">{fmtDate(trade.open_date)}</TableCell>
+                                    <TableCell className="text-sm text-slate-600 dark:text-slate-400">{fmtDate(trade.expiration)}</TableCell>
+                                    <TableCell className="text-sm text-right font-semibold text-slate-900 dark:text-white">
                                         {fmtCurrency(openCap)}
                                     </TableCell>
                                     <TableCell className={`text-sm text-right font-semibold ${unrealized >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>

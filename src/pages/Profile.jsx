@@ -153,40 +153,39 @@ export default function Profile() {
                         {activeTab === 'subscription' && (
                             <div className="space-y-6">
                                 <div>
-                                    <h2 className="text-base font-black uppercase tracking-tight text-black mb-1">Subscription</h2>
+                                    <h2 className="text-base font-black uppercase tracking-tight text-black dark:text-white mb-1">Subscription</h2>
                                     <div className="h-px w-8 bg-emerald-500 mb-6" />
                                 </div>
 
-                                <div className="p-4 border border-black/10 bg-stone-50 flex items-center justify-between">
+                                <div className="p-4 border border-black/10 dark:border-white/10 bg-stone-50 dark:bg-zinc-800 flex items-center justify-between">
                                     <div>
-                                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/30">Current Plan</p>
-                                        <p className="text-lg font-black uppercase text-black mt-0.5">Free Trial</p>
+                                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/30 dark:text-white/40">Current Plan</p>
+                                        <p className="text-lg font-black uppercase text-black dark:text-white mt-0.5">Free Trial</p>
                                     </div>
-                                    <span className="text-[9px] font-black tracking-[0.2em] uppercase px-3 py-1.5 border border-black/20 text-black/40">Active</span>
+                                    <span className="text-[9px] font-black tracking-[0.2em] uppercase px-3 py-1.5 border border-black/20 dark:border-white/20 text-black/40 dark:text-white/40">Active</span>
                                 </div>
 
                                 <div className="grid md:grid-cols-2 gap-4">
                                     {PLANS.map((plan) => (
                                         <div
                                             key={plan.key}
-                                            className="relative border p-5 transition-all cursor-pointer hover:border-black/40"
-                                            style={{ borderColor: plan.key === 'ai' ? 'rgba(16,185,129,0.4)' : 'rgba(0,0,0,0.15)' }}
+                                            className={`relative border p-5 transition-all cursor-pointer ${plan.key === 'ai' ? 'border-emerald-500/40' : 'border-black/15 dark:border-white/15'} dark:hover:border-white/30`}
                                         >
                                             {plan.badge && (
                                                 <span className="absolute top-3 right-3 text-[8px] font-black tracking-[0.2em] uppercase px-2 py-1 text-black" style={{ backgroundColor: '#10b981' }}>
                                                     {plan.badge}
                                                 </span>
                                             )}
-                                            <p className="text-[9px] font-bold tracking-[0.3em] uppercase text-black/30 mb-1">Tier</p>
-                                            <h3 className="text-xl font-black uppercase text-black tracking-tight">{plan.name}</h3>
+                                            <p className="text-[9px] font-bold tracking-[0.3em] uppercase text-black/30 dark:text-white/30 mb-1">Tier</p>
+                                            <h3 className="text-xl font-black uppercase text-black dark:text-white tracking-tight">{plan.name}</h3>
                                             <div className="flex items-baseline gap-1 mt-1 mb-3">
-                                                <span className="text-3xl font-black text-black">{plan.price}</span>
-                                                <span className="text-xs text-black/30 font-mono">{plan.period}</span>
+                                                <span className="text-3xl font-black text-black dark:text-white">{plan.price}</span>
+                                                <span className="text-xs text-black/30 dark:text-white/30 font-mono">{plan.period}</span>
                                             </div>
-                                            <p className="text-xs text-black/50 font-sans mb-4">{plan.desc}</p>
+                                            <p className="text-xs text-black/50 dark:text-white/50 font-sans mb-4">{plan.desc}</p>
                                             <ul className="space-y-1.5 mb-5">
                                                 {plan.features.map((f) => (
-                                                    <li key={f} className="flex items-center gap-2 text-[10px] font-bold tracking-wider uppercase text-black/50">
+                                                    <li key={f} className="flex items-center gap-2 text-[10px] font-bold tracking-wider uppercase text-black/50 dark:text-white/50">
                                                         <div className="w-1 h-1 bg-emerald-500 flex-shrink-0" />
                                                         {f}
                                                     </li>
@@ -196,7 +195,7 @@ export default function Profile() {
                                                 className="w-full py-2.5 text-[10px] font-black tracking-[0.2em] uppercase transition-all"
                                                 style={plan.key === 'ai'
                                                     ? { backgroundColor: '#10b981', color: '#000' }
-                                                    : { border: '1px solid rgba(0,0,0,0.2)', color: '#000' }
+                                                    : { border: '1px solid rgba(128,128,128,0.3)', color: 'inherit' }
                                                 }
                                             >
                                                 Select Plan
@@ -211,7 +210,7 @@ export default function Profile() {
                         {activeTab === 'notifications' && (
                             <div className="space-y-6">
                                 <div>
-                                    <h2 className="text-base font-black uppercase tracking-tight text-black mb-1">Notifications</h2>
+                                    <h2 className="text-base font-black uppercase tracking-tight text-black dark:text-white mb-1">Notifications</h2>
                                     <div className="h-px w-8 bg-emerald-500 mb-6" />
                                 </div>
                                 <div className="space-y-4">
@@ -221,15 +220,15 @@ export default function Profile() {
                                         { label: 'Win Streak Milestones', desc: 'Alert when you hit a new streak record' },
                                         { label: 'New Feature Announcements', desc: 'Updates on new platform features' },
                                     ].map((item, i) => (
-                                        <div key={i} className="flex items-center justify-between py-3 border-b border-black/5 last:border-0">
+                                        <div key={i} className="flex items-center justify-between py-3 border-b border-black/5 dark:border-white/5 last:border-0">
                                             <div>
-                                                <p className="text-xs font-black uppercase tracking-wider text-black">{item.label}</p>
-                                                <p className="text-[10px] text-black/30 font-sans mt-0.5">{item.desc}</p>
+                                                <p className="text-xs font-black uppercase tracking-wider text-black dark:text-white">{item.label}</p>
+                                                <p className="text-[10px] text-black/30 dark:text-white/30 font-sans mt-0.5">{item.desc}</p>
                                             </div>
                                             <label className="relative inline-flex items-center cursor-pointer">
                                                 <input type="checkbox" defaultChecked={i < 2} className="sr-only peer" />
-                                                <div className="w-9 h-5 bg-black/10 peer-checked:bg-emerald-500 transition-colors relative">
-                                                    <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-white transition-transform peer-checked:translate-x-4" />
+                                                <div className="w-9 h-5 bg-black/10 dark:bg-white/10 peer-checked:bg-emerald-500 transition-colors relative">
+                                                    <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-white dark:bg-zinc-200 transition-transform peer-checked:translate-x-4" />
                                                 </div>
                                             </label>
                                         </div>
@@ -242,27 +241,27 @@ export default function Profile() {
                         {activeTab === 'security' && (
                             <div className="space-y-6">
                                 <div>
-                                    <h2 className="text-base font-black uppercase tracking-tight text-black mb-1">Security</h2>
+                                    <h2 className="text-base font-black uppercase tracking-tight text-black dark:text-white mb-1">Security</h2>
                                     <div className="h-px w-8 bg-emerald-500 mb-6" />
                                 </div>
 
                                 <div className="space-y-4">
-                                    <div className="p-4 border border-black/10 bg-stone-50">
-                                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/30 mb-0.5">Authentication</p>
-                                        <p className="text-sm font-black text-black">Managed by Base44</p>
-                                        <p className="text-[10px] font-sans text-black/30 mt-1">Your login is secured via the Base44 authentication platform. Password resets and 2FA are managed through your login portal.</p>
+                                    <div className="p-4 border border-black/10 dark:border-white/10 bg-stone-50 dark:bg-zinc-800">
+                                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/30 dark:text-white/40 mb-0.5">Authentication</p>
+                                        <p className="text-sm font-black text-black dark:text-white">Managed by Base44</p>
+                                        <p className="text-[10px] font-sans text-black/30 dark:text-white/30 mt-1">Your login is secured via the Base44 authentication platform. Password resets and 2FA are managed through your login portal.</p>
                                     </div>
 
-                                    <div className="p-4 border border-black/10 bg-stone-50">
-                                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/30 mb-0.5">Account Created</p>
-                                        <p className="text-sm font-black text-black">
+                                    <div className="p-4 border border-black/10 dark:border-white/10 bg-stone-50 dark:bg-zinc-800">
+                                        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/30 dark:text-white/40 mb-0.5">Account Created</p>
+                                        <p className="text-sm font-black text-black dark:text-white">
                                             {user?.created_date ? new Date(user.created_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '—'}
                                         </p>
                                     </div>
 
-                                    <div className="p-4 border border-red-200 bg-red-50/50">
+                                    <div className="p-4 border border-red-200 dark:border-red-800/50 bg-red-50/50 dark:bg-red-950/20">
                                         <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-red-400 mb-1">Danger Zone</p>
-                                        <p className="text-xs font-sans text-black/40 mb-3">Permanently delete your account and all associated trade data. This cannot be undone.</p>
+                                        <p className="text-xs font-sans text-black/40 dark:text-white/40 mb-3">Permanently delete your account and all associated trade data. This cannot be undone.</p>
                                         <button className="px-4 py-2 border border-red-400 text-red-500 text-[10px] font-black tracking-[0.2em] uppercase hover:bg-red-500 hover:text-white transition-all">
                                             Delete Account
                                         </button>
