@@ -20,7 +20,7 @@ const items = [
     {
         num: '02',
         title: 'Streaks',
-        desc: 'Every week, a W or an L. Patterns your brain would miss. Current streak, best streak, worst slump — all tracked cold.',
+        desc: 'Every week is a vote. Momentum. Slumps. Turning points. Know when you\'re locked in — and when you\'re hemorrhaging edge.',
         imageKey: 'weapon_2',
         image: null,
         stats: [
