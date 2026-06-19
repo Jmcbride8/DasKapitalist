@@ -6,6 +6,7 @@ import HeroImagePicker from '@/components/landing/HeroImagePicker';
 import PriceTargetText from '@/components/landing/PriceTargetText';
 import ArsenalShowcase from '@/components/landing/ArsenalShowcase';
 import ProblemsShowcase from '@/components/landing/ProblemsShowcase';
+import PricingShowcase from '@/components/landing/PricingShowcase';
 
 export default function DarkOpsLanding({ navigate, openView }) {
     const [time, setTime] = useState('');
@@ -337,76 +338,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== PRICING ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#050505' }}>
-                <div className="max-w-5xl mx-auto">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase mb-8 font-mono text-center" style={{ color: '#10b981' }}>
-                        PRICING
-                    </p>
-                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-4 text-center text-white">
-                        Get Serious.
-                    </h2>
-                    <p className="text-center text-white font-sans mb-16 text-base">Find Your Edge. Fight Unfair.</p>
-
-                    <div className="grid md:grid-cols-2 gap-6 items-stretch">
-                        {/* Solo */}
-                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(255,255,255,0.12)' }}>
-                            {/* Background image */}
-                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-125" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e03c45339_Solo3.png)' }} />
-                            {/* Dark gradient overlay — heavier at bottom for text legibility */}
-                            <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 100%)' }} />
-                            {/* Content */}
-                            <div className="relative z-10 flex flex-col justify-end h-full p-8" style={{ minHeight: '560px' }}>
-                                <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/50 font-mono mb-2">TIER 01</p>
-                                <h3 className="text-6xl font-black uppercase text-white tracking-tight mb-1">Solo</h3>
-                                <div className="mb-5">
-                                    <span className="text-4xl font-black text-white">$50</span>
-                                    <span className="text-white/40 font-mono text-sm ml-2">/mo</span>
-                                </div>
-                                <p className="text-white font-sans text-sm mb-6 max-w-xs">Track every trade. Trust the data. Build your edge alone.</p>
-                                <button
-                                    onClick={() => navigate('/Trades')}
-                                    className="w-full py-3.5 border border-white/30 text-white font-black text-sm tracking-wider uppercase hover:bg-white/10 transition-all rounded-md"
-                                >
-                                    Get Started
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* AI Enabled */}
-                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(16,185,129,0.25)' }}>
-                            {/* Background image */}
-                            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-125" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/51af6d8d3_Sage2.png)' }} />
-                            {/* Dark gradient overlay with green tint at bottom */}
-                            <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(2,20,12,0.95) 100%)' }} />
-                            {/* Best value badge */}
-                            <div className="absolute top-6 right-6 z-10">
-                                <span className="text-[9px] font-black tracking-[0.25em] uppercase px-3 py-1.5 rounded-full text-black" style={{ backgroundColor: '#10b981' }}>
-                                    BEST VALUE
-                                </span>
-                            </div>
-                            {/* Content */}
-                            <div className="relative z-10 flex flex-col justify-end h-full p-8" style={{ minHeight: '560px' }}>
-                                <p className="text-xs font-bold tracking-[0.3em] uppercase font-mono mb-2" style={{ color: 'rgba(16,185,129,0.7)' }}>TIER 02</p>
-                                <h3 className="text-6xl font-black uppercase text-white tracking-tight mb-1">AI Oracle</h3>
-                                <div className="mb-5">
-                                    <span className="text-4xl font-black text-white">$100</span>
-                                    <span className="font-mono text-sm ml-2" style={{ color: 'rgba(16,185,129,0.6)' }}>/mo</span>
-                                </div>
-                                <p className="text-white font-sans text-sm mb-6">Your guide on the path to mastery. Insights, patterns, and hard truths.</p>
-                                <button
-                                    onClick={() => navigate('/Trades')}
-                                    className="w-full py-3.5 font-black text-sm tracking-wider uppercase transition-all rounded-md text-black"
-                                    style={{ backgroundColor: '#10b981' }}
-                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
-                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
-                                >
-                                    Enlist the Oracle
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <PricingShowcase onNavigate={navigate} />
 
             {/* ======== FINAL CTA — Wall Street ======== */}
             <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
