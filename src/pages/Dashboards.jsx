@@ -114,7 +114,7 @@ export default function Dashboards() {
                             </div>
                         </div>
                     </div>
-                    <p className="text-sm text-slate-500 italic mt-1">{dashboard.desc}</p>
+                    <p className="text-sm text-slate-500 italic mt-3">{dashboard.desc}</p>
                 </div>
 
                 <div className="hidden md:flex mb-6 flex-wrap gap-2">
