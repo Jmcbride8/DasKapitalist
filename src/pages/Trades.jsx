@@ -155,8 +155,8 @@ export default function Trades() {
                                             ${stats.totalProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                                         </p>
                                     </div>
-                                    <div className={`p-2 rounded-lg ${stats.totalProfit >= 0 ? 'bg-emerald-100' : 'bg-red-100'}`}>
-                                        <DollarSign className={`w-4 h-4 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`} />
+                                    <div className={`p-2 rounded-lg ${stats.totalProfit >= 0 ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}>
+                                        <DollarSign className={`w-4 h-4 ${stats.totalProfit >= 0 ? 'text-emerald-600' : 'text-red-500'}`} />
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@ export default function Trades() {
                                             ${stats.realizedProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                                         </p>
                                     </div>
-                                    <div className="p-2 rounded-lg bg-emerald-100">
+                                    <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900/30">
                                         <TrendingUp className="w-4 h-4 text-emerald-600" />
                                     </div>
                                 </div>
@@ -181,8 +181,8 @@ export default function Trades() {
                                             ${stats.unrealizedProfit.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                                         </p>
                                     </div>
-                                    <div className="p-2 rounded-lg bg-slate-100">
-                                        <TrendingDown className="w-4 h-4 text-slate-500" />
+                                    <div className="p-2 rounded-lg bg-slate-100 dark:bg-zinc-800">
+                                        <TrendingDown className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                                     </div>
                                 </div>
                             </div>
@@ -194,8 +194,8 @@ export default function Trades() {
                                             {stats.openTrades} <span className="text-xs font-normal text-slate-400">open</span> / {stats.closedTrades} <span className="text-xs font-normal text-slate-400">closed</span>
                                         </p>
                                     </div>
-                                    <div className="p-2 rounded-lg bg-blue-100">
-                                        <BarChart3 className="w-4 h-4 text-blue-600" />
+                                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
+                                        <BarChart3 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                     </div>
                                 </div>
                             </div>
