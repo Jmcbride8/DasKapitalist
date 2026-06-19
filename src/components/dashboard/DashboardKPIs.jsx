@@ -86,43 +86,27 @@ export default function DashboardKPIs({ trades, view }) {
         return 'slate';
     };
 
-    const pairs = [
-        { main: kpiData[0], sub: kpiData[2], mainIcon: icons[0] },
-        { main: kpiData[1], sub: kpiData[3], mainIcon: icons[1] },
-    ];
-
     const colorMap = {
         emerald: 'from-emerald-50/80 to-emerald-100/30 dark:from-emerald-900/30 dark:to-emerald-800/20 border-emerald-200 dark:border-emerald-700/50 text-emerald-700 dark:text-emerald-400',
         rose: 'from-rose-50/80 to-rose-100/30 dark:from-rose-900/30 dark:to-rose-800/20 border-rose-200 dark:border-rose-700/50 text-rose-700 dark:text-rose-400',
         slate: 'from-slate-50/80 to-slate-100/30 dark:from-slate-800/50 dark:to-slate-700/20 border-slate-200 dark:border-slate-600/50 text-slate-700 dark:text-slate-300',
     };
 
-    const formatValue = (kpi) => kpi.format === 'percent'
-        ? `${kpi.value >= 0 ? '+' : ''}${kpi.value.toFixed(1)}%`
-        : formatCurrency(kpi.value);
-
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
-            {pairs.map(({ main, sub, mainIcon: Icon }, idx) => {
-                const color = getColor(main);
-                const subColor = getColor(sub);
-                const subColorMap = {
-                    emerald: 'text-emerald-600 dark:text-emerald-400',
-                    rose: 'text-rose-500 dark:text-rose-400',
-                    slate: 'text-slate-500 dark:text-slate-400',
-                };
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+            {kpiData.map((kpi, idx) => {
+                const color = getColor(kpi);
+                const Icon = icons[idx];
                 return (
-                    <div key={idx} className={`rounded-xl border bg-gradient-to-br p-4 ${colorMap[color]}`}>
-                        <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs font-semibold uppercase tracking-wider opacity-70">{main.label}</span>
+                    <div key={idx} className={`rounded-xl border bg-gradient-to-br p-4 flex flex-col gap-1 ${colorMap[color]}`}>
+                        <div className="flex items-center justify-between">
+                            <span className="text-xs font-semibold uppercase tracking-wider opacity-70">{kpi.label}</span>
                             {Icon && <Icon className="w-4 h-4 opacity-60" />}
                         </div>
-                        <div className="flex items-baseline justify-between gap-4">
-                            <div className="text-2xl font-bold">{formatValue(main)}</div>
-                            <div className="text-right">
-                                <div className="text-[10px] font-semibold uppercase tracking-wider opacity-50 mb-0.5">{sub.label}</div>
-                                <div className={`text-sm font-bold ${subColorMap[subColor]}`}>{formatValue(sub)}</div>
-                            </div>
+                        <div className="text-2xl font-bold">
+                            {kpi.format === 'percent'
+                                ? `${kpi.value >= 0 ? '+' : ''}${kpi.value.toFixed(1)}%`
+                                : formatCurrency(kpi.value)}
                         </div>
                     </div>
                 );
