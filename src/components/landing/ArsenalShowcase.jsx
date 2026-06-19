@@ -175,7 +175,7 @@ export default function ArsenalShowcase() {
                                             <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                                         </div>
                                         {/* Screen content */}
-                                        <div className="relative overflow-hidden" style={{ aspectRatio: '16/10.8', borderRadius: '4px 4px 0 0' }}>
+                                        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', borderRadius: '4px 4px 0 0' }}>
                                             <AdminImage
                                                 imageKey={item.imageKey}
                                                 className="w-full h-full"
