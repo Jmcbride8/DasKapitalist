@@ -141,6 +141,33 @@ export default function Profile() {
                                 </div>
 
                                 <div>
+                                    <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-2">Theme Preference</label>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        {[
+                                            { key: 'light', icon: Sun, label: 'Light' },
+                                            { key: 'dark', icon: Moon, label: 'Dark' },
+                                            { key: 'system', icon: Monitor, label: 'System' }
+                                        ].map(({ key, icon: Icon, label }) => (
+                                            <button
+                                                key={key}
+                                                onClick={() => setPreference(key)}
+                                                className={`flex flex-col items-center gap-1.5 px-3 py-3 border transition-all ${
+                                                    themePreference === key
+                                                        ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400'
+                                                        : 'border-black/10 dark:border-white/10 text-black/40 dark:text-white/40 hover:border-black/20 dark:hover:border-white/20'
+                                                }`}
+                                            >
+                                                <Icon className="w-5 h-5" />
+                                                <span className="text-[9px] font-black tracking-[0.15em] uppercase">{label}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <p className="text-[9px] text-black/30 dark:text-white/30 mt-2 uppercase tracking-wider">
+                                        {themePreference === 'system' ? 'Auto-switches based on your device settings' : themePreference === 'dark' ? 'Always use dark mode' : 'Always use light mode'}
+                                    </p>
+                                </div>
+
+                                <div>
                                     <label className="block text-[10px] font-black tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-3">Theme Preference</label>
                                     <div className="grid grid-cols-3 gap-2">
                                         <button
