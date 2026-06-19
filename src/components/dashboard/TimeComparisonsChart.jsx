@@ -7,6 +7,7 @@ import {
 } from 'recharts';
 import { format, parseISO, parse, startOfWeek, isValid } from 'date-fns';
 import { TrendingUp, Award, Activity, Target, Zap } from 'lucide-react';
+import { useTheme } from '@/lib/ThemeContext';
 
 const parseDate = (dateStr) => {
     if (!dateStr) return null;
@@ -79,6 +80,10 @@ export default function TimeComparisonsChart({ trades }) {
     const [activeTab, setActiveTab] = useState('tickers');
     const [periodMode, setPeriodMode] = useState('weekly');
     const [selectedPeriod, setSelectedPeriod] = useState(null);
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
+    const closedBarFill = isDark ? '#475569' : '#cbd5e1';
+    const restBarFill = isDark ? '#334155' : '#e2e8f0';
 
 
     const closedTrades = useMemo(() => trades.filter(t => t.status === 'Closed' && t.profit != null), [trades]);
@@ -320,7 +325,7 @@ export default function TimeComparisonsChart({ trades }) {
                             <ReferenceLine y={0} stroke="#cbd5e1" strokeDasharray="3 3" />
                             <Bar dataKey="closed" name="Closed" stackId="a" radius={[0, 0, 0, 0]}>
                                 {cumulativeData.map((entry, index) => (
-                                    <Cell key={index} fill="#cbd5e1" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                    <Cell key={index} fill={closedBarFill} opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                             <Bar dataKey="open" name="Open" stackId="a" radius={[3, 3, 0, 0]}>
@@ -456,7 +461,7 @@ export default function TimeComparisonsChart({ trades }) {
                             />
                             <Bar dataKey="rest" name="Others" stackId="a" radius={[0, 0, 3, 3]}>
                                 {tickerStackData.map((entry, index) => (
-                                    <Cell key={index} fill="#e2e8f0" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                    <Cell key={index} fill={restBarFill} opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                             <Bar dataKey="top" name="Top Ticker" stackId="a" radius={[3, 3, 0, 0]}
