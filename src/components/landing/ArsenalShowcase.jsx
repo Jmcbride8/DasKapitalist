@@ -60,20 +60,33 @@ const TRANSITION = {
     ease: [0.25, 0.46, 0.45, 0.94],
 };
 
+function getScrollParent(el) {
+    if (!el) return window;
+    const style = getComputedStyle(el);
+    const overflow = style.overflow + style.overflowY + style.overflowX;
+    if (/auto|scroll/.test(overflow)) return el;
+    return getScrollParent(el.parentElement);
+}
+
 export default function ArsenalShowcase() {
     const sectionRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [direction, setDirection] = useState(1); // 1 = down, -1 = up
+    const [direction, setDirection] = useState(1);
 
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
 
+        const scrollEl = getScrollParent(section.parentElement);
+        const getScrollTop = () => scrollEl === window ? window.scrollY : scrollEl.scrollTop;
+        const getElementTop = () => scrollEl === window
+            ? section.getBoundingClientRect().top + window.scrollY
+            : section.offsetTop;
+
         const SCROLL_PER_CARD = window.innerHeight;
 
         const handleScroll = () => {
-            const rect = section.getBoundingClientRect();
-            const scrolledIntoSection = -rect.top;
+            const scrolledIntoSection = getScrollTop() - getElementTop();
             if (scrolledIntoSection < 0) return;
 
             const index = Math.min(
@@ -82,15 +95,14 @@ export default function ArsenalShowcase() {
             );
 
             setActiveIndex(prev => {
-                if (prev !== index) {
-                    setDirection(index > prev ? 1 : -1);
-                }
+                if (prev !== index) setDirection(index > prev ? 1 : -1);
                 return index;
             });
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        scrollEl.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+        return () => scrollEl.removeEventListener('scroll', handleScroll);
     }, []);
 
     const variants = {

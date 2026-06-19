@@ -7,26 +7,22 @@ const problems = [
     {
         imageKey: 'problem_1',
         title: 'Revenge Trading',
-        accentColor: '#ef4444',
-        desc: 'You take a loss and immediately double down to get it back. The market doesn\'t care about your feelings — and neither does your account balance.',
+        desc: "You take a loss and immediately double down to get it back. The market doesn't care about your feelings — and neither does your account balance.",
     },
     {
         imageKey: 'problem_2',
         title: 'Overtrading',
-        accentColor: '#ef4444',
-        desc: 'You exit winners too early and hold losers too long. You chase entries. You break your own rules. Discipline isn\'t sexy — but it\'s the only thing that compounds.',
+        desc: "You exit winners too early and hold losers too long. You chase entries. You break your own rules. Discipline isn't sexy — but it's the only thing that compounds.",
     },
     {
         imageKey: 'problem_3',
         title: 'Capitulation',
-        accentColor: '#ef4444',
-        desc: 'One bad week and you abandon your strategy. Fear turns a manageable drawdown into a blown account. The data would have told you to hold — if you\'d been tracking it.',
+        desc: "One bad week and you abandon your strategy. Fear turns a manageable drawdown into a blown account. The data would have told you to hold — if you'd been tracking it.",
     },
     {
         imageKey: 'problem_4',
         title: 'Edge Blindness',
-        accentColor: '#ef4444',
-        desc: 'You don\'t know which tickers actually print for you. Without per-symbol analytics, you keep feeding the losers and starving the winners.',
+        desc: "You don't know which tickers actually print for you. Without per-symbol analytics, you keep feeding the losers and starving the winners.",
     },
 ];
 
@@ -34,6 +30,14 @@ const TRANSITION = {
     duration: 0.5,
     ease: [0.25, 0.46, 0.45, 0.94],
 };
+
+function getScrollParent(el) {
+    if (!el) return window;
+    const style = getComputedStyle(el);
+    const overflow = style.overflow + style.overflowY + style.overflowX;
+    if (/auto|scroll/.test(overflow)) return el;
+    return getScrollParent(el.parentElement);
+}
 
 export default function ProblemsShowcase() {
     const sectionRef = useRef(null);
@@ -44,11 +48,26 @@ export default function ProblemsShowcase() {
         const section = sectionRef.current;
         if (!section) return;
 
+        const scrollEl = getScrollParent(section.parentElement);
+
+        const getScrollTop = () =>
+            scrollEl === window ? window.scrollY : scrollEl.scrollTop;
+
+        const getElementTop = () => {
+            if (scrollEl === window) {
+                return section.getBoundingClientRect().top + window.scrollY;
+            }
+            // Relative to scrollEl
+            return section.offsetTop;
+        };
+
         const SCROLL_PER_CARD = window.innerHeight;
 
         const handleScroll = () => {
-            const rect = section.getBoundingClientRect();
-            const scrolledIntoSection = -rect.top;
+            const scrollTop = getScrollTop();
+            const sectionTop = getElementTop();
+            const scrolledIntoSection = scrollTop - sectionTop;
+
             if (scrolledIntoSection < 0) return;
 
             const index = Math.min(
@@ -62,8 +81,9 @@ export default function ProblemsShowcase() {
             });
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        scrollEl.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // run once on mount
+        return () => scrollEl.removeEventListener('scroll', handleScroll);
     }, []);
 
     const variants = {
@@ -99,7 +119,7 @@ export default function ProblemsShowcase() {
                 </div>
 
                 {/* Animated card */}
-                <div className="relative overflow-hidden flex-1">
+                <div className="relative overflow-hidden flex-1 min-h-0">
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={activeIndex}
@@ -109,10 +129,13 @@ export default function ProblemsShowcase() {
                             animate="center"
                             exit="exit"
                             transition={TRANSITION}
-                            className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center h-full"
+                            className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start lg:items-center h-full"
                         >
                             {/* Image */}
-                            <div className="relative w-full lg:w-[55%] shrink-0 rounded-2xl overflow-hidden border border-white/10" style={{ aspectRatio: '4/3', maxHeight: '50vh' }}>
+                            <div
+                                className="relative w-full lg:w-[55%] shrink-0 rounded-2xl overflow-hidden border border-white/10"
+                                style={{ aspectRatio: '4/3', maxHeight: '45vh' }}
+                            >
                                 <AdminImage
                                     imageKey={problem.imageKey}
                                     className="w-full h-full"
