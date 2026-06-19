@@ -122,7 +122,7 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
                         tickLine={false}
                         axisLine={false}
                     />
-                    <Tooltip content={<CustomTooltip />} />
+                    <Tooltip content={<CustomTooltip />} cursor={{ fill: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }} />
                     <ReferenceLine y={0} stroke={isDark ? '#475569' : '#94a3b8'} strokeWidth={1} />
                     <Bar dataKey="realized" stackId="a" fill={realizedFill} radius={[0, 0, 0, 0]} onClick={(e) => onTickerSelect && onTickerSelect(e.ticker)}>
                         {chartData.map((entry, index) => (

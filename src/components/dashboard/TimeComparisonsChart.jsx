@@ -312,6 +312,7 @@ export default function TimeComparisonsChart({ trades }) {
                             <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                             <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
+                                cursor={{ fill: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
                                     const d = payload[0]?.payload;
@@ -448,6 +449,7 @@ export default function TimeComparisonsChart({ trades }) {
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
+                                cursor={{ fill: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}
                                 content={({ active, payload, label }) => {
                                     if (!active || !payload?.length) return null;
                                     const d = payload[0]?.payload;

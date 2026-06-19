@@ -136,7 +136,7 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                         axisLine={false}
                         className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
                     />
-                    <Tooltip content={<CustomTooltip />} />
+                    <Tooltip content={<CustomTooltip />} cursor={{ fill: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }} />
                     <Area
                         yAxisId="collateral"
                         type="monotone"
