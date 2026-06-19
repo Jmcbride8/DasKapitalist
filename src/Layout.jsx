@@ -3,6 +3,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { LayoutDashboard, FileText, TrendingUp, ChevronDown, Menu, X, User, Home as HomeIcon, Settings } from 'lucide-react';
 import { useAuth } from '@/lib/AuthContext';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Layout({ children, currentPageName }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,7 +18,6 @@ export default function Layout({ children, currentPageName }) {
     }, [location.pathname]);
 
     useEffect(() => {
-        // Skip auth redirect for demo pages (Dashboards)
         if (!isLoadingAuth && !isAuthenticated && !location.pathname.startsWith('/Dashboards')) {
             navigateToLogin();
         }
@@ -25,13 +25,12 @@ export default function Layout({ children, currentPageName }) {
 
     if (isLoadingAuth) {
         return (
-            <div className="fixed inset-0 flex items-center justify-center bg-white">
-                <div className="w-8 h-8 border-4 border-slate-200 border-t-black rounded-full animate-spin" />
+            <div className="fixed inset-0 flex items-center justify-center bg-white dark:bg-black">
+                <div className="w-8 h-8 border-4 border-slate-200 border-t-black dark:border-t-white rounded-full animate-spin" />
             </div>
         );
     }
 
-    // Allow unauthenticated access to Dashboards (demo mode)
     if (!isAuthenticated && !location.pathname.startsWith('/Dashboards')) return null;
 
     const navItems = [
@@ -61,9 +60,9 @@ export default function Layout({ children, currentPageName }) {
         }
     ];
 
-    const activeCls = 'bg-black text-white';
-    const inactiveCls = 'text-black/40 hover:text-black hover:bg-black/5';
-    const subInactiveCls = 'text-black/40 hover:text-black hover:bg-black/5';
+    const activeCls = 'bg-black text-white dark:bg-white dark:text-black';
+    const inactiveCls = 'text-black/40 hover:text-black hover:bg-black/5 dark:text-white/40 dark:hover:text-white dark:hover:bg-white/5';
+    const subInactiveCls = 'text-black/40 hover:text-black hover:bg-black/5 dark:text-white/40 dark:hover:text-white dark:hover:bg-white/5';
 
     const NavItem = ({ item, onClick }) => {
         const Icon = item.icon;
@@ -77,7 +76,7 @@ export default function Layout({ children, currentPageName }) {
                         {item.name}
                         <ChevronDown className="w-3.5 h-3.5 ml-auto transition-transform group-open:rotate-180" />
                     </summary>
-                    <div className="pl-2 space-y-0.5 mt-0.5 border-l border-black/10 ml-5">
+                    <div className="pl-2 space-y-0.5 mt-0.5 border-l border-black/10 dark:border-white/10 ml-5">
                         {item.subItems.map((subItem) => {
                             const subPath = subItem.tab ? `/${item.path}` : `/${subItem.path}`;
                             const subView = subItem.tab || null;
@@ -90,7 +89,7 @@ export default function Layout({ children, currentPageName }) {
                                     key={subItem.tab || subItem.path}
                                     to={createPageUrl(subItem.tab ? `${item.path}?view=${subItem.tab}` : subItem.path)}
                                     onClick={onClick}
-                                    className={`block px-2 py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors ${isSubActive ? 'text-black bg-black/8' : subInactiveCls}`}
+                                    className={`block px-2 py-2 text-[10px] font-black tracking-[0.15em] uppercase font-mono transition-colors ${isSubActive ? 'text-black dark:text-white bg-black/8 dark:bg-white/8' : subInactiveCls}`}
                                 >
                                     {subItem.name}
                                 </Link>
@@ -114,16 +113,16 @@ export default function Layout({ children, currentPageName }) {
     };
 
     return (
-        <div className="flex h-screen bg-stone-50 flex-col md:flex-row font-mono">
+        <div className="flex h-screen bg-stone-50 dark:bg-zinc-950 flex-col md:flex-row font-mono">
             {/* Desktop Sidebar */}
-            <div className="hidden md:flex md:w-56 bg-white border-r border-black/10 flex-col">
-                {/* Logo — links to landing page */}
-                <div className="px-5 py-5 border-b border-black/10">
+            <div className="hidden md:flex md:w-56 bg-white dark:bg-zinc-900 border-r border-black/10 dark:border-white/10 flex-col">
+                {/* Logo */}
+                <div className="px-5 py-5 border-b border-black/10 dark:border-white/10">
                     <Link to="/">
-                        <h1 className="text-lg font-black uppercase tracking-[0.15em] text-black font-mono leading-none">
+                        <h1 className="text-lg font-black uppercase tracking-[0.15em] text-black dark:text-white font-mono leading-none">
                             Das<span style={{ color: '#10b981' }}>Kapitalist</span>
                         </h1>
-                        <p className="text-[8px] font-bold tracking-[0.3em] uppercase text-black/20 mt-1">Options Tracking</p>
+                        <p className="text-[8px] font-bold tracking-[0.3em] uppercase text-black/20 dark:text-white/20 mt-1">Options Tracking</p>
                     </Link>
                 </div>
 
@@ -134,8 +133,8 @@ export default function Layout({ children, currentPageName }) {
                     ))}
                 </nav>
 
-                {/* Profile + Admin links at bottom */}
-                <div className="px-3 py-3 border-t border-black/10 space-y-0.5">
+                {/* Bottom links + theme toggle */}
+                <div className="px-3 py-3 border-t border-black/10 dark:border-white/10 space-y-0.5">
                     <Link
                         to={createPageUrl('Profile')}
                         className={`flex items-center gap-3 px-3 py-2.5 transition-all font-black text-xs tracking-[0.15em] uppercase font-mono ${currentPageName === 'Profile' ? activeCls : inactiveCls}`}
@@ -152,29 +151,33 @@ export default function Layout({ children, currentPageName }) {
                             Admin
                         </Link>
                     )}
+                    <ThemeToggle />
                 </div>
             </div>
 
             {/* Mobile & Main Content Wrapper */}
             <div className="flex-1 flex flex-col overflow-auto">
                 {/* Mobile Header */}
-                <div className="md:hidden bg-white border-b border-black/10 px-4 py-3 flex items-center justify-between">
+                <div className="md:hidden bg-white dark:bg-zinc-900 border-b border-black/10 dark:border-white/10 px-4 py-3 flex items-center justify-between">
                     <Link to="/">
-                        <h1 className="text-base font-black uppercase tracking-[0.15em] text-black font-mono">
+                        <h1 className="text-base font-black uppercase tracking-[0.15em] text-black dark:text-white font-mono">
                             Das<span style={{ color: '#10b981' }}>Kapitalist</span>
                         </h1>
                     </Link>
-                    <button
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="p-2 hover:bg-black/5 transition-colors"
-                    >
-                        {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-                    </button>
+                    <div className="flex items-center gap-1">
+                        <ThemeToggle iconOnly className="px-2 py-2" />
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="p-2 hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-black dark:text-white"
+                        >
+                            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
-                    <div className="md:hidden bg-white border-b border-black/10 px-3 py-3 space-y-0.5 max-h-[calc(100vh-52px)] overflow-y-auto">
+                    <div className="md:hidden bg-white dark:bg-zinc-900 border-b border-black/10 dark:border-white/10 px-3 py-3 space-y-0.5 max-h-[calc(100vh-52px)] overflow-y-auto">
                         {navItems.map((item) => (
                             <NavItem key={item.name} item={item} onClick={() => setMobileMenuOpen(false)} />
                         ))}
