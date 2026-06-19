@@ -148,43 +148,138 @@ export default function ArsenalShowcase() {
                             transition={TRANSITION}
                             className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center"
                         >
-                            {/* Laptop mockup */}
-                            <div className="relative flex flex-col items-center">
-                                {/* Screen */}
-                                <div
-                                    className="relative w-full rounded-t-xl overflow-hidden border-4 border-b-0"
-                                    style={{
-                                        borderColor: '#2a2a2a',
-                                        borderRadius: '12px 12px 0 0',
-                                        background: '#111',
-                                        boxShadow: '0 0 0 1px rgba(255,255,255,0.06)',
-                                    }}
-                                >
-                                    {/* Notch bar */}
-                                    <div className="flex items-center justify-between px-3 py-1.5" style={{ background: '#1a1a1a' }}>
-                                        <div className="flex gap-1.5">
-                                            <div className="w-2 h-2 rounded-full bg-red-500/70" />
-                                            <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
-                                            <div className="w-2 h-2 rounded-full bg-green-500/70" />
+                            {/* Realistic Laptop Mockup */}
+                            <div className="relative w-full" style={{ perspective: '1200px' }}>
+                                <div style={{ transform: 'rotateX(4deg)', transformStyle: 'preserve-3d' }}>
+
+                                    {/* ── LID / SCREEN ── */}
+                                    <div
+                                        className="relative w-full"
+                                        style={{
+                                            background: 'linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 40%, #2a2a2c 100%)',
+                                            borderRadius: '14px 14px 0 0',
+                                            padding: '10px 10px 0 10px',
+                                            boxShadow: '0 -2px 0 rgba(255,255,255,0.08) inset, 0 2px 0 rgba(0,0,0,0.5) inset',
+                                        }}
+                                    >
+                                        {/* Apple-logo-style shine spot on lid back (decorative) */}
+                                        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff 0%, transparent 70%)' }} />
+
+                                        {/* Screen bezel */}
+                                        <div
+                                            className="relative w-full overflow-hidden"
+                                            style={{
+                                                background: '#0a0a0a',
+                                                borderRadius: '8px 8px 0 0',
+                                                aspectRatio: '16/10',
+                                                boxShadow: '0 0 0 1.5px rgba(255,255,255,0.04) inset',
+                                            }}
+                                        >
+                                            {/* Top bezel with camera */}
+                                            <div className="absolute top-0 left-0 right-0 flex items-center justify-center z-10" style={{ height: '22px', background: '#0a0a0a' }}>
+                                                <div className="w-2 h-2 rounded-full bg-zinc-700 flex items-center justify-center">
+                                                    <div className="w-1 h-1 rounded-full bg-zinc-600" />
+                                                </div>
+                                            </div>
+
+                                            {/* Screen content */}
+                                            <div className="absolute inset-0 overflow-hidden" style={{ top: '22px', borderRadius: '0 0 8px 8px' }}>
+                                                <AdminImage
+                                                    imageKey={item.imageKey}
+                                                    defaultSrc={item.image}
+                                                    className="w-full h-full"
+                                                    style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
+                                                    alt={item.title}
+                                                />
+                                            </div>
+
+                                            {/* Screen glare */}
+                                            <div
+                                                className="absolute inset-0 pointer-events-none"
+                                                style={{
+                                                    background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%)',
+                                                    borderRadius: '0 0 8px 8px',
+                                                }}
+                                            />
                                         </div>
-                                        <div className="w-24 h-1.5 rounded-full bg-white/5" />
-                                        <div className="w-8" />
                                     </div>
-                                    {/* Screenshot */}
-                                    <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                                        <AdminImage
-                                            imageKey={item.imageKey}
-                                            defaultSrc={item.image}
-                                            className="w-full h-full"
-                                            style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
-                                            alt={item.title}
-                                        />
+
+                                    {/* ── HINGE ── */}
+                                    <div
+                                        className="w-full"
+                                        style={{
+                                            height: '5px',
+                                            background: 'linear-gradient(180deg, #111 0%, #2a2a2c 50%, #111 100%)',
+                                            boxShadow: '0 1px 3px rgba(0,0,0,0.9)',
+                                        }}
+                                    />
+
+                                    {/* ── BASE / KEYBOARD ── */}
+                                    <div
+                                        className="relative w-full"
+                                        style={{
+                                            background: 'linear-gradient(180deg, #2e2e30 0%, #1c1c1e 60%, #161618 100%)',
+                                            borderRadius: '0 0 10px 10px',
+                                            padding: '10px 12px 6px',
+                                            boxShadow: '0 8px 32px rgba(0,0,0,0.9), 0 2px 0 rgba(255,255,255,0.05) inset',
+                                        }}
+                                    >
+                                        {/* Keyboard rows */}
+                                        {[
+                                            { keys: 13, height: 5 },
+                                            { keys: 12, height: 5 },
+                                            { keys: 11, height: 5 },
+                                            { keys: 10, height: 5 },
+                                        ].map((row, ri) => (
+                                            <div key={ri} className="flex gap-0.5 mb-0.5 justify-center">
+                                                {Array.from({ length: row.keys }).map((_, ki) => (
+                                                    <div
+                                                        key={ki}
+                                                        className="flex-1 rounded-sm"
+                                                        style={{
+                                                            height: `${row.height}px`,
+                                                            background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)',
+                                                            boxShadow: '0 1px 0 rgba(0,0,0,0.5), 0 -0.5px 0 rgba(255,255,255,0.06) inset',
+                                                            maxWidth: '26px',
+                                                        }}
+                                                    />
+                                                ))}
+                                            </div>
+                                        ))}
+
+                                        {/* Space bar row */}
+                                        <div className="flex gap-0.5 mt-0.5 justify-center items-center">
+                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
+                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
+                                            <div className="rounded-sm" style={{ height: '5px', width: '120px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
+                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
+                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
+                                        </div>
+
+                                        {/* Trackpad */}
+                                        <div className="flex justify-center mt-2">
+                                            <div
+                                                className="rounded-md"
+                                                style={{
+                                                    width: '80px',
+                                                    height: '52px',
+                                                    background: 'linear-gradient(180deg, #2a2a2c 0%, #242426 100%)',
+                                                    boxShadow: '0 0 0 1px rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.6) inset',
+                                                }}
+                                            />
+                                        </div>
                                     </div>
+
+                                    {/* ── DESK SHADOW ── */}
+                                    <div
+                                        className="w-full mt-1"
+                                        style={{
+                                            height: '6px',
+                                            background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%)',
+                                            filter: 'blur(4px)',
+                                        }}
+                                    />
                                 </div>
-                                {/* Base / stand */}
-                                <div className="w-full h-3 rounded-b-sm" style={{ background: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)' }} />
-                                <div className="w-1/3 h-2 rounded-b-lg" style={{ background: 'linear-gradient(180deg, #1a1a1a 0%, #111 100%)' }} />
-                                <div className="w-1/2 h-1.5 rounded-b-xl" style={{ background: '#0d0d0d', boxShadow: '0 4px 20px rgba(0,0,0,0.8)' }} />
                             </div>
 
                             {/* Text */}
