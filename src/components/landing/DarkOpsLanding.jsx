@@ -5,6 +5,7 @@ import AdminImage from '@/components/landing/AdminImage';
 import HeroImagePicker from '@/components/landing/HeroImagePicker';
 import PriceTargetText from '@/components/landing/PriceTargetText';
 import ArsenalShowcase from '@/components/landing/ArsenalShowcase';
+import ProblemsShowcase from '@/components/landing/ProblemsShowcase';
 
 export default function DarkOpsLanding({ navigate, openView }) {
     const [time, setTime] = useState('');
@@ -153,63 +154,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== THE PROBLEM ======== */}
-            <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 100%)' }}>
-                <div className="max-w-[100rem]">
-                    <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
-                        EMOTIONS BEAT INTELLIGENCE
-                    </p>
-                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <PriceTargetText>{`The math is easy.\nEmotional mastery isn't.`}</PriceTargetText>
-                    </h2>
-                    <div className="h-px w-full bg-white/10 mb-8" />
-                    <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans mb-16">
-                        The pros don't have secret formulas. They have systems, discipline, and data. Here's what's actually holding you back.
-                    </p>
-
-                    {/* Problem image cards */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {[
-                            {
-                                imageKey: 'problem_1',
-                                title: '⬇ Revenge Trading',
-                                desc: 'You take a loss and immediately double down to get it back. The market doesn\'t care about your feelings — and neither does your account balance.',
-                            },
-                            {
-                                imageKey: 'problem_2',
-                                title: 'Overtrading',
-                                desc: 'You exit winners too early and hold losers too long. You chase entries. You break your own rules. Discipline isn\'t sexy — but it\'s the only thing that compounds.',
-                            },
-                            {
-                                imageKey: 'problem_3',
-                                title: 'Capitulation',
-                                desc: 'One bad week and you abandon your strategy. Fear turns a manageable drawdown into a blown account. The data would have told you to hold — if you\'d been tracking it.',
-                            },
-                            {
-                                imageKey: 'problem_4',
-                                title: 'Edge Blindness',
-                                desc: 'You don\'t know which tickers actually print for you. Without per-symbol analytics, you keep feeding the losers and starving the winners.',
-                            },
-                        ].map((card, i) => (
-                            <div key={i} className="group relative overflow-hidden rounded-2xl border border-white/10 hover:border-white/30 transition-all bg-white/[0.02]">
-                                <div className="relative h-80 overflow-hidden">
-                                    <AdminImage
-                                        imageKey={card.imageKey}
-    
-                                        className="w-full h-full"
-                                        style={{ backgroundSize: 'cover', backgroundPosition: 'center', transform: i % 2 === 1 ? 'scaleX(-1)' : 'none' }}
-                                        alt={card.title}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent pointer-events-none" />
-                                </div>
-                                <div className="p-8">
-                                    <h3 className="text-xl font-black mb-3 uppercase tracking-tight text-red-400">{card.title.replace('⬇ ', '')}</h3>
-                                    <p className="text-sm text-white leading-relaxed font-sans">{card.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <ProblemsShowcase />
 
             {/* ======== BUFFETT QUOTE ======== */}
             <section className="py-40 px-6 lg:px-20" style={{ background: '#000' }}>
