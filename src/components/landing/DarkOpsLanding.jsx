@@ -157,7 +157,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <ProblemsShowcase />
 
             {/* ======== BUFFETT QUOTE ======== */}
-            <section className="py-40 px-6 lg:px-20" style={{ background: '#000' }}>
+            <section className="py-12 md:py-40 px-6 lg:px-20" style={{ background: '#000' }}>
                 <div className="max-w-6xl mx-auto">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         {/* Image */}
