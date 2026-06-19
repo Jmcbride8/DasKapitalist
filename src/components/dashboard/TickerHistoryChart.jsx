@@ -2,11 +2,14 @@ import React, { useState, useMemo } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import ProfitChart from '@/components/trades/ProfitChart';
+import { useTheme } from '@/lib/ThemeContext';
 
 export default function TickerHistoryChart({ trades, onTickerSelect }) {
     const [minImpact, setMinImpact] = useState(1000);
     const [inputDisplay, setInputDisplay] = useState('1,000');
     const [selectedTicker, setSelectedTicker] = useState(null);
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
 
     const filteredTrades = trades.filter(trade => {
         const profit = trade.profit || 0;
@@ -52,7 +55,7 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
         { value: Math.abs(totalRealized) },
         { value: Math.abs(totalUnrealized) }
     ];
-    const donutColors = ['#d1d5db', totalUnrealized >= 0 ? '#10b981' : '#ef4444'];
+    const donutColors = [isDark ? '#334155' : '#d1d5db', totalUnrealized >= 0 ? '#10b981' : '#ef4444'];
     const pctColor = pct >= 0 ? 'text-emerald-600' : 'text-red-500';
 
     return (
