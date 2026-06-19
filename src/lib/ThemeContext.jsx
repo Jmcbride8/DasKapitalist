@@ -5,9 +5,9 @@ const ThemeContext = createContext();
 export function ThemeProvider({ children }) {
     const [themePreference, setThemePreference] = useState(() => {
         try {
-            return localStorage.getItem('dk-theme-preference') || 'light';
+            return localStorage.getItem('dk-theme-preference') || 'system';
         } catch {
-            return 'light';
+            return 'system';
         }
     });
 
