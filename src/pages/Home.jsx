@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/lib/AuthContext';
+import { useTheme } from '@/lib/ThemeContext';
 import { RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Treemap, ResponsiveContainer, Tooltip } from 'recharts';
@@ -18,6 +19,8 @@ const fmtPct = (v) => {
 
 export default function Home() {
     const { user } = useAuth();
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
     const [priceData, setPriceData] = useState({}); // { ticker: { change_pct, price } }
     const [loadingPrices, setLoadingPrices] = useState(false);
     const [lastUpdated, setLastUpdated] = useState(null);
@@ -78,7 +81,9 @@ export default function Home() {
 
     // Color based on change_pct
     const getColor = (changePct) => {
-        if (changePct === null || changePct === undefined) return { bg: '#e2e8f0', text: '#64748b' };
+        if (changePct === null || changePct === undefined) return isDark
+            ? { bg: '#1e293b', text: '#94a3b8' }
+            : { bg: '#e2e8f0', text: '#64748b' };
         if (changePct >= 3) return { bg: '#065f46', text: '#fff' };
         if (changePct >= 1.5) return { bg: '#059669', text: '#fff' };
         if (changePct >= 0.5) return { bg: '#34d399', text: '#064e3b' };
@@ -173,7 +178,7 @@ export default function Home() {
                                 if (width < 10 || height < 10) return null;
                                 return (
                                     <g>
-                                        <rect x={x} y={y} width={width} height={height} fill={bg} stroke="#fff" strokeWidth={2} rx={6} />
+                                        <rect x={x} y={y} width={width} height={height} fill={bg} stroke={isDark ? '#0d0f0e' : '#fff'} strokeWidth={2} rx={6} />
                                         {width > 50 && height > 40 && (
                                             <>
                                                 <text x={x + width / 2} y={y + height / 2 - (height > 60 ? 14 : 6)} textAnchor="middle" fill={text} fontSize={Math.min(16, width / 5)} fontWeight="bold">
