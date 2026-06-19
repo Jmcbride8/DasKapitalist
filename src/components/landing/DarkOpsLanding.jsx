@@ -481,10 +481,10 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </div>
                     <blockquote>
                         <p className="text-4xl md:text-5xl font-black uppercase leading-[1.05] tracking-tight text-white mb-8">
-                            "We have nothing to <span style={{ color: '#ef4444' }}>fear</span> but fear itself."
+                            "You've got to know when to <span style={{ color: '#10b981' }}>hold 'em</span>, Know when to <span style={{ color: '#ef4444' }}>fold 'em</span>, Know when to walk away,"
                         </p>
                         <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono text-white/50">
-                            — Franklin D. Roosevelt
+                            — Kenny Rogers, The Gambler
                         </cite>
                     </blockquote>
                     <div className="mt-8 flex justify-center">
