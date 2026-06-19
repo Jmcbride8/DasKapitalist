@@ -132,7 +132,30 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
             </section>
 
-            {/* ======== POGO QUOTE (moved here) ======== */}
+            {/* ======== ARSENAL ======== */}
+            <ArsenalShowcase />
+
+            {/* ======== KENNY ROGERS QUOTE ======== */}
+            <section className="py-24 px-6 lg:px-20" style={{ background: '#000000' }}>
+                <div className="max-w-4xl mx-auto text-center">
+                    <div className="mb-8 flex justify-center">
+                        <div className="h-px w-16 bg-white/20" />
+                    </div>
+                    <blockquote>
+                        <p className="text-4xl md:text-5xl font-black uppercase leading-[1.05] tracking-tight text-white mb-8">
+                            "You've got to know when to <span style={{ color: '#10b981' }}>hold 'em</span>, Know when to <span style={{ color: '#ef4444' }}>fold 'em</span>, Know when to walk away,"
+                        </p>
+                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono text-white/50">
+                            — Kenny Rogers, The Gambler
+                        </cite>
+                    </blockquote>
+                    <div className="mt-8 flex justify-center">
+                        <div className="h-px w-16 bg-white/20" />
+                    </div>
+                </div>
+            </section>
+
+            {/* ======== POGO QUOTE ======== */}
             <section className="py-24 px-6 lg:px-20" style={{ background: '#000' }}>
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="mb-8 flex justify-center">
@@ -337,7 +360,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== HOW IT WORKS ======== */}
-            <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
+            <section id="darkops-arsenal" className="py-32 px-6 lg:px-20 scroll-mt-0" style={{ background: '#0a0a0a' }}>
                 <div className="max-w-4xl ml-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         THE PROCESS
@@ -370,29 +393,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ======== ARSENAL ======== */}
-            <ArsenalShowcase />
-
-            {/* ======== FDR QUOTE (moved here) ======== */}
-            <section className="py-24 px-6 lg:px-20" style={{ background: '#000000' }}>
-                <div className="max-w-4xl mx-auto text-center">
-                    <div className="mb-8 flex justify-center">
-                        <div className="h-px w-16 bg-white/20" />
-                    </div>
-                    <blockquote>
-                        <p className="text-4xl md:text-5xl font-black uppercase leading-[1.05] tracking-tight text-white mb-8">
-                            "You've got to know when to <span style={{ color: '#10b981' }}>hold 'em</span>, Know when to <span style={{ color: '#ef4444' }}>fold 'em</span>, Know when to walk away,"
-                        </p>
-                        <cite className="text-xs font-bold tracking-[0.4em] uppercase not-italic font-mono text-white/50">
-                            — Kenny Rogers, The Gambler
-                        </cite>
-                    </blockquote>
-                    <div className="mt-8 flex justify-center">
-                        <div className="h-px w-16 bg-white/20" />
                     </div>
                 </div>
             </section>
