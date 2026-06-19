@@ -597,7 +597,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     <span className="text-6xl font-black text-white">$100</span>
                                     <span className="font-mono text-sm ml-2" style={{ color: 'rgba(16,185,129,0.6)' }}>/mo</span>
                                 </div>
-                                <p className="text-white font-sans text-sm mb-6">Your edge, amplified. Pattern recognition. Unfair advantage.</p>
+                                <p className="text-white font-sans text-sm mb-6">Your guide on the path to mastery. Insights, patterns, and hard truths.</p>
                                 <button
                                     onClick={() => navigate('/Trades')}
                                     className="w-full py-3.5 font-black text-sm tracking-wider uppercase transition-all rounded-md text-black"
