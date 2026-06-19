@@ -1,8 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { ComposedChart, Bar, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { useTheme } from '@/lib/ThemeContext';
 
 export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = 'weekly' }) {
     const [selectedWeek, setSelectedWeek] = useState(null);
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
+    const collateralFill = isDark ? '#1e293b' : '#f1f5f9';
+    const collateralStroke = isDark ? '#334155' : '#e2e8f0';
     const chartData = useMemo(() => {
         if (!trades || trades.length === 0) return [];
 
@@ -136,8 +141,8 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
                         yAxisId="collateral"
                         type="monotone"
                         dataKey="collateral"
-                        fill="#f1f5f9"
-                        stroke="#e2e8f0"
+                        fill={collateralFill}
+                        stroke={collateralStroke}
                         strokeWidth={1}
                         dot={false}
                         activeDot={false}
