@@ -343,7 +343,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         THE PROCESS
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6 text-right">
-                        <PriceTargetText>{`Three steps.\nNo fluff.`}</PriceTargetText>
+                        <PriceTargetText>{`Your ritual to\nstay rational.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
@@ -364,7 +364,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                         <p className="text-sm text-white leading-relaxed font-sans">{item.desc}</p>
                                     ) : (
                                         <p className="text-sm text-white leading-relaxed font-sans">
-                                            See which tickers print and which <span style={{ color: '#ef4444' }}>bleed</span>. Double down on winners. <span style={{ color: '#ef4444' }}>Cut losers</span>. Build a track record that proves you know what you're doing.
+                                            See which tickers <span style={{ color: '#10b981' }}>print</span> and which <span style={{ color: '#ef4444' }}>bleed</span>. Double down on <span style={{ color: '#10b981' }}>winners</span>. <span style={{ color: '#ef4444' }}>Cut losers</span>. Build a track record that proves you know what you're doing.
                                         </p>
                                     )}
                                 </div>
