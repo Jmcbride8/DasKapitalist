@@ -60,7 +60,7 @@ export default function Layout({ children, currentPageName }) {
         }
     ];
 
-    const activeCls = 'bg-black text-white dark:bg-white/8 dark:text-white';
+    const activeCls = 'bg-black/8 text-black dark:bg-white/8 dark:text-white';
     const inactiveCls = 'text-black/40 hover:text-black hover:bg-black/5 dark:text-white/30 dark:hover:text-white/70 dark:hover:bg-white/5';
     const subInactiveCls = 'text-black/40 hover:text-black hover:bg-black/5 dark:text-white/30 dark:hover:text-white/70 dark:hover:bg-white/5';
 
@@ -110,8 +110,9 @@ export default function Layout({ children, currentPageName }) {
             <Link
                 to={createPageUrl(item.path)}
                 onClick={onClick}
-                className={`flex items-center gap-3 px-3 py-2.5 transition-all font-black text-xs tracking-[0.15em] uppercase font-mono ${isActive ? activeCls : inactiveCls}`}
+                className={`relative flex items-center gap-3 px-3 py-2.5 transition-all font-black text-xs tracking-[0.15em] uppercase font-mono ${isActive ? activeCls : inactiveCls}`}
             >
+                {isActive && <span className="absolute left-0 inset-y-0 w-0.5 rounded-full bg-[#10b981]" />}
                 <Icon className="w-4 h-4 flex-shrink-0" />
                 {item.name}
             </Link>
