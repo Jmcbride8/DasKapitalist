@@ -454,10 +454,10 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 <div className="p-8">
                                     <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">{item.title}</h3>
                                     <p className="text-sm text-white leading-relaxed font-sans mb-6">{item.desc}</p>
-                                    <div className="flex gap-4 pt-4 border-t border-white/10">
+                                    <div className="flex gap-4 pt-4 border-t border-white/10 flex-nowrap overflow-hidden">
                                         {item.stats.map((s) => (
-                                            <div key={s.label}>
-                                                <div className="flex items-center gap-1 text-lg font-black text-white">
+                                            <div key={s.label} className="min-w-0 flex-shrink-0">
+                                                <div className="flex items-center gap-1 text-sm font-black text-white whitespace-nowrap">
                                                     {s.value}
                                                     {s.up === true && <TrendingUp className="w-4 h-4 text-emerald-400" />}
                                                     {s.up === false && <TrendingDown className="w-4 h-4 text-red-400" />}
