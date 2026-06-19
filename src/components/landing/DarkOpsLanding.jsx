@@ -458,7 +458,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         {/* Solo */}
-                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 0 0 1px rgba(255,255,255,0.04), 0 8px 40px rgba(0,0,0,0.6)' }}>
+                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(255,255,255,0.12)' }}>
                             {/* Background image */}
                             <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-125" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e03c45339_Solo3.png)' }} />
                             {/* Dark gradient overlay — heavier at bottom for text legibility */}
@@ -482,7 +482,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         </div>
 
                         {/* AI Enabled */}
-                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(16,185,129,0.25)', boxShadow: '0 0 0 1px rgba(16,185,129,0.06), 0 8px 40px rgba(0,0,0,0.6)' }}>
+                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(16,185,129,0.25)' }}>
                             {/* Background image */}
                             <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-125" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/51af6d8d3_Sage2.png)' }} />
                             {/* Dark gradient overlay with green tint at bottom */}
