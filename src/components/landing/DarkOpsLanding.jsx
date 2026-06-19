@@ -20,7 +20,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
     }, []);
 
     return (
-        <div className="text-white min-h-screen font-mono tracking-tight" style={{ backgroundColor: '#0a0f14' }}>
+        <div className="text-white min-h-screen font-mono tracking-tight" style={{ backgroundColor: '#000000' }}>
             {/* ======== HERO ======== */}
             <section className="relative min-h-screen flex flex-col justify-end items-start px-6 lg:px-20 overflow-hidden pb-28">
                 {/* Background image */}
@@ -30,7 +30,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 />
                 <HeroImagePicker onSelect={setHeroSrc} />
                 {/* Dark overlay — subtle fade */}
-                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(5,12,20,0.4) 50%, rgba(10,15,20,1) 85%)' }} />
+                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(5,12,20,0.4) 50%, rgba(0,0,0,1) 85%)' }} />
 
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
@@ -149,7 +149,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== THE PROBLEM ======== */}
-            <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #0a0f14 0%, #0d131a 100%)' }}>
+            <section className="relative py-32 px-6 lg:px-20" style={{ background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 100%)' }}>
                 <div className="max-w-[100rem]">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
                         EMOTIONS BEAT INTELLIGENCE
@@ -199,7 +199,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                         style={{ backgroundSize: 'cover', backgroundPosition: 'center', transform: i % 2 === 1 ? 'scaleX(-1)' : 'none' }}
                                         alt={card.title}
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-transparent to-transparent pointer-events-none" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent pointer-events-none" />
                                 </div>
                                 <div className="p-8">
                                     <h3 className="text-xl font-black mb-3 uppercase tracking-tight text-red-400">{card.title.replace('⬇ ', '')}</h3>
@@ -251,7 +251,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
 
             {/* ======== KNOW YOUR LANE ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#000000' }}>
                 <div className="max-w-6xl mx-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
                         KNOW THYSELF
@@ -275,7 +275,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Investing — long-term wealth"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
                                 <div className="absolute bottom-6 left-6 pointer-events-none">
                                     <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/30 font-mono">Phase Two</span>
                                 </div>
@@ -312,7 +312,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     alt="Trading — the casino floor"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/80 via-[#0a0f14]/20 to-transparent pointer-events-none" />
                             </div>
                             <div className="p-8 flex-1 flex flex-col">
 
@@ -337,7 +337,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== HOW IT WORKS ======== */}
-            <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
+            <section id="darkops-arsenal" className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
                 <div className="max-w-4xl ml-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         THE PROCESS
@@ -375,7 +375,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== ARSENAL ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#000000' }}>
                 <div className="">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono">
                         THE TOOLS
@@ -448,7 +448,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                                         alt={item.title}
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/60 via-transparent to-transparent pointer-events-none" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/60 via-transparent to-transparent pointer-events-none" />
                                     <div className="absolute top-4 left-4 text-5xl font-black text-white/10 leading-none">{item.num}</div>
                                 </div>
                                 <div className="p-8">
@@ -474,7 +474,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== FDR QUOTE (moved here) ======== */}
-            <section className="py-24 px-6 lg:px-20" style={{ background: '#0a0f14' }}>
+            <section className="py-24 px-6 lg:px-20" style={{ background: '#000000' }}>
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="mb-8 flex justify-center">
                         <div className="h-px w-16 bg-white/20" />
@@ -542,7 +542,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== PRICING ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
                 <div className="max-w-5xl mx-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase mb-8 font-mono text-center" style={{ color: '#10b981' }}>
                         PRICING
@@ -614,7 +614,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== FAQ ======== */}
-            <section className="py-32 px-6 lg:px-20" style={{ background: '#0d131a' }}>
+            <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
                 <div className="max-w-3xl ml-auto">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-8 font-mono text-right">
                         QUESTIONS & ANSWERS
@@ -643,7 +643,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             </section>
 
             {/* ======== FOOTER ======== */}
-            <footer className="py-12 px-6 border-t border-white/10" style={{ background: '#0a0f14' }}>
+            <footer className="py-12 px-6 border-t border-white/10" style={{ background: '#000000' }}>
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                     <span className="text-xs font-black text-white/20 uppercase tracking-wider">DasKapitalist</span>
                     <span className="text-xs font-bold text-white/10 uppercase tracking-wider">Built for traders who refuse to lose.</span>
