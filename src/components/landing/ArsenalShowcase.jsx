@@ -148,19 +148,43 @@ export default function ArsenalShowcase() {
                             transition={TRANSITION}
                             className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center"
                         >
-                            {/* Image */}
-                            <div
-                                className="relative rounded-2xl overflow-hidden border border-white/10"
-                                style={{ height: '340px' }}
-                            >
-                                <AdminImage
-                                    imageKey={item.imageKey}
-                                    defaultSrc={item.image}
-                                    className="w-full h-full"
-                                    style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
-                                    alt={item.title}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                            {/* Laptop mockup */}
+                            <div className="relative flex flex-col items-center">
+                                {/* Screen */}
+                                <div
+                                    className="relative w-full rounded-t-xl overflow-hidden border-4 border-b-0"
+                                    style={{
+                                        borderColor: '#2a2a2a',
+                                        borderRadius: '12px 12px 0 0',
+                                        background: '#111',
+                                        boxShadow: '0 0 0 1px rgba(255,255,255,0.06)',
+                                    }}
+                                >
+                                    {/* Notch bar */}
+                                    <div className="flex items-center justify-between px-3 py-1.5" style={{ background: '#1a1a1a' }}>
+                                        <div className="flex gap-1.5">
+                                            <div className="w-2 h-2 rounded-full bg-red-500/70" />
+                                            <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
+                                            <div className="w-2 h-2 rounded-full bg-green-500/70" />
+                                        </div>
+                                        <div className="w-24 h-1.5 rounded-full bg-white/5" />
+                                        <div className="w-8" />
+                                    </div>
+                                    {/* Screenshot */}
+                                    <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                                        <AdminImage
+                                            imageKey={item.imageKey}
+                                            defaultSrc={item.image}
+                                            className="w-full h-full"
+                                            style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
+                                            alt={item.title}
+                                        />
+                                    </div>
+                                </div>
+                                {/* Base / stand */}
+                                <div className="w-full h-3 rounded-b-sm" style={{ background: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)' }} />
+                                <div className="w-1/3 h-2 rounded-b-lg" style={{ background: 'linear-gradient(180deg, #1a1a1a 0%, #111 100%)' }} />
+                                <div className="w-1/2 h-1.5 rounded-b-xl" style={{ background: '#0d0d0d', boxShadow: '0 4px 20px rgba(0,0,0,0.8)' }} />
                             </div>
 
                             {/* Text */}
