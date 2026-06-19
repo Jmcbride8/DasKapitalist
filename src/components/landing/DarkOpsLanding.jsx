@@ -284,9 +284,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Investor</h3>
                                 <p className="text-lg font-black text-white/25 uppercase tracking-tight mb-5 font-mono">Time is your edge. Patience is your weapon.</p>
-                                <p className="text-sm text-white leading-relaxed font-sans mb-6">
-                                    You buy quality. You wait. You compound. Decades do the heavy lifting. The casino works in your favor — if you never leave the table.
-                                </p>
                                 <div className="mt-auto flex flex-wrap gap-2">
                                     {['Compound Growth', 'Buy & Hold', 'Low Touch', 'Index Tracking'].map((tag) => (
                                         <span key={tag} className="text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border border-white/5 text-white/25">
@@ -318,9 +315,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">The Trader</h3>
                                 <p className="text-lg font-black uppercase tracking-tight mb-5 font-mono" style={{ color: '#10b981' }}>Momentum is your edge. Discipline is your weapon.</p>
-                                <p className="text-sm text-white leading-relaxed font-sans mb-6">
-                                    You enter. You exit. You repeat. The casino is your arena — and the house only wins when you tilt. Know your numbers. Build your systems. <span className="text-white/70 font-semibold">Master your mind.</span>
-                                </p>
                                 <div className="mt-auto flex flex-wrap gap-2">
                                     {['Win Rate Tracking', 'Risk Management', 'Emotional Mastery', 'Edge by Ticker'].map((tag) => (
                                         <span key={tag} className="text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border text-white/40" style={{ borderColor: 'rgba(16,185,129,0.2)' }}>
