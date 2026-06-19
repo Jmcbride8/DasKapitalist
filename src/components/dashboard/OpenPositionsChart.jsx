@@ -1,9 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 import { Card, CardContent } from "@/components/ui/card";
+import { useTheme } from '@/lib/ThemeContext';
 
 export default function OpenPositionsChart({ trades, onTickerSelect }) {
     const [selectedTicker, setSelectedTicker] = React.useState(null);
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
+    const openFill = isDark ? '#475569' : '#d1d5db';
 
     const handleBarClick = (data) => {
         if (selectedTicker === data.ticker) {
@@ -110,7 +114,7 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
                         />
                         <Tooltip content={<CustomTooltip />} />
                         <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" />
-                        <Bar dataKey="open" stackId="a" fill="#d1d5db" name="Open" onClick={(e) => handleBarClick(e)} />
+                        <Bar dataKey="open" stackId="a" fill={openFill} name="Open" onClick={(e) => handleBarClick(e)} />
                         <Bar dataKey="unrealized" stackId="a" name="Unrealized" label={renderUnrealizedLabel} onClick={(e) => handleBarClick(e)}>
                             {chartData.map((entry, index) => {
                                 const isSelected = selectedTicker === entry.ticker;
