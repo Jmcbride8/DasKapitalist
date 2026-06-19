@@ -466,7 +466,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             {/* ======== FINAL CTA — Wall Street ======== */}
             <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
                 <img
-                    src="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/df23a05e4_generated_image.png"
+                    src="https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/57544f7d6_generated_image.png"
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover z-0"
                     style={{ objectPosition: 'center 30%' }}
