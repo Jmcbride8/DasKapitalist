@@ -562,9 +562,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             {/* Content */}
                             <div className="relative z-10 flex flex-col justify-end h-full p-8" style={{ minHeight: '560px' }}>
                                 <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/50 font-mono mb-2">TIER 01</p>
-                                <h3 className="text-5xl font-black uppercase text-white tracking-tight mb-1">Solo</h3>
+                                <h3 className="text-6xl font-black uppercase text-white tracking-tight mb-1">Solo</h3>
                                 <div className="mb-5">
-                                    <span className="text-6xl font-black text-white">$50</span>
+                                    <span className="text-4xl font-black text-white">$50</span>
                                     <span className="text-white/40 font-mono text-sm ml-2">/mo</span>
                                 </div>
                                 <p className="text-white font-sans text-sm mb-6 max-w-xs">Track every trade. Trust the data. Build your edge alone.</p>
@@ -592,9 +592,9 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             {/* Content */}
                             <div className="relative z-10 flex flex-col justify-end h-full p-8" style={{ minHeight: '560px' }}>
                                 <p className="text-xs font-bold tracking-[0.3em] uppercase font-mono mb-2" style={{ color: 'rgba(16,185,129,0.7)' }}>TIER 02</p>
-                                <h3 className="text-5xl font-black uppercase text-white tracking-tight mb-1">AI Oracle</h3>
+                                <h3 className="text-6xl font-black uppercase text-white tracking-tight mb-1">AI Oracle</h3>
                                 <div className="mb-5">
-                                    <span className="text-6xl font-black text-white">$100</span>
+                                    <span className="text-4xl font-black text-white">$100</span>
                                     <span className="font-mono text-sm ml-2" style={{ color: 'rgba(16,185,129,0.6)' }}>/mo</span>
                                 </div>
                                 <p className="text-white font-sans text-sm mb-6">Your guide on the path to mastery. Insights, patterns, and hard truths.</p>
