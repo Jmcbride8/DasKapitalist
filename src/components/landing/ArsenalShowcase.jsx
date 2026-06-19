@@ -148,138 +148,106 @@ export default function ArsenalShowcase() {
                             transition={TRANSITION}
                             className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center"
                         >
-                            {/* Realistic Laptop Mockup */}
-                            <div className="relative w-full" style={{ perspective: '1200px' }}>
-                                <div style={{ transform: 'rotateX(4deg)', transformStyle: 'preserve-3d' }}>
+                            {/* Laptop mockup — inline SVG frame with screenshot inset */}
+                            <div className="relative w-full">
+                                <svg
+                                    viewBox="0 0 800 520"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-full drop-shadow-2xl"
+                                >
+                                    <defs>
+                                        <clipPath id={`screen-clip-${activeIndex}`}>
+                                            <rect x="92" y="22" width="616" height="378" rx="3" ry="3" />
+                                        </clipPath>
+                                        <linearGradient id="lid-grad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stopColor="#4a4a4c" />
+                                            <stop offset="100%" stopColor="#1e1e20" />
+                                        </linearGradient>
+                                        <linearGradient id="base-grad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stopColor="#3a3a3c" />
+                                            <stop offset="100%" stopColor="#1a1a1c" />
+                                        </linearGradient>
+                                        <linearGradient id="hinge-grad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stopColor="#111" />
+                                            <stop offset="50%" stopColor="#2a2a2c" />
+                                            <stop offset="100%" stopColor="#111" />
+                                        </linearGradient>
+                                    </defs>
 
-                                    {/* ── LID / SCREEN ── */}
-                                    <div
-                                        className="relative w-full"
-                                        style={{
-                                            background: 'linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 40%, #2a2a2c 100%)',
-                                            borderRadius: '14px 14px 0 0',
-                                            padding: '10px 10px 0 10px',
-                                            boxShadow: '0 -2px 0 rgba(255,255,255,0.08) inset, 0 2px 0 rgba(0,0,0,0.5) inset',
-                                        }}
+                                    {/* ── LID ── */}
+                                    <rect x="66" y="4" width="668" height="416" rx="12" ry="12" fill="url(#lid-grad)" />
+                                    {/* lid inner shadow top */}
+                                    <rect x="66" y="4" width="668" height="6" rx="6" fill="rgba(255,255,255,0.07)" />
+                                    {/* Camera notch */}
+                                    <rect x="88" y="4" width="624" height="18" rx="0" fill="#1a1a1c" />
+                                    <circle cx="400" cy="13" r="3.5" fill="#2a2a2c" />
+                                    <circle cx="400" cy="13" r="1.5" fill="#333" />
+
+                                    {/* ── SCREEN BEZEL ── */}
+                                    <rect x="88" y="20" width="624" height="384" rx="4" ry="4" fill="#0a0a0a" />
+
+                                    {/* ── SCREENSHOT (clipped inside screen) ── */}
+                                    <foreignObject
+                                        x="92" y="22"
+                                        width="616" height="378"
+                                        clipPath={`url(#screen-clip-${activeIndex})`}
                                     >
-                                        {/* Apple-logo-style shine spot on lid back (decorative) */}
-                                        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff 0%, transparent 70%)' }} />
-
-                                        {/* Screen bezel */}
-                                        <div
-                                            className="relative w-full overflow-hidden"
-                                            style={{
-                                                background: '#0a0a0a',
-                                                borderRadius: '8px 8px 0 0',
-                                                aspectRatio: '16/10',
-                                                boxShadow: '0 0 0 1.5px rgba(255,255,255,0.04) inset',
-                                            }}
-                                        >
-                                            {/* Top bezel with camera */}
-                                            <div className="absolute top-0 left-0 right-0 flex items-center justify-center z-10" style={{ height: '22px', background: '#0a0a0a' }}>
-                                                <div className="w-2 h-2 rounded-full bg-zinc-700 flex items-center justify-center">
-                                                    <div className="w-1 h-1 rounded-full bg-zinc-600" />
-                                                </div>
-                                            </div>
-
-                                            {/* Screen content */}
-                                            <div className="absolute inset-0 overflow-hidden" style={{ top: '22px', borderRadius: '0 0 8px 8px' }}>
-                                                <AdminImage
-                                                    imageKey={item.imageKey}
-                                                    defaultSrc={item.image}
-                                                    className="w-full h-full"
-                                                    style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
-                                                    alt={item.title}
-                                                />
-                                            </div>
-
-                                            {/* Screen glare */}
-                                            <div
-                                                className="absolute inset-0 pointer-events-none"
-                                                style={{
-                                                    background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%)',
-                                                    borderRadius: '0 0 8px 8px',
-                                                }}
+                                        <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                                            <AdminImage
+                                                imageKey={item.imageKey}
+                                                defaultSrc={item.image}
+                                                className="w-full h-full"
+                                                style={{ backgroundSize: 'cover', backgroundPosition: 'center top' }}
+                                                alt={item.title}
                                             />
                                         </div>
-                                    </div>
+                                    </foreignObject>
+
+                                    {/* Screen glare */}
+                                    <rect x="92" y="22" width="616" height="378" rx="2" fill="url(#glare)" opacity="0.04" />
+                                    <defs>
+                                        <linearGradient id="glare" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stopColor="white" stopOpacity="1" />
+                                            <stop offset="50%" stopColor="white" stopOpacity="0" />
+                                        </linearGradient>
+                                    </defs>
 
                                     {/* ── HINGE ── */}
-                                    <div
-                                        className="w-full"
-                                        style={{
-                                            height: '5px',
-                                            background: 'linear-gradient(180deg, #111 0%, #2a2a2c 50%, #111 100%)',
-                                            boxShadow: '0 1px 3px rgba(0,0,0,0.9)',
-                                        }}
-                                    />
+                                    <rect x="66" y="418" width="668" height="7" fill="url(#hinge-grad)" />
 
-                                    {/* ── BASE / KEYBOARD ── */}
-                                    <div
-                                        className="relative w-full"
-                                        style={{
-                                            background: 'linear-gradient(180deg, #2e2e30 0%, #1c1c1e 60%, #161618 100%)',
-                                            borderRadius: '0 0 10px 10px',
-                                            padding: '10px 12px 6px',
-                                            boxShadow: '0 8px 32px rgba(0,0,0,0.9), 0 2px 0 rgba(255,255,255,0.05) inset',
-                                        }}
-                                    >
-                                        {/* Keyboard rows */}
-                                        {[
-                                            { keys: 13, height: 5 },
-                                            { keys: 12, height: 5 },
-                                            { keys: 11, height: 5 },
-                                            { keys: 10, height: 5 },
-                                        ].map((row, ri) => (
-                                            <div key={ri} className="flex gap-0.5 mb-0.5 justify-center">
-                                                {Array.from({ length: row.keys }).map((_, ki) => (
-                                                    <div
-                                                        key={ki}
-                                                        className="flex-1 rounded-sm"
-                                                        style={{
-                                                            height: `${row.height}px`,
-                                                            background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)',
-                                                            boxShadow: '0 1px 0 rgba(0,0,0,0.5), 0 -0.5px 0 rgba(255,255,255,0.06) inset',
-                                                            maxWidth: '26px',
-                                                        }}
-                                                    />
-                                                ))}
-                                            </div>
-                                        ))}
+                                    {/* ── BASE ── */}
+                                    <rect x="56" y="425" width="688" height="58" rx="4" ry="4" fill="url(#base-grad)" />
+                                    {/* base top highlight */}
+                                    <rect x="56" y="425" width="688" height="3" fill="rgba(255,255,255,0.06)" />
 
-                                        {/* Space bar row */}
-                                        <div className="flex gap-0.5 mt-0.5 justify-center items-center">
-                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
-                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
-                                            <div className="rounded-sm" style={{ height: '5px', width: '120px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
-                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
-                                            <div className="flex-1 rounded-sm" style={{ height: '5px', maxWidth: '20px', background: 'linear-gradient(180deg, #3a3a3c 0%, #2c2c2e 100%)', boxShadow: '0 1px 0 rgba(0,0,0,0.5)' }} />
-                                        </div>
-
-                                        {/* Trackpad */}
-                                        <div className="flex justify-center mt-2">
-                                            <div
-                                                className="rounded-md"
-                                                style={{
-                                                    width: '80px',
-                                                    height: '52px',
-                                                    background: 'linear-gradient(180deg, #2a2a2c 0%, #242426 100%)',
-                                                    boxShadow: '0 0 0 1px rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.6) inset',
-                                                }}
+                                    {/* Keyboard area (simplified rows) */}
+                                    {[0,1,2,3].map(row => (
+                                        Array.from({ length: 13 }).map((_, k) => (
+                                            <rect
+                                                key={`${row}-${k}`}
+                                                x={76 + k * 49}
+                                                y={431 + row * 10}
+                                                width="44"
+                                                height="8"
+                                                rx="1.5"
+                                                fill="#2e2e30"
+                                                stroke="rgba(0,0,0,0.4)"
+                                                strokeWidth="0.5"
                                             />
-                                        </div>
-                                    </div>
+                                        ))
+                                    ))}
+                                    {/* Spacebar */}
+                                    <rect x="240" y="471" width="320" height="8" rx="2" fill="#2e2e30" stroke="rgba(0,0,0,0.4)" strokeWidth="0.5" />
 
-                                    {/* ── DESK SHADOW ── */}
-                                    <div
-                                        className="w-full mt-1"
-                                        style={{
-                                            height: '6px',
-                                            background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%)',
-                                            filter: 'blur(4px)',
-                                        }}
-                                    />
-                                </div>
+                                    {/* Trackpad */}
+                                    <rect x="320" y="482" width="160" height="0" rx="3" fill="#252527" />
+
+                                    {/* Bottom foot shadow */}
+                                    <ellipse cx="400" cy="488" rx="200" ry="6" fill="rgba(0,0,0,0.5)" />
+
+                                    {/* Bottom edge rounded foot */}
+                                    <rect x="56" y="479" width="688" height="4" rx="2" fill="#111" />
+                                </svg>
                             </div>
 
                             {/* Text */}
