@@ -31,7 +31,10 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 />
                 <HeroImagePicker onSelect={setHeroSrc} />
                 {/* Dark overlay — subtle fade */}
-                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(5,12,20,0.4) 50%, rgba(0,0,0,1) 85%)' }} />
+                {/* Desktop overlay */}
+                <div className="absolute inset-0 z-10 hidden md:block" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(5,12,20,0.4) 50%, rgba(0,0,0,1) 85%)' }} />
+                {/* Mobile overlay — heavier, starts much earlier */}
+                <div className="absolute inset-0 z-10 md:hidden" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,1) 85%)' }} />
 
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6">
