@@ -130,12 +130,15 @@ export default function ArsenalShowcase() {
                             alt={item.title}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                        <div className="absolute top-5 left-5 text-7xl font-black text-white/10 leading-none select-none">{item.num}</div>
+
                     </div>
 
                     {/* Text side */}
                     <div>
-                        <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight mb-4">{item.title}</h3>
+                        <div className="flex items-baseline gap-4 mb-4">
+                            <span className="text-5xl font-black text-white/10 leading-none select-none">{item.num}</span>
+                            <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">{item.title}</h3>
+                        </div>
                         <p className="text-base text-white/70 leading-relaxed font-sans mb-8">{item.desc}</p>
                         <div className="flex gap-8 pt-6 border-t border-white/10">
                             {item.stats.map((s) => (
