@@ -37,7 +37,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 <div className="absolute inset-0 z-10 md:hidden" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,1) 85%)' }} />
 
                 {/* Content */}
-                <div className="relative z-20 max-w-4xl space-y-6">
+                <div className="relative z-20 max-w-4xl space-y-6 pt-16 md:pt-0">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white font-mono">
                         Beat the odds
                     </p>
