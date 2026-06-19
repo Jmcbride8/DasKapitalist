@@ -49,8 +49,10 @@ const Pill = ({ label, value, sub, color = 'emerald', icon: Icon }) => {
                 <span className="text-xs font-semibold uppercase tracking-wider opacity-70">{label}</span>
                 {Icon && <Icon className="w-4 h-4 opacity-60" />}
             </div>
-            <div className="text-2xl font-bold">{value}</div>
-            {sub && <div className="text-xs opacity-60">{sub}</div>}
+            <div className="flex items-baseline gap-3">
+                <div className="text-2xl font-bold">{value}</div>
+                {sub && <div className="text-xs opacity-60">{sub}</div>}
+            </div>
         </div>
     );
 };
