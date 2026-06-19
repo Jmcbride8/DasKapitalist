@@ -397,54 +397,6 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 </div>
             </section>
 
-            {/* ======== FINAL CTA — Wall Street ======== */}
-            <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
-                {/* Wall Street background */}
-                <img
-                    src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1800&q=80"
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover z-0"
-                    style={{ objectPosition: 'center 30%' }}
-                />
-                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(10,15,20,0.15) 50%, rgba(0,0,0,0.35) 100%)' }} />
-
-                <div className="relative z-20 w-full max-w-7xl mx-auto">
-                    <div className="mx-auto max-w-2xl text-center bg-black/50 backdrop-blur-md rounded-2xl p-10 lg:p-14 border border-white/10">
-                        {/* Mission headline + CTA */}
-                        <div className="flex flex-col justify-between min-h-[400px]">
-                            <div className="space-y-6">
-                                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
-                                    <PriceTargetText>{`Build Your\nEdge`}</PriceTargetText>
-                                </h2>
-                                <p className="text-base md:text-lg text-white max-w-md mx-auto leading-relaxed font-medium font-sans">
-                                    Every trade logged. Every edge tracked. Every dollar accounted for. Stop guessing. Stop gambling. Start knowing. Start winning.
-                                </p>
-                            </div>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button
-                                    onClick={() => { import('@/api/base44Client').then(({ base44 }) => base44.auth.redirectToLogin('/Home')); }}
-                                    className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group rounded-md"
-                                    style={{ backgroundColor: '#10b981', color: '#000' }}
-                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
-                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
-                                >
-                                    Log In
-                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                </button>
-                                <a
-                                    href="/Dashboards?view=time"
-                                    className="inline-flex items-center justify-center gap-3 px-10 py-5 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group rounded-md"
-                                    style={{ borderColor: 'rgba(16,185,129,0.4)', color: '#10b981' }}
-                                >
-                                    Try the Demo
-                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* ======== PRICING ======== */}
             <section className="py-32 px-6 lg:px-20" style={{ background: '#0a0a0a' }}>
                 <div className="max-w-5xl mx-auto">
@@ -458,7 +410,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         {/* Solo */}
-                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 0 0 1px rgba(255,255,255,0.04), 0 8px 40px rgba(0,0,0,0.6)' }}>
+                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(255,255,255,0.12)' }}>
                             {/* Background image */}
                             <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-125" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/e03c45339_Solo3.png)' }} />
                             {/* Dark gradient overlay — heavier at bottom for text legibility */}
@@ -482,7 +434,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         </div>
 
                         {/* AI Enabled */}
-                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(16,185,129,0.25)', boxShadow: '0 0 0 1px rgba(16,185,129,0.06), 0 8px 40px rgba(0,0,0,0.6)' }}>
+                        <div className="relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '560px', border: '1px solid rgba(16,185,129,0.25)' }}>
                             {/* Background image */}
                             <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-125" style={{ backgroundImage: 'url(https://media.base44.com/images/public/694b97feaa431cbfcfc8fd44/51af6d8d3_Sage2.png)' }} />
                             {/* Dark gradient overlay with green tint at bottom */}
@@ -511,6 +463,52 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                 >
                                     Enlist the Oracle
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ======== FINAL CTA — Wall Street ======== */}
+            <section className="relative min-h-screen flex items-center px-6 lg:px-20 overflow-hidden">
+                <img
+                    src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1800&q=80"
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover z-0"
+                    style={{ objectPosition: 'center 30%' }}
+                />
+                <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(10,15,20,0.15) 50%, rgba(0,0,0,0.35) 100%)' }} />
+
+                <div className="relative z-20 w-full max-w-7xl mx-auto">
+                    <div className="mx-auto max-w-2xl text-center bg-black/50 backdrop-blur-md rounded-2xl p-10 lg:p-14 border border-white/10">
+                        <div className="flex flex-col justify-between min-h-[400px]">
+                            <div className="space-y-6">
+                                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
+                                    <PriceTargetText>{`Build Your\nEdge`}</PriceTargetText>
+                                </h2>
+                                <p className="text-base md:text-lg text-white max-w-md mx-auto leading-relaxed font-medium font-sans">
+                                    Every trade logged. Every edge tracked. Every dollar accounted for. Stop guessing. Stop gambling. Start knowing. Start winning.
+                                </p>
+                            </div>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button
+                                    onClick={() => { import('@/api/base44Client').then(({ base44 }) => base44.auth.redirectToLogin('/Home')); }}
+                                    className="inline-flex items-center justify-center gap-3 px-10 py-5 font-black text-sm tracking-wider uppercase transition-all group rounded-md"
+                                    style={{ backgroundColor: '#10b981', color: '#000' }}
+                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
+                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
+                                >
+                                    Log In
+                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                </button>
+                                <a
+                                    href="/Dashboards?view=time"
+                                    className="inline-flex items-center justify-center gap-3 px-10 py-5 border font-black text-sm tracking-wider uppercase hover:bg-white/5 transition-all group rounded-md"
+                                    style={{ borderColor: 'rgba(16,185,129,0.4)', color: '#10b981' }}
+                                >
+                                    Try the Demo
+                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                </a>
                             </div>
                         </div>
                     </div>
