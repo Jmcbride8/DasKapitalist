@@ -84,6 +84,8 @@ export default function TimeComparisonsChart({ trades }) {
     const isDark = theme === 'dark';
     const closedBarFill = isDark ? '#475569' : '#cbd5e1';
     const restBarFill = isDark ? '#334155' : '#e2e8f0';
+    const topTickerBarFill = isDark ? '#94a3b8' : '#64748b';
+    const topTickerLabelFill = isDark ? '#cbd5e1' : '#475569';
 
 
     const closedTrades = useMemo(() => trades.filter(t => t.status === 'Closed' && t.profit != null), [trades]);
@@ -469,14 +471,14 @@ export default function TimeComparisonsChart({ trades }) {
                                     const entry = tickerStackData[index];
                                     if (!entry?.topTicker || value === 0) return null;
                                     return (
-                                        <text x={x + width / 2} y={y - 6} textAnchor="middle" fontSize={9} fontWeight="600" fill="#475569">
+                                        <text x={x + width / 2} y={y - 6} textAnchor="middle" fontSize={9} fontWeight="600" fill={topTickerLabelFill}>
                                             {entry.topTicker}
                                         </text>
                                     );
                                 }}
                             >
                                 {tickerStackData.map((entry, index) => (
-                                    <Cell key={index} fill="#64748b" opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
+                                    <Cell key={index} fill={topTickerBarFill} opacity={selectedPeriod ? (selectedPeriod === entry.date ? 1 : 0.3) : 1} />
                                 ))}
                             </Bar>
                         </BarChart>

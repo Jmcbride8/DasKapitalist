@@ -5,7 +5,7 @@ import { useTheme } from '@/lib/ThemeContext';
 export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) {
     const { theme } = useTheme();
     const isDark = theme === 'dark';
-    const realizedFill = isDark ? '#475569' : '#d1d5db';
+    const realizedFill = isDark ? '#94a3b8' : '#d1d5db';
     const chartData = useMemo(() => {
         const tickerMap = {};
         
