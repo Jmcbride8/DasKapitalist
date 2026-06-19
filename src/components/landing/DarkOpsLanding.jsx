@@ -605,7 +605,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#34d399'}
                                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
                                 >
-                                    Consult the Oracle
+                                    Enlist the Oracle
                                 </button>
                             </div>
                         </div>
