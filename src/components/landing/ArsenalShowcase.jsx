@@ -44,7 +44,7 @@ const items = [
     {
         num: '04',
         title: 'Exposure',
-        desc: "Live treemap of every open position. Size equals collateral at risk. Color by today's price action. One look, total clarity.",
+        desc: "Stacked bar chart of every open position. Each bar shows capital deployed with unrealized gain or loss on top — color-coded green or red. See at a glance where you're overextended and what's working.",
         imageKey: 'weapon_4',
         image: null,
         stats: [
