@@ -123,7 +123,7 @@ export default function ArsenalShowcase() {
             }}
         >
             <div
-                className="sticky top-0 h-screen flex flex-col justify-center px-6 lg:px-20 overflow-hidden"
+                className="sticky top-0 h-screen flex flex-col justify-start pt-16 lg:pt-20 px-6 lg:px-20 overflow-hidden"
                 style={{ background: '#000000' }}
             >
                 {/* Static header */}
