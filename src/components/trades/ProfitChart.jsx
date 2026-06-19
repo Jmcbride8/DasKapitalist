@@ -57,12 +57,12 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
             const total = realized + unrealized;
             
             return (
-                <div className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg shadow-lg p-3">
-                    <p className="font-semibold text-slate-900 mb-2">{label}</p>
+                <div className="bg-white/95 dark:bg-zinc-800/95 backdrop-blur-sm border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3">
+                    <p className="font-semibold text-slate-900 dark:text-slate-100 mb-2">{label}</p>
                     <div className="space-y-1 text-sm">
-                        <p className="text-slate-500">Realized: {formatCurrency(realized)}</p>
+                        <p className="text-slate-500 dark:text-slate-400">Realized: {formatCurrency(realized)}</p>
                         <p className={unrealized >= 0 ? "text-emerald-600" : "text-red-600"}>Unrealized: {formatCurrency(unrealized)}</p>
-                        <p className="font-semibold text-slate-900 pt-1 border-t">Total: {formatCurrency(total)}</p>
+                        <p className="font-semibold text-slate-900 dark:text-slate-100 pt-1 border-t border-slate-200 dark:border-zinc-600">Total: {formatCurrency(total)}</p>
                     </div>
                 </div>
             );

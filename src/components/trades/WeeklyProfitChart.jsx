@@ -63,10 +63,10 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
         if (active && payload && payload.length) {
             const data = payload[0].payload;
             return (
-                <div className="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg shadow-lg p-3">
-                    <p className="font-semibold text-slate-900 mb-2">{formatPeriod(data.period)}</p>
-                    <p className="font-semibold text-slate-900">Net: {formatCurrency(data.net)}</p>
-                    {data.collateral > 0 && <p className="text-slate-500 text-sm">Collateral: {formatCollateral(data.collateral)}</p>}
+                <div className="bg-white/95 dark:bg-zinc-800/95 backdrop-blur-sm border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3">
+                    <p className="font-semibold text-slate-900 dark:text-slate-100 mb-2">{formatPeriod(data.period)}</p>
+                    <p className="font-semibold text-slate-900 dark:text-slate-100">Net: {formatCurrency(data.net)}</p>
+                    {data.collateral > 0 && <p className="text-slate-500 dark:text-slate-400 text-sm">Collateral: {formatCollateral(data.collateral)}</p>}
                 </div>
             );
         }
