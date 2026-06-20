@@ -334,7 +334,7 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* Cumulative P&L Chart */}
             {activeChart === 'cumulative' && (
-                <div className="ml-[-72px] md:ml-[-4rem] overflow-hidden">
+                <div className="ml-[-92px] md:ml-[-4rem] overflow-hidden">
                     <div className="px-4 md:px-8">
                         <div className="w-[120%] md:w-auto">
                         <ResponsiveContainer width="100%" height={280}>
@@ -375,7 +375,7 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* P&L by Top Ticker */}
             {activeChart === 'ticker' && (
-                <div className="ml-[-72px] md:ml-[-4rem] overflow-hidden">
+                <div className="ml-[-92px] md:ml-[-4rem] overflow-hidden">
                     <div className="px-4 md:px-8">
                         <div className="w-[120%] md:w-auto">
                         <ResponsiveContainer width="100%" height={240}>
