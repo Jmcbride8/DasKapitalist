@@ -59,8 +59,8 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
     const pctColor = pct >= 0 ? 'text-emerald-600' : 'text-red-500';
 
     return (
-        <Card className="border-0 shadow-none bg-transparent">
-            <CardContent className="pt-6">
+        <Card className="border-0 shadow-none bg-transparent -mx-4 md:-mx-8">
+            <CardContent className="pt-6 px-4 md:px-8">
                 <div className="relative">
                     {/* Min Impact input */}
                     <div className="mb-4 flex items-center gap-2">
