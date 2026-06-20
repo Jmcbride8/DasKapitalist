@@ -32,7 +32,7 @@ const items = [
     {
         num: '03',
         title: 'Edge',
-        desc: 'Your P&L broken down by ticker. Stop guessing which names make you money. See the data. Cut the losers. Ride the winners.',
+        desc: 'Your P&L broken down by ticker. Stop guessing and start discovering where you really kick ass, or are getting your ass kicked. See the truth. Cut the losers. Let your winners ride.',
         imageKey: 'weapon_3',
         image: null,
         stats: [
