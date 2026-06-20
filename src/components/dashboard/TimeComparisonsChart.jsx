@@ -308,7 +308,7 @@ export default function TimeComparisonsChart({ trades }) {
                 <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">Cumulative P&L</h2>
                 <div className="px-2 md:p-4">
                     <ResponsiveContainer width="100%" height={280}>
-                        <BarChart data={cumulativeData} margin={{ top: 5, right: 0, left: -8, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
+                        <BarChart data={cumulativeData} margin={{ top: 5, right: 0, left: -16, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                             <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
@@ -445,7 +445,7 @@ export default function TimeComparisonsChart({ trades }) {
                 <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">P&L by Top Ticker</h2>
                 <div className="px-2 md:p-4">
                     <ResponsiveContainer width="100%" height={240}>
-                        <BarChart data={tickerStackData} margin={{ top: 10, right: 0, left: -8, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
+                        <BarChart data={tickerStackData} margin={{ top: 10, right: 0, left: -16, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
                             <Tooltip
