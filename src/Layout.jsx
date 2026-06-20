@@ -120,9 +120,9 @@ export default function Layout({ children, currentPageName }) {
     };
 
     return (
-        <div className="flex h-screen bg-white dark:bg-[#111413] flex-col md:flex-row font-mono">
+        <div className="flex h-screen bg-stone-50 dark:bg-[#0d0f0e] flex-col md:flex-row font-mono">
             {/* Desktop Sidebar */}
-            <div className="hidden md:flex md:w-56 bg-stone-50 dark:bg-[#0d0f0e] border-r border-black/10 dark:border-white/5 flex-col">
+            <div className="hidden md:flex md:w-56 bg-white dark:bg-[#111413] border-r border-black/10 dark:border-white/5 flex-col">
                 {/* Logo */}
                 <div className="px-5 py-5 border-b border-black/10 dark:border-white/5">
                     <Link to="/">
@@ -165,7 +165,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Mobile & Main Content Wrapper */}
             <div className="flex-1 flex flex-col overflow-auto">
                 {/* Mobile Header */}
-                <div className="md:hidden bg-stone-50 dark:bg-[#0d0f0e] border-b border-black/10 dark:border-white/5 px-4 py-3 flex items-center justify-between">
+                <div className="md:hidden bg-white dark:bg-[#111413] border-b border-black/10 dark:border-white/5 px-4 py-3 flex items-center justify-between">
                     <Link to="/">
                         <h1 className="text-base font-black uppercase tracking-[0.15em] text-black dark:text-white font-mono">
                             Das<span style={{ color: '#10b981' }}>Kapitalist</span>
@@ -184,7 +184,7 @@ export default function Layout({ children, currentPageName }) {
 
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
-                    <div className="md:hidden bg-stone-50 dark:bg-[#0d0f0e] border-b border-black/10 dark:border-white/5 px-3 py-3 space-y-0.5 max-h-[calc(100vh-52px)] overflow-y-auto">
+                    <div className="md:hidden bg-white dark:bg-[#111413] border-b border-black/10 dark:border-white/5 px-3 py-3 space-y-0.5 max-h-[calc(100vh-52px)] overflow-y-auto">
                         {navItems.map((item) => (
                             <NavItem key={item.name} item={item} onClick={() => setMobileMenuOpen(false)} />
                         ))}
