@@ -297,7 +297,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                             { step: '03', title: 'Evolve', desc: null },
                         ].map((item, i) => (
                             <div key={i} className="flex items-start gap-6 py-8 border-t border-white/10 first:border-t-0">
-                                <span className="text-5xl font-black text-white/10 leading-none">{item.step}</span>
+                                <span className="text-6xl md:text-8xl font-black text-white/10 leading-none">{item.step}</span>
                                 <div>
                                     <h3 className="text-lg font-black text-white uppercase tracking-tight mb-2">{item.title}</h3>
                                     {item.desc ? (
