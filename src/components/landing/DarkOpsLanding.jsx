@@ -304,7 +304,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                         <p className="text-sm text-white leading-relaxed font-sans">{item.desc}</p>
                                     ) : (
                                         <p className="text-sm text-white leading-relaxed font-sans">
-                                            Know what's working. Know what isn't. Press your edge. Cut your losers. Trade from evidence, not emotion.
+                                            Know what's working. Know what isn't. Press your edge. Cut your losers. Trade from <span style={{ color: '#10b981' }}>evidence</span>, not <span style={{ color: '#ef4444' }}>emotion</span>.
                                         </p>
                                     )}
                                 </div>
