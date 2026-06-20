@@ -292,8 +292,8 @@ export default function DarkOpsLanding({ navigate, openView }) {
 
                     <div className="space-y-2">
                         {[
-                            { step: '01', title: 'Log Your Trades', desc: 'Enter ticker, premium, collateral, and expiration. Takes 15 seconds. Bulk imports supported for the spreadsheet crowd.' },
-                            { step: '02', title: 'Reflect', desc: 'Track Record, Streaks, Edge, and Exposure update instantly. No formulas. No manual P&L calculations. Ever.' },
+                            { step: '01', title: 'Log Your Trades', desc: 'The market closes. Your work begins. Log every trade and build your discipline.' },
+                            { step: '02', title: 'Reflect', desc: 'Insight begins with reflection. Review your Track Record, Streaks, Edge, and Exposure. Breathe. Let the data speak.' },
                             { step: '03', title: 'Find Your Edge & Execute', desc: null },
                         ].map((item, i) => (
                             <div key={i} className="flex items-start gap-6 py-8 border-t border-white/10 first:border-t-0">
@@ -304,7 +304,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                                         <p className="text-sm text-white leading-relaxed font-sans">{item.desc}</p>
                                     ) : (
                                         <p className="text-sm text-white leading-relaxed font-sans">
-                                            See which tickers <span style={{ color: '#10b981' }}>print</span> and which <span style={{ color: '#ef4444' }}>bleed</span>. Double down on <span style={{ color: '#10b981' }}>winners</span>. <span style={{ color: '#ef4444' }}>Cut losers</span>. Build a track record that proves you know what you're doing.
+                                            Know what's working. Know what isn't. Press your edge. Cut your losers. Trade from evidence, not emotion.
                                         </p>
                                     )}
                                 </div>
