@@ -294,7 +294,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         {[
                             { step: '01', title: 'Log Your Trades', desc: 'The market closes. Your work begins. Log every trade and build your discipline.' },
                             { step: '02', title: 'Reflect', desc: 'Insight begins with reflection. Review your Track Record, Streaks, Edge, and Exposure. Breathe. Let the data speak.' },
-                            { step: '03', title: 'Find Your Edge & Execute', desc: null },
+                            { step: '03', title: 'Evolve', desc: null },
                         ].map((item, i) => (
                             <div key={i} className="flex items-start gap-6 py-8 border-t border-white/10 first:border-t-0">
                                 <span className="text-5xl font-black text-white/10 leading-none">{item.step}</span>
