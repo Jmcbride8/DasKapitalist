@@ -318,7 +318,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
             <ArsenalShowcase />
 
             {/* ======== FDR QUOTE (moved here) ======== */}
-            <section className="py-24 px-6 lg:px-20" style={{ background: '#000000' }}>
+            <section className="py-24 px-4 md:px-6 lg:px-20" style={{ background: '#000000' }}>
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="mb-8 flex justify-center">
                         <div className="h-px w-16 bg-white/20" />
