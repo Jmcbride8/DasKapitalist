@@ -8,7 +8,9 @@ const items = [
     {
         num: '01',
         title: 'Track Record',
-        desc: '**Performance.** Cumulative P&L chart. Weekly and monthly views. Win rate, profit factor, average trade. Your career as a trader — quantified.',
+        desc: 'Cumulative P&L chart. Weekly and monthly views. Win rate, profit factor, average trade. Your career as a trader — quantified.',
+        highlight: 'Performance',
+        highlightColor: 'emerald',
         imageKey: 'weapon_1',
         image: null,
         stats: [
@@ -20,7 +22,9 @@ const items = [
     {
         num: '02',
         title: 'Streaks',
-        desc: "**Psychology.** Each week is its own game. Momentum. Slumps. Reversals. Know when you're locked in, when to change your game — or fold 'em and walk away.",
+        desc: "Each week is its own game. Momentum. Slumps. Reversals. Know when you're locked in, when to change your game — or fold 'em and walk away.",
+        highlight: 'Psychology',
+        highlightColor: 'emerald',
         imageKey: 'weapon_2',
         image: null,
         stats: [
@@ -32,7 +36,9 @@ const items = [
     {
         num: '03',
         title: 'Edge',
-        desc: '**Discovery.** Your P&L broken down by ticker. Stop guessing and start discovering where you really kick ass, or are getting your ass kicked. See the truth. Cut the losers. Let your winners ride.',
+        desc: 'Your P&L broken down by ticker. Stop guessing and start discovering where you really kick ass, or are getting your ass kicked. See the truth. Cut the losers. Let your winners ride.',
+        highlight: 'Discovery',
+        highlightColor: 'emerald',
         imageKey: 'weapon_3',
         image: null,
         stats: [
@@ -44,7 +50,9 @@ const items = [
     {
         num: '04',
         title: 'Exposure',
-        desc: "**Risk.** Track your overconfidence. See the totality of your risk before you go full tilt. Every open position. Every dollar exposed. Know when you're pushing too hard. Stay sane. Live to trade tomorrow.",
+        desc: "Track your overconfidence. See the totality of your risk before you go full tilt. Every open position. Every dollar exposed. Know when you're pushing too hard. Stay sane. Live to trade tomorrow.",
+        highlight: 'Risk',
+        highlightColor: 'red',
         imageKey: 'weapon_4',
         image: null,
         stats: [
@@ -238,7 +246,10 @@ export default function ArsenalShowcase() {
                                         <span className="text-5xl font-black text-white/10 leading-none select-none">{item.num}</span>
                                         <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight leading-tight">{item.title}</h3>
                                     </div>
-                                    <p className="text-sm text-white/60 leading-relaxed font-sans">{item.desc}</p>
+                                    <p className="text-sm text-white/60 leading-relaxed font-sans">
+                                        <span className={`font-black uppercase tracking-wider ${item.highlightColor === 'emerald' ? 'text-emerald-400' : 'text-red-400'}`}>{item.highlight}</span>
+                                        {' '}{item.desc}
+                                    </p>
                                 </div>
                                 <div className="flex flex-col gap-5 pt-6 border-t border-white/10">
                                     {item.stats.map((s) => (
