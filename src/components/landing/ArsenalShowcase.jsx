@@ -168,34 +168,29 @@ export default function ArsenalShowcase() {
                             transition={TRANSITION}
                             className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center"
                         >
-                            {/* Apple-style MacBook mockup — 2/3 width */}
+                            {/* Screen bezel frame */}
                             <div className="relative flex flex-col items-center w-full lg:w-[55%] shrink-0" style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.9))' }}>
-                                {/* Lid / screen */}
+                                {/* Outer bezel frame */}
                                 <div
                                     className="relative w-full overflow-hidden"
                                     style={{
-                                        borderRadius: '16px 16px 0 0',
-                                        background: 'linear-gradient(160deg, #4a4a4a 0%, #2c2c2c 40%, #1e1e1e 100%)',
-                                        padding: '3px',
-                                        paddingBottom: '0',
-                                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.5)',
+                                        borderRadius: '12px',
+                                        background: 'linear-gradient(145deg, #3a3a3a 0%, #1a1a1a 100%)',
+                                        padding: '10px',
+                                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.6)',
                                     }}
                                 >
                                     {/* Inner bezel */}
                                     <div
                                         className="relative overflow-hidden"
                                         style={{
-                                            borderRadius: '14px 14px 0 0',
+                                            borderRadius: '8px',
                                             background: '#0a0a0a',
-                                            padding: '8px 8px 0',
+                                            padding: '6px',
                                         }}
                                     >
-                                        {/* Camera notch */}
-                                        <div className="flex justify-center mb-1.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
-                                        </div>
                                         {/* Screen content */}
-                                        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', borderRadius: '4px 4px 0 0' }}>
+                                        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', borderRadius: '4px' }}>
                                             <AdminImage
                                                 imageKey={item.imageKey}
                                                 className="w-full h-full"
@@ -210,33 +205,6 @@ export default function ArsenalShowcase() {
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* Hinge line */}
-                                <div
-                                    className="w-full h-[3px]"
-                                    style={{ background: 'linear-gradient(180deg, #111 0%, #222 50%, #111 100%)' }}
-                                />
-
-                                {/* Base / keyboard deck */}
-                                <div
-                                    className="w-full h-5"
-                                    style={{
-                                        background: 'linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 40%, #222 100%)',
-                                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1)',
-                                        borderRadius: '0 0 4px 4px',
-                                    }}
-                                >
-                                    {/* Trackpad hint */}
-                                    <div className="flex justify-center items-center h-full">
-                                        <div className="w-16 h-2.5 rounded-sm" style={{ background: 'rgba(0,0,0,0.25)', border: '1px solid rgba(255,255,255,0.06)' }} />
-                                    </div>
-                                </div>
-
-                                {/* Foot / desk reflection */}
-                                <div
-                                    className="w-4/5 h-[3px] rounded-b-full"
-                                    style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }}
-                                />
                             </div>
 
                             {/* Text column — 1/3 width */}
