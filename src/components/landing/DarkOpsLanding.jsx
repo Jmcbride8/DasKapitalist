@@ -355,7 +355,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         <div className="flex flex-col justify-between min-h-[400px]">
                             <div className="space-y-6">
                                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter text-white">
-                                    <PriceTargetText>{`Build Your\nEdge`}</PriceTargetText>
+                                    <PriceTargetText>{`Lock in.`}</PriceTargetText>
                                 </h2>
                                 <p className="text-base md:text-lg text-white max-w-md mx-auto leading-relaxed font-medium font-sans">
                                     Every trade logged. Stop guessing. Stop gambling. Start knowing. Start winning.
