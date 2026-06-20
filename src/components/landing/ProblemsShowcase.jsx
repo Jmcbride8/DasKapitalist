@@ -137,7 +137,7 @@ export default function ProblemsShowcase() {
                                 {/* Overlaid text at bottom */}
                                 <div className="absolute bottom-0 left-0 right-0 p-5">
                                     <div className="flex items-baseline gap-2 mb-2">
-                                        <span className="text-3xl font-black text-white/10 leading-none select-none">0{activeIndex + 1}</span>
+                                        <span className="text-6xl font-black text-white/10 leading-none select-none">0{activeIndex + 1}</span>
                                         <h3 className="text-2xl font-black uppercase tracking-tight leading-tight" style={{ color: '#ef4444' }}>
                                             {problem.title}
                                         </h3>
@@ -208,7 +208,7 @@ export default function ProblemsShowcase() {
                                 {/* Text */}
                                 <div className="flex flex-col justify-center gap-6 flex-1 min-w-0">
                                     <div className="flex items-baseline gap-3">
-                                        <span className="text-5xl font-black text-white/10 leading-none select-none">0{activeIndex + 1}</span>
+                                        <span className="text-8xl font-black text-white/10 leading-none select-none">0{activeIndex + 1}</span>
                                         <h3 className="text-4xl font-black uppercase tracking-tight leading-tight" style={{ color: '#ef4444' }}>
                                             {problem.title}
                                         </h3>
