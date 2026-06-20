@@ -34,7 +34,7 @@ export default function WeeklyTickerTreemap({ trades, selectedWeek }) {
     if (!selectedWeek || treemapData.length === 0) return null;
 
     return (
-        <div className="space-y-2 pl-4 md:pl-8">
+        <div className="space-y-2 pl-6 md:pl-8">
             <h3 className="text-sm font-semibold text-slate-700">Ticker Breakdown</h3>
             <ResponsiveContainer width="100%" height={200}>
                 <Treemap
