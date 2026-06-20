@@ -105,7 +105,7 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
     return (
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} margin={{ top: 50, right: 0, left: -48, bottom: 60 }}>
+                <BarChart data={chartData} margin={{ top: 50, right: 0, left: -32, bottom: 60 }}>
                     <XAxis 
                         dataKey="ticker" 
                         tick={{ fontSize: 11, fill: axisColor }}
