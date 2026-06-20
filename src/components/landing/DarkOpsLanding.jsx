@@ -203,7 +203,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                         KNOW THE GAME
                     </p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-                        <PriceTargetText>{`Trading. Investing.\nSame casino, different game.`}</PriceTargetText>
+                        <PriceTargetText>{`TRADING. INVESTING.\nSAME MARKET. DIFFERENT GAME.`}</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans mb-16">
