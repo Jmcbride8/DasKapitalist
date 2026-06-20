@@ -8,7 +8,7 @@ const items = [
     {
         num: '01',
         title: 'Track Record',
-        desc: 'Cumulative P&L chart. Weekly and monthly views. Win rate, profit factor, average trade. Your career as a trader — quantified.',
+        desc: '**Performance.** Cumulative P&L chart. Weekly and monthly views. Win rate, profit factor, average trade. Your career as a trader — quantified.',
         imageKey: 'weapon_1',
         image: null,
         stats: [
@@ -20,7 +20,7 @@ const items = [
     {
         num: '02',
         title: 'Streaks',
-        desc: 'Each week is its own game. Momentum. Slumps. Reversals. Know when you\'re locked in, when to change your game — or fold \'em and walk away.',
+        desc: "**Psychology.** Each week is its own game. Momentum. Slumps. Reversals. Know when you're locked in, when to change your game — or fold 'em and walk away.",
         imageKey: 'weapon_2',
         image: null,
         stats: [
@@ -32,7 +32,7 @@ const items = [
     {
         num: '03',
         title: 'Edge',
-        desc: 'Your P&L broken down by ticker. Stop guessing and start discovering where you really kick ass, or are getting your ass kicked. See the truth. Cut the losers. Let your winners ride.',
+        desc: '**Discovery.** Your P&L broken down by ticker. Stop guessing and start discovering where you really kick ass, or are getting your ass kicked. See the truth. Cut the losers. Let your winners ride.',
         imageKey: 'weapon_3',
         image: null,
         stats: [
@@ -44,7 +44,7 @@ const items = [
     {
         num: '04',
         title: 'Exposure',
-        desc: "Track your overconfidence. See the totality of your risk before you go full tilt. Every open position. Every dollar exposed. Know when you're pushing too hard. Stay sane. Live to trade tomorrow.",
+        desc: "**Risk.** Track your overconfidence. See the totality of your risk before you go full tilt. Every open position. Every dollar exposed. Know when you're pushing too hard. Stay sane. Live to trade tomorrow.",
         imageKey: 'weapon_4',
         image: null,
         stats: [
