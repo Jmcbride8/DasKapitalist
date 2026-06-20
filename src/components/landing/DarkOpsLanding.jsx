@@ -51,7 +51,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="h-1 w-2/3 bg-white" />
 
                     <p className="text-base md:text-lg text-white max-w-2xl leading-relaxed font-medium font-sans">
-                        The professional's edge isn't a hot tip—it's emotional mastery and cold, hard data. Discover enterprise-grade analytics to track your trades, master your mindset and discover where you actually win.
+                        The professional's edge isn't a hot tip — it's emotional mastery and cold, hard data. Discover enterprise-grade analytics to track your trades, master your mindset and discover where you actually win.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -287,7 +287,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
-                        The market triggers greed, fear, and overconfidence—but rewards discipline. Discipline begins with reflection. Log your trades. Build the habit. Breathe. Speed isn't your edge. Objectivity is.
+                        The market triggers greed, fear, and overconfidence — but rewards discipline. Discipline begins with reflection. Log your trades. Build the habit. Breathe. Speed isn't your edge. Objectivity is.
                     </p>
 
                     <div className="space-y-2">
