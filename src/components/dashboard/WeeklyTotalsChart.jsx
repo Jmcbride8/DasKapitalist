@@ -35,7 +35,7 @@ export default function WeeklyTotalsChart({ trades }) {
                 </button>
             </div>
             <Card className="border-0 shadow-none bg-transparent">
-                <CardContent className="pt-6 px-0 md:px-4">
+                <CardContent className="pt-6 px-0">
                     <WeeklyProfitChart trades={trades} onWeekSelect={setSelectedWeek} periodMode={periodMode} />
                 </CardContent>
             </Card>
@@ -67,7 +67,7 @@ export default function WeeklyTotalsChart({ trades }) {
                     </div>
                     {viewMode === 'treemap' && (
                         <Card className="border-0 shadow-none bg-transparent">
-                            <CardContent className="pt-6 px-0 md:px-4">
+                            <CardContent className="pt-6 px-0">
                                 <WeeklyTickerTreemap trades={trades} selectedWeek={selectedWeek} />
                             </CardContent>
                         </Card>

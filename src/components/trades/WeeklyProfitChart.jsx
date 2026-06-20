@@ -107,7 +107,7 @@ export default function WeeklyProfitChart({ trades, onWeekSelect, periodMode = '
     return (
         <div className="h-[576px]">
             <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+                <ComposedChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 40 }}>
                     <XAxis
                         dataKey="period"
                         tickFormatter={formatPeriod}
