@@ -310,7 +310,7 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* Cumulative P&L Chart */}
             <div className="ml-[-2rem] md:ml-[-4rem]">
-                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 px-4 md:px-8">Cumulative P&L</h2>
+                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 pl-8 md:pl-12">Cumulative P&L</h2>
                 <div className="px-4 md:px-8">
                     <ResponsiveContainer width="100%" height={280}>
                         <BarChart data={cumulativeData} margin={{ top: 5, right: 0, left: 0, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
@@ -447,7 +447,7 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* P&L by Top Ticker */}
             <div className="ml-[-2rem] md:ml-[-4rem]">
-                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 px-4 md:px-8">P&L by Top Ticker</h2>
+                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 pl-8 md:pl-12">P&L by Top Ticker</h2>
                 <div className="px-4 md:px-8">
                     <ResponsiveContainer width="100%" height={240}>
                         <BarChart data={tickerStackData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
