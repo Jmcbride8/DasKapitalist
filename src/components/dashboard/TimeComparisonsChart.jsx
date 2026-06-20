@@ -82,7 +82,7 @@ const ChartTooltip = ({ active, payload, label }) => {
 };
 
 export default function TimeComparisonsChart({ trades }) {
-    const [activeTab, setActiveTab] = useState('tickers');
+    const [activeChart, setActiveChart] = useState('cumulative');
     const [periodMode, setPeriodMode] = useState('weekly');
     const [selectedPeriod, setSelectedPeriod] = useState(null);
     const { theme } = useTheme();
@@ -308,11 +308,35 @@ export default function TimeComparisonsChart({ trades }) {
                 </button>
             </div>
 
+            {/* Chart Toggle */}
+            <div className="flex gap-2">
+                <button
+                    onClick={() => setActiveChart('cumulative')}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                        activeChart === 'cumulative'
+                            ? 'bg-slate-900 dark:bg-white text-white dark:text-black'
+                            : 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-zinc-700'
+                    }`}
+                >
+                    Cumulative P&L
+                </button>
+                <button
+                    onClick={() => setActiveChart('ticker')}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                        activeChart === 'ticker'
+                            ? 'bg-slate-900 dark:bg-white text-white dark:text-black'
+                            : 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-zinc-700'
+                    }`}
+                >
+                    P&L by Top Ticker
+                </button>
+            </div>
+
             {/* Cumulative P&L Chart */}
-            <div className="ml-[-2rem] md:ml-[-4rem]">
-                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 pl-12 md:pl-16">Cumulative P&L</h2>
-                <div className="px-4 md:px-8">
-                    <ResponsiveContainer width="100%" height={280}>
+            {activeChart === 'cumulative' && (
+                <div className="ml-[-2rem] md:ml-[-4rem]">
+                    <div className="px-4 md:px-8">
+                        <ResponsiveContainer width="100%" height={280}>
                         <BarChart data={cumulativeData} margin={{ top: 5, right: 0, left: 0, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <XAxis dataKey="week" tick={false} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                             <YAxis tick={false} tickLine={false} axisLine={false} />
@@ -345,6 +369,7 @@ export default function TimeComparisonsChart({ trades }) {
                     </ResponsiveContainer>
                 </div>
             </div>
+            )}
 
             {/* Profit by Trade Type — horizontal stacked */}
             {tradeTypeData && (
@@ -446,10 +471,10 @@ export default function TimeComparisonsChart({ trades }) {
             )}
 
             {/* P&L by Top Ticker */}
-            <div className="ml-[-2rem] md:ml-[-4rem]">
-                <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 pl-12 md:pl-16">P&L by Top Ticker</h2>
-                <div className="px-4 md:px-8">
-                    <ResponsiveContainer width="100%" height={240}>
+            {activeChart === 'ticker' && (
+                <div className="ml-[-2rem] md:ml-[-4rem]">
+                    <div className="px-4 md:px-8">
+                        <ResponsiveContainer width="100%" height={240}>
                         <BarChart data={tickerStackData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <XAxis dataKey="month" tick={false} tickLine={false} axisLine={false} />
                             <YAxis tick={false} tickLine={false} axisLine={false} />
@@ -492,8 +517,7 @@ export default function TimeComparisonsChart({ trades }) {
                     </ResponsiveContainer>
                 </div>
             </div>
-
-
+            )}
 
             {/* Ticker Matrix */}
             <div>
