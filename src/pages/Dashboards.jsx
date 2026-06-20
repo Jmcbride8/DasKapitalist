@@ -86,7 +86,15 @@ export default function Dashboards() {
             <div className="max-w-6xl mx-auto p-6 lg:p-8">
                 <div className="mb-8">
                     <div className="flex items-center justify-between gap-4">
-                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{dashboard.title}</h1>
+                        <div className="flex items-center gap-3">
+                            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{dashboard.title}</h1>
+                            <button
+                                onClick={() => setIsDescExpanded(!isDescExpanded)}
+                                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+                            >
+                                {isDescExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                            </button>
+                        </div>
                         <div className="flex gap-3 items-center">
                             <div className="w-36">
                                 <Select value={selectedYear} onValueChange={setSelectedYear}>
@@ -116,15 +124,7 @@ export default function Dashboards() {
                             </div>
                         </div>
                     </div>
-                    <div className="relative mt-3">
-                        <p className={`text-sm text-slate-500 dark:text-slate-400 italic transition-all duration-300 ${isDescExpanded ? 'line-clamp-none' : 'line-clamp-2'}`}>{dashboard.desc}</p>
-                        <button
-                            onClick={() => setIsDescExpanded(!isDescExpanded)}
-                            className="absolute right-0 top-0 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
-                        >
-                            {isDescExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                        </button>
-                    </div>
+                    <p className={`text-sm text-slate-500 dark:text-slate-400 italic mt-3 transition-all duration-300 ${isDescExpanded ? 'line-clamp-none' : 'line-clamp-2'}`}>{dashboard.desc}</p>
                 </div>
 
                 <div className="hidden md:flex mb-6 flex-wrap gap-2">
