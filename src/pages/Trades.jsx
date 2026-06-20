@@ -125,9 +125,8 @@ export default function Trades() {
                         <TradeLegendModal />
                         <Button 
                             onClick={() => setShowBulkUpload(true)}
-                            variant="outline"
                             size="icon"
-                            className="border-slate-300 text-slate-700 hover:bg-slate-100"
+                            className="bg-slate-900 hover:bg-slate-800 text-white"
                             title="Bulk Upload"
                         >
                             <Upload className="w-4 h-4" />
