@@ -51,7 +51,7 @@ export default function Profile() {
     ];
 
     return (
-        <div className="min-h-screen bg-stone-50 dark:bg-[#111413] font-mono">
+        <div className="min-h-screen bg-stone-50 dark:bg-[#0d0f0e] font-mono">
             {/* Header */}
             <div className="bg-white dark:bg-zinc-900 border-b border-black/10 dark:border-white/10 px-6 py-8">
                 <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-black/30 dark:text-white/30 mb-2">Settings</p>

@@ -105,7 +105,7 @@ export default function Home() {
     }
 
     return (
-        <div className="min-h-screen bg-white dark:bg-[#111413] p-4 md:p-8">
+        <div className="min-h-screen bg-white dark:bg-[#0d0f0e] p-4 md:p-8">
             <div className="max-w-7xl mx-auto space-y-6">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
