@@ -108,14 +108,12 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
         <Card className="border-0 shadow-none bg-transparent">
             <CardContent className="pt-6 px-2">
                 <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={chartData} margin={{ top: 10, right: 0, left: -16, bottom: 0 }}>
-                        <XAxis dataKey="ticker" stroke="#64748b" className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block" />
+                    <BarChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+                        <XAxis dataKey="ticker" tick={false} tickLine={false} axisLine={false} />
                         <YAxis 
-                            tickFormatter={formatCurrency}
-                            tick={{ fontSize: 11, fill: '#64748b' }}
+                            tick={false}
                             tickLine={false}
                             axisLine={false}
-                            className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block"
                         />
                         <Tooltip content={<CustomTooltip />} cursor={{ fill: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }} />
                         <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" />
