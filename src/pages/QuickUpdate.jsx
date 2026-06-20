@@ -292,7 +292,7 @@ export default function QuickUpdate() {
     };
 
     return (
-        <div className="min-h-screen bg-white dark:bg-zinc-950">
+        <div className="min-h-screen bg-white dark:bg-[#111413]">
         <div className="max-w-6xl mx-auto p-6 lg:p-8">
             <div className="mb-8 flex items-start justify-between">
                 <div>
