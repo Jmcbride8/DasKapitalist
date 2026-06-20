@@ -243,7 +243,7 @@ export default function ArsenalShowcase() {
                             <div className="flex flex-col justify-center gap-8 flex-1 min-w-0">
                                 <div>
                                     <div className="flex items-baseline gap-3 mb-3">
-                                        <span className="text-5xl font-black text-white/10 leading-none select-none">{item.num}</span>
+                                        <span className="text-6xl md:text-8xl font-black text-white/10 leading-none select-none">{item.num}</span>
                                         <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight leading-tight">{item.title}</h3>
                                     </div>
                                     <p className="text-sm text-white/60 leading-relaxed font-sans">
