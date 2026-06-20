@@ -4,6 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/lib/AuthContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import DashboardKPIs from '@/components/dashboard/DashboardKPIs';
 import WeeklyTotalsChart from '@/components/dashboard/WeeklyTotalsChart';
 import OpenPositionsChart from '@/components/dashboard/OpenPositionsChart';
@@ -20,6 +21,7 @@ export default function Dashboards() {
     const [selectedTicker, setSelectedTicker] = useState('all');
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [selectedChartTicker, setSelectedChartTicker] = useState(null);
+    const [isDescExpanded, setIsDescExpanded] = useState(true);
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
     // Demo mode: show your actual trades when not authenticated
@@ -114,7 +116,15 @@ export default function Dashboards() {
                             </div>
                         </div>
                     </div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 italic mt-3">{dashboard.desc}</p>
+                    <div className="relative mt-3">
+                        <p className={`text-sm text-slate-500 dark:text-slate-400 italic transition-all duration-300 ${isDescExpanded ? 'line-clamp-none' : 'line-clamp-2'}`}>{dashboard.desc}</p>
+                        <button
+                            onClick={() => setIsDescExpanded(!isDescExpanded)}
+                            className="absolute right-0 top-0 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+                        >
+                            {isDescExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                        </button>
+                    </div>
                 </div>
 
                 <div className="hidden md:flex mb-6 flex-wrap gap-2">
