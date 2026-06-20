@@ -93,17 +93,17 @@ export default function DashboardKPIs({ trades, view }) {
     };
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8 md:gap-4">
+        <div className="grid grid-cols-2 gap-2 mb-6 md:gap-3 lg:gap-4">
             {kpiData.map((kpi, idx) => {
                 const color = getColor(kpi);
                 const Icon = icons[idx];
                 return (
-                    <div key={idx} className={`rounded-xl border bg-gradient-to-br p-3 md:p-4 flex flex-col gap-1 ${colorMap[color]}`}>
+                    <div key={idx} className={`rounded-xl border bg-gradient-to-br p-3 md:p-4 flex flex-col gap-1 min-w-0 ${colorMap[color]}`}>
                         <div className="flex items-center justify-between">
-                            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-wider opacity-70">{kpi.label}</span>
-                            {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 opacity-60" />}
+                            <span className="text-[10px] font-semibold uppercase tracking-wide opacity-70 leading-tight line-clamp-2">{kpi.label}</span>
+                            {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 opacity-60 flex-shrink-0" />}
                         </div>
-                        <div className="text-lg md:text-2xl font-bold">
+                        <div className="text-sm md:text-2xl font-bold leading-tight break-words">
                             {kpi.format === 'percent'
                                 ? `${kpi.value >= 0 ? '+' : ''}${kpi.value.toFixed(1)}%`
                                 : formatCurrency(kpi.value)}
