@@ -20,7 +20,7 @@ const items = [
     {
         num: '02',
         title: 'Streaks',
-        desc: 'Every week is a vote. Momentum. Slumps. Turning points. Know when you\'re locked in — and when you\'re hemorrhaging edge.',
+        desc: 'Each week is its own game. Momentum. Slumps. Reversals. Know when you\'re locked in, when to change your game — or fold \'em and walk away.',
         imageKey: 'weapon_2',
         image: null,
         stats: [
