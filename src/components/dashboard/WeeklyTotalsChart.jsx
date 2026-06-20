@@ -36,7 +36,7 @@ export default function WeeklyTotalsChart({ trades }) {
             </div>
             <Card className="border-0 shadow-none bg-transparent ml-[-2rem] md:ml-[-4rem]">
                 <CardContent className="pt-6 px-0 md:px-8 -mx-[4px] md:mx-0 overflow-hidden">
-                    <div className="w-[115%] md:w-auto">
+                    <div className="w-[120%] md:w-auto ml-[-10px]">
                         <WeeklyProfitChart trades={trades} onWeekSelect={setSelectedWeek} periodMode={periodMode} />
                     </div>
                 </CardContent>
