@@ -21,7 +21,7 @@ export default function Dashboards() {
     const [selectedTicker, setSelectedTicker] = useState('all');
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [selectedChartTicker, setSelectedChartTicker] = useState(null);
-    const [isDescExpanded, setIsDescExpanded] = useState(true);
+    const [isDescExpanded, setIsDescExpanded] = useState(false);
     const tradeTypes = ['Trade', 'Covered Call', 'Cash Secured Put', 'Long Call', 'Long Put', 'Naked Put', 'Naked Call'];
     
     // Demo mode: show your actual trades when not authenticated
