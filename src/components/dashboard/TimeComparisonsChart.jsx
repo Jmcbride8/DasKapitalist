@@ -279,9 +279,9 @@ export default function TimeComparisonsChart({ trades }) {
 
             {/* KPI Strip */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="amber" icon={Target} />
+                <Pill label="Win Rate" value={`${kpis.winRate.toFixed(1)}%`} sub={`${kpis.totalTrades > 0 ? Math.round(kpis.winRate / 100 * kpis.totalTrades) : 0}W / ${kpis.totalTrades > 0 ? Math.round((1 - kpis.winRate / 100) * kpis.totalTrades) : 0}L`} color="slate" icon={Target} />
                 <Pill label="Profit Factor" value={kpis.profitFactor ? kpis.profitFactor.toFixed(2) + 'x' : 'N/A'} sub="avg win ÷ avg loss" color="slate" icon={Activity} />
-                <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="amber" icon={Award} />
+                <Pill label="Best Streak" value={`${kpis.maxStreak} wins`} sub="consecutive profitable trades" color="slate" icon={Award} />
             </div>
 
             {/* Period Toggle */}
