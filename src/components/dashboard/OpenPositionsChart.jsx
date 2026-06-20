@@ -106,7 +106,7 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
 
     return (
         <Card className="border-0 shadow-none bg-transparent">
-            <CardContent className="pt-6 px-2">
+            <CardContent className="pt-6 px-0">
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
                         <XAxis dataKey="ticker" tick={false} tickLine={false} axisLine={false} />

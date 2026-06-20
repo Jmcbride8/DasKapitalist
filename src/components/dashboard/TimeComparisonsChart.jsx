@@ -311,7 +311,7 @@ export default function TimeComparisonsChart({ trades }) {
             {/* Cumulative P&L Chart */}
             <div>
                 <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">Cumulative P&L</h2>
-                <div className="px-2 md:p-4">
+                <div className="px-0">
                     <ResponsiveContainer width="100%" height={280}>
                         <BarChart data={cumulativeData} margin={{ top: 5, right: 0, left: 0, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <XAxis dataKey="week" tick={false} tickLine={false} axisLine={false} interval="preserveStartEnd" />
@@ -448,7 +448,7 @@ export default function TimeComparisonsChart({ trades }) {
             {/* P&L by Top Ticker */}
             <div>
                 <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">P&L by Top Ticker</h2>
-                <div className="px-2 md:p-4">
+                <div className="px-0">
                     <ResponsiveContainer width="100%" height={240}>
                         <BarChart data={tickerStackData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
                             <XAxis dataKey="month" tick={false} tickLine={false} axisLine={false} />
