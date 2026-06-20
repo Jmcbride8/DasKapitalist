@@ -309,7 +309,7 @@ export default function TimeComparisonsChart({ trades }) {
             </div>
 
             {/* Cumulative P&L Chart */}
-            <div className="-mx-4 md:-mx-8">
+            <div className="ml-[-2rem] md:ml-[-4rem]">
                 <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 px-4 md:px-8">Cumulative P&L</h2>
                 <div className="px-4 md:px-8">
                     <ResponsiveContainer width="100%" height={280}>
@@ -446,7 +446,7 @@ export default function TimeComparisonsChart({ trades }) {
             )}
 
             {/* P&L by Top Ticker */}
-            <div className="-mx-4 md:-mx-8">
+            <div className="ml-[-2rem] md:ml-[-4rem]">
                 <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3 px-4 md:px-8">P&L by Top Ticker</h2>
                 <div className="px-4 md:px-8">
                     <ResponsiveContainer width="100%" height={240}>
