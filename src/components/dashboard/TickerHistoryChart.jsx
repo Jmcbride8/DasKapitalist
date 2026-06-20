@@ -60,8 +60,8 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
 
     return (
         <Card className="border-0 shadow-none bg-transparent ml-[-2rem] md:ml-[-4rem]">
-            <CardContent className="pt-6 px-4 md:px-8">
-                <div className="relative">
+            <CardContent className="pt-6 px-4 md:px-8 overflow-hidden">
+                <div className="relative w-[105%] md:w-auto">
                     {/* Min Impact input */}
                     <div className="mb-4 flex items-center gap-2 pl-4 md:pl-8">
                         <label className="text-sm text-slate-500 dark:text-slate-400">Min Impact:</label>
