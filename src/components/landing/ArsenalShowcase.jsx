@@ -23,7 +23,7 @@ const items = [
         num: '02',
         title: 'Streaks',
         desc: "Each week is its own game. Momentum. Slumps. Reversals. Know when you're locked in, when to change your game — or fold 'em and walk away.",
-        highlight: 'Psychology',
+        highlight: 'Momentum',
         highlightColor: 'emerald',
         imageKey: 'weapon_2',
         image: null,
@@ -248,7 +248,8 @@ export default function ArsenalShowcase() {
                                     </div>
                                     <p className="text-sm text-white/60 leading-relaxed font-sans">
                                         <span className={`font-black uppercase tracking-wider ${item.highlightColor === 'emerald' ? 'text-emerald-400' : 'text-red-400'}`}>{item.highlight}</span>
-                                        {' '}{item.desc}
+                                        <span className={`ml-1.5 mr-2 ${item.highlightColor === 'emerald' ? 'text-emerald-400' : 'text-red-400'}`}>—</span>
+                                        {item.desc}
                                     </p>
                                 </div>
                                 <div className="flex flex-col gap-5 pt-6 border-t border-white/10">
