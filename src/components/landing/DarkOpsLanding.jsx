@@ -287,7 +287,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     </h2>
                     <div className="h-px w-full bg-white/10 mb-8" />
                     <p className="text-base text-white max-w-xl leading-relaxed font-medium font-sans ml-auto text-right mb-16">
-                        From logging your first trade to finding your edge — here's how it works.
+                        The market triggers greed, fear, and overconfidence—but rewards discipline. Discipline begins with reflection. Log your trades. Build the habit. Breathe. Speed isn't your edge. Objectivity is.
                     </p>
 
                     <div className="space-y-2">
