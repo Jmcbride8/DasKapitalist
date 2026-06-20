@@ -154,11 +154,8 @@ export default function Home() {
                 {/* Treemap */}
                 <div>
                     <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
-                        Position Treemap <span className="text-xs font-normal text-slate-400">— size = collateral, color = today's price change</span>
+                        Position Treemap
                     </h2>
-                    {!lastUpdated && (
-                        <p className="text-xs text-slate-400 mb-3 italic">Hit "Refresh Prices" to color by today's change. Tiles are sized by collateral.</p>
-                    )}
                     <ResponsiveContainer width="100%" height={420}>
                         <Treemap
                             data={openPositions.map(pos => {
