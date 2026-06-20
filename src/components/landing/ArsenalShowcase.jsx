@@ -175,9 +175,9 @@ export default function ArsenalShowcase() {
                                     className="relative w-full overflow-hidden"
                                     style={{
                                         borderRadius: '8px',
-                                        background: 'linear-gradient(145deg, #d1d5db 0%, #9ca3af 100%)',
+                                        background: 'linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%)',
                                         padding: '4px',
-                                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 8px rgba(0,0,0,0.4)',
+                                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.8)',
                                     }}
                                 >
                                     {/* Inner bezel */}
