@@ -220,7 +220,7 @@ export default function ArsenalShowcase() {
                                         {item.desc}
                                     </p>
                                 </div>
-                                <div className="flex flex-col gap-5 pt-6 border-t border-white/10">
+                                <div className="flex flex-row gap-8 pt-6 border-t border-white/10">
                                     {item.stats.map((s) => (
                                         <div key={s.label}>
                                             <div className="flex items-center gap-1.5 text-lg font-black text-white">
