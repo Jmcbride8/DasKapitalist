@@ -51,7 +51,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                     <div className="h-1 w-2/3 bg-white" />
 
                     <p className="text-base md:text-lg text-white max-w-2xl leading-relaxed font-medium font-sans">
-                        Speed and complexity aren't your edge. Clarity is.
+                        Speed and complexity aren't your edge.<br />Clarity is.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
