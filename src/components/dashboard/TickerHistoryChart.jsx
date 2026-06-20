@@ -80,7 +80,7 @@ export default function TickerHistoryChart({ trades, onTickerSelect }) {
                     <ProfitChart trades={filteredTrades} selectedTicker={selectedTicker} onTickerSelect={handleTickerClick} />
 
                     {/* Donut chart overlay - rendered after chart so it sits on top */}
-                    <div className="absolute top-0 md:top-0 right-0 mt-16 md:mt-0 flex flex-col items-center bg-white dark:bg-zinc-800 rounded-lg p-1" style={{ width: 120, zIndex: 20 }}>
+                    <div className="absolute top-0 md:top-0 right-0 mt-16 md:mt-0 flex flex-col items-center rounded-lg p-1" style={{ width: 120, zIndex: 20 }}>
                         <div className="relative" style={{ width: 100, height: 100 }}>
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
