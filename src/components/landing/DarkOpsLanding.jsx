@@ -41,7 +41,7 @@ export default function DarkOpsLanding({ navigate, openView }) {
                 {/* Content */}
                 <div className="relative z-20 max-w-4xl space-y-6 pt-16 md:pt-0">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white font-mono">
-                        Beat the odds
+                        Focus. Win.
                     </p>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] tracking-tighter">
