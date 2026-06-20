@@ -210,7 +210,7 @@ export default function Layout({ children, currentPageName }) {
                 )}
 
                 {/* Main Content */}
-                <div className="flex-1 overflow-auto px-0">
+                <div className="flex-1 overflow-auto">
                     {children}
                 </div>
             </div>
