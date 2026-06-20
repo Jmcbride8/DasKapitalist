@@ -124,7 +124,7 @@ export default function Dashboards() {
                             </div>
                         </div>
                     </div>
-                    <p className={`text-sm text-slate-500 dark:text-slate-400 italic mt-3 transition-all duration-300 ${isDescExpanded ? 'line-clamp-none' : 'line-clamp-2'}`}>{dashboard.desc}</p>
+                    {isDescExpanded && <p className="text-sm text-slate-500 dark:text-slate-400 italic mt-3">{dashboard.desc}</p>}
                 </div>
 
                 <div className="hidden md:flex mb-6 flex-wrap gap-2">
