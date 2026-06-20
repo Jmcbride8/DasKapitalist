@@ -44,7 +44,7 @@ const items = [
     {
         num: '04',
         title: 'Exposure',
-        desc: "Your skin in the game. Every open position. Every dollar on the line. See the damage before it's done. Green means you're reading the tape right. Red means you're wrong and bleeding. Cut fast. Live to trade tomorrow.",
+        desc: "Track your overconfidence. See the totality of your risk before you go full tilt. Every open position. Every dollar exposed. Know when you're pushing too hard. Stay sane. Live to trade tomorrow.",
         imageKey: 'weapon_4',
         image: null,
         stats: [
