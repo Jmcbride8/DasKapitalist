@@ -35,6 +35,11 @@ const fmt = (v) => {
     return `${v < 0 ? '-' : ''}$${abs.toFixed(0)}`;
 };
 
+const fmtNoDecimals = (v) => {
+    if (v === null || v === undefined || isNaN(v)) return '$0';
+    return `${v < 0 ? '-' : ''}$${Math.abs(v).toFixed(0)}`;
+};
+
 const Pill = ({ label, value, sub, color = 'emerald', icon: Icon }) => {
     const colors = {
         emerald: 'from-emerald-50/80 to-emerald-100/30 dark:from-emerald-900/30 dark:to-emerald-800/20 border-emerald-200 dark:border-emerald-700/50 text-emerald-700 dark:text-emerald-400',
@@ -309,8 +314,8 @@ export default function TimeComparisonsChart({ trades }) {
                 <div className="px-2 md:p-4">
                     <ResponsiveContainer width="100%" height={280}>
                         <BarChart data={cumulativeData} margin={{ top: 5, right: 0, left: -16, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
-                            <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
-                            <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} interval="preserveStartEnd" className="hidden md:block" />
+                            <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} className="hidden md:block" />
                             <Tooltip
                                 cursor={{ fill: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}
                                 content={({ active, payload, label }) => {
@@ -319,8 +324,8 @@ export default function TimeComparisonsChart({ trades }) {
                                     return (
                                         <div className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3 text-xs">
                                             <p className="font-semibold text-slate-700 dark:text-slate-200 mb-1">{label}</p>
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-400" /><span className="text-slate-500 dark:text-slate-400">Closed:</span><span className="font-bold text-slate-700 dark:text-slate-200">{fmtFull(d?.closed)}</span></div>
-                                            {d?.open !== 0 && <div className="flex items-center gap-2"><span className={`w-2 h-2 rounded-full ${d?.open >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`} /><span className="text-slate-500 dark:text-slate-400">Open:</span><span className={`font-bold ${d?.open >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(d?.open)}</span></div>}
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-400" /><span className="text-slate-500 dark:text-slate-400">Closed:</span><span className="font-bold text-slate-700 dark:text-slate-200">{fmtNoDecimals(d?.closed)}</span></div>
+                                            {d?.open !== 0 && <div className="flex items-center gap-2"><span className={`w-2 h-2 rounded-full ${d?.open >= 0 ? 'bg-emerald-400' : 'bg-rose-400'}`} /><span className="text-slate-500 dark:text-slate-400">Open:</span><span className={`font-bold ${d?.open >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtNoDecimals(d?.open)}</span></div>}
                                         </div>
                                     );
                                 }}
@@ -446,8 +451,8 @@ export default function TimeComparisonsChart({ trades }) {
                 <div className="px-2 md:p-4">
                     <ResponsiveContainer width="100%" height={240}>
                         <BarChart data={tickerStackData} margin={{ top: 10, right: 0, left: -16, bottom: 0 }} onClick={(e) => e?.activePayload && setSelectedPeriod(p => p === e.activePayload[0]?.payload?.date ? null : e.activePayload[0]?.payload?.date)} style={{ cursor: 'pointer' }}>
-                            <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
-                            <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} />
+                            <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} className="hidden md:block" />
+                            <YAxis tickFormatter={(v) => { const abs = Math.abs(v); if (abs >= 1000) return `${v < 0 ? '-' : ''}$${Math.round(abs / 1000)}k`; return `${v < 0 ? '-' : ''}$${Math.round(abs)}`; }} tick={{ fontSize: 10, fill: '#94a3b8' }} tickLine={false} axisLine={false} className="hidden md:block" />
                             <Tooltip
                                 cursor={{ fill: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}
                                 content={({ active, payload, label }) => {
@@ -456,9 +461,9 @@ export default function TimeComparisonsChart({ trades }) {
                                     return (
                                         <div className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3 text-xs">
                                             <p className="font-semibold text-slate-700 dark:text-slate-200 mb-1">{label}</p>
-                                            {d?.topTicker && <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-500" /><span className="text-slate-500 dark:text-slate-400">{d.topTicker}:</span><span className="font-bold text-slate-700 dark:text-slate-200">{fmt(d.top)}</span></div>}
-                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-300" /><span className="text-slate-500 dark:text-slate-400">Others:</span><span className="font-bold text-slate-600 dark:text-slate-300">{fmt(d?.rest)}</span></div>
-                                            <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100 dark:border-zinc-600"><span className="text-slate-500 dark:text-slate-400">Total:</span><span className="font-bold text-slate-800 dark:text-white">{fmt(d?.total)}</span></div>
+                                            {d?.topTicker && <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-500" /><span className="text-slate-500 dark:text-slate-400">{d.topTicker}:</span><span className="font-bold text-slate-700 dark:text-slate-200">{fmtNoDecimals(d.top)}</span></div>}
+                                            <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-300" /><span className="text-slate-500 dark:text-slate-400">Others:</span><span className="font-bold text-slate-600 dark:text-slate-300">{fmtNoDecimals(d?.rest)}</span></div>
+                                            <div className="flex items-center gap-2 mt-1 pt-1 border-t border-slate-100 dark:border-zinc-600"><span className="text-slate-500 dark:text-slate-400">Total:</span><span className="font-bold text-slate-800 dark:text-white">{fmtNoDecimals(d?.total)}</span></div>
                                         </div>
                                     );
                                 }}
@@ -507,7 +512,7 @@ export default function TimeComparisonsChart({ trades }) {
                                 return (
                                     <tr key={row.ticker} className="border-t border-slate-50 dark:border-zinc-700/50 hover:bg-slate-50 dark:hover:bg-zinc-800/40 transition-colors">
                                         <td className="px-4 py-3 font-bold text-slate-800 dark:text-slate-200">{row.ticker}</td>
-                                        <td className={`px-4 py-3 font-bold ${row.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.profit)}</td>
+                                        <td className={`px-4 py-3 font-bold ${row.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtNoDecimals(row.profit)}</td>
                                         <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{row.trades}</td>
                                         <td className="px-4 py-3">
                                             <span className="text-emerald-600 font-semibold">{row.wins}W</span>
@@ -522,7 +527,7 @@ export default function TimeComparisonsChart({ trades }) {
                                                 <span className="text-slate-600 dark:text-slate-300">{row.winRate.toFixed(0)}%</span>
                                             </div>
                                         </td>
-                                        <td className={`px-4 py-3 font-medium ${row.avgProfit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtFull(row.avgProfit)}</td>
+                                        <td className={`px-4 py-3 font-medium ${row.avgProfit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{fmtNoDecimals(row.avgProfit)}</td>
                                     </tr>
                                 );
                             })}

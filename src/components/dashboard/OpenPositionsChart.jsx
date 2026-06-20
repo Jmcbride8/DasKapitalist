@@ -55,15 +55,20 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
         return `${value < 0 ? '-' : ''}$${absValue.toFixed(0)}`;
     };
 
+    const formatCurrencyNoDecimals = (value) => {
+        if (value === 0) return '$0';
+        return `${value < 0 ? '-' : ''}$${Math.abs(value).toFixed(0)}`;
+    };
+
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             const data = payload[0].payload;
             return (
                 <div className="bg-white dark:bg-zinc-800 p-3 border border-slate-200 dark:border-zinc-600 rounded shadow-lg">
                     <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{data.ticker}</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Open: {formatCurrency(data.open)}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Open: {formatCurrencyNoDecimals(data.open)}</p>
                     <p className="text-sm" style={{ color: data.unrealized >= 0 ? '#10b981' : '#ef4444' }}>
-                        Unrealized: {formatCurrency(data.unrealized)}
+                        Unrealized: {formatCurrencyNoDecimals(data.unrealized)}
                     </p>
                 </div>
             );

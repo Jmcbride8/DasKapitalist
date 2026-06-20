@@ -52,7 +52,7 @@ export default function WeeklyTickerTreemap({ trades, selectedWeek }) {
                             padding: '0.5rem'
                         }}
                         formatter={(value) => [
-                            new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value),
+                            new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value),
                             'Profit'
                         ]}
                         labelFormatter={(name) => name}

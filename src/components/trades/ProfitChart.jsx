@@ -50,6 +50,11 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
         return `${value < 0 ? '-' : ''}$${absValue.toFixed(0)}`;
     };
 
+    const formatCurrencyMobile = (value) => {
+        if (value === 0) return '$0';
+        return `${value < 0 ? '-' : ''}$${Math.abs(value).toFixed(0)}`;
+    };
+
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             const realized = payload.find(p => p.dataKey === 'realized')?.value || 0;
@@ -60,9 +65,9 @@ export default function ProfitChart({ trades, selectedTicker, onTickerSelect }) 
                 <div className="bg-white/95 dark:bg-zinc-800/95 backdrop-blur-sm border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg p-3">
                     <p className="font-semibold text-slate-900 dark:text-slate-100 mb-2">{label}</p>
                     <div className="space-y-1 text-sm">
-                        <p className="text-slate-500 dark:text-slate-400">Realized: {formatCurrency(realized)}</p>
-                        <p className={unrealized >= 0 ? "text-emerald-600" : "text-red-600"}>Unrealized: {formatCurrency(unrealized)}</p>
-                        <p className="font-semibold text-slate-900 dark:text-slate-100 pt-1 border-t border-slate-200 dark:border-zinc-600">Total: {formatCurrency(total)}</p>
+                        <p className="text-slate-500 dark:text-slate-400">Realized: {formatCurrencyMobile(realized)}</p>
+                        <p className={unrealized >= 0 ? "text-emerald-600" : "text-red-600"}>Unrealized: {formatCurrencyMobile(unrealized)}</p>
+                        <p className="font-semibold text-slate-900 dark:text-slate-100 pt-1 border-t border-slate-200 dark:border-zinc-600">Total: {formatCurrencyMobile(total)}</p>
                     </div>
                 </div>
             );

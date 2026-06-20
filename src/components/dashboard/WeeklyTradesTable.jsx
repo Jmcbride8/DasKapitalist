@@ -3,8 +3,8 @@ import { format, startOfWeek, endOfWeek, parseISO, isWithinInterval } from 'date
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 const formatCurrency = (value) => {
-    if (!value && value !== 0) return '$0.00';
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+    if (!value && value !== 0) return '$0';
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
 const formatDate = (dateStr) => {
