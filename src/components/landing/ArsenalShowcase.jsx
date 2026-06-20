@@ -150,7 +150,7 @@ export default function ArsenalShowcase() {
                 <div className="mb-10">
                     <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-4 font-mono">THE TOOLS</p>
                     <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tighter mb-4">
-                        <PriceTargetText>Four Dashboards For Clarity</PriceTargetText>
+                        <PriceTargetText>Four Dashboards</PriceTargetText>
                     </h2>
                     <div className="h-px w-full bg-white/10" />
                 </div>
