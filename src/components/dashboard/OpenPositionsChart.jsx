@@ -101,9 +101,9 @@ export default function OpenPositionsChart({ trades, onTickerSelect }) {
 
     return (
         <Card className="border-0 shadow-none bg-transparent">
-            <CardContent className="pt-6 px-0">
+            <CardContent className="pt-6 px-2">
                 <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={chartData} margin={{ top: 10, right: 0, left: -10, bottom: 0 }}>
+                    <BarChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
                         <XAxis dataKey="ticker" stroke="#64748b" className="[&_text]:hidden md:[&_text]:block [&_line]:hidden md:[&_line]:block" />
                         <YAxis 
                             tickFormatter={formatCurrency}
