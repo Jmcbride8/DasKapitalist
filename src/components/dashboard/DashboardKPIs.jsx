@@ -93,7 +93,7 @@ export default function DashboardKPIs({ trades, view }) {
     };
 
     return (
-        <div className="grid grid-cols-2 gap-2 mb-6 md:gap-3 lg:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6 md:gap-3 lg:gap-4">
             {kpiData.map((kpi, idx) => {
                 const color = getColor(kpi);
                 const Icon = icons[idx];
